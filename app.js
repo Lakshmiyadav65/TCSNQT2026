@@ -119,11 +119,6 @@ async function loadCategoryData(category) {
 
         console.log(`Loaded ${state.questions.length} questions for ${category}`);
 
-        // Auto-start timer if not running
-        if (!state.timerInterval) {
-            startTimer();
-        }
-
         renderQuestions(state.questions);
     } catch (error) {
         console.error('Error loading data:', error);
@@ -159,14 +154,23 @@ function renderQuestions(questionsToRender) {
                 <p>Curated Collection • ${questionsToRender.length} Questions</p>
             </div>
             <div class="header-actions">
-                <div class="header-timer" id="header-timer">
+                <div class="header-timer" id="header-timer" style="display: ${state.timerInterval ? 'flex' : 'none'}">
                     <span class="timer-label">⏱️ Session Time</span>
                     <span class="timer-val">${formatTime(state.timer)}</span>
                 </div>
+                ${!state.timerInterval ? '<button class="start-session-btn" id="start-header-timer">▶ Start Practice</button>' : ''}
             </div>
         </div>
         <div class="question-list" id="question-list-container"></div>
     `;
+
+    const startBtn = document.getElementById('start-header-timer');
+    if (startBtn) {
+        startBtn.addEventListener('click', () => {
+            startTimer();
+            renderQuestions(questionsToRender);
+        });
+    }
 
     const container = document.getElementById('question-list-container');
     if (!container) return;
@@ -175,12 +179,12 @@ function renderQuestions(questionsToRender) {
     // For now, let's render the first 15 questions
     const itemsToShow = questionsToRender.slice(0, state.currentPage * state.itemsPerPage);
 
-    itemsToShow.forEach((q) => {
+    itemsToShow.forEach((q, index) => {
         let qCard;
         if (state.currentCategory === 'coding') {
-            qCard = createCodingCard(q);
+            qCard = createCodingCard(q, index);
         } else {
-            qCard = createQuestionCard(q);
+            qCard = createQuestionCard(q, index);
         }
         container.appendChild(qCard);
     });
@@ -216,7 +220,7 @@ function renderQuestions(questionsToRender) {
     }
 }
 
-function createQuestionCard(q) {
+function createQuestionCard(q, index) {
     const card = document.createElement('div');
     card.className = 'question-card';
     card.id = `q-${q.id}`;
@@ -228,7 +232,7 @@ function createQuestionCard(q) {
             <div class="tag-container">
                 <span class="tag tag-difficulty">${q.tags || 'General'}</span>
             </div>
-            <div class="q-number">Question #${q.id}</div>
+            <div class="q-number">Question #${index + 1}</div>
         </div>
         <div class="question-text">${q.question}</div>
         ${q.code_snippet ? `<pre class="code-block">${q.code_snippet}</pre>` : ''}
@@ -299,7 +303,7 @@ function createQuestionCard(q) {
     return card;
 }
 
-function createCodingCard(p) {
+function createCodingCard(p, index) {
     const card = document.createElement('div');
     card.className = 'question-card coding-card';
     card.id = `p-${p.id}`;
@@ -310,7 +314,7 @@ function createCodingCard(p) {
                 <span class="tag tag-difficulty">Coding Challenge</span>
                 <span class="tag tag-difficulty">${p.difficulty || 'Easy'}</span>
             </div>
-            <div class="q-number">Problem #${p.id}</div>
+            <div class="q-number">Problem #${index + 1}</div>
         </div>
         <div class="problem-statement">
             <h3>${p.title || 'Problem Description'}</h3>
