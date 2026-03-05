@@ -1,0 +1,13 @@
+{
+    "name": "prep-master-tcs-nqt",
+    "version": "1.0.0",
+    "description": "Premium preparation platform for TCS NQT and other placement exams.",
+    "main": "index.html",
+    "scripts": {
+        "dev": "npx http-server .",
+        "start": "npx http-server ."
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}
