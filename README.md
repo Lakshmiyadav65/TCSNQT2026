@@ -3,7 +3,7 @@
 Welcome to the ultimate preparation platform for **TCS NQT 2026** and other top MNC placement exams. This platform is curated by **Lakshmi** to help students master Numerical, Verbal, Reasoning, and Coding skills.
 
 ## ✨ Features
-- **800+ Hand-picked Questions**: Specifically designed for modern placement patterns.
+- **1000+ Hand-picked Questions**: Specifically designed for modern placement patterns.
 - **Dynamic Shuffling**: Questions are randomized every session to provide fresh practice.
 - **Instant Solutions**: Detailed step-by-step explanations, Memory Tips, and Pro Tips for every question.
 - **Coding Arena**: Real-time coding challenges with Python and Java solutions.
@@ -14,7 +14,7 @@ Welcome to the ultimate preparation platform for **TCS NQT 2026** and other top 
 ## 📜 Usage Policy & Copyright
 
 ### 💎 100% Free for Everyone
-This platform is built with a mission to help the student community. It is **completely free of cost** for all users. You can access all 800+ questions and solutions without any subscription or hidden fees.
+This platform is built with a mission to help the student community. It is **completely free of cost** for all users. You can access all 1000+ questions and solutions without any subscription or hidden fees.
 
 ### ⚠️ Intellectual Property & Copyright Notice
 - **Strictly No Duplication**: The architecture, design, and curated content of this platform are protected. **Duplicate versions or cloning of this repository for public redistribution is strictly prohibited.**
