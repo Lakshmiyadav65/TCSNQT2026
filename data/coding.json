@@ -1,7 +1,7 @@
 {
   "metadata": {
     "category": "Coding Problems",
-    "total_questions": 100,
+    "total_questions": 150,
     "exam": "TCS NQT 2026",
     "exam_date": "March 20, 2026",
     "last_updated": "2026-02-24",
@@ -5582,6 +5582,2797 @@
         "hard"
       ],
       "year_asked": "2024",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "59_extra_100",
+      "category": "Coding Problems",
+      "subcategory": "Advanced DSA",
+      "difficulty": "Medium",
+      "difficulty_level": 2,
+      "title": "Group Anagrams",
+      "problem_statement": "Given an array of strings, group the anagrams together. Print each group on a new line. The order of output does not matter.",
+      "input_format": "First line N. Second line N space separated strings.",
+      "output_format": "Each group of anagrams on a new line space-separated.",
+      "constraints": "1 <= N <= 10^4\n0 <= strs[i].length <= 100",
+      "sample_input": "6\neat tea tan ate nat bat",
+      "sample_output": "eat tea ate\ntan nat\nbat",
+      "explanation_of_example": "All anagrams are hashed to the same canonical representation and grouped.",
+      "solutions": {
+        "python": {
+          "code": "import collections\nn = int(input())\nstrs = input().split()\nans = collections.defaultdict(list)\nfor s in strs:\n    ans[tuple(sorted(s))].append(s)\nfor group in ans.values():\n    print(*group)",
+          "time_complexity": "O(N * K log K)",
+          "space_complexity": "O(N * K)",
+          "explanation": "Sort each string to form a canonical key. Use a hash map where the sorted string is the key, and the value is a list of original strings."
+        },
+        "java": {
+          "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        String[] strs = new String[n];\n        for (int i = 0; i < n; i++) strs[i] = sc.next();\n        Map<String, List<String>> map = new HashMap<>();\n        for (String s : strs) {\n            char[] ca = s.toCharArray();\n            Arrays.sort(ca);\n            String key = String.valueOf(ca);\n            map.putIfAbsent(key, new ArrayList<>());\n            map.get(key).add(s);\n        }\n        for (List<String> group : map.values()) {\n            for (String s : group) System.out.print(s + \" \");\n            System.out.println();\n        }\n    }\n}",
+          "time_complexity": "O(N * K log K)",
+          "space_complexity": "O(N * K)",
+          "explanation": "Convert string to char array, sort it, and convert back to string to use as a HashMap key. Append matching original strings to the mapped list."
+        }
+      },
+      "approach": {
+        "brute_force": "Compare every string with every other string checking for anagrams (O(N^2 * K))",
+        "optimal": "Categorize by sorted string key using Hash Map (O(N * K log K))",
+        "algorithm": "Hash Table / Sorting"
+      },
+      "pro_tip": "Instead of sorting taking O(K log K), you can use a fixed size 26 character frequency count string (e.g. \"1#0#2#...\") as the key to achieve strictly O(N * K) time complexity.",
+      "common_mistakes": [
+        "Hashing the sum of ASCII values (collides easily, e.g. 'ad' and 'bc')",
+        "Printing the sorted strings instead of the original strings",
+        "Inefficient concatenation when building the result lists"
+      ],
+      "similar_problems": [
+        "Valid Anagram",
+        "Find All Anagrams in a String",
+        "Shift String"
+      ],
+      "tags": [
+        "strings",
+        "hash-table",
+        "sorting",
+        "medium"
+      ],
+      "year_asked": "2024",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "6_extra_101",
+      "category": "Coding Problems",
+      "subcategory": "Arrays & Strings",
+      "difficulty": "Easy",
+      "difficulty_level": 1,
+      "title": "Remove Duplicates from Sorted Array",
+      "problem_statement": "Given a sorted array of N integers, remove the duplicates in-place such that each unique element appears only once. Print the new array.",
+      "input_format": "First line N. Second line N space-separated sorted integers.",
+      "output_format": "Space-separated unique elements of the array.",
+      "constraints": "1 <= N <= 10^5\n-100 <= A[i] <= 100",
+      "sample_input": "5\n1 1 2 2 3",
+      "sample_output": "1 2 3",
+      "explanation_of_example": "The unique elements are 1, 2, and 3.",
+      "solutions": {
+        "python": {
+          "code": "n = int(input())\narr = list(map(int, input().split()))\nif n == 0: exit()\nans = [arr[0]]\nfor i in range(1, n):\n    if arr[i] != arr[i-1]:\n        ans.append(arr[i])\nprint(*ans)",
+          "time_complexity": "O(n)",
+          "space_complexity": "O(n) for print array, O(1) if modified in place",
+          "explanation": "Iterate and pick elements that are different from their immediate predecessor."
+        },
+        "java": {
+          "code": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        if(n == 0) return;\n        int[] arr = new int[n];\n        for(int i=0; i<n; i++) arr[i] = sc.nextInt();\n        int j = 0;\n        for(int i=1; i<n; i++) {\n            if(arr[i] != arr[j]) {\n                j++;\n                arr[j] = arr[i];\n            }\n        }\n        for(int i=0; i<=j; i++) System.out.print(arr[i] + \" \");\n    }\n}",
+          "time_complexity": "O(n)",
+          "space_complexity": "O(n)",
+          "explanation": "Use a two-pointer approach (i and j). Modify the array in-place and print up to index j."
+        }
+      },
+      "approach": {
+        "brute_force": "Use a HashSet to store unique elements",
+        "optimal": "Two-pointer approach comparing adjacent elements since array is sorted",
+        "algorithm": "Two Pointers"
+      },
+      "pro_tip": "The key constraint 'sorted array' strongly hints at a two-pointer adjacent comparison strategy.",
+      "common_mistakes": [
+        "Using extra space (Set) which violates in-place requirement",
+        "Going out of bounds with index checking",
+        "Failing on an array of length 1"
+      ],
+      "similar_problems": [
+        "Remove Element",
+        "Remove Duplicates from Sorted Array II",
+        "Find the Duplicate Number"
+      ],
+      "tags": [
+        "arrays",
+        "two-pointers",
+        "TCS-NQT",
+        "easy"
+      ],
+      "year_asked": "2023",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "3_extra_102",
+      "category": "Coding Problems",
+      "subcategory": "Arrays & Strings",
+      "difficulty": "Easy",
+      "difficulty_level": 1,
+      "title": "Count Vowels and Consonants",
+      "problem_statement": "Count the total number of vowels and consonants in a given string. Ignore spaces and special characters.",
+      "input_format": "A single line containing string S.",
+      "output_format": "Print two space-separated integers: vowel_count consonant_count",
+      "constraints": "1 <= |S| <= 10^5\nString can contain mixed case characters, spaces, and punctuation.",
+      "sample_input": "Hello World!",
+      "sample_output": "3 7",
+      "explanation_of_example": "Vowels: e, o, o (3). Consonants: H, l, l, W, r, l, d (7).",
+      "solutions": {
+        "python": {
+          "code": "s = input().lower()\nvowels = set('aeiou')\nv_count = c_count = 0\nfor char in s:\n    if char.isalpha():\n        if char in vowels:\n            v_count += 1\n        else:\n            c_count += 1\nprint(f\"{v_count} {c_count}\")",
+          "time_complexity": "O(n)",
+          "space_complexity": "O(1)",
+          "explanation": "Convert string to lowercase. Iterate through characters. Check if character is a letter, then check if it is in the vowel set."
+        },
+        "java": {
+          "code": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = sc.nextLine().toLowerCase();\n        int v = 0, c = 0;\n        for(int i = 0; i < s.length(); i++) {\n            char ch = s.charAt(i);\n            if(ch >= 'a' && ch <= 'z') {\n                if(ch=='a'||ch=='e'||ch=='i'||ch=='o'||ch=='u') v++;\n                else c++;\n            }\n        }\n        System.out.println(v + \" \" + c);\n    }\n}",
+          "time_complexity": "O(n)",
+          "space_complexity": "O(1)",
+          "explanation": "Iterate through characters, checking ASCII bounds for letters, then increment respective counters."
+        }
+      },
+      "approach": {
+        "brute_force": "Iterate and use multiple if-else statements for each vowel",
+        "optimal": "Use a hash set or boolean array for O(1) vowel lookups during single traversal",
+        "algorithm": "String Traversal"
+      },
+      "pro_tip": "Converting the string to lowercase first reduces the number of comparisons needed.",
+      "common_mistakes": [
+        "Not ignoring spaces or special characters",
+        "Forgetting to check both uppercase and lowercase letters",
+        "Confusing 'y' as a vowel in standard English problems unless specified"
+      ],
+      "similar_problems": [
+        "Find the most frequent character in string",
+        "Remove all vowels from string",
+        "Check if two strings are anagrams"
+      ],
+      "tags": [
+        "strings",
+        "counting",
+        "TCS-NQT",
+        "easy"
+      ],
+      "year_asked": "2024",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "66_extra_103",
+      "category": "Coding Problems",
+      "subcategory": "Dynamic Programming",
+      "difficulty": "Medium",
+      "difficulty_level": 2,
+      "title": "Word Break",
+      "problem_statement": "Given a string s and a dictionary of strings wordDict, return 'Yes' if s can be segmented into a space-separated sequence of one or more dictionary words, else 'No'.",
+      "input_format": "First line string S. Second line N, size of dict. Third line space separated dict words.",
+      "output_format": "Print 'Yes' or 'No'.",
+      "constraints": "1 <= |s| <= 300\n1 <= N <= 1000",
+      "sample_input": "leetcode\n2\nleet code",
+      "sample_output": "Yes",
+      "explanation_of_example": "String 'leetcode' can be perfectly segmented into 'leet' and 'code' both present in dict.",
+      "solutions": {
+        "python": {
+          "code": "s = input().strip()\nn = int(input())\nword_dict = set(input().split())\ndp = [False] * (len(s) + 1)\ndp[0] = True\nfor i in range(1, len(s) + 1):\n    for j in range(i):\n        if dp[j] and s[j:i] in word_dict:\n            dp[i] = True\n            break\nprint('Yes' if dp[len(s)] else 'No')",
+          "time_complexity": "O(N^3)",
+          "space_complexity": "O(N)",
+          "explanation": "Let dp[i] represent if s[0...i] is breakable. For every i, verify if there is a j such that dp[j] is True and the substring from j to i exists in the dictionary."
+        },
+        "java": {
+          "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = sc.next();\n        int n = sc.nextInt();\n        Set<String> wordDict = new HashSet<>();\n        for (int i = 0; i < n; i++) wordDict.add(sc.next());\n        boolean[] dp = new boolean[s.length() + 1];\n        dp[0] = true;\n        for (int i = 1; i <= s.length(); i++) {\n            for (int j = 0; j < i; j++) {\n                if (dp[j] && wordDict.contains(s.substring(j, i))) {\n                    dp[i] = true;\n                    break;\n                }\n            }\n        }\n        System.out.println(dp[s.length()] ? \"Yes\" : \"No\");\n    }\n}",
+          "time_complexity": "O(N^3)",
+          "space_complexity": "O(N)",
+          "explanation": "Create a boolean DP array representing segmentability. Double loop iterates bounds, performing O(N) substring match against a HashSet. Breaks inner loop on first match to optimize."
+        }
+      },
+      "approach": {
+        "brute_force": "Recursively check every possible prefix and recursively call rest of string (O(2^N))",
+        "optimal": "Dynamic Programming with HashSet for quick dictionary lookups",
+        "algorithm": "Dynamic Programming"
+      },
+      "pro_tip": "The nested loops with substring creation make the time complexity O(N^3). Since N <= 300, this easily passes. Using a Trie could optimize it further if words are very long.",
+      "common_mistakes": [
+        "Not using a Set, leading to O(M) lookup times making the total complexity extremely slow",
+        "Substrings index out of bounds",
+        "Forgetting to initialize dp[0] to true"
+      ],
+      "similar_problems": [
+        "Word Break II",
+        "Palindrome Partitioning",
+        "Concatenated Words"
+      ],
+      "tags": [
+        "dynamic-programming",
+        "strings",
+        "hash-table",
+        "medium"
+      ],
+      "year_asked": "2023",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "26_extra_104",
+      "category": "Coding Problems",
+      "subcategory": "Number Problems",
+      "difficulty": "Medium",
+      "difficulty_level": 2,
+      "title": "Reverse an Integer",
+      "problem_statement": "Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range [-2^31, 2^31 - 1], then return 0.",
+      "input_format": "A single integer x.",
+      "output_format": "An integer representing the reversed value, or 0 if it overflows.",
+      "constraints": "-2^31 <= x <= 2^31 - 1",
+      "sample_input": "-123",
+      "sample_output": "-321",
+      "explanation_of_example": "The negative sign is retained, and the digits are reversed.",
+      "solutions": {
+        "python": {
+          "code": "x = int(input())\nsign = -1 if x < 0 else 1\nx = abs(x)\nrev = int(str(x)[::-1]) * sign\nif rev < -2**31 or rev > 2**31 - 1:\n    print(0)\nelse:\n    print(rev)",
+          "time_complexity": "O(log10(X))",
+          "space_complexity": "O(log10(X))",
+          "explanation": "Store the sign, convert the absolute value to string, reverse, and reapply the sign. Finally, check bounds."
+        },
+        "java": {
+          "code": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int x = sc.nextInt();\n        long rev = 0;\n        while (x != 0) {\n            rev = rev * 10 + x % 10;\n            x /= 10;\n        }\n        if (rev < Integer.MIN_VALUE || rev > Integer.MAX_VALUE) {\n            System.out.println(0);\n        } else {\n            System.out.println((int)rev);\n        }\n    }\n}",
+          "time_complexity": "O(log10(X))",
+          "space_complexity": "O(1)",
+          "explanation": "Use a long to construct the reversed number safely. Check if it fits in 32-bit int boundaries before casting and printing."
+        }
+      },
+      "approach": {
+        "brute_force": "String manipulation",
+        "optimal": "Modulo extraction and math accumulation, using wider type to detect overflow",
+        "algorithm": "Math"
+      },
+      "pro_tip": "In Java/C++, the modulo operator `%` on a negative number returns a negative result, which naturally helps with negative inputs.",
+      "common_mistakes": [
+        "Not handling integer overflow strictly",
+        "Losing the negative sign during reversal",
+        "Returning the maximum integer value instead of 0 on overflow"
+      ],
+      "similar_problems": [
+        "Palindrome Number",
+        "String to Integer (atoi)",
+        "Reverse Bits"
+      ],
+      "tags": [
+        "math",
+        "numbers",
+        "TCS-NQT",
+        "medium"
+      ],
+      "year_asked": "2024",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "88_extra_105",
+      "category": "Coding Problems",
+      "subcategory": "Advanced DSA",
+      "difficulty": "Hard",
+      "difficulty_level": 3,
+      "title": "Kth Largest Element in a Stream",
+      "problem_statement": "Design a class to find the kth largest element in a stream. Given integer K and an initial array, process subsequent dynamically added elements and print the Kth largest element after each addition.",
+      "input_format": "First line K and N (initial array size). Second line N integers. Third line M (queries). Next M lines each contain a single integer to add.",
+      "output_format": "Print M space-separated integers, each representing the kth largest element after the respective addition.",
+      "constraints": "1 <= K <= 10^4\n0 <= N, M <= 10^4\n-10^4 <= nums[i] <= 10^4",
+      "sample_input": "3 4\n4 5 8 2\n3\n3\n5\n10",
+      "sample_output": "4 5 5",
+      "explanation_of_example": "Initial stream [4,5,8,2]. K=3. Add 3: sorted [2,3,4,5,8], 3rd largest is 4. Add 5: [2,3,4,5,5,8], 3rd largest is 5. Add 10: [2,3,4,5,5,8,10], 3rd largest is 5.",
+      "solutions": {
+        "python": {
+          "code": "import heapq\nk, n = map(int, input().split())\nnums = list(map(int, input().split())) if n > 0 else []\nm = int(input())\npq = []\nfor num in nums:\n    heapq.heappush(pq, num)\n    if len(pq) > k:\n        heapq.heappop(pq)\nans = []\nfor _ in range(m):\n    val = int(input())\n    heapq.heappush(pq, val)\n    if len(pq) > k:\n        heapq.heappop(pq)\n    ans.append(str(pq[0]))\nprint(' '.join(ans))",
+          "time_complexity": "O(M log K)",
+          "space_complexity": "O(K)",
+          "explanation": "Maintain a Min-Heap of size strictly K. The smallest element in this constrained heap (at index 0) is effectively the K-th largest overall. Python's heapq manages this naturally."
+        },
+        "java": {
+          "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int k = sc.nextInt(), n = sc.nextInt();\n        PriorityQueue<Integer> pq = new PriorityQueue<>();\n        for (int i = 0; i < n; i++) {\n            pq.offer(sc.nextInt());\n            if (pq.size() > k) pq.poll();\n        }\n        int m = sc.nextInt();\n        List<String> ans = new ArrayList<>();\n        for (int i = 0; i < m; i++) {\n            pq.offer(sc.nextInt());\n            if (pq.size() > k) pq.poll();\n            ans.add(String.valueOf(pq.peek()));\n        }\n        System.out.println(String.join(\" \", ans));\n    }\n}",
+          "time_complexity": "O(M log K)",
+          "space_complexity": "O(K)",
+          "explanation": "Utilize Java's PriorityQueue structure (which acts as a min-heap by default). As elements are dynamically fed, enqueue them. If the heap size breaches K, dequeue the minimum value."
+        }
+      },
+      "approach": {
+        "brute_force": "Append to an array and re-sort upon every single query taking O(M * N log N)",
+        "optimal": "Min-Heap tracking exactly K elements taking strictly O(log K) per insertion",
+        "algorithm": "Heap / Priority Queue"
+      },
+      "pro_tip": "Using a Min-Heap to find the 'Largest' element sounds counter-intuitive, but keeping the top K elements guarantees the Kth largest sits at the very top of the Min-Heap.",
+      "common_mistakes": [
+        "Using a Max-Heap instead of a Min-Heap",
+        "Sorting the entire array every time an element is inserted causing TLE",
+        "Pop operations running when the heap size is unexpectedly empty due to constraint limits"
+      ],
+      "similar_problems": [
+        "Kth Largest Element in an Array",
+        "Find Median from Data Stream",
+        "Top K Frequent Elements"
+      ],
+      "tags": [
+        "heap",
+        "design",
+        "data-stream",
+        "hard"
+      ],
+      "year_asked": "2023",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "80_extra_106",
+      "category": "Coding Problems",
+      "subcategory": "Advanced DSA",
+      "difficulty": "Hard",
+      "difficulty_level": 3,
+      "title": "Longest Palindromic Substring",
+      "problem_statement": "Given a string s, return the longest palindromic substring in s. Print the substring itself.",
+      "input_format": "A single string S.",
+      "output_format": "A single string representing the longest palindrome.",
+      "constraints": "1 <= |s| <= 1000\ns consists of only digits and English letters.",
+      "sample_input": "babad",
+      "sample_output": "bab",
+      "explanation_of_example": "'aba' is also a valid answer.",
+      "solutions": {
+        "python": {
+          "code": "s = input().strip()\nif not s: print(\"\")\ndef expand_around_center(left, right):\n    while left >= 0 and right < len(s) and s[left] == s[right]:\n        left -= 1\n        right += 1\n    return s[left + 1:right]\n\nlongest = \"\"\nfor i in range(len(s)):\n    odd_pal = expand_around_center(i, i)\n    even_pal = expand_around_center(i, i + 1)\n    longest = max(longest, odd_pal, even_pal, key=len)\nprint(longest)",
+          "time_complexity": "O(N^2)",
+          "space_complexity": "O(1)",
+          "explanation": "Iterate over each character. Treat it as the center of a potential palindrome and expand outwards simultaneously for both odd-length and even-length palindromes."
+        },
+        "java": {
+          "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        if (!sc.hasNext()) return;\n        String s = sc.next();\n        int start = 0, end = 0;\n        for (int i = 0; i < s.length(); i++) {\n            int len1 = expandAroundCenter(s, i, i);\n            int len2 = expandAroundCenter(s, i, i + 1);\n            int len = Math.max(len1, len2);\n            if (len > end - start) {\n                start = i - (len - 1) / 2;\n                end = i + len / 2;\n            }\n        }\n        System.out.println(s.substring(start, end + 1));\n    }\n    private static int expandAroundCenter(String s, int left, int right) {\n        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {\n            left--; right++;\n        }\n        return right - left - 1;\n    }\n}",
+          "time_complexity": "O(N^2)",
+          "space_complexity": "O(1)",
+          "explanation": "O(1) space expansion from center logic. We identify the bounds dynamically instead of generating string objects repeatedly, preventing excessive garbage collection overhead."
+        }
+      },
+      "approach": {
+        "brute_force": "Generate all O(N^2) substrings and check if they are palindromes in O(N), totaling O(N^3)",
+        "optimal": "Expand Around Center from every character in O(N^2) time with O(1) space",
+        "algorithm": "Two Pointers"
+      },
+      "pro_tip": "Manacher's Algorithm solves this problem in strict O(N) time, but Expand Around Center in O(N^2) is almost always accepted in interviews due to ease of implementation and O(1) space constraints.",
+      "common_mistakes": [
+        "Failing to account for even-length palindromes (like 'abba') which don't have a single central character",
+        "Index out of bounds mapping string substrings `start` and `end`",
+        "Using 2D dynamic programming which wastes O(N^2) space"
+      ],
+      "similar_problems": [
+        "Palindromic Substrings",
+        "Longest Palindromic Subsequence",
+        "Shortest Palindrome"
+      ],
+      "tags": [
+        "strings",
+        "two-pointers",
+        "hard"
+      ],
+      "year_asked": "2024",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "45_extra_107",
+      "category": "Coding Problems",
+      "subcategory": "Basic DSA",
+      "difficulty": "Hard",
+      "difficulty_level": 3,
+      "title": "Merge Overlapping Intervals",
+      "problem_statement": "Given a collection of N intervals where each interval is represented as an array of two integers [start, end], merge all overlapping intervals and print the merged intervals.",
+      "input_format": "First line N. Next N lines each contain two integers, start and end.",
+      "output_format": "Print each merged interval on a new line space-separated.",
+      "constraints": "1 <= N <= 10^4\n0 <= start <= end <= 10^4",
+      "sample_input": "4\n1 3\n2 6\n8 10\n15 18",
+      "sample_output": "1 6\n8 10\n15 18",
+      "explanation_of_example": "Intervals [1,3] and [2,6] overlap, so they merge to form [1,6].",
+      "solutions": {
+        "python": {
+          "code": "n = int(input())\nintervals = []\nfor _ in range(n):\n    intervals.append(list(map(int, input().split())))\nintervals.sort(key=lambda x: x[0])\nmerged = []\nfor interval in intervals:\n    if not merged or merged[-1][1] < interval[0]:\n        merged.append(interval)\n    else:\n        merged[-1][1] = max(merged[-1][1], interval[1])\nfor m in merged:\n    print(f\"{m[0]} {m[1]}\")",
+          "time_complexity": "O(N log N)",
+          "space_complexity": "O(N)",
+          "explanation": "Sort intervals by start time. Iterate through, if current start is less than or equal to previous end, they overlap; extend the previous interval's end time."
+        },
+        "java": {
+          "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        int[][] intervals = new int[n][2];\n        for (int i = 0; i < n; i++) {\n            intervals[i][0] = sc.nextInt();\n            intervals[i][1] = sc.nextInt();\n        }\n        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));\n        List<int[]> merged = new ArrayList<>();\n        for (int[] interval : intervals) {\n            if (merged.isEmpty() || merged.get(merged.size() - 1)[1] < interval[0]) {\n                merged.add(new int[]{interval[0], interval[1]});\n            } else {\n                merged.get(merged.size() - 1)[1] = Math.max(merged.get(merged.size() - 1)[1], interval[1]);\n            }\n        }\n        for (int[] m : merged) {\n            System.out.println(m[0] + \" \" + m[1]);\n        }\n    }\n}",
+          "time_complexity": "O(N log N)",
+          "space_complexity": "O(N)",
+          "explanation": "Use a custom comparator to sort the 2D array by start times. Build a new list of merged intervals dynamically handling overlap boundaries."
+        }
+      },
+      "approach": {
+        "brute_force": "Compare every interval with every other interval repeatedly (O(N^2))",
+        "optimal": "Sort by starting point first, then merge linearly in one pass (O(N log N))",
+        "algorithm": "Sorting / Greedy"
+      },
+      "pro_tip": "Always sort interval-related problems. Once sorted by start time, overlapping intervals will strictly be adjacent to each other.",
+      "common_mistakes": [
+        "Forgetting to sort the array initially before attempting to merge",
+        "Just updating the end time to the new interval's end instead of taking the maximum of both",
+        "Modifying the list concurrently while iterating over it"
+      ],
+      "similar_problems": [
+        "Insert Interval",
+        "Meeting Rooms II",
+        "Non-overlapping Intervals"
+      ],
+      "tags": [
+        "intervals",
+        "sorting",
+        "TCS-NQT",
+        "hard"
+      ],
+      "year_asked": "2023",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "55_extra_108",
+      "category": "Coding Problems",
+      "subcategory": "Advanced DSA",
+      "difficulty": "Hard",
+      "difficulty_level": 3,
+      "title": "Candy",
+      "problem_statement": "There are N children standing in a line. Each child is assigned a rating value given in the integer array ratings. You are giving candies to these children subjected to the following requirements: 1. Each child must have at least one candy. 2. Children with a higher rating get more candies than their neighbors. Return the minimum number of candies you need to have to distribute the candies to the children.",
+      "input_format": "First line N. Second line N space-separated integers representing ratings.",
+      "output_format": "A single integer denoting the minimum total candies.",
+      "constraints": "1 <= N <= 2 * 10^4\n0 <= ratings[i] <= 2 * 10^4",
+      "sample_input": "3\n1 0 2",
+      "sample_output": "5",
+      "explanation_of_example": "You can allocate to the first, second and third child with 2, 1, 2 candies respectively.",
+      "solutions": {
+        "python": {
+          "code": "n = int(input())\nratings = list(map(int, input().split()))\ncandies = [1] * n\nfor i in range(1, n):\n    if ratings[i] > ratings[i - 1]:\n        candies[i] = candies[i - 1] + 1\nfor i in range(n - 2, -1, -1):\n    if ratings[i] > ratings[i + 1]:\n        candies[i] = max(candies[i], candies[i + 1] + 1)\nprint(sum(candies))",
+          "time_complexity": "O(N)",
+          "space_complexity": "O(N)",
+          "explanation": "Two passes. Left to right: give more candies than left neighbor if rating is higher. Right to left: give more candies than right neighbor if rating is higher, ensuring we don't reduce what was granted in the first pass."
+        },
+        "java": {
+          "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        int[] ratings = new int[n];\n        for(int i=0; i<n; i++) ratings[i] = sc.nextInt();\n        int[] candies = new int[n];\n        Arrays.fill(candies, 1);\n        for (int i = 1; i < n; i++) {\n            if (ratings[i] > ratings[i - 1]) candies[i] = candies[i - 1] + 1;\n        }\n        for (int i = n - 2; i >= 0; i--) {\n            if (ratings[i] > ratings[i + 1]) candies[i] = Math.max(candies[i], candies[i + 1] + 1);\n        }\n        long sum = 0;\n        for (int c : candies) sum += c;\n        System.out.println(sum);\n    }\n}",
+          "time_complexity": "O(N)",
+          "space_complexity": "O(N)",
+          "explanation": "Initialize all children with 1 candy. Scan left-to-right to satisfy the left neighbor condition. Scan right-to-left to satisfy the right neighbor condition using Math.max to preserve prior allocations."
+        }
+      },
+      "approach": {
+        "brute_force": "Iteratively check and update candy arrays until all conditions are strictly met (O(N^2))",
+        "optimal": "Two-pass Greedy Algorithm checking left constraints then right constraints",
+        "algorithm": "Greedy"
+      },
+      "pro_tip": "Greedy problems involving local neighbors are often elegantly solved by splitting the rules into two independent left-to-right and right-to-left passes.",
+      "common_mistakes": [
+        "Trying to resolve both neighbors in a single pass leading to cascading updates",
+        "Not using `max()` in the second pass and overwriting correctly elevated values",
+        "Integer overflow if the total candies sum exceeds 32-bit limits"
+      ],
+      "similar_problems": [
+        "Trapping Rain Water",
+        "Minimum Number of Arrows to Burst Balloons",
+        "Task Scheduler"
+      ],
+      "tags": [
+        "greedy",
+        "arrays",
+        "hard"
+      ],
+      "year_asked": "2024",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "21_extra_109",
+      "category": "Coding Problems",
+      "subcategory": "Number Problems",
+      "difficulty": "Medium",
+      "difficulty_level": 2,
+      "title": "Check Prime Number",
+      "problem_statement": "Given an integer N, check whether it is a prime number or not. Print 'Yes' if prime, else 'No'.",
+      "input_format": "A single integer N.",
+      "output_format": "Print 'Yes' or 'No'.",
+      "constraints": "1 <= N <= 10^9",
+      "sample_input": "29",
+      "sample_output": "Yes",
+      "explanation_of_example": "29 has no divisors other than 1 and itself.",
+      "solutions": {
+        "python": {
+          "code": "import math\nn = int(input())\nif n <= 1:\n    print('No')\nelse:\n    is_prime = True\n    for i in range(2, int(math.sqrt(n)) + 1):\n        if n % i == 0:\n            is_prime = False\n            break\n    print('Yes' if is_prime else 'No')",
+          "time_complexity": "O(sqrt(N))",
+          "space_complexity": "O(1)",
+          "explanation": "Iterate from 2 up to the square root of N. If N is divisible by any of these numbers, it is not prime."
+        },
+        "java": {
+          "code": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        long n = sc.nextLong();\n        if (n <= 1) {\n            System.out.println(\"No\");\n            return;\n        }\n        boolean isPrime = true;\n        for (long i = 2; i * i <= n; i++) {\n            if (n % i == 0) {\n                isPrime = false;\n                break;\n            }\n        }\n        System.out.println(isPrime ? \"Yes\" : \"No\");\n    }\n}",
+          "time_complexity": "O(sqrt(N))",
+          "space_complexity": "O(1)",
+          "explanation": "Loop from 2 to sqrt(N) checking for factors. Using long prevents overflow for large inputs."
+        }
+      },
+      "approach": {
+        "brute_force": "Loop from 2 to N-1 and check for divisors.",
+        "optimal": "Loop only up to the square root of N.",
+        "algorithm": "Math / Primality Test"
+      },
+      "pro_tip": "Any factor of N greater than its square root must be paired with a factor smaller than the square root.",
+      "common_mistakes": [
+        "Iterating all the way up to N, causing Time Limit Exceeded",
+        "Not handling edge cases like N=1 or N=0 properly",
+        "Using precision-prone floating point logic instead of i * i <= n"
+      ],
+      "similar_problems": [
+        "Sieve of Eratosthenes",
+        "Find all prime factors of N",
+        "Count Primes"
+      ],
+      "tags": [
+        "math",
+        "numbers",
+        "TCS-NQT",
+        "medium"
+      ],
+      "year_asked": "2023",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "49_extra_110",
+      "category": "Coding Problems",
+      "subcategory": "Basic DSA",
+      "difficulty": "Hard",
+      "difficulty_level": 3,
+      "title": "Number of Islands",
+      "problem_statement": "Given an M x N 2D binary grid which represents a map of '1's (land) and '0's (water), return the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically.",
+      "input_format": "First line M and N. Next M lines contain N space-separated integers (0 or 1).",
+      "output_format": "A single integer denoting the number of islands.",
+      "constraints": "1 <= M, N <= 300\ngrid[i][j] is 0 or 1",
+      "sample_input": "4 5\n1 1 0 0 0\n1 1 0 0 0\n0 0 1 0 0\n0 0 0 1 1",
+      "sample_output": "3",
+      "explanation_of_example": "Top-left 4 squares form island 1. Middle-right 1 is island 2. Bottom-right 2 squares form island 3.",
+      "solutions": {
+        "python": {
+          "code": "import sys\nsys.setrecursionlimit(2000)\nm, n = map(int, input().split())\ngrid = [list(map(int, input().split())) for _ in range(m)]\ndef dfs(i, j):\n    if i < 0 or i >= m or j < 0 or j >= n or grid[i][j] == 0:\n        return\n    grid[i][j] = 0\n    dfs(i + 1, j)\n    dfs(i - 1, j)\n    dfs(i, j + 1)\n    dfs(i, j - 1)\ncount = 0\nfor i in range(m):\n    for j in range(n):\n        if grid[i][j] == 1:\n            dfs(i, j)\n            count += 1\nprint(count)",
+          "time_complexity": "O(M * N)",
+          "space_complexity": "O(M * N)",
+          "explanation": "Iterate over the grid. When a 1 is found, trigger a DFS that turns all connected 1s to 0s (sinking the island), then increment the island counter."
+        },
+        "java": {
+          "code": "import java.util.*;\npublic class Main {\n    static void dfs(int[][] grid, int i, int j) {\n        if (i < 0 || i >= grid.length || j < 0 || j >= grid[0].length || grid[i][j] == 0) return;\n        grid[i][j] = 0;\n        dfs(grid, i + 1, j);\n        dfs(grid, i - 1, j);\n        dfs(grid, i, j + 1);\n        dfs(grid, i, j - 1);\n    }\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int m = sc.nextInt();\n        int n = sc.nextInt();\n        int[][] grid = new int[m][n];\n        for (int i = 0; i < m; i++) {\n            for (int j = 0; j < n; j++) grid[i][j] = sc.nextInt();\n        }\n        int count = 0;\n        for (int i = 0; i < m; i++) {\n            for (int j = 0; j < n; j++) {\n                if (grid[i][j] == 1) {\n                    dfs(grid, i, j);\n                    count++;\n                }\n            }\n        }\n        System.out.println(count);\n    }\n}",
+          "time_complexity": "O(M * N)",
+          "space_complexity": "O(M * N) (Recursion Stack)",
+          "explanation": "Scan cell by cell. On encountering land, start a DFS to 'sink' the contiguous landmass, incrementing the island count by 1 per landmass."
+        }
+      },
+      "approach": {
+        "brute_force": "N/A - Standard graph traversals are required",
+        "optimal": "Depth First Search (DFS) or Breadth First Search (BFS) marking visited cells",
+        "algorithm": "DFS / Graph"
+      },
+      "pro_tip": "Modifying the input grid directly (setting 1s to 0s) is a great way to save O(M * N) space that would otherwise be needed for a 'visited' boolean array.",
+      "common_mistakes": [
+        "Not marking cells as visited (or turning them to 0), causing infinite recursion loops",
+        "Out of bounds grid indexing causing exceptions",
+        "Recursion depth limit exceeded in Python without manual adjustment"
+      ],
+      "similar_problems": [
+        "Max Area of Island",
+        "Surrounded Regions",
+        "Flood Fill"
+      ],
+      "tags": [
+        "graph",
+        "dfs",
+        "matrix",
+        "TCS-NQT",
+        "hard"
+      ],
+      "year_asked": "2023",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "91_extra_111",
+      "category": "Coding Problems",
+      "subcategory": "Advanced DSA",
+      "difficulty": "Hard",
+      "difficulty_level": 3,
+      "title": "Median of Two Sorted Arrays",
+      "problem_statement": "Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).",
+      "input_format": "First line M (size of nums1). Second line M space-separated integers. Third line N (size of nums2). Fourth line N space-separated integers.",
+      "output_format": "A single float value representing the median.",
+      "constraints": "0 <= M, N <= 1000\n1 <= M + N <= 2000\n-10^6 <= nums1[i], nums2[i] <= 10^6",
+      "sample_input": "2\n1 3\n1\n2",
+      "sample_output": "2.0",
+      "explanation_of_example": "Merged array = [1, 2, 3] and median is 2.0.",
+      "solutions": {
+        "python": {
+          "code": "m = int(input())\nnums1 = list(map(int, input().split())) if m > 0 else []\nn = int(input())\nnums2 = list(map(int, input().split())) if n > 0 else []\nif len(nums1) > len(nums2):\n    nums1, nums2 = nums2, nums1\nx, y = len(nums1), len(nums2)\nlow, high = 0, x\nwhile low <= high:\n    partitionX = (low + high) // 2\n    partitionY = (x + y + 1) // 2 - partitionX\n    maxLeftX = float('-inf') if partitionX == 0 else nums1[partitionX - 1]\n    minRightX = float('inf') if partitionX == x else nums1[partitionX]\n    maxLeftY = float('-inf') if partitionY == 0 else nums2[partitionY - 1]\n    minRightY = float('inf') if partitionY == y else nums2[partitionY]\n    if maxLeftX <= minRightY and maxLeftY <= minRightX:\n        if (x + y) % 2 == 0:\n            print(float((max(maxLeftX, maxLeftY) + min(minRightX, minRightY)) / 2))\n        else:\n            print(float(max(maxLeftX, maxLeftY)))\n        break\n    elif maxLeftX > minRightY:\n        high = partitionX - 1\n    else:\n        low = partitionX + 1",
+          "time_complexity": "O(log(min(M, N)))",
+          "space_complexity": "O(1)",
+          "explanation": "Perform Binary Search on the smaller array. Partition both arrays such that the left half has the same number of elements as the right half, and all elements on the left are smaller than those on the right."
+        },
+        "java": {
+          "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int m = sc.nextInt();\n        int[] nums1 = new int[m];\n        for (int i = 0; i < m; i++) nums1[i] = sc.nextInt();\n        int n = sc.nextInt();\n        int[] nums2 = new int[n];\n        for (int i = 0; i < n; i++) nums2[i] = sc.nextInt();\n        if (m > n) { int[] temp = nums1; nums1 = nums2; nums2 = temp; int tmp = m; m = n; n = tmp; }\n        int low = 0, high = m;\n        while (low <= high) {\n            int partitionX = (low + high) / 2;\n            int partitionY = (m + n + 1) / 2 - partitionX;\n            int maxLeftX = (partitionX == 0) ? Integer.MIN_VALUE : nums1[partitionX - 1];\n            int minRightX = (partitionX == m) ? Integer.MAX_VALUE : nums1[partitionX];\n            int maxLeftY = (partitionY == 0) ? Integer.MIN_VALUE : nums2[partitionY - 1];\n            int minRightY = (partitionY == n) ? Integer.MAX_VALUE : nums2[partitionY];\n            if (maxLeftX <= minRightY && maxLeftY <= minRightX) {\n                if ((m + n) % 2 == 0) {\n                    System.out.println((double)(Math.max(maxLeftX, maxLeftY) + Math.min(minRightX, minRightY)) / 2);\n                } else {\n                    System.out.println((double)Math.max(maxLeftX, maxLeftY));\n                }\n                return;\n            } else if (maxLeftX > minRightY) {\n                high = partitionX - 1;\n            } else {\n                low = partitionX + 1;\n            }\n        }\n    }\n}",
+          "time_complexity": "O(log(min(M, N)))",
+          "space_complexity": "O(1)",
+          "explanation": "Binary search to dynamically find the correct partition boundary across the two arrays without explicitly merging them, preventing O(M+N) time limit penalties."
+        }
+      },
+      "approach": {
+        "brute_force": "Merge the two sorted arrays into a new array and pick the middle element (O(M+N))",
+        "optimal": "Binary Search on the smaller array partitioning into perfectly balanced halves",
+        "algorithm": "Binary Search"
+      },
+      "pro_tip": "Always apply binary search on the strictly smaller array to ensure minimum search space and to prevent partition indices from going out of bounds in the larger array.",
+      "common_mistakes": [
+        "Merging the arrays explicitly violating the O(log (m+n)) runtime requirement",
+        "Index out of bounds error when partition index hits 0 or array length",
+        "Performing integer division for the final median average instead of floating-point division"
+      ],
+      "similar_problems": [
+        "Find Minimum in Rotated Sorted Array",
+        "K-th Element of Two Sorted Arrays",
+        "Search in Rotated Sorted Array"
+      ],
+      "tags": [
+        "binary-search",
+        "arrays",
+        "divide-and-conquer",
+        "hard"
+      ],
+      "year_asked": "2024",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "27_extra_112",
+      "category": "Coding Problems",
+      "subcategory": "Number Problems",
+      "difficulty": "Medium",
+      "difficulty_level": 2,
+      "title": "Trailing Zeroes in Factorial",
+      "problem_statement": "Given an integer N, find the number of trailing zeroes in the factorial of N (N!).",
+      "input_format": "A single integer N.",
+      "output_format": "An integer representing the number of trailing zeroes.",
+      "constraints": "1 <= N <= 10^9",
+      "sample_input": "25",
+      "sample_output": "6",
+      "explanation_of_example": "25! contains factors of 5 (5, 10, 15, 20, 25). 25 provides two 5s. Total 5s = 6.",
+      "solutions": {
+        "python": {
+          "code": "n = int(input())\ncount = 0\nwhile n >= 5:\n    n //= 5\n    count += n\nprint(count)",
+          "time_complexity": "O(log5(N))",
+          "space_complexity": "O(1)",
+          "explanation": "Trailing zeroes are produced by the multiplier 10 (2 x 5). Since 2s are plentiful, we just count the occurrences of factor 5 in N!."
+        },
+        "java": {
+          "code": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        int count = 0;\n        for (long i = 5; n / i >= 1; i *= 5) {\n            count += n / i;\n        }\n        System.out.println(count);\n    }\n}",
+          "time_complexity": "O(log5(N))",
+          "space_complexity": "O(1)",
+          "explanation": "Count multiples of 5, 25, 125, etc. by continuously dividing N by powers of 5 and accumulating the counts."
+        }
+      },
+      "approach": {
+        "brute_force": "Calculate N! and count trailing zeros using string or modulo",
+        "optimal": "Count pairs of prime factors 2 and 5. Since 5s are rarer, just count powers of 5.",
+        "algorithm": "Math / Number Theory"
+      },
+      "pro_tip": "Calculating the actual factorial for large numbers will always lead to overflow or TLE. Mathematical prime factorization is required.",
+      "common_mistakes": [
+        "Attempting to compute N! causing Time/Memory Limit Exceeded",
+        "Using 32-bit integer for powers of 5 loop which overflows at high N",
+        "Only dividing by 5 once instead of considering 25, 125, etc."
+      ],
+      "similar_problems": [
+        "Factorial Trailing Zeroes II",
+        "Number of Digit One",
+        "Preimage Size of Factorial Zeroes Function"
+      ],
+      "tags": [
+        "math",
+        "factorials",
+        "TCS-NQT",
+        "medium"
+      ],
+      "year_asked": "2023",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "48_extra_113",
+      "category": "Coding Problems",
+      "subcategory": "Basic DSA",
+      "difficulty": "Hard",
+      "difficulty_level": 3,
+      "title": "0/1 Knapsack Problem",
+      "problem_statement": "Given N items where each item has some weight and profit associated with it, and a knapsack of capacity W. Find the maximum profit that can be achieved. An item can either be taken completely or left (0/1).",
+      "input_format": "First line N and capacity W. Second line N profits. Third line N weights.",
+      "output_format": "Maximum profit possible.",
+      "constraints": "1 <= N <= 1000\n1 <= W <= 10^5\n1 <= weight[i], profit[i] <= 1000",
+      "sample_input": "3 4\n1 2 3\n4 5 1",
+      "sample_output": "3",
+      "explanation_of_example": "The 3rd item has weight 1 and profit 3, and fits perfectly in a knapsack of capacity 4. Other combos exceed weight or give less profit.",
+      "solutions": {
+        "python": {
+          "code": "n, w = map(int, input().split())\nval = list(map(int, input().split()))\nwt = list(map(int, input().split()))\ndp = [0] * (w + 1)\nfor i in range(n):\n    for j in range(w, wt[i] - 1, -1):\n        dp[j] = max(dp[j], dp[j - wt[i]] + val[i])\nprint(dp[w])",
+          "time_complexity": "O(N * W)",
+          "space_complexity": "O(W)",
+          "explanation": "Use a 1D DP array optimizing space. Crucially, iterate capacities backwards to ensure each item is only picked once per knapsack limit (0/1 knapsack constraint)."
+        },
+        "java": {
+          "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        int w = sc.nextInt();\n        int[] val = new int[n];\n        for (int i = 0; i < n; i++) val[i] = sc.nextInt();\n        int[] wt = new int[n];\n        for (int i = 0; i < n; i++) wt[i] = sc.nextInt();\n        int[] dp = new int[w + 1];\n        for (int i = 0; i < n; i++) {\n            for (int j = w; j >= wt[i]; j--) {\n                dp[j] = Math.max(dp[j], dp[j - wt[i]] + val[i]);\n            }\n        }\n        System.out.println(dp[w]);\n    }\n}",
+          "time_complexity": "O(N * W)",
+          "space_complexity": "O(W)",
+          "explanation": "A 1D array representing maximum profit at each weight limit. Loop capacities right-to-left to prevent reusing the same item."
+        }
+      },
+      "approach": {
+        "brute_force": "Recursive exploration forming a subset binary tree (2^N)",
+        "optimal": "Dynamic Programming bottom-up approach with Space Optimization (1D Array)",
+        "algorithm": "Dynamic Programming"
+      },
+      "pro_tip": "If you iterate the inner loop from left to right instead of right to left, you transform the algorithm into the 'Unbounded Knapsack' where items can be used infinite times.",
+      "common_mistakes": [
+        "Iterating the 1D DP array forwards, reusing the same element multiple times",
+        "Solving Fractional Knapsack (using value/weight ratios) instead of 0/1 Knapsack",
+        "Array out of bounds exceptions on weights"
+      ],
+      "similar_problems": [
+        "Partition Equal Subset Sum",
+        "Coin Change",
+        "Target Sum"
+      ],
+      "tags": [
+        "dynamic-programming",
+        "math",
+        "TCS-NQT",
+        "hard"
+      ],
+      "year_asked": "2024",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "37_extra_114",
+      "category": "Coding Problems",
+      "subcategory": "Sorting & Searching",
+      "difficulty": "Medium",
+      "difficulty_level": 2,
+      "title": "Merge Two Sorted Arrays",
+      "problem_statement": "You are given two sorted arrays, A and B. Merge them into a single sorted array and print it.",
+      "input_format": "First line size of A, N. Second line N integers. Third line size of B, M. Fourth line M integers.",
+      "output_format": "N+M space separated integers representing merged array.",
+      "constraints": "1 <= N, M <= 10^5",
+      "sample_input": "3\n1 3 5\n4\n2 4 6 8",
+      "sample_output": "1 2 3 4 5 6 8",
+      "explanation_of_example": "Elements from both sorted arrays are combined linearly maintaining the ascending order.",
+      "solutions": {
+        "python": {
+          "code": "n = int(input())\na = list(map(int, input().split()))\nm = int(input())\nb = list(map(int, input().split()))\ni = j = 0\nans = []\nwhile i < n and j < m:\n    if a[i] <= b[j]:\n        ans.append(a[i])\n        i += 1\n    else:\n        ans.append(b[j])\n        j += 1\nwhile i < n:\n    ans.append(a[i])\n    i += 1\nwhile j < m:\n    ans.append(b[j])\n    j += 1\nprint(*ans)",
+          "time_complexity": "O(N + M)",
+          "space_complexity": "O(N + M)",
+          "explanation": "Use two pointers starting at index 0 of both arrays. Append the smaller element to the result and advance the corresponding pointer."
+        },
+        "java": {
+          "code": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        int[] a = new int[n];\n        for(int i=0; i<n; i++) a[i] = sc.nextInt();\n        int m = sc.nextInt();\n        int[] b = new int[m];\n        for(int i=0; i<m; i++) b[i] = sc.nextInt();\n        int[] ans = new int[n + m];\n        int i = 0, j = 0, k = 0;\n        while (i < n && j < m) {\n            if (a[i] <= b[j]) ans[k++] = a[i++];\n            else ans[k++] = b[j++];\n        }\n        while (i < n) ans[k++] = a[i++];\n        while (j < m) ans[k++] = b[j++];\n        for (int num : ans) System.out.print(num + \" \");\n    }\n}",
+          "time_complexity": "O(N + M)",
+          "space_complexity": "O(N + M)",
+          "explanation": "Standard merge routine from MergeSort. Create result array, fill it using two pointers, exhaust any remaining elements."
+        }
+      },
+      "approach": {
+        "brute_force": "Concatenate both arrays and apply sorting (O((N+M)log(N+M)))",
+        "optimal": "Two Pointers traversing arrays linearly (O(N+M))",
+        "algorithm": "Two Pointers"
+      },
+      "pro_tip": "This is the core merging logic behind the Merge Sort algorithm.",
+      "common_mistakes": [
+        "Concatenating and using built-in sort function which is highly suboptimal",
+        "Not exhausting leftover elements after the main while loop finishes",
+        "Index out of bounds exceptions on unequal array sizes"
+      ],
+      "similar_problems": [
+        "Merge Sorted Array (In-place)",
+        "Intersection of Two Arrays",
+        "Median of Two Sorted Arrays"
+      ],
+      "tags": [
+        "two-pointers",
+        "sorting",
+        "arrays",
+        "TCS-NQT",
+        "medium"
+      ],
+      "year_asked": "2023",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "50_extra_115",
+      "category": "Coding Problems",
+      "subcategory": "Basic DSA",
+      "difficulty": "Hard",
+      "difficulty_level": 3,
+      "title": "Rotten Oranges",
+      "problem_statement": "Given an M x N grid where 0 represents an empty cell, 1 represents a fresh orange, and 2 represents a rotten orange. Every minute, any fresh orange that is 4-directionally adjacent to a rotten orange becomes rotten. Return the minimum number of minutes until no cell has a fresh orange. If impossible, return -1.",
+      "input_format": "First line M and N. Next M lines contain N space separated integers (0, 1, or 2).",
+      "output_format": "A single integer denoting the minutes, or -1.",
+      "constraints": "1 <= M, N <= 250\ngrid[i][j] is 0, 1, or 2.",
+      "sample_input": "3 3\n2 1 1\n1 1 0\n0 1 1",
+      "sample_output": "4",
+      "explanation_of_example": "Minute 1: Top middle and left middle rot. Minute 2: Center rots. Minute 3: Bottom middle rots. Minute 4: Bottom right rots.",
+      "solutions": {
+        "python": {
+          "code": "from collections import deque\nm, n = map(int, input().split())\ngrid = [list(map(int, input().split())) for _ in range(m)]\nq = deque()\nfresh = 0\nfor i in range(m):\n    for j in range(n):\n        if grid[i][j] == 2:\n            q.append((i, j))\n        elif grid[i][j] == 1:\n            fresh += 1\ntime = 0\ndirs = [(0,1), (1,0), (0,-1), (-1,0)]\nwhile q and fresh > 0:\n    time += 1\n    for _ in range(len(q)):\n        r, c = q.popleft()\n        for dr, dc in dirs:\n            nr, nc = r + dr, c + dc\n            if 0 <= nr < m and 0 <= nc < n and grid[nr][nc] == 1:\n                grid[nr][nc] = 2\n                fresh -= 1\n                q.append((nr, nc))\nprint(time if fresh == 0 else -1)",
+          "time_complexity": "O(M * N)",
+          "space_complexity": "O(M * N)",
+          "explanation": "Multi-source BFS. Put all initially rotten oranges in a queue. Count fresh oranges. Process level by level (minute by minute). SPREAD rot and decrement fresh count."
+        },
+        "java": {
+          "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int m = sc.nextInt(), n = sc.nextInt();\n        int[][] grid = new int[m][n];\n        Queue<int[]> q = new LinkedList<>();\n        int fresh = 0;\n        for (int i = 0; i < m; i++) {\n            for (int j = 0; j < n; j++) {\n                grid[i][j] = sc.nextInt();\n                if (grid[i][j] == 2) q.offer(new int[]{i, j});\n                else if (grid[i][j] == 1) fresh++;\n            }\n        }\n        int time = 0;\n        int[][] dirs = {{1,0}, {-1,0}, {0,1}, {0,-1}};\n        while (!q.isEmpty() && fresh > 0) {\n            int size = q.size();\n            time++;\n            for (int i = 0; i < size; i++) {\n                int[] curr = q.poll();\n                for (int[] d : dirs) {\n                    int nr = curr[0] + d[0], nc = curr[1] + d[1];\n                    if (nr >= 0 && nr < m && nc >= 0 && nc < n && grid[nr][nc] == 1) {\n                        grid[nr][nc] = 2;\n                        q.offer(new int[]{nr, nc});\n                        fresh--;\n                    }\n                }\n            }\n        }\n        System.out.println(fresh == 0 ? time : -1);\n    }\n}",
+          "time_complexity": "O(M * N)",
+          "space_complexity": "O(M * N)",
+          "explanation": "Utilize Breadth-First Search (BFS) to model the simultaneous spread of rot. Maintain a count of remaining fresh oranges. If fresh remains after queue empties, print -1."
+        }
+      },
+      "approach": {
+        "brute_force": "Iterate entire grid N times spreading rot manually taking O((M*N)^2)",
+        "optimal": "Multi-source Breadth First Search (BFS) mapping spread sequentially",
+        "algorithm": "BFS / Graph"
+      },
+      "pro_tip": "Whenever a problem asks for 'minimum time/steps to reach all nodes/cells simultaneously', it is a textbook Multi-Source BFS problem.",
+      "common_mistakes": [
+        "Using DFS instead of BFS, which does not simulate simultaneous spread layer-by-layer",
+        "Not returning -1 when disconnected fresh oranges are left behind",
+        "Failing the edge case where no fresh oranges exist at minute 0"
+      ],
+      "similar_problems": [
+        "Walls and Gates",
+        "01 Matrix",
+        "As Far from Land as Possible"
+      ],
+      "tags": [
+        "graph",
+        "bfs",
+        "matrix",
+        "TCS-NQT",
+        "hard"
+      ],
+      "year_asked": "2024",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "16_extra_116",
+      "category": "Coding Problems",
+      "subcategory": "Patterns & Series",
+      "difficulty": "Medium",
+      "difficulty_level": 2,
+      "title": "Diamond Star Pattern",
+      "problem_statement": "Print a diamond star pattern of 2N-1 rows.",
+      "input_format": "Single integer N representing half the rows.",
+      "output_format": "Diamond shape using stars and spaces.",
+      "constraints": "1 <= N <= 100",
+      "sample_input": "3",
+      "sample_output": "  *\n ***\n*****\n ***\n  *",
+      "explanation_of_example": "Combines a standard pyramid for N rows, and an inverted pyramid for N-1 rows.",
+      "solutions": {
+        "python": {
+          "code": "n = int(input())\nfor i in range(n):\n    print(' ' * (n - i - 1) + '*' * (2 * i + 1))\nfor i in range(n - 2, -1, -1):\n    print(' ' * (n - i - 1) + '*' * (2 * i + 1))",
+          "time_complexity": "O(N^2)",
+          "space_complexity": "O(1)",
+          "explanation": "Two loops: First loop prints the upper pyramid. Second loop prints the inverted lower pyramid."
+        },
+        "java": {
+          "code": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        for(int i=0; i<n; i++) {\n            for(int j=0; j<n-i-1; j++) System.out.print(\" \");\n            for(int j=0; j<2*i+1; j++) System.out.print(\"*\");\n            System.out.println();\n        }\n        for(int i=n-2; i>=0; i--) {\n            for(int j=0; j<n-i-1; j++) System.out.print(\" \");\n            for(int j=0; j<2*i+1; j++) System.out.print(\"*\");\n            System.out.println();\n        }\n    }\n}",
+          "time_complexity": "O(N^2)",
+          "space_complexity": "O(1)",
+          "explanation": "Use standard inner loops to print spaces and stars. Duplicated loop logic going backwards handles the bottom half."
+        }
+      },
+      "approach": {
+        "brute_force": "Complex if-else inside a single 2N-1 loop",
+        "optimal": "Divide and conquer: Print upper triangle, then lower inverted triangle",
+        "algorithm": "Iteration"
+      },
+      "pro_tip": "Breaking symmetric patterns into top and bottom halves makes logic much simpler than a unified mathematical formula.",
+      "common_mistakes": [
+        "Printing an extra middle row so it doesn't look like a diamond",
+        "Miscalculating spaces for the bottom half",
+        "Looping indices incorrect causing asymmetry"
+      ],
+      "similar_problems": [
+        "Hollow Diamond Pattern",
+        "Butterfly Pattern",
+        "Sandglass Star Pattern"
+      ],
+      "tags": [
+        "patterns",
+        "loops",
+        "TCS-NQT",
+        "medium"
+      ],
+      "year_asked": "2024",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "28_extra_117",
+      "category": "Coding Problems",
+      "subcategory": "Number Problems",
+      "difficulty": "Medium",
+      "difficulty_level": 2,
+      "title": "Check Power of 2",
+      "problem_statement": "Given an integer N, determine if it is a power of two. Print 'Yes' if it is, else 'No'.",
+      "input_format": "A single integer N.",
+      "output_format": "Print 'Yes' or 'No'.",
+      "constraints": "-2^31 <= N <= 2^31 - 1",
+      "sample_input": "16",
+      "sample_output": "Yes",
+      "explanation_of_example": "16 is 2^4.",
+      "solutions": {
+        "python": {
+          "code": "n = int(input())\nif n > 0 and (n & (n - 1)) == 0:\n    print('Yes')\nelse:\n    print('No')",
+          "time_complexity": "O(1)",
+          "space_complexity": "O(1)",
+          "explanation": "A power of 2 has exactly one '1' bit in its binary representation. The operation (n & (n - 1)) unsets the rightmost '1' bit."
+        },
+        "java": {
+          "code": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        long n = sc.nextLong();\n        if (n > 0 && (n & (n - 1)) == 0) {\n            System.out.println(\"Yes\");\n        } else {\n            System.out.println(\"No\");\n        }\n    }\n}",
+          "time_complexity": "O(1)",
+          "space_complexity": "O(1)",
+          "explanation": "Bitwise AND between N and N-1. If N is a power of 2, this results in 0. Ensure N is positive."
+        }
+      },
+      "approach": {
+        "brute_force": "Keep dividing by 2 while N % 2 == 0",
+        "optimal": "Bit manipulation using N & (N - 1)",
+        "algorithm": "Bit Manipulation"
+      },
+      "pro_tip": "Bit manipulation provides a clean O(1) approach for all power-of-two related problems.",
+      "common_mistakes": [
+        "Returning 'Yes' for N = 0",
+        "Not handling negative numbers (powers of two are strictly positive)",
+        "Using loops which perform in O(log N) instead of O(1)"
+      ],
+      "similar_problems": [
+        "Power of Three",
+        "Power of Four",
+        "Number of 1 Bits"
+      ],
+      "tags": [
+        "math",
+        "bit-manipulation",
+        "TCS-NQT",
+        "medium"
+      ],
+      "year_asked": "2024",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "94_extra_118",
+      "category": "Coding Problems",
+      "subcategory": "Advanced DSA",
+      "difficulty": "Hard",
+      "difficulty_level": 3,
+      "title": "Russian Doll Envelopes",
+      "problem_statement": "You are given a 2D array of integers envelopes where envelopes[i] = [wi, hi] represents the width and the height of an envelope. One envelope can fit into another if and only if both the width and height of one envelope are strictly smaller than the other. Return the maximum number of envelopes you can Russian doll (i.e., put one inside the other).",
+      "input_format": "First line N. Next N lines each contain 'w h'.",
+      "output_format": "A single integer denoting the max number of envelopes.",
+      "constraints": "1 <= N <= 10^5\n1 <= wi, hi <= 10^5",
+      "sample_input": "4\n5 4\n6 4\n6 7\n2 3",
+      "sample_output": "3",
+      "explanation_of_example": "The maximum number of envelopes you can Russian doll is 3 ([2,3] => [5,4] => [6,7]).",
+      "solutions": {
+        "python": {
+          "code": "import bisect\nn = int(input())\nenvelopes = [list(map(int, input().split())) for _ in range(n)]\nenvelopes.sort(key=lambda x: (x[0], -x[1]))\nlis = []\nfor _, h in envelopes:\n    idx = bisect.bisect_left(lis, h)\n    if idx == len(lis):\n        lis.append(h)\n    else:\n        lis[idx] = h\nprint(len(lis))",
+          "time_complexity": "O(N log N)",
+          "space_complexity": "O(N)",
+          "explanation": "Sort widths in ascending order, but heights in descending order when widths are equal. Then, the problem reduces to finding the Longest Increasing Subsequence (LIS) on the heights array using Binary Search."
+        },
+        "java": {
+          "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        int[][] env = new int[n][2];\n        for (int i=0; i<n; i++) { env[i][0] = sc.nextInt(); env[i][1] = sc.nextInt(); }\n        Arrays.sort(env, (a, b) -> a[0] == b[0] ? b[1] - a[1] : a[0] - b[0]);\n        int[] dp = new int[n];\n        int len = 0;\n        for (int[] e : env) {\n            int index = Arrays.binarySearch(dp, 0, len, e[1]);\n            if (index < 0) index = -(index + 1);\n            dp[index] = e[1];\n            if (index == len) len++;\n        }\n        System.out.println(len);\n    }\n}",
+          "time_complexity": "O(N log N)",
+          "space_complexity": "O(N)",
+          "explanation": "Java implementation of patience sorting for LIS. Arrays.binarySearch effectively finds the insertion point for incoming heights, replacing larger elements to maintain the smallest possible increasing tails."
+        }
+      },
+      "approach": {
+        "brute_force": "Standard O(N^2) Longest Increasing Subsequence comparing both dimensions",
+        "optimal": "Sort Width Ascending, Height Descending -> Patience Sort (Binary Search LIS) on Heights",
+        "algorithm": "Sorting / Binary Search LIS"
+      },
+      "pro_tip": "Sorting the height descending when the widths are equal prevents matching envelopes with the exact same width (violating the 'strictly smaller' rule).",
+      "common_mistakes": [
+        "Using the basic O(N^2) DP for Longest Increasing Subsequence causing TLE for N=10^5",
+        "Sorting both width and height ascendingly, which allows envelopes of identical width to improperly nest",
+        "Failing to use `bisect_left` (or `-(index+1)`) properly resulting in sequence misplacement"
+      ],
+      "similar_problems": [
+        "Longest Increasing Subsequence",
+        "Maximum Number of Events That Can Be Attended",
+        "Building Boxes"
+      ],
+      "tags": [
+        "sorting",
+        "binary-search",
+        "dynamic-programming",
+        "hard"
+      ],
+      "year_asked": "2024",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "81_extra_119",
+      "category": "Coding Problems",
+      "subcategory": "Backtracking",
+      "difficulty": "Hard",
+      "difficulty_level": 3,
+      "title": "Permutations",
+      "problem_statement": "Given an array nums of distinct integers, generate all the possible permutations. Print each permutation on a new line space-separated.",
+      "input_format": "First line N. Second line N space-separated integers.",
+      "output_format": "Print each permutation on a new line.",
+      "constraints": "1 <= N <= 6\n-10 <= nums[i] <= 10\nAll integers in nums are unique.",
+      "sample_input": "3\n1 2 3",
+      "sample_output": "1 2 3\n1 3 2\n2 1 3\n2 3 1\n3 1 2\n3 2 1",
+      "explanation_of_example": "All 3! = 6 possible permutations are printed.",
+      "solutions": {
+        "python": {
+          "code": "n = int(input())\nnums = list(map(int, input().split()))\ndef backtrack(start):\n    if start == n:\n        print(*nums)\n        return\n    for i in range(start, n):\n        nums[start], nums[i] = nums[i], nums[start]\n        backtrack(start + 1)\n        nums[start], nums[i] = nums[i], nums[start]\nbacktrack(0)",
+          "time_complexity": "O(N * N!)",
+          "space_complexity": "O(N)",
+          "explanation": "Backtracking via elements swapping. Swap the element at the current `start` index with elements at later indices to generate variations, backtrack by swapping back."
+        },
+        "java": {
+          "code": "import java.util.*;\npublic class Main {\n    static void backtrack(int[] nums, int start) {\n        if (start == nums.length) {\n            for (int num : nums) System.out.print(num + \" \");\n            System.out.println();\n            return;\n        }\n        for (int i = start; i < nums.length; i++) {\n            swap(nums, start, i);\n            backtrack(nums, start + 1);\n            swap(nums, start, i);\n        }\n    }\n    static void swap(int[] nums, int i, int j) {\n        int temp = nums[i]; nums[i] = nums[j]; nums[j] = temp;\n    }\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        int[] nums = new int[n];\n        for (int i = 0; i < n; i++) nums[i] = sc.nextInt();\n        backtrack(nums, 0);\n    }\n}",
+          "time_complexity": "O(N * N!)",
+          "space_complexity": "O(N)",
+          "explanation": "Perform an in-place swap to create branches of permutations. Once the recursive limit is reached, a distinct arrangement has been created. Swap back to unravel and try the next path."
+        }
+      },
+      "approach": {
+        "brute_force": "Use multiple nested loops to create all combinations, checking against a set for uniqueness",
+        "optimal": "Backtracking with in-place swaps (O(N!))",
+        "algorithm": "Backtracking"
+      },
+      "pro_tip": "In-place swapping avoids the heavy memory overhead of allocating new arrays or lists for every recursive call branch.",
+      "common_mistakes": [
+        "Failing to reverse the swap after the recursive call (backtracking)",
+        "Allocating new string/list objects inside the loop leading to Memory Limit Exceeded for large N",
+        "Applying the logic to arrays with duplicates without implementing a duplicate-skipping mechanism"
+      ],
+      "similar_problems": [
+        "Permutations II (contains duplicates)",
+        "Next Permutation",
+        "Combinations"
+      ],
+      "tags": [
+        "backtracking",
+        "arrays",
+        "hard"
+      ],
+      "year_asked": "2023",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "62_extra_120",
+      "category": "Coding Problems",
+      "subcategory": "Dynamic Programming",
+      "difficulty": "Hard",
+      "difficulty_level": 3,
+      "title": "Longest Increasing Path in a Matrix",
+      "problem_statement": "Given an M x N integers matrix, return the length of the longest increasing path in matrix. From each cell, you can either move in four directions. You may not move diagonally or outside the boundary.",
+      "input_format": "First line M and N. Next M lines containing N space separated integers.",
+      "output_format": "A single integer denoting the longest path length.",
+      "constraints": "1 <= M, N <= 200\n0 <= matrix[i][j] <= 2^31 - 1",
+      "sample_input": "3 3\n9 9 4\n6 6 8\n2 1 1",
+      "sample_output": "4",
+      "explanation_of_example": "The longest increasing path is [1, 2, 6, 9].",
+      "solutions": {
+        "python": {
+          "code": "import sys\nsys.setrecursionlimit(10**5)\nm, n = map(int, input().split())\nmatrix = [list(map(int, input().split())) for _ in range(m)]\nmemo = [[0] * n for _ in range(m)]\ndirs = [(0, 1), (1, 0), (0, -1), (-1, 0)]\ndef dfs(i, j):\n    if memo[i][j]: return memo[i][j]\n    ans = 1\n    for dx, dy in dirs:\n        x, y = i + dx, j + dy\n        if 0 <= x < m and 0 <= y < n and matrix[x][y] > matrix[i][j]:\n            ans = max(ans, 1 + dfs(x, y))\n    memo[i][j] = ans\n    return ans\nres = 0\nfor i in range(m):\n    for j in range(n):\n        res = max(res, dfs(i, j))\nprint(res)",
+          "time_complexity": "O(M * N)",
+          "space_complexity": "O(M * N)",
+          "explanation": "Use Depth First Search (DFS) with Memoization. For every cell, explore valid strictly increasing neighbors. Cache the longest path length obtained from that cell to prevent redundant recursive calls."
+        },
+        "java": {
+          "code": "import java.util.*;\npublic class Main {\n    static int[][] dirs = {{0,1}, {1,0}, {0,-1}, {-1,0}};\n    static int dfs(int[][] matrix, int i, int j, int[][] memo) {\n        if (memo[i][j] > 0) return memo[i][j];\n        int max = 1;\n        for (int[] dir : dirs) {\n            int x = i + dir[0], y = j + dir[1];\n            if (x >= 0 && x < matrix.length && y >= 0 && y < matrix[0].length && matrix[x][y] > matrix[i][j]) {\n                int len = 1 + dfs(matrix, x, y, memo);\n                max = Math.max(max, len);\n            }\n        }\n        memo[i][j] = max;\n        return max;\n    }\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int m = sc.nextInt(), n = sc.nextInt();\n        int[][] matrix = new int[m][n];\n        for (int i=0; i<m; i++) for(int j=0; j<n; j++) matrix[i][j] = sc.nextInt();\n        int[][] memo = new int[m][n];\n        int res = 0;\n        for (int i=0; i<m; i++) {\n            for (int j=0; j<n; j++) {\n                res = Math.max(res, dfs(matrix, i, j, memo));\n            }\n        }\n        System.out.println(res);\n    }\n}",
+          "time_complexity": "O(M * N)",
+          "space_complexity": "O(M * N)",
+          "explanation": "DFS coupled with an integer memoization matrix. Since the path must be strictly increasing, there are no cycles, making standard unvisited sets unnecessary."
+        }
+      },
+      "approach": {
+        "brute_force": "Pure DFS from every node resulting in exponential overlapping paths",
+        "optimal": "DFS wrapped with Memoization ensuring each cell is computed exactly once",
+        "algorithm": "DFS / Memoization"
+      },
+      "pro_tip": "Because we mandate moving only to *strictly greater* cells, a cycle is mathematically impossible. Therefore, we do not need a 'visited' array, just the memoization array.",
+      "common_mistakes": [
+        "Adding an unnecessary 'visited' array which complicates logic and causes pathing failures",
+        "Not returning or leveraging cached memoized values leading to Time Limit Exceeded",
+        "Checking >= instead of strictly > causing infinite loops"
+      ],
+      "similar_problems": [
+        "Path With Minimum Effort",
+        "Pacific Atlantic Water Flow",
+        "Word Search"
+      ],
+      "tags": [
+        "dfs",
+        "dynamic-programming",
+        "memoization",
+        "matrix",
+        "hard"
+      ],
+      "year_asked": "2023",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "64_extra_121",
+      "category": "Coding Problems",
+      "subcategory": "Dynamic Programming",
+      "difficulty": "Medium",
+      "difficulty_level": 2,
+      "title": "Coin Change",
+      "problem_statement": "You are given an integer array coins representing coins of different denominations and an integer amount representing a total amount of money. Return the fewest number of coins that you need to make up that amount. If cannot be made, return -1.",
+      "input_format": "First line N and amount. Second line N space-separated coin denominations.",
+      "output_format": "Minimum coins needed, or -1.",
+      "constraints": "1 <= N <= 12\n1 <= coins[i] <= 2^31 - 1\n0 <= amount <= 10^4",
+      "sample_input": "3 11\n1 2 5",
+      "sample_output": "3",
+      "explanation_of_example": "11 = 5 + 5 + 1. It requires exactly 3 coins.",
+      "solutions": {
+        "python": {
+          "code": "n, amount = map(int, input().split())\ncoins = list(map(int, input().split()))\ndp = [float('inf')] * (amount + 1)\ndp[0] = 0\nfor coin in coins:\n    for x in range(coin, amount + 1):\n        dp[x] = min(dp[x], dp[x - coin] + 1)\nprint(dp[amount] if dp[amount] != float('inf') else -1)",
+          "time_complexity": "O(N * amount)",
+          "space_complexity": "O(amount)",
+          "explanation": "Create an array `dp` of size `amount + 1`. Initialize with infinity, base case `dp[0] = 0`. For each coin, continuously compute the minimal coins needed to reach up to `amount`."
+        },
+        "java": {
+          "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt(), amount = sc.nextInt();\n        int[] coins = new int[n];\n        for (int i = 0; i < n; i++) coins[i] = sc.nextInt();\n        int[] dp = new int[amount + 1];\n        Arrays.fill(dp, amount + 1);\n        dp[0] = 0;\n        for (int coin : coins) {\n            for (int i = coin; i <= amount; i++) {\n                dp[i] = Math.min(dp[i], dp[i - coin] + 1);\n            }\n        }\n        System.out.println(dp[amount] > amount ? -1 : dp[amount]);\n    }\n}",
+          "time_complexity": "O(N * amount)",
+          "space_complexity": "O(amount)",
+          "explanation": "1D Unbounded Knapsack DP. Fill target values up to `amount + 1` as placeholder 'infinity'. Transition state takes min of previously found combo vs using current coin + remainder combo."
+        }
+      },
+      "approach": {
+        "brute_force": "Backtracking checking all possible combinations of coins",
+        "optimal": "1D DP iterating over coins and amounts simulating Unbounded Knapsack",
+        "algorithm": "Dynamic Programming"
+      },
+      "pro_tip": "Do not initialize the array with Integer.MAX_VALUE because `dp[i - coin] + 1` will cause an integer overflow leading to negative values. Use `amount + 1` instead.",
+      "common_mistakes": [
+        "Applying a Greedy algorithm (taking largest coin first) which fails for sets like coins=[3,4], amount=6",
+        "Integer overflow by adding 1 to Integer.MAX_VALUE",
+        "Inner loop bounding index errors"
+      ],
+      "similar_problems": [
+        "Coin Change II",
+        "Minimum Cost For Tickets",
+        "Perfect Squares"
+      ],
+      "tags": [
+        "dynamic-programming",
+        "arrays",
+        "medium"
+      ],
+      "year_asked": "2023",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "90_extra_122",
+      "category": "Coding Problems",
+      "subcategory": "Advanced DSA",
+      "difficulty": "Hard",
+      "difficulty_level": 3,
+      "title": "Longest Consecutive Sequence",
+      "problem_statement": "Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence. You must write an algorithm that runs in O(N) time.",
+      "input_format": "First line N. Second line N space-separated integers.",
+      "output_format": "A single integer denoting the length.",
+      "constraints": "0 <= N <= 10^5\n-10^9 <= nums[i] <= 10^9",
+      "sample_input": "6\n100 4 200 1 3 2",
+      "sample_output": "4",
+      "explanation_of_example": "The longest consecutive elements sequence is [1, 2, 3, 4]. Therefore its length is 4.",
+      "solutions": {
+        "python": {
+          "code": "n = int(input())\nif n == 0: print(0); exit()\nnums = list(map(int, input().split()))\nnum_set = set(nums)\nlongest = 0\nfor num in num_set:\n    if num - 1 not in num_set:\n        curr_num = num\n        curr_streak = 1\n        while curr_num + 1 in num_set:\n            curr_num += 1\n            curr_streak += 1\n        longest = max(longest, curr_streak)\nprint(longest)",
+          "time_complexity": "O(N)",
+          "space_complexity": "O(N)",
+          "explanation": "Convert elements into a HashSet for O(1) lookups. Only begin sequence mapping if `num - 1` doesn't exist, which mathematically guarantees we are starting at the bottom of a continuous sequence."
+        },
+        "java": {
+          "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        if (n == 0) { System.out.println(0); return; }\n        Set<Integer> set = new HashSet<>();\n        for (int i = 0; i < n; i++) set.add(sc.nextInt());\n        int longest = 0;\n        for (int num : set) {\n            if (!set.contains(num - 1)) {\n                int currNum = num;\n                int streak = 1;\n                while (set.contains(currNum + 1)) {\n                    currNum++;\n                    streak++;\n                }\n                longest = Math.max(longest, streak);\n            }\n        }\n        System.out.println(longest);\n    }\n}",
+          "time_complexity": "O(N)",
+          "space_complexity": "O(N)",
+          "explanation": "HashSet insertion provides unique O(1) references. Bypassing processing on elements strictly inside existing continuous sequences limits internal while loop trigger to executing precisely once per valid sequence cluster."
+        }
+      },
+      "approach": {
+        "brute_force": "Sorting taking O(N log N) then iterating counting sequences linearly",
+        "optimal": "HashSet logic exploiting local minimum starting boundary conditions ensuring strictly O(N) evaluation",
+        "algorithm": "Hash Table"
+      },
+      "pro_tip": "The key constraint preventing this from behaving as O(N^2) is `if (!set.contains(num - 1))`. This ensures you *only* walk through a sequence once.",
+      "common_mistakes": [
+        "Applying Array.sort() which violates the strict O(N) constraints mandated by top interview standards",
+        "Evaluating sequential loops blindly without checking starting bounds resulting in O(N^2) runtime",
+        "Hashset resizing bounds exceeding time limits if manual capacities are wrongly implemented"
+      ],
+      "similar_problems": [
+        "Binary Tree Longest Consecutive Sequence",
+        "Find All Numbers Disappeared in an Array",
+        "Sequence Reconstruction"
+      ],
+      "tags": [
+        "hash-table",
+        "arrays",
+        "hard"
+      ],
+      "year_asked": "2024",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "14_extra_123",
+      "category": "Coding Problems",
+      "subcategory": "Patterns & Series",
+      "difficulty": "Easy",
+      "difficulty_level": 1,
+      "title": "Arithmetic Progression Nth term",
+      "problem_statement": "Given the first two terms of an Arithmetic Progression A1 and A2, find the Nth term.",
+      "input_format": "Space separated integers A1, A2, and N.",
+      "output_format": "Single integer denoting Nth term.",
+      "constraints": "-1000 <= A1, A2 <= 1000\n1 <= N <= 10^4",
+      "sample_input": "2 5 4",
+      "sample_output": "11",
+      "explanation_of_example": "Common difference D = 5 - 2 = 3. 4th term = A1 + (N-1)*D = 2 + 3*3 = 11.",
+      "solutions": {
+        "python": {
+          "code": "a1, a2, n = map(int, input().split())\nd = a2 - a1\nans = a1 + (n - 1) * d\nprint(ans)",
+          "time_complexity": "O(1)",
+          "space_complexity": "O(1)",
+          "explanation": "Calculate the common difference d. Apply the AP formula: An = A1 + (N-1) * d."
+        },
+        "java": {
+          "code": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int a1 = sc.nextInt();\n        int a2 = sc.nextInt();\n        int n = sc.nextInt();\n        int d = a2 - a1;\n        int ans = a1 + (n - 1) * d;\n        System.out.println(ans);\n    }\n}",
+          "time_complexity": "O(1)",
+          "space_complexity": "O(1)",
+          "explanation": "Compute common difference D. Compute the answer mathematically in O(1) time."
+        }
+      },
+      "approach": {
+        "brute_force": "Use a loop to continuously add D to A1 N-1 times",
+        "optimal": "Direct mathematical formula An = a + (n-1)d",
+        "algorithm": "Math"
+      },
+      "pro_tip": "For very large N or D, the result might overflow a 32-bit integer, so keeping long types can be safer depending on constraints.",
+      "common_mistakes": [
+        "Using a loop to find Nth term causing O(N) instead of O(1)",
+        "Incorrect formula like a + n*d instead of (n-1)*d",
+        "Wrong sign for difference when series is decreasing"
+      ],
+      "similar_problems": [
+        "Sum of AP series",
+        "Check if sequence forms an AP",
+        "Nth term of GP"
+      ],
+      "tags": [
+        "math",
+        "series",
+        "TCS-NQT",
+        "easy"
+      ],
+      "year_asked": "2024",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "84_extra_124",
+      "category": "Coding Problems",
+      "subcategory": "Advanced DSA",
+      "difficulty": "Hard",
+      "difficulty_level": 3,
+      "title": "Insert Interval",
+      "problem_statement": "You are given an array of non-overlapping intervals sorted by their start time, and a new interval. Insert the new interval into the array (merge overlapping intervals if necessary) and print the resulting intervals.",
+      "input_format": "First line N. Next N lines each contain an interval 'start end'. Final line contains the new interval 'start end'.",
+      "output_format": "Print each merged interval on a new line space-separated.",
+      "constraints": "0 <= N <= 10^4\n0 <= start <= end <= 10^5",
+      "sample_input": "2\n1 3\n6 9\n2 5",
+      "sample_output": "1 5\n6 9",
+      "explanation_of_example": "The new interval [2, 5] overlaps with [1, 3], merging them into [1, 5].",
+      "solutions": {
+        "python": {
+          "code": "n = int(input())\nintervals = [list(map(int, input().split())) for _ in range(n)]\nnew_interval = list(map(int, input().split()))\nans = []\ni = 0\nwhile i < n and intervals[i][1] < new_interval[0]:\n    ans.append(intervals[i])\n    i += 1\nwhile i < n and intervals[i][0] <= new_interval[1]:\n    new_interval[0] = min(new_interval[0], intervals[i][0])\n    new_interval[1] = max(new_interval[1], intervals[i][1])\n    i += 1\nans.append(new_interval)\nwhile i < n:\n    ans.append(intervals[i])\n    i += 1\nfor interval in ans:\n    print(f\"{interval[0]} {interval[1]}\")",
+          "time_complexity": "O(N)",
+          "space_complexity": "O(N)",
+          "explanation": "Iterate sequentially. Add intervals purely before the new one. Merge overlapping ones dynamically by expanding the `new_interval` bounds. Finally, add the remaining ones."
+        },
+        "java": {
+          "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        int[][] intervals = new int[n][2];\n        for(int i=0; i<n; i++) { intervals[i][0] = sc.nextInt(); intervals[i][1] = sc.nextInt(); }\n        int[] newInterval = new int[]{sc.nextInt(), sc.nextInt()};\n        List<int[]> ans = new ArrayList<>();\n        int i = 0;\n        while (i < n && intervals[i][1] < newInterval[0]) {\n            ans.add(intervals[i++]);\n        }\n        while (i < n && intervals[i][0] <= newInterval[1]) {\n            newInterval[0] = Math.min(newInterval[0], intervals[i][0]);\n            newInterval[1] = Math.max(newInterval[1], intervals[i][1]);\n            i++;\n        }\n        ans.add(newInterval);\n        while (i < n) {\n            ans.add(intervals[i++]);\n        }\n        for (int[] interval : ans) {\n            System.out.println(interval[0] + \" \" + interval[1]);\n        }\n    }\n}",
+          "time_complexity": "O(N)",
+          "space_complexity": "O(N)",
+          "explanation": "A linear scan divided into three disjoint phases: Pre-overlap inserts, overlap merging (widening the new interval variable), and post-overlap inserts."
+        }
+      },
+      "approach": {
+        "brute_force": "Append new interval, sort entire array, and perform O(N) standard merge. O(N log N)",
+        "optimal": "Three-phase sequential scan exploiting the initially sorted property. O(N)",
+        "algorithm": "Iteration / Arrays"
+      },
+      "pro_tip": "Since the array is already given sorted, applying `.sort()` to standard 'Merge Intervals' logic is considered suboptimal and fails interview efficiency goals.",
+      "common_mistakes": [
+        "Sorting the array manually wasting O(N log N) time",
+        "Updating the end bounds without correctly checking Math.max during overlaps",
+        "Edge case errors when the new interval is appended at the very beginning or end"
+      ],
+      "similar_problems": [
+        "Merge Intervals",
+        "Non-overlapping Intervals",
+        "Meeting Rooms"
+      ],
+      "tags": [
+        "arrays",
+        "intervals",
+        "hard"
+      ],
+      "year_asked": "2023",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "60_extra_125",
+      "category": "Coding Problems",
+      "subcategory": "Advanced DSA",
+      "difficulty": "Medium",
+      "difficulty_level": 2,
+      "title": "Maximize Distance to Closest Person",
+      "problem_statement": "You are given an array representing a row of seats where seats[i] = 1 represents a person sitting, and seats[i] = 0 represents that the seat is empty. There is at least one empty seat, and at least one person sitting. Find the maximum distance you can sit from the closest person.",
+      "input_format": "First line N. Second line N space-separated integers (0 or 1).",
+      "output_format": "A single integer denoting the maximum distance.",
+      "constraints": "2 <= N <= 2 * 10^4\nseats[i] is 0 or 1.",
+      "sample_input": "7\n1 0 0 0 1 0 1",
+      "sample_output": "2",
+      "explanation_of_example": "If you sit in the empty seat at index 2, the closest person is at distance 2. Any other empty seat yields a closer person.",
+      "solutions": {
+        "python": {
+          "code": "n = int(input())\nseats = list(map(int, input().split()))\nmax_dist = 0\nlast_person = -1\nfor i in range(n):\n    if seats[i] == 1:\n        if last_person == -1:\n            max_dist = i\n        else:\n            max_dist = max(max_dist, (i - last_person) // 2)\n        last_person = i\nmax_dist = max(max_dist, n - 1 - last_person)\nprint(max_dist)",
+          "time_complexity": "O(N)",
+          "space_complexity": "O(1)",
+          "explanation": "Iterate to find occupied seats. If between two people, optimal seat is exactly in the middle `(i - last) // 2`. Check boundary edges (index 0 and index N-1) specially."
+        },
+        "java": {
+          "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        int maxDist = 0, lastPerson = -1;\n        for (int i = 0; i < n; i++) {\n            int seat = sc.nextInt();\n            if (seat == 1) {\n                if (lastPerson == -1) maxDist = i;\n                else maxDist = Math.max(maxDist, (i - lastPerson) / 2);\n                lastPerson = i;\n            }\n        }\n        maxDist = Math.max(maxDist, n - 1 - lastPerson);\n        System.out.println(maxDist);\n    }\n}",
+          "time_complexity": "O(N)",
+          "space_complexity": "O(1)",
+          "explanation": "Keep track of the last seen person. The best distance between two people is half the gap. Remember to independently check the gaps at the extreme left and extreme right edges."
+        }
+      },
+      "approach": {
+        "brute_force": "For every 0, scan left and right to find closest 1, taking O(N^2)",
+        "optimal": "One pass tracking gaps between 1s and evaluating boundaries",
+        "algorithm": "Two Pointers / Arrays"
+      },
+      "pro_tip": "Edge cases often trip candidates up. Sitting on the extreme left (`0` to first person) or right (last person to `N-1`) does NOT get divided by 2.",
+      "common_mistakes": [
+        "Applying the division by 2 rule to the boundary zeros",
+        "Initializing max distance to an incorrect negative bound",
+        "Floating point math issues when calculating the middle"
+      ],
+      "similar_problems": [
+        "Exam Room",
+        "K-Empty Slots",
+        "Task Scheduler"
+      ],
+      "tags": [
+        "arrays",
+        "two-pointers",
+        "medium"
+      ],
+      "year_asked": "2023",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "41_extra_126",
+      "category": "Coding Problems",
+      "subcategory": "Basic DSA",
+      "difficulty": "Hard",
+      "difficulty_level": 3,
+      "title": "Valid Parentheses",
+      "problem_statement": "Given a string S containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid. An input string is valid if open brackets must be closed by the same type of brackets and in the correct order.",
+      "input_format": "A single string S.",
+      "output_format": "Print 'Yes' if valid, else 'No'.",
+      "constraints": "1 <= |S| <= 10^5\nString contains only parenthesis characters.",
+      "sample_input": "{[()]}",
+      "sample_output": "Yes",
+      "explanation_of_example": "Every opening bracket has a corresponding closing bracket in the correct nested order.",
+      "solutions": {
+        "python": {
+          "code": "s = input().strip()\nstack = []\nmapping = {')': '(', '}': '{', ']': '['}\nvalid = True\nfor char in s:\n    if char in mapping:\n        top = stack.pop() if stack else '#'\n        if mapping[char] != top:\n            valid = False\n            break\n    else:\n        stack.append(char)\nif stack:\n    valid = False\nprint('Yes' if valid else 'No')",
+          "time_complexity": "O(N)",
+          "space_complexity": "O(N)",
+          "explanation": "Use a stack to keep track of opening brackets. When a closing bracket is encountered, pop from stack and check if it matches. If stack is empty at the end, it is valid."
+        },
+        "java": {
+          "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = sc.next();\n        Stack<Character> stack = new Stack<>();\n        boolean valid = true;\n        for (char c : s.toCharArray()) {\n            if (c == '(' || c == '{' || c == '[') {\n                stack.push(c);\n            } else {\n                if (stack.isEmpty()) { valid = false; break; }\n                char top = stack.pop();\n                if ((c == ')' && top != '(') || (c == '}' && top != '{') || (c == ']' && top != '[')) {\n                    valid = false; break;\n                }\n            }\n        }\n        if (!stack.isEmpty()) valid = false;\n        System.out.println(valid ? \"Yes\" : \"No\");\n    }\n}",
+          "time_complexity": "O(N)",
+          "space_complexity": "O(N)",
+          "explanation": "Iterate through characters pushing open brackets to a Stack. For closing brackets, pop and compare. Check if stack is empty after the loop."
+        }
+      },
+      "approach": {
+        "brute_force": "Repeatedly replace '()', '{}', '[]' with empty strings until string length stops changing",
+        "optimal": "Single pass using a Stack data structure",
+        "algorithm": "Stack"
+      },
+      "pro_tip": "Instead of pushing open brackets, you can push the corresponding expected closing bracket. Then, when checking, you only need to compare `c == stack.pop()`.",
+      "common_mistakes": [
+        "Not checking if the stack is empty before attempting to pop",
+        "Pushing closing brackets onto the stack instead of opening ones",
+        "Forgetting to verify if the stack is completely empty at the end"
+      ],
+      "similar_problems": [
+        "Generate Parentheses",
+        "Longest Valid Parentheses",
+        "Remove Invalid Parentheses"
+      ],
+      "tags": [
+        "stack",
+        "strings",
+        "TCS-NQT",
+        "hard"
+      ],
+      "year_asked": "2023",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "78_extra_127",
+      "category": "Coding Problems",
+      "subcategory": "Graph",
+      "difficulty": "Hard",
+      "difficulty_level": 3,
+      "title": "Word Ladder",
+      "problem_statement": "A transformation sequence from word beginWord to word endWord using a dictionary wordList is a sequence of words where every adjacent pair differs by a single letter. Given two words, beginWord and endWord, and a dictionary wordList, return the number of words in the shortest transformation sequence. Return 0 if no sequence exists.",
+      "input_format": "First line beginWord and endWord. Second line N (size of dictionary). Third line N space-separated words.",
+      "output_format": "A single integer denoting the length of the shortest sequence.",
+      "constraints": "1 <= N <= 5000\n1 <= word length <= 10\nAll words have the same length and consist of lowercase English letters.",
+      "sample_input": "hit cog\n6\nhot dot dog lot log cog",
+      "sample_output": "5",
+      "explanation_of_example": "One shortest transformation sequence is 'hit' -> 'hot' -> 'dot' -> 'dog' -> 'cog', which is 5 words long.",
+      "solutions": {
+        "python": {
+          "code": "from collections import deque\nbegin, end = input().split()\nn = int(input())\nword_list = set(input().split())\nif end not in word_list:\n    print(0)\n    exit()\nq = deque([(begin, 1)])\nwhile q:\n    word, length = q.popleft()\n    if word == end:\n        print(length)\n        exit()\n    for i in range(len(word)):\n        for c in 'abcdefghijklmnopqrstuvwxyz':\n            next_word = word[:i] + c + word[i+1:]\n            if next_word in word_list:\n                word_list.remove(next_word)\n                q.append((next_word, length + 1))\nprint(0)",
+          "time_complexity": "O(M^2 * N)",
+          "space_complexity": "O(M * N)",
+          "explanation": "Breadth First Search (BFS) is ideal for finding shortest paths in unweighted graphs. For every character in the word, mutate it from a-z, check if it's in the dict, and add to queue. Remove from dict to prevent revisits."
+        },
+        "java": {
+          "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String begin = sc.next(), end = sc.next();\n        int n = sc.nextInt();\n        Set<String> wordSet = new HashSet<>();\n        for (int i=0; i<n; i++) wordSet.add(sc.next());\n        if (!wordSet.contains(end)) { System.out.println(0); return; }\n        Queue<String> q = new LinkedList<>();\n        q.offer(begin);\n        int level = 1;\n        while (!q.isEmpty()) {\n            int size = q.size();\n            for (int i=0; i<size; i++) {\n                String word = q.poll();\n                if (word.equals(end)) { System.out.println(level); return; }\n                char[] ca = word.toCharArray();\n                for (int j=0; j<ca.length; j++) {\n                    char orig = ca[j];\n                    for (char c='a'; c<='z'; c++) {\n                        ca[j] = c;\n                        String next = new String(ca);\n                        if (wordSet.contains(next)) {\n                            wordSet.remove(next);\n                            q.offer(next);\n                        }\n                    }\n                    ca[j] = orig;\n                }\n            }\n            level++;\n        }\n        System.out.println(0);\n    }\n}",
+          "time_complexity": "O(M^2 * N)",
+          "space_complexity": "O(M * N)",
+          "explanation": "Use BFS with string mutations. Level order traversal ensures the first time we hit the target word, it is strictly via the shortest path. Using a HashSet provides O(1) dictionary lookups."
+        }
+      },
+      "approach": {
+        "brute_force": "DFS mapping every permutation leading to exponential time scaling and memory limit exceeded",
+        "optimal": "Breadth First Search (BFS) with level-order traversal taking O(M^2 * N)",
+        "algorithm": "BFS"
+      },
+      "pro_tip": "When a problem asks for the 'shortest path' or 'minimum operations to transform', BFS is almost universally the correct approach compared to DFS.",
+      "common_mistakes": [
+        "Not removing words from the set after they've been queued, causing infinite graph cycles",
+        "Comparing all N words against each other (O(N^2)) instead of generating 26 * length permutations (O(26 * L))",
+        "Returning the number of transitions instead of the number of words (off by one)"
+      ],
+      "similar_problems": [
+        "Word Ladder II",
+        "Minimum Genetic Mutation",
+        "Open the Lock"
+      ],
+      "tags": [
+        "graph",
+        "bfs",
+        "strings",
+        "hard"
+      ],
+      "year_asked": "2024",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "7_extra_128",
+      "category": "Coding Problems",
+      "subcategory": "Arrays & Strings",
+      "difficulty": "Easy",
+      "difficulty_level": 1,
+      "title": "Check Anagram",
+      "problem_statement": "Check if two strings are anagrams of each other. Print 'Yes' if they are, else 'No'.",
+      "input_format": "Two space-separated strings S1 and S2 on a single line.",
+      "output_format": "Print 'Yes' or 'No'",
+      "constraints": "1 <= |S1|, |S2| <= 10^5\nStrings contain only lowercase English letters.",
+      "sample_input": "listen silent",
+      "sample_output": "Yes",
+      "explanation_of_example": "Both strings have the exact same character frequencies.",
+      "solutions": {
+        "python": {
+          "code": "s1, s2 = input().split()\nif len(s1) != len(s2):\n    print('No')\nelse:\n    freq = [0]*26\n    for c in s1: freq[ord(c)-97] += 1\n    for c in s2: freq[ord(c)-97] -= 1\n    print('Yes' if all(x == 0 for x in freq) else 'No')",
+          "time_complexity": "O(n)",
+          "space_complexity": "O(1)",
+          "explanation": "Count character frequencies of the first string, decrement using the second. If the frequency array is all zeros, they are anagrams."
+        },
+        "java": {
+          "code": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s1 = sc.next(), s2 = sc.next();\n        if(s1.length() != s2.length()) {\n            System.out.println(\"No\");\n            return;\n        }\n        int[] count = new int[26];\n        for(int i=0; i<s1.length(); i++) {\n            count[s1.charAt(i)-'a']++;\n            count[s2.charAt(i)-'a']--;\n        }\n        for(int c : count) {\n            if(c != 0) {\n                System.out.println(\"No\");\n                return;\n            }\n        }\n        System.out.println(\"Yes\");\n    }\n}",
+          "time_complexity": "O(n)",
+          "space_complexity": "O(1)",
+          "explanation": "Use a character frequency array of size 26. Increment for string 1, decrement for string 2. Check if array becomes purely zeros."
+        }
+      },
+      "approach": {
+        "brute_force": "Sort both strings and compare them for equality (O(N log N))",
+        "optimal": "Frequency counting array since character set is fixed lowercase (O(N))",
+        "algorithm": "Hashing / Frequency Array"
+      },
+      "pro_tip": "For anagrams involving just the alphabet, fixed-size frequency arrays are faster than hash maps.",
+      "common_mistakes": [
+        "Not checking if lengths are equal first",
+        "Using HashMap resulting in slower execution overhead",
+        "Sorting strings which is slower than linear time"
+      ],
+      "similar_problems": [
+        "Find All Anagrams in a String",
+        "Group Anagrams",
+        "Valid Palindrome"
+      ],
+      "tags": [
+        "strings",
+        "hashing",
+        "TCS-NQT",
+        "easy"
+      ],
+      "year_asked": "2024",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "36_extra_129",
+      "category": "Coding Problems",
+      "subcategory": "Sorting & Searching",
+      "difficulty": "Medium",
+      "difficulty_level": 2,
+      "title": "Search in Rotated Sorted Array",
+      "problem_statement": "There is an integer array nums sorted in ascending order (with distinct values). It is rotated at an unknown pivot index. Given a target K, return its index. If not found, return -1.",
+      "input_format": "First line N and K. Second line N integers.",
+      "output_format": "Index of K, or -1.",
+      "constraints": "1 <= N <= 10^5",
+      "sample_input": "7 0\n4 5 6 7 0 1 2",
+      "sample_output": "4",
+      "explanation_of_example": "The array is rotated at pivot 3. Target 0 is at index 4.",
+      "solutions": {
+        "python": {
+          "code": "n, k = map(int, input().split())\narr = list(map(int, input().split()))\nlow, high = 0, n - 1\nans = -1\nwhile low <= high:\n    mid = (low + high) // 2\n    if arr[mid] == k:\n        ans = mid\n        break\n    if arr[low] <= arr[mid]:\n        if arr[low] <= k < arr[mid]:\n            high = mid - 1\n        else:\n            low = mid + 1\n    else:\n        if arr[mid] < k <= arr[high]:\n            low = mid + 1\n        else:\n            high = mid - 1\nprint(ans)",
+          "time_complexity": "O(log N)",
+          "space_complexity": "O(1)",
+          "explanation": "Identify the sorted half (either left or right). Check if the target lies within the boundaries of the sorted half, then adjust binary search bounds accordingly."
+        },
+        "java": {
+          "code": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        int k = sc.nextInt();\n        int[] arr = new int[n];\n        for(int i=0; i<n; i++) arr[i] = sc.nextInt();\n        int low = 0, high = n - 1, ans = -1;\n        while (low <= high) {\n            int mid = low + (high - low) / 2;\n            if (arr[mid] == k) { ans = mid; break; }\n            if (arr[low] <= arr[mid]) {\n                if (arr[low] <= k && k < arr[mid]) high = mid - 1;\n                else low = mid + 1;\n            } else {\n                if (arr[mid] < k && k <= arr[high]) low = mid + 1;\n                else high = mid - 1;\n            }\n        }\n        System.out.println(ans);\n    }\n}",
+          "time_complexity": "O(log N)",
+          "space_complexity": "O(1)",
+          "explanation": "Modify standard binary search. Compare mid with low to find which half is properly sorted. Use that information to narrow the window safely."
+        }
+      },
+      "approach": {
+        "brute_force": "Linear Search in O(N)",
+        "optimal": "One-pass Binary Search identifying the strictly sorted half",
+        "algorithm": "Binary Search"
+      },
+      "pro_tip": "In a rotated sorted array, one of the two halves created by the mid pointer will always be perfectly sorted. Leverage this fact.",
+      "common_mistakes": [
+        "Failing to use <= when checking if left half is sorted (arr[low] <= arr[mid])",
+        "Incorrectly checking target bounds inside the sorted half",
+        "Using linear search ignoring the O(log N) optimal path"
+      ],
+      "similar_problems": [
+        "Find Minimum in Rotated Sorted Array",
+        "Search in Rotated Sorted Array II (with duplicates)",
+        "Peak Index in a Mountain Array"
+      ],
+      "tags": [
+        "binary-search",
+        "arrays",
+        "TCS-NQT",
+        "medium"
+      ],
+      "year_asked": "2024",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "20_extra_130",
+      "category": "Coding Problems",
+      "subcategory": "Patterns & Series",
+      "difficulty": "Medium",
+      "difficulty_level": 2,
+      "title": "Alpha Ramp Pattern",
+      "problem_statement": "Print the Alpha Ramp Pattern of size N using English alphabets.",
+      "input_format": "A single integer N.",
+      "output_format": "N rows containing identical characters incrementally progressing.",
+      "constraints": "1 <= N <= 26",
+      "sample_input": "3",
+      "sample_output": "A\nB B\nC C C",
+      "explanation_of_example": "First row 'A', second row two 'B's, third row three 'C's.",
+      "solutions": {
+        "python": {
+          "code": "n = int(input())\nfor i in range(n):\n    char = chr(65 + i)\n    row = [char] * (i + 1)\n    print(' '.join(row))",
+          "time_complexity": "O(N^2)",
+          "space_complexity": "O(N)",
+          "explanation": "Derive character from ASCII base 65 ('A'). Print it 'i+1' times separated by space."
+        },
+        "java": {
+          "code": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        for(int i=0; i<n; i++) {\n            char ch = (char)('A' + i);\n            for(int j=0; j<=i; j++) {\n                System.out.print(ch + (j == i ? \"\" : \" \"));\n            }\n            System.out.println();\n        }\n    }\n}",
+          "time_complexity": "O(N^2)",
+          "space_complexity": "O(1)",
+          "explanation": "Typecast integer to character. Inner loop prints the character row+1 times."
+        }
+      },
+      "approach": {
+        "brute_force": "Hardcode strings for all 26 limits",
+        "optimal": "Ascii char manipulation in standard triangle loops",
+        "algorithm": "Iteration / ASCII Logic"
+      },
+      "pro_tip": "Remember ASCII value 'A' is 65. Use `(char)('A' + i)` to easily cycle through alphabets.",
+      "common_mistakes": [
+        "Printing changing alphabets per row (A B C) instead of repeating (A, B B)",
+        "Missing spaces between characters in a row",
+        "Starting loop at 1 but adding 1 to ASCII calculation causing out of sync"
+      ],
+      "similar_problems": [
+        "Alpha Hill Pattern",
+        "Reverse Letter Triangle",
+        "Alpha Triangle"
+      ],
+      "tags": [
+        "patterns",
+        "strings",
+        "TCS-NQT",
+        "medium"
+      ],
+      "year_asked": "2023",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "65_extra_131",
+      "category": "Coding Problems",
+      "subcategory": "Dynamic Programming",
+      "difficulty": "Medium",
+      "difficulty_level": 2,
+      "title": "Partition Equal Subset Sum",
+      "problem_statement": "Given an integer array nums, print 'Yes' if you can partition the array into two subsets such that the sum of the elements in both subsets is equal, otherwise 'No'.",
+      "input_format": "First line N. Second line N space-separated positive integers.",
+      "output_format": "Print 'Yes' or 'No'.",
+      "constraints": "1 <= N <= 200\n1 <= nums[i] <= 100",
+      "sample_input": "4\n1 5 11 5",
+      "sample_output": "Yes",
+      "explanation_of_example": "The array can be partitioned as [1, 5, 5] and [11].",
+      "solutions": {
+        "python": {
+          "code": "n = int(input())\nnums = list(map(int, input().split()))\ntotal = sum(nums)\nif total % 2 != 0:\n    print('No')\n    exit()\ntarget = total // 2\ndp = [False] * (target + 1)\ndp[0] = True\nfor num in nums:\n    for i in range(target, num - 1, -1):\n        if dp[i - num]:\n            dp[i] = True\nprint('Yes' if dp[target] else 'No')",
+          "time_complexity": "O(N * sum)",
+          "space_complexity": "O(sum)",
+          "explanation": "If total sum is odd, partition is impossible. Else, this is a 0/1 Knapsack targeting total/2. Use a boolean array tracking reachable subset sums."
+        },
+        "java": {
+          "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        int sum = 0;\n        int[] nums = new int[n];\n        for (int i = 0; i < n; i++) {\n            nums[i] = sc.nextInt();\n            sum += nums[i];\n        }\n        if (sum % 2 != 0) {\n            System.out.println(\"No\");\n            return;\n        }\n        sum /= 2;\n        boolean[] dp = new boolean[sum + 1];\n        dp[0] = true;\n        for (int num : nums) {\n            for (int i = sum; i >= num; i--) {\n                dp[i] = dp[i] || dp[i - num];\n            }\n        }\n        System.out.println(dp[sum] ? \"Yes\" : \"No\");\n    }\n}",
+          "time_complexity": "O(N * sum)",
+          "space_complexity": "O(sum)",
+          "explanation": "Compute subset sums up to totalSum / 2. To avoid using an element multiple times, iterate the target sums strictly backwards."
+        }
+      },
+      "approach": {
+        "brute_force": "Recursively explore subsets checking for sum exactly equal to Total/2",
+        "optimal": "Dynamic Programming (Subset Sum / 0-1 Knapsack array reduction)",
+        "algorithm": "Dynamic Programming"
+      },
+      "pro_tip": "Converting a subset logic puzzle into a 0/1 Knapsack optimization target is a very common interview pattern.",
+      "common_mistakes": [
+        "Iterating the subset DP array forward causing items to be reused",
+        "Forgetting the modulo 2 check which instantly filters out impossible configurations",
+        "Using 2D DP array where space constraints can cause Memory Limit Exceeded"
+      ],
+      "similar_problems": [
+        "Subset Sum Problem",
+        "Target Sum",
+        "Partition to K Equal Sum Subsets"
+      ],
+      "tags": [
+        "dynamic-programming",
+        "arrays",
+        "medium"
+      ],
+      "year_asked": "2024",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "32_extra_132",
+      "category": "Coding Problems",
+      "subcategory": "Sorting & Searching",
+      "difficulty": "Medium",
+      "difficulty_level": 2,
+      "title": "Bubble Sort",
+      "problem_statement": "Implement the Bubble Sort algorithm to sort an array of N integers in ascending order. Print the sorted array.",
+      "input_format": "First line N. Second line N space-separated integers.",
+      "output_format": "N space-separated sorted integers.",
+      "constraints": "1 <= N <= 1000\n-10^5 <= A[i] <= 10^5",
+      "sample_input": "5\n64 34 25 12 22",
+      "sample_output": "12 22 25 34 64",
+      "explanation_of_example": "Array is sorted by sequentially swapping adjacent out-of-order elements.",
+      "solutions": {
+        "python": {
+          "code": "n = int(input())\narr = list(map(int, input().split()))\nfor i in range(n):\n    swapped = False\n    for j in range(0, n - i - 1):\n        if arr[j] > arr[j + 1]:\n            arr[j], arr[j + 1] = arr[j + 1], arr[j]\n            swapped = True\n    if not swapped:\n        break\nprint(*arr)",
+          "time_complexity": "O(N^2)",
+          "space_complexity": "O(1)",
+          "explanation": "Iterate comparing adjacent elements. Push the maximum to the end. The 'swapped' flag optimizes if array becomes sorted early."
+        },
+        "java": {
+          "code": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        int[] arr = new int[n];\n        for (int i = 0; i < n; i++) arr[i] = sc.nextInt();\n        for (int i = 0; i < n - 1; i++) {\n            boolean swapped = false;\n            for (int j = 0; j < n - i - 1; j++) {\n                if (arr[j] > arr[j + 1]) {\n                    int temp = arr[j];\n                    arr[j] = arr[j + 1];\n                    arr[j + 1] = temp;\n                    swapped = true;\n                }\n            }\n            if (!swapped) break;\n        }\n        for (int num : arr) System.out.print(num + \" \");\n    }\n}",
+          "time_complexity": "O(N^2)",
+          "space_complexity": "O(1)",
+          "explanation": "Nested loops for pairwise comparison. Break early if inner loop does no swaps, implying fully sorted."
+        }
+      },
+      "approach": {
+        "brute_force": "Standard N^2 bubble sort comparing all elements blindly",
+        "optimal": "Optimized Bubble sort with 'swapped' boolean check to break early",
+        "algorithm": "Sorting"
+      },
+      "pro_tip": "While its time complexity makes it poor for large datasets, the 'early exit' makes Bubble Sort O(N) when the array is already sorted.",
+      "common_mistakes": [
+        "Iterating the inner loop up to N every time, doing redundant checks on sorted tail",
+        "Forgetting to reset the 'swapped' variable in the outer loop",
+        "Off-by-one errors with array bounds during swaps"
+      ],
+      "similar_problems": [
+        "Selection Sort",
+        "Insertion Sort",
+        "Sort Array By Parity"
+      ],
+      "tags": [
+        "sorting",
+        "arrays",
+        "TCS-NQT",
+        "medium"
+      ],
+      "year_asked": "2024",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "17_extra_133",
+      "category": "Coding Problems",
+      "subcategory": "Patterns & Series",
+      "difficulty": "Medium",
+      "difficulty_level": 2,
+      "title": "Pascal's Triangle",
+      "problem_statement": "Generate Pascal's Triangle up to N rows.",
+      "input_format": "A single integer N.",
+      "output_format": "N rows of Pascal's triangle with space separated numbers.",
+      "constraints": "1 <= N <= 30",
+      "sample_input": "4",
+      "sample_output": "1\n1 1\n1 2 1\n1 3 3 1",
+      "explanation_of_example": "Each number is the sum of the two directly above it.",
+      "solutions": {
+        "python": {
+          "code": "n = int(input())\nfor i in range(n):\n    val = 1\n    row = []\n    for j in range(i + 1):\n        row.append(str(val))\n        val = val * (i - j) // (j + 1)\n    print(' '.join(row))",
+          "time_complexity": "O(N^2)",
+          "space_complexity": "O(N)",
+          "explanation": "Calculates combinations nCr directly in a loop to avoid large factorial calculations."
+        },
+        "java": {
+          "code": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        for(int i=0; i<n; i++) {\n            long val = 1;\n            for(int j=0; j<=i; j++) {\n                System.out.print(val + \" \");\n                val = val * (i - j) / (j + 1);\n            }\n            System.out.println();\n        }\n    }\n}",
+          "time_complexity": "O(N^2)",
+          "space_complexity": "O(1)",
+          "explanation": "Utilize the combination property C(line, i) = C(line, i-1) * (line - i + 1) / i to avoid storing previous rows."
+        }
+      },
+      "approach": {
+        "brute_force": "Use 2D array and compute values from previous row",
+        "optimal": "Compute mathematically using combinations formula in O(1) space",
+        "algorithm": "Math / Combinatorics"
+      },
+      "pro_tip": "Computing nCr iteratively `val = val * (line - i) / (i + 1)` saves memory and runs significantly faster.",
+      "common_mistakes": [
+        "Using recursive factorial functions causing extreme slowdowns and overflow",
+        "Integer overflow for numbers > row 20 without using longs",
+        "Space formatting issues"
+      ],
+      "similar_problems": [
+        "Get Nth row of Pascal Triangle",
+        "Combination nCr",
+        "Pascal's Triangle II"
+      ],
+      "tags": [
+        "patterns",
+        "math",
+        "TCS-NQT",
+        "medium"
+      ],
+      "year_asked": "2023",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "46_extra_134",
+      "category": "Coding Problems",
+      "subcategory": "Basic DSA",
+      "difficulty": "Hard",
+      "difficulty_level": 3,
+      "title": "Longest Increasing Subsequence",
+      "problem_statement": "Given an integer array nums, return the length of the longest strictly increasing subsequence.",
+      "input_format": "First line N. Second line N space-separated integers.",
+      "output_format": "A single integer denoting the length of the LIS.",
+      "constraints": "1 <= N <= 2500\n-10^4 <= A[i] <= 10^4",
+      "sample_input": "6\n10 9 2 5 3 7",
+      "sample_output": "3",
+      "explanation_of_example": "The longest strictly increasing subsequence is [2, 3, 7] or [2, 5, 7]. Length is 3.",
+      "solutions": {
+        "python": {
+          "code": "n = int(input())\narr = list(map(int, input().split()))\ndp = [1] * n\nfor i in range(1, n):\n    for j in range(i):\n        if arr[i] > arr[j]:\n            dp[i] = max(dp[i], dp[j] + 1)\nprint(max(dp))",
+          "time_complexity": "O(N^2)",
+          "space_complexity": "O(N)",
+          "explanation": "Dynamic Programming. Let dp[i] be the length of the LIS ending at i. Check all previous elements and build upon the longest valid previous subsequence."
+        },
+        "java": {
+          "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        int[] arr = new int[n];\n        for(int i=0; i<n; i++) arr[i] = sc.nextInt();\n        int[] dp = new int[n];\n        Arrays.fill(dp, 1);\n        int maxLen = 1;\n        for (int i = 1; i < n; i++) {\n            for (int j = 0; j < i; j++) {\n                if (arr[i] > arr[j]) {\n                    dp[i] = Math.max(dp[i], dp[j] + 1);\n                }\n            }\n            maxLen = Math.max(maxLen, dp[i]);\n        }\n        System.out.println(maxLen);\n    }\n}",
+          "time_complexity": "O(N^2)",
+          "space_complexity": "O(N)",
+          "explanation": "Standard DP tabulation. Initialize array with 1s. Nested loops to test all preceding elements, taking the max possible sequence length up to index i."
+        }
+      },
+      "approach": {
+        "brute_force": "Generate all 2^N subsequences and check which ones are increasing",
+        "optimal": "Dynamic Programming array tracking longest path ending at index i",
+        "algorithm": "Dynamic Programming"
+      },
+      "pro_tip": "While O(N^2) using DP is acceptable and expected, this problem can also be solved in O(N log N) using Binary Search with Patience Sorting.",
+      "common_mistakes": [
+        "Initializing the DP array with 0s instead of 1s (every element is a subsequence of length 1)",
+        "Only comparing the element strictly to its immediate left neighbor",
+        "Using simple recursion causing Time Limit Exceeded (exponential time)"
+      ],
+      "similar_problems": [
+        "Maximum Subarray",
+        "Increasing Triplet Subsequence",
+        "Longest Continuous Increasing Subsequence"
+      ],
+      "tags": [
+        "dynamic-programming",
+        "arrays",
+        "TCS-NQT",
+        "hard"
+      ],
+      "year_asked": "2024",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "75_extra_135",
+      "category": "Coding Problems",
+      "subcategory": "Graph",
+      "difficulty": "Hard",
+      "difficulty_level": 3,
+      "title": "Course Schedule",
+      "problem_statement": "There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1. You are given an array prerequisites where prerequisites[i] = [a, b] indicates that you must take course b first if you want to take course a. Return 'Yes' if you can finish all courses. Otherwise, return 'No'.",
+      "input_format": "First line numCourses N and edges E. Next E lines contain pairs 'a b'.",
+      "output_format": "Print 'Yes' or 'No'.",
+      "constraints": "1 <= N <= 2000\n0 <= E <= 5000",
+      "sample_input": "2 1\n1 0",
+      "sample_output": "Yes",
+      "explanation_of_example": "To take course 1 you should have finished course 0. It is possible.",
+      "solutions": {
+        "python": {
+          "code": "from collections import deque, defaultdict\nn, e = map(int, input().split())\nadj = defaultdict(list)\nindegree = [0] * n\nfor _ in range(e):\n    u, v = map(int, input().split())\n    adj[v].append(u)\n    indegree[u] += 1\nq = deque([i for i in range(n) if indegree[i] == 0])\ncount = 0\nwhile q:\n    curr = q.popleft()\n    count += 1\n    for neighbor in adj[curr]:\n        indegree[neighbor] -= 1\n        if indegree[neighbor] == 0:\n            q.append(neighbor)\nprint('Yes' if count == n else 'No')",
+          "time_complexity": "O(V + E)",
+          "space_complexity": "O(V + E)",
+          "explanation": "Kahn's Algorithm for Topological Sort. Compute in-degrees. Queue nodes with 0 in-degree. Process them, reducing neighbors' in-degrees. If total processed nodes equals total courses, graph is a Directed Acyclic Graph (DAG)."
+        },
+        "java": {
+          "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt(), e = sc.nextInt();\n        List<List<Integer>> adj = new ArrayList<>();\n        for (int i = 0; i < n; i++) adj.add(new ArrayList<>());\n        int[] indegree = new int[n];\n        for (int i = 0; i < e; i++) {\n            int u = sc.nextInt(), v = sc.nextInt();\n            adj.get(v).add(u);\n            indegree[u]++;\n        }\n        Queue<Integer> q = new LinkedList<>();\n        for (int i = 0; i < n; i++) if (indegree[i] == 0) q.offer(i);\n        int count = 0;\n        while (!q.isEmpty()) {\n            int curr = q.poll();\n            count++;\n            for (int neighbor : adj.get(curr)) {\n                if (--indegree[neighbor] == 0) q.offer(neighbor);\n            }\n        }\n        System.out.println(count == n ? \"Yes\" : \"No\");\n    }\n}",
+          "time_complexity": "O(V + E)",
+          "space_complexity": "O(V + E)",
+          "explanation": "Use BFS to perform Topological Sorting. If there is a cycle in the prerequisites graph, nodes inside the cycle will never reach an indegree of 0, so the processed count will fall short of N."
+        }
+      },
+      "approach": {
+        "brute_force": "Backtrack and trace all paths checking for repeated nodes (O(N!))",
+        "optimal": "Kahn's Algorithm (BFS) or Cycle Detection via DFS (O(V+E))",
+        "algorithm": "Topological Sort"
+      },
+      "pro_tip": "Any problem involving 'prerequisites', 'dependencies', or 'order of tasks' is universally a Topological Sort / Graph Cycle Detection problem.",
+      "common_mistakes": [
+        "Confusing edge direction (should be from prerequisite to target)",
+        "Not accounting for disconnected components in the graph",
+        "Using simple DFS without distinguishing between 'currently visiting' and 'fully visited' states, causing false cycle detections"
+      ],
+      "similar_problems": [
+        "Course Schedule II",
+        "Alien Dictionary",
+        "Find Eventual Safe States"
+      ],
+      "tags": [
+        "graph",
+        "bfs",
+        "topological-sort",
+        "hard"
+      ],
+      "year_asked": "2024",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "42_extra_136",
+      "category": "Coding Problems",
+      "subcategory": "Basic DSA",
+      "difficulty": "Hard",
+      "difficulty_level": 3,
+      "title": "Next Greater Element",
+      "problem_statement": "Given an array of N integers, find the next greater element for each element of the array. The next greater element of an element is the first strictly greater element present to its right. If none exists, output -1 for that element.",
+      "input_format": "First line N. Second line N space-separated integers.",
+      "output_format": "N space-separated integers representing the next greater elements.",
+      "constraints": "1 <= N <= 10^5\n0 <= A[i] <= 10^9",
+      "sample_input": "4\n1 3 2 4",
+      "sample_output": "3 4 4 -1",
+      "explanation_of_example": "Next greater to 1 is 3. To 3 is 4. To 2 is 4. To 4 there is none (-1).",
+      "solutions": {
+        "python": {
+          "code": "n = int(input())\narr = list(map(int, input().split()))\nans = [-1] * n\nstack = []\nfor i in range(n - 1, -1, -1):\n    while stack and stack[-1] <= arr[i]:\n        stack.pop()\n    if stack:\n        ans[i] = stack[-1]\n    stack.append(arr[i])\nprint(*ans)",
+          "time_complexity": "O(N)",
+          "space_complexity": "O(N)",
+          "explanation": "Iterate from right to left using a monotonic stack. Pop elements smaller than current, the top of the stack is the next greater element. Push current element."
+        },
+        "java": {
+          "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        int[] arr = new int[n];\n        for(int i=0; i<n; i++) arr[i] = sc.nextInt();\n        int[] ans = new int[n];\n        Stack<Integer> stack = new Stack<>();\n        for (int i = n - 1; i >= 0; i--) {\n            while (!stack.isEmpty() && stack.peek() <= arr[i]) {\n                stack.pop();\n            }\n            ans[i] = stack.isEmpty() ? -1 : stack.peek();\n            stack.push(arr[i]);\n        }\n        for (int num : ans) System.out.print(num + \" \");\n    }\n}",
+          "time_complexity": "O(N)",
+          "space_complexity": "O(N)",
+          "explanation": "Traverse backwards. Keep a stack strictly monotonically decreasing. If elements in stack are smaller than current, they are useless, so pop them."
+        }
+      },
+      "approach": {
+        "brute_force": "Nested loops, for each element traverse to the right to find the first greater element (O(N^2))",
+        "optimal": "Monotonic Stack traversal from right to left (O(N))",
+        "algorithm": "Monotonic Stack"
+      },
+      "pro_tip": "Every element is pushed and popped at most once, making the while loop's amortized time complexity O(1).",
+      "common_mistakes": [
+        "Using an O(N^2) double loop causing Time Limit Exceeded",
+        "Traversing left to right without storing array indices in the stack",
+        "Not popping elements that are equal (problem demands strictly greater)"
+      ],
+      "similar_problems": [
+        "Daily Temperatures",
+        "Next Greater Element II",
+        "Largest Rectangle in Histogram"
+      ],
+      "tags": [
+        "stack",
+        "arrays",
+        "TCS-NQT",
+        "hard"
+      ],
+      "year_asked": "2024",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "33_extra_137",
+      "category": "Coding Problems",
+      "subcategory": "Sorting & Searching",
+      "difficulty": "Medium",
+      "difficulty_level": 2,
+      "title": "Selection Sort",
+      "problem_statement": "Sort a given array of N integers using the Selection Sort algorithm.",
+      "input_format": "First line N. Second line N space-separated integers.",
+      "output_format": "Space-separated sorted array.",
+      "constraints": "1 <= N <= 1000",
+      "sample_input": "4\n4 1 9 2",
+      "sample_output": "1 2 4 9",
+      "explanation_of_example": "The minimum element is selected from the unsorted sub-array and swapped with the first unsorted element.",
+      "solutions": {
+        "python": {
+          "code": "n = int(input())\narr = list(map(int, input().split()))\nfor i in range(n):\n    min_idx = i\n    for j in range(i + 1, n):\n        if arr[j] < arr[min_idx]:\n            min_idx = j\n    arr[i], arr[min_idx] = arr[min_idx], arr[i]\nprint(*arr)",
+          "time_complexity": "O(N^2)",
+          "space_complexity": "O(1)",
+          "explanation": "For each position, find the index of the minimum element in the remaining array and swap it to the current position."
+        },
+        "java": {
+          "code": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        int[] arr = new int[n];\n        for (int i = 0; i < n; i++) arr[i] = sc.nextInt();\n        for (int i = 0; i < n - 1; i++) {\n            int minIdx = i;\n            for (int j = i + 1; j < n; j++) {\n                if (arr[j] < arr[minIdx]) minIdx = j;\n            }\n            int temp = arr[minIdx];\n            arr[minIdx] = arr[i];\n            arr[i] = temp;\n        }\n        for (int num : arr) System.out.print(num + \" \");\n    }\n}",
+          "time_complexity": "O(N^2)",
+          "space_complexity": "O(1)",
+          "explanation": "Maintain a marker for the sorted boundary. Scan the unsorted portion to find the min value, then swap."
+        }
+      },
+      "approach": {
+        "brute_force": "Find min, copy to new array, delete from old (O(N) space)",
+        "optimal": "In-place Selection Sort using min index tracking",
+        "algorithm": "Sorting"
+      },
+      "pro_tip": "Selection sort performs a maximum of O(N) swaps, making it useful when write/swap operations to memory are extremely costly.",
+      "common_mistakes": [
+        "Swapping values inside the inner loop instead of outside (turning it into Bubble Sort)",
+        "Not updating the minimum index correctly",
+        "Scanning from 0 instead of i+1 in the inner loop"
+      ],
+      "similar_problems": [
+        "Insertion Sort",
+        "Kth Smallest Element",
+        "Sort Colors"
+      ],
+      "tags": [
+        "sorting",
+        "arrays",
+        "TCS-NQT",
+        "medium"
+      ],
+      "year_asked": "2023",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "23_extra_138",
+      "category": "Coding Problems",
+      "subcategory": "Number Problems",
+      "difficulty": "Medium",
+      "difficulty_level": 2,
+      "title": "LCM and GCD",
+      "problem_statement": "Given two integers A and B, find their Least Common Multiple (LCM) and Greatest Common Divisor (GCD).",
+      "input_format": "Two space-separated integers A and B.",
+      "output_format": "Print two space-separated integers: LCM and GCD.",
+      "constraints": "1 <= A, B <= 10^5",
+      "sample_input": "14 8",
+      "sample_output": "56 2",
+      "explanation_of_example": "The highest number dividing both 14 and 8 is 2. The smallest number divisible by both is 56.",
+      "solutions": {
+        "python": {
+          "code": "import math\na, b = map(int, input().split())\ngcd = math.gcd(a, b)\nlcm = (a * b) // gcd\nprint(f\"{lcm} {gcd}\")",
+          "time_complexity": "O(log(min(A, B)))",
+          "space_complexity": "O(1)",
+          "explanation": "Use Euclidean algorithm for GCD. Then use the formula LCM = (A * B) / GCD."
+        },
+        "java": {
+          "code": "import java.util.Scanner;\npublic class Main {\n    static long getGCD(long a, long b) {\n        if (b == 0) return a;\n        return getGCD(b, a % b);\n    }\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        long a = sc.nextLong();\n        long b = sc.nextLong();\n        long gcd = getGCD(a, b);\n        long lcm = (a * b) / gcd;\n        System.out.println(lcm + \" \" + gcd);\n    }\n}",
+          "time_complexity": "O(log(min(A, B)))",
+          "space_complexity": "O(log(min(A, B))) for recursion stack",
+          "explanation": "Implement recursive Euclidean algorithm for GCD. Compute LCM using the relation A*B = LCM*GCD."
+        }
+      },
+      "approach": {
+        "brute_force": "Find all factors for GCD and multiples for LCM by iterating",
+        "optimal": "Euclidean algorithm for GCD, formula for LCM",
+        "algorithm": "Euclidean Algorithm"
+      },
+      "pro_tip": "Always compute (A / GCD) * B instead of (A * B) / GCD to avoid intermediate integer overflow.",
+      "common_mistakes": [
+        "Integer overflow when computing A * B before dividing by GCD",
+        "Recursive limits exceeded if not using modulo in Euclidean algorithm",
+        "Using loops leading to Time Limit Exceeded"
+      ],
+      "similar_problems": [
+        "Find GCD of an Array",
+        "Smallest Even Multiple",
+        "Check if two numbers are Co-Prime"
+      ],
+      "tags": [
+        "math",
+        "numbers",
+        "TCS-NQT",
+        "medium"
+      ],
+      "year_asked": "2023",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "72_extra_139",
+      "category": "Coding Problems",
+      "subcategory": "Backtracking",
+      "difficulty": "Hard",
+      "difficulty_level": 3,
+      "title": "N-Queens (Count Solutions)",
+      "problem_statement": "The n-queens puzzle is the problem of placing n queens on an n x n chessboard such that no two queens attack each other. Given an integer n, return the number of distinct solutions to the n-queens puzzle.",
+      "input_format": "A single integer N.",
+      "output_format": "A single integer denoting the number of solutions.",
+      "constraints": "1 <= N <= 9",
+      "sample_input": "4",
+      "sample_output": "2",
+      "explanation_of_example": "There are exactly two distinct solutions for a 4x4 chessboard.",
+      "solutions": {
+        "python": {
+          "code": "n = int(input())\n\ndef backtrack(row, diagonals, anti_diagonals, cols):\n    if row == n:\n        return 1\n    solutions = 0\n    for col in range(n):\n        curr_diagonal = row - col\n        curr_anti_diagonal = row + col\n        if col in cols or curr_diagonal in diagonals or curr_anti_diagonal in anti_diagonals:\n            continue\n        cols.add(col)\n        diagonals.add(curr_diagonal)\n        anti_diagonals.add(curr_anti_diagonal)\n        solutions += backtrack(row + 1, diagonals, anti_diagonals, cols)\n        cols.remove(col)\n        diagonals.remove(curr_diagonal)\n        anti_diagonals.remove(curr_anti_diagonal)\n    return solutions\n\nprint(backtrack(0, set(), set(), set()))",
+          "time_complexity": "O(N!)",
+          "space_complexity": "O(N)",
+          "explanation": "Use a backtracking function that places queens row by row. Maintain hash sets for columns, main diagonals (row - col), and anti-diagonals (row + col) to check for attacks in O(1) time."
+        },
+        "java": {
+          "code": "import java.util.*;\npublic class Main {\n    static int backtrack(int row, int n, Set<Integer> cols, Set<Integer> diags, Set<Integer> antiDiags) {\n        if (row == n) return 1;\n        int solutions = 0;\n        for (int col = 0; col < n; col++) {\n            int diag = row - col;\n            int antiDiag = row + col;\n            if (cols.contains(col) || diags.contains(diag) || antiDiags.contains(antiDiag)) continue;\n            cols.add(col);\n            diags.add(diag);\n            antiDiags.add(antiDiag);\n            solutions += backtrack(row + 1, n, cols, diags, antiDiags);\n            cols.remove(col);\n            diags.remove(diag);\n            antiDiags.remove(antiDiag);\n        }\n        return solutions;\n    }\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        System.out.println(backtrack(0, n, new HashSet<>(), new HashSet<>(), new HashSet<>()));\n    }\n}",
+          "time_complexity": "O(N!)",
+          "space_complexity": "O(N)",
+          "explanation": "Recursive backtracking evaluating row by row. Three HashSets track occupied columns and diagonals dynamically, providing constant time lookups for validity checks."
+        }
+      },
+      "approach": {
+        "brute_force": "Generate all possible placements of N queens and validate each grid layout (O(N^N))",
+        "optimal": "Backtracking with mathematically mapped HashSets for diagonals (O(N!))",
+        "algorithm": "Backtracking"
+      },
+      "pro_tip": "For any cell (r, c), cells on the same main diagonal share the same difference (r - c), and cells on the same anti-diagonal share the same sum (r + c).",
+      "common_mistakes": [
+        "Iterating through the entire board to check for queen threats instead of using mathematical sets",
+        "Failing to backtrack (remove from sets) after a recursive call returns",
+        "Attempting to solve for N > 12 where mathematical optimizations (like bitwise operators) are required to avoid TLE"
+      ],
+      "similar_problems": [
+        "N-Queens I (Print configurations)",
+        "Sudoku Solver",
+        "Valid Sudoku"
+      ],
+      "tags": [
+        "backtracking",
+        "math",
+        "hard"
+      ],
+      "year_asked": "2024",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "47_extra_140",
+      "category": "Coding Problems",
+      "subcategory": "Basic DSA",
+      "difficulty": "Hard",
+      "difficulty_level": 3,
+      "title": "Longest Common Subsequence",
+      "problem_statement": "Given two strings text1 and text2, return the length of their longest common subsequence. If there is no common subsequence, return 0.",
+      "input_format": "Two lines containing text1 and text2 respectively.",
+      "output_format": "A single integer representing the LCS length.",
+      "constraints": "1 <= |text1|, |text2| <= 1000\nStrings contain only lowercase English characters.",
+      "sample_input": "abcde\nace",
+      "sample_output": "3",
+      "explanation_of_example": "The longest common subsequence is 'ace' which has a length of 3.",
+      "solutions": {
+        "python": {
+          "code": "s1 = input().strip()\ns2 = input().strip()\nm, n = len(s1), len(s2)\ndp = [[0] * (n + 1) for _ in range(m + 1)]\nfor i in range(1, m + 1):\n    for j in range(1, n + 1):\n        if s1[i - 1] == s2[j - 1]:\n            dp[i][j] = dp[i - 1][j - 1] + 1\n        else:\n            dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])\nprint(dp[m][n])",
+          "time_complexity": "O(N * M)",
+          "space_complexity": "O(N * M)",
+          "explanation": "Create a 2D DP table. If characters match, add 1 to the diagonal previous state. If they differ, take the maximum from the state directly above or to the left."
+        },
+        "java": {
+          "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s1 = sc.next();\n        String s2 = sc.next();\n        int m = s1.length(), n = s2.length();\n        int[][] dp = new int[m + 1][n + 1];\n        for (int i = 1; i <= m; i++) {\n            for (int j = 1; j <= n; j++) {\n                if (s1.charAt(i - 1) == s2.charAt(j - 1)) {\n                    dp[i][j] = dp[i - 1][j - 1] + 1;\n                } else {\n                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);\n                }\n            }\n        }\n        System.out.println(dp[m][n]);\n    }\n}",
+          "time_complexity": "O(N * M)",
+          "space_complexity": "O(N * M)",
+          "explanation": "Use a 2D array of size (m+1)x(n+1) to avoid index out of bound errors on boundaries. Standard DP bottom-up tabulation."
+        }
+      },
+      "approach": {
+        "brute_force": "Generate all subsequences of string 1 and verify against string 2 (Exponential)",
+        "optimal": "2D Dynamic Programming grid tracking subproblem overlap",
+        "algorithm": "Dynamic Programming"
+      },
+      "pro_tip": "Since DP[i][j] only relies on the current row and the immediately preceding row, the space complexity can be optimized to O(min(M, N)).",
+      "common_mistakes": [
+        "Confusing subsequence (can be non-contiguous) with substring (must be contiguous)",
+        "Getting index out of bounds by not making DP array m+1 and n+1",
+        "Using recursive backtracking resulting in Time Limit Exceeded"
+      ],
+      "similar_problems": [
+        "Longest Common Substring",
+        "Edit Distance",
+        "Longest Palindromic Subsequence"
+      ],
+      "tags": [
+        "dynamic-programming",
+        "strings",
+        "TCS-NQT",
+        "hard"
+      ],
+      "year_asked": "2023",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "73_extra_141",
+      "category": "Coding Problems",
+      "subcategory": "Backtracking",
+      "difficulty": "Hard",
+      "difficulty_level": 3,
+      "title": "Generate Parentheses",
+      "problem_statement": "Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses. Print the count of such combinations.",
+      "input_format": "A single integer N.",
+      "output_format": "A single integer denoting the number of combinations.",
+      "constraints": "1 <= N <= 12",
+      "sample_input": "3",
+      "sample_output": "5",
+      "explanation_of_example": "The 5 valid combinations are: ((())), (()()), (())(), ()(()), ()()().",
+      "solutions": {
+        "python": {
+          "code": "n = int(input())\ndef backtrack(open_count, close_count):\n    if open_count == n and close_count == n:\n        return 1\n    count = 0\n    if open_count < n:\n        count += backtrack(open_count + 1, close_count)\n    if close_count < open_count:\n        count += backtrack(open_count, close_count + 1)\n    return count\nprint(backtrack(0, 0))",
+          "time_complexity": "O(4^N / sqrt(N))",
+          "space_complexity": "O(N)",
+          "explanation": "Use backtracking keeping track of how many open and close brackets have been used. Only add an open bracket if we haven't reached N. Only add a close bracket if it doesn't exceed open brackets."
+        },
+        "java": {
+          "code": "import java.util.*;\npublic class Main {\n    static int backtrack(int open, int close, int max) {\n        if (open == max && close == max) return 1;\n        int count = 0;\n        if (open < max) count += backtrack(open + 1, close, max);\n        if (close < open) count += backtrack(open, close + 1, max);\n        return count;\n    }\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        System.out.println(backtrack(0, 0, n));\n    }\n}",
+          "time_complexity": "O(4^N / sqrt(N))",
+          "space_complexity": "O(N)",
+          "explanation": "DFS recursion counting valid leaves. Maintaining constraints: open < n and close < open ensures only valid sequences are generated. Result maps to the Nth Catalan number."
+        }
+      },
+      "approach": {
+        "brute_force": "Generate all 2^(2N) strings of brackets and validate each with a stack",
+        "optimal": "Backtracking ensuring validity at each step (Catalan Number generation)",
+        "algorithm": "Backtracking"
+      },
+      "pro_tip": "The number of valid parentheses configurations for N pairs is always exactly the N-th Catalan number, which can also be solved mathematically in O(N).",
+      "common_mistakes": [
+        "Adding closing brackets when there aren't enough preceding opening brackets",
+        "Forgetting the base condition where `open == n && close == n`",
+        "Using excessive string concatenations during recursive generation leading to Memory Limits"
+      ],
+      "similar_problems": [
+        "Valid Parentheses",
+        "Letter Combinations of a Phone Number",
+        "Catalan Numbers"
+      ],
+      "tags": [
+        "backtracking",
+        "strings",
+        "hard"
+      ],
+      "year_asked": "2023",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "39_extra_142",
+      "category": "Coding Problems",
+      "subcategory": "Sorting & Searching",
+      "difficulty": "Medium",
+      "difficulty_level": 2,
+      "title": "Find Peak Element",
+      "problem_statement": "A peak element is an element that is strictly greater than its neighbors. Given an integer array nums, find a peak element, and return its index. If there are multiple peaks, return the index to any of the peaks.",
+      "input_format": "First line N. Second line N integers.",
+      "output_format": "Index of any peak element.",
+      "constraints": "1 <= N <= 1000\nnums[-1] = nums[n] = -infinity",
+      "sample_input": "4\n1 2 3 1",
+      "sample_output": "2",
+      "explanation_of_example": "3 is a peak element and your function should return the index number 2.",
+      "solutions": {
+        "python": {
+          "code": "n = int(input())\narr = list(map(int, input().split()))\nlow, high = 0, n - 1\nwhile low < high:\n    mid = low + (high - low) // 2\n    if arr[mid] > arr[mid + 1]:\n        high = mid\n    else:\n        low = mid + 1\nprint(low)",
+          "time_complexity": "O(log N)",
+          "space_complexity": "O(1)",
+          "explanation": "Binary search logic mapping gradients. If mid > mid+1, peak lies to the left. Otherwise, it lies to the right."
+        },
+        "java": {
+          "code": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        int[] arr = new int[n];\n        for(int i=0; i<n; i++) arr[i] = sc.nextInt();\n        int low = 0, high = n - 1;\n        while (low < high) {\n            int mid = low + (high - low) / 2;\n            if (arr[mid] > arr[mid + 1]) {\n                high = mid;\n            } else {\n                low = mid + 1;\n            }\n        }\n        System.out.println(low);\n    }\n}",
+          "time_complexity": "O(log N)",
+          "space_complexity": "O(1)",
+          "explanation": "Perform binary search. Compare mid element with its right neighbor to determine ascending/descending slope, zooming in on peak."
+        }
+      },
+      "approach": {
+        "brute_force": "Linear scan checking adjacent elements (O(N))",
+        "optimal": "Binary search evaluating slope gradient",
+        "algorithm": "Binary Search"
+      },
+      "pro_tip": "If arr[mid] < arr[mid+1], you are going 'uphill', meaning a peak MUST exist to the right. This holds true because edges act as negative infinity.",
+      "common_mistakes": [
+        "Checking mid-1 and running into index out of bounds exception",
+        "Running while loop as `low <= high` and causing infinite loop for `high = mid`",
+        "Returning the value instead of the index"
+      ],
+      "similar_problems": [
+        "Find Minimum in Rotated Sorted Array",
+        "Peak Index in a Mountain Array",
+        "Find Peak Element II (2D Matrix)"
+      ],
+      "tags": [
+        "binary-search",
+        "arrays",
+        "TCS-NQT",
+        "medium"
+      ],
+      "year_asked": "2023",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "92_extra_143",
+      "category": "Coding Problems",
+      "subcategory": "Dynamic Programming",
+      "difficulty": "Hard",
+      "difficulty_level": 3,
+      "title": "Regular Expression Matching",
+      "problem_statement": "Given an input string s and a pattern p, implement regular expression matching with support for '.' and '*' where: '.' Matches any single character. '*' Matches zero or more of the preceding element. Print 'Yes' if it matches the entire string, else 'No'.",
+      "input_format": "First line string S. Second line string P.",
+      "output_format": "Print 'Yes' or 'No'.",
+      "constraints": "1 <= |s| <= 20\n1 <= |p| <= 20\ns contains only lowercase English letters. p contains lowercase English letters, '.', and '*'.",
+      "sample_input": "aab\nc*a*b",
+      "sample_output": "Yes",
+      "explanation_of_example": "c can be repeated 0 times, a can be repeated 2 times. Therefore, it matches 'aab'.",
+      "solutions": {
+        "python": {
+          "code": "s = input().strip()\np = input().strip()\nm, n = len(s), len(p)\ndp = [[False] * (n + 1) for _ in range(m + 1)]\ndp[0][0] = True\nfor j in range(2, n + 1):\n    if p[j - 1] == '*':\n        dp[0][j] = dp[0][j - 2]\nfor i in range(1, m + 1):\n    for j in range(1, n + 1):\n        if p[j - 1] == '.' or p[j - 1] == s[i - 1]:\n            dp[i][j] = dp[i - 1][j - 1]\n        elif p[j - 1] == '*':\n            dp[i][j] = dp[i][j - 2]\n            if p[j - 2] == '.' or p[j - 2] == s[i - 1]:\n                dp[i][j] = dp[i][j] or dp[i - 1][j]\nprint('Yes' if dp[m][n] else 'No')",
+          "time_complexity": "O(M * N)",
+          "space_complexity": "O(M * N)",
+          "explanation": "DP formulation where `dp[i][j]` maps `s[0..i]` to `p[0..j]`. The '*' operator looks back 2 positions for zero-occurrence (`dp[i][j-2]`), or checks if previous pattern character matches current string character to continue mapping (`dp[i-1][j]`)."
+        },
+        "java": {
+          "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = sc.hasNext() ? sc.next() : \"\";\n        String p = sc.hasNext() ? sc.next() : \"\";\n        int m = s.length(), n = p.length();\n        boolean[][] dp = new boolean[m + 1][n + 1];\n        dp[0][0] = true;\n        for (int j = 2; j <= n; j++) {\n            if (p.charAt(j - 1) == '*') dp[0][j] = dp[0][j - 2];\n        }\n        for (int i = 1; i <= m; i++) {\n            for (int j = 1; j <= n; j++) {\n                if (p.charAt(j - 1) == '.' || p.charAt(j - 1) == s.charAt(i - 1)) {\n                    dp[i][j] = dp[i - 1][j - 1];\n                } else if (p.charAt(j - 1) == '*') {\n                    dp[i][j] = dp[i][j - 2];\n                    if (p.charAt(j - 2) == '.' || p.charAt(j - 2) == s.charAt(i - 1)) {\n                        dp[i][j] = dp[i][j] || dp[i - 1][j];\n                    }\n                }\n            }\n        }\n        System.out.println(dp[m][n] ? \"Yes\" : \"No\");\n    }\n}",
+          "time_complexity": "O(M * N)",
+          "space_complexity": "O(M * N)",
+          "explanation": "2D state matrix resolves overlapping wildcards. Crucially handles `*` by looking at `j-2` (dropping the starred char entirely) or repeating it against `i-1`."
+        }
+      },
+      "approach": {
+        "brute_force": "Backtracking algorithm trying all possible regex length expansions",
+        "optimal": "Dynamic Programming matching subproblems recursively via 2D array",
+        "algorithm": "Dynamic Programming"
+      },
+      "pro_tip": "Unlike wildcard matching where '*' stands alone, regex '*' is intrinsically tied to the character directly preceding it. Thus, handling `*` involves looking back 2 pattern characters `[j-2]`.",
+      "common_mistakes": [
+        "Treating `*` like a standalone wildcard instead of a multiplier for the preceding element",
+        "Failing to initialize `dp[0][j]` properly for patterns starting with elements that can be zeroed out (e.g., `a*b*`)",
+        "Out of bounds errors when checking `p[j-2]`"
+      ],
+      "similar_problems": [
+        "Wildcard Matching",
+        "Edit Distance",
+        "Decode Ways"
+      ],
+      "tags": [
+        "dynamic-programming",
+        "strings",
+        "hard"
+      ],
+      "year_asked": "2024",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "87_extra_144",
+      "category": "Coding Problems",
+      "subcategory": "Dynamic Programming",
+      "difficulty": "Hard",
+      "difficulty_level": 3,
+      "title": "Burst Balloons",
+      "problem_statement": "You are given n balloons, indexed from 0 to n - 1. Each balloon is painted with a number on it represented by an array nums. You are asked to burst all the balloons. If you burst the ith balloon, you will get nums[i - 1] * nums[i] * nums[i + 1] coins. If i - 1 or i + 1 goes out of bounds of the array, then treat it as if there is a balloon with a 1 painted on it. Return the maximum coins you can collect.",
+      "input_format": "First line N. Second line N space-separated integers.",
+      "output_format": "A single integer denoting max coins.",
+      "constraints": "1 <= N <= 300\n0 <= nums[i] <= 100",
+      "sample_input": "4\n3 1 5 8",
+      "sample_output": "167",
+      "explanation_of_example": "Burst 1: 3*1*5=15. Burst 5: 3*5*8=120. Burst 3: 1*3*8=24. Burst 8: 1*8*1=8. 15+120+24+8 = 167.",
+      "solutions": {
+        "python": {
+          "code": "n = int(input())\nnums = [1] + list(map(int, input().split())) + [1]\nn = len(nums)\ndp = [[0] * n for _ in range(n)]\nfor length in range(2, n):\n    for left in range(n - length):\n        right = left + length\n        for i in range(left + 1, right):\n            coins = nums[left] * nums[i] * nums[right]\n            dp[left][right] = max(dp[left][right], coins + dp[left][i] + dp[i][right])\nprint(dp[0][n - 1])",
+          "time_complexity": "O(N^3)",
+          "space_complexity": "O(N^2)",
+          "explanation": "Interval DP. Instead of thinking 'which balloon to burst first', think 'which balloon is burst LAST'. Pad boundaries with 1s. Evaluate all subset ranges for maximum accumulated yields."
+        },
+        "java": {
+          "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        int[] nums = new int[n + 2];\n        nums[0] = 1; nums[n + 1] = 1;\n        for (int i = 1; i <= n; i++) nums[i] = sc.nextInt();\n        int[][] dp = new int[n + 2][n + 2];\n        for (int len = 2; len < n + 2; len++) {\n            for (int left = 0; left < n + 2 - len; left++) {\n                int right = left + len;\n                for (int i = left + 1; i < right; i++) {\n                    int coins = nums[left] * nums[i] * nums[right];\n                    dp[left][right] = Math.max(dp[left][right], coins + dp[left][i] + dp[i][right]);\n                }\n            }\n        }\n        System.out.println(dp[0][n + 1]);\n    }\n}",
+          "time_complexity": "O(N^3)",
+          "space_complexity": "O(N^2)",
+          "explanation": "Padding array with 1 at both boundaries helps eliminate out-of-bounds checks. Solve dynamically over ranges of increasing lengths. DP state considers element `i` as the absolute last one to burst in current segment."
+        }
+      },
+      "approach": {
+        "brute_force": "Recursively check all permutations of popping order taking O(N!)",
+        "optimal": "Interval DP utilizing reversed process thinking (O(N^3))",
+        "algorithm": "Dynamic Programming"
+      },
+      "pro_tip": "Working backwards ('divide and conquer') is the only way to establish independent subproblems. The balloons are linked, but guessing the LAST balloon decouples the left and right subarrays.",
+      "common_mistakes": [
+        "Applying a greedy solution bursting balloons linearly, missing optimized complex setups",
+        "Attempting to solve forward, creating dependent overlapping subproblems that break DP logic",
+        "Array boundary exception when handling limits on unpadded arrays"
+      ],
+      "similar_problems": [
+        "Minimum Cost to Merge Stones",
+        "Zuma Game",
+        "Matrix Chain Multiplication"
+      ],
+      "tags": [
+        "dynamic-programming",
+        "divide-and-conquer",
+        "hard"
+      ],
+      "year_asked": "2024",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "83_extra_145",
+      "category": "Coding Problems",
+      "subcategory": "Backtracking",
+      "difficulty": "Hard",
+      "difficulty_level": 3,
+      "title": "Palindrome Partitioning Min Cuts",
+      "problem_statement": "Given a string s, partition s such that every substring of the partition is a palindrome. Return the minimum cuts needed for a palindrome partitioning of s.",
+      "input_format": "A single string s.",
+      "output_format": "A single integer denoting the minimum cuts.",
+      "constraints": "1 <= s.length <= 2000\ns consists of lowercase English letters only.",
+      "sample_input": "aab",
+      "sample_output": "1",
+      "explanation_of_example": "The palindrome partitioning [\"aa\",\"b\"] requires exactly 1 cut.",
+      "solutions": {
+        "python": {
+          "code": "s = input().strip()\nn = len(s)\nif n == 0:\n    print(0)\n    exit()\ncuts = [0] * n\npal = [[False] * n for _ in range(n)]\nfor i in range(n):\n    min_cut = i\n    for j in range(i + 1):\n        if s[j] == s[i] and (i - j <= 2 or pal[j + 1][i - 1]):\n            pal[j][i] = True\n            min_cut = 0 if j == 0 else min(min_cut, cuts[j - 1] + 1)\n    cuts[i] = min_cut\nprint(cuts[n - 1])",
+          "time_complexity": "O(N^2)",
+          "space_complexity": "O(N^2)",
+          "explanation": "DP logic combining palindrome verification and cut tracking. If `s[j:i]` is a palindrome, the minimum cuts at `i` would be the minimum cuts at `j-1` plus 1."
+        },
+        "java": {
+          "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = sc.next();\n        int n = s.length();\n        int[] cuts = new int[n];\n        boolean[][] pal = new boolean[n][n];\n        for (int i = 0; i < n; i++) {\n            int min = i;\n            for (int j = 0; j <= i; j++) {\n                if (s.charAt(j) == s.charAt(i) && (i - j <= 2 || pal[j + 1][i - 1])) {\n                    pal[j][i] = true;\n                    min = j == 0 ? 0 : Math.min(min, cuts[j - 1] + 1);\n                }\n            }\n            cuts[i] = min;\n        }\n        System.out.println(cuts[n - 1]);\n    }\n}",
+          "time_complexity": "O(N^2)",
+          "space_complexity": "O(N^2)",
+          "explanation": "A dual DP approach. One 2D matrix caches whether substring i..j is a palindrome. The 1D cuts array determines the lowest possible cut required up to index i using the cache."
+        }
+      },
+      "approach": {
+        "brute_force": "Backtracking checking all partitions taking O(2^N * N)",
+        "optimal": "Dynamic Programming with Palindrome Caching taking O(N^2)",
+        "algorithm": "Dynamic Programming"
+      },
+      "pro_tip": "Checking palindromes linearly inside the DP loop makes the complexity O(N^3). Validating palindromes via a nested 2D Boolean array drops the lookup to O(1) saving massive runtime overhead.",
+      "common_mistakes": [
+        "Applying a greedy approach making cuts at the earliest palindrome bounds which misses optimal combinations",
+        "Validating palindromes with linear iteration driving time limit exceeded",
+        "Returning the number of substrings instead of the number of cuts (cuts = substrings - 1)"
+      ],
+      "similar_problems": [
+        "Palindrome Partitioning I (Return lists)",
+        "Longest Palindromic Substring",
+        "Word Break"
+      ],
+      "tags": [
+        "dynamic-programming",
+        "strings",
+        "hard"
+      ],
+      "year_asked": "2023",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "77_extra_146",
+      "category": "Coding Problems",
+      "subcategory": "Graph",
+      "difficulty": "Hard",
+      "difficulty_level": 3,
+      "title": "Network Delay Time",
+      "problem_statement": "You are given a network of n nodes, labeled from 1 to n. You are given times, a list of travel times as directed edges times[i] = (u, v, w), where u is the source node, v is the target node, and w is the time it takes for a signal to travel from source to target. We will send a signal from a given node k. Return the minimum time it takes for all the n nodes to receive the signal. If it is impossible, return -1.",
+      "input_format": "First line Nodes N, Edges E, Starting Node K. Next E lines contain 'u v w'.",
+      "output_format": "A single integer denoting the minimum time.",
+      "constraints": "1 <= N <= 100\n1 <= E <= 6000\n1 <= u, v, k <= N\n0 <= w <= 100",
+      "sample_input": "4 3 2\n2 1 1\n2 3 1\n3 4 1",
+      "sample_output": "2",
+      "explanation_of_example": "Signal goes from 2->1 (time 1) and 2->3 (time 1). Then from 3->4 (time 1). Total time max(1, 1+1) = 2.",
+      "solutions": {
+        "python": {
+          "code": "import heapq\nfrom collections import defaultdict\nn, e, k = map(int, input().split())\ngraph = defaultdict(list)\nfor _ in range(e):\n    u, v, w = map(int, input().split())\n    graph[u].append((v, w))\npq = [(0, k)]\ndist = {}\nwhile pq:\n    d, node = heapq.heappop(pq)\n    if node in dist: continue\n    dist[node] = d\n    for neighbor, weight in graph[node]:\n        if neighbor not in dist:\n            heapq.heappush(pq, (d + weight, neighbor))\nprint(max(dist.values()) if len(dist) == n else -1)",
+          "time_complexity": "O(E log V)",
+          "space_complexity": "O(V + E)",
+          "explanation": "Dijkstra's Algorithm. Use a Min-Heap (Priority Queue) to always expand the shortest path first. The total delay is the maximum shortest-path across all nodes. If a node is unreachable, the dictionary length will be less than N."
+        },
+        "java": {
+          "code": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt(), e = sc.nextInt(), k = sc.nextInt();\n        Map<Integer, List<int[]>> graph = new HashMap<>();\n        for (int i=1; i<=n; i++) graph.put(i, new ArrayList<>());\n        for (int i=0; i<e; i++) {\n            int u = sc.nextInt(), v = sc.nextInt(), w = sc.nextInt();\n            graph.get(u).add(new int[]{v, w});\n        }\n        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[1] - b[1]);\n        pq.offer(new int[]{k, 0});\n        Map<Integer, Integer> dist = new HashMap<>();\n        while (!pq.isEmpty()) {\n            int[] curr = pq.poll();\n            int node = curr[0], d = curr[1];\n            if (dist.containsKey(node)) continue;\n            dist.put(node, d);\n            for (int[] edge : graph.get(node)) {\n                if (!dist.containsKey(edge[0])) {\n                    pq.offer(new int[]{edge[0], d + edge[1]});\n                }\n            }\n        }\n        if (dist.size() != n) { System.out.println(-1); return; }\n        int ans = 0;\n        for (int d : dist.values()) ans = Math.max(ans, d);\n        System.out.println(ans);\n    }\n}",
+          "time_complexity": "O(E log V)",
+          "space_complexity": "O(V + E)",
+          "explanation": "Implement Dijkstra's Algorithm via a PriorityQueue comparing cumulative path weights. Track visited nodes and their minimum resolved distances. Time is bounded by the longest shortest-path."
+        }
+      },
+      "approach": {
+        "brute_force": "DFS mapping every possible path to every node keeping track of the minimums (O(N!))",
+        "optimal": "Dijkstra's Shortest Path Algorithm (O(E log V))",
+        "algorithm": "Dijkstra's Algorithm"
+      },
+      "pro_tip": "Because edge weights are non-negative, Dijkstra's algorithm is the fastest and most reliable method to compute single-source shortest paths globally.",
+      "common_mistakes": [
+        "Failing to check if a node has already been relaxed (visited) resulting in infinite cycles",
+        "Adding the edge weight to the PriorityQueue instead of the cumulative path distance",
+        "Using 0-based indexing when the problem specifies 1-based labels"
+      ],
+      "similar_problems": [
+        "Cheapest Flights Within K Stops",
+        "Path With Minimum Effort",
+        "Swim in Rising Water"
+      ],
+      "tags": [
+        "graph",
+        "shortest-path",
+        "heap",
+        "hard"
+      ],
+      "year_asked": "2023",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "19_extra_147",
+      "category": "Coding Problems",
+      "subcategory": "Patterns & Series",
+      "difficulty": "Medium",
+      "difficulty_level": 2,
+      "title": "Number Crown Pattern",
+      "problem_statement": "Print a Number Crown pattern of N rows. A crown is constructed by left aligned incrementing numbers and right aligned decrementing numbers.",
+      "input_format": "A single integer N.",
+      "output_format": "N rows as specified.",
+      "constraints": "1 <= N <= 9",
+      "sample_input": "3",
+      "sample_output": "1    1\n12  21\n123321",
+      "explanation_of_example": "Row 1: '1' + 4 spaces + '1'. Row 2: '12' + 2 spaces + '21'. Row 3: '123' + 0 spaces + '321'.",
+      "solutions": {
+        "python": {
+          "code": "n = int(input())\nfor i in range(1, n + 1):\n    left = ''.join(str(x) for x in range(1, i + 1))\n    right = ''.join(str(x) for x in range(i, 0, -1))\n    spaces = ' ' * (2 * (n - i))\n    print(left + spaces + right)",
+          "time_complexity": "O(N^2)",
+          "space_complexity": "O(N)",
+          "explanation": "Construct left side string 1 to i, spaces mathematically based on n-i, and right side i to 1. Concatenate and print."
+        },
+        "java": {
+          "code": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        int spaces = 2 * (n - 1);\n        for(int i=1; i<=n; i++) {\n            for(int j=1; j<=i; j++) System.out.print(j);\n            for(int j=1; j<=spaces; j++) System.out.print(\" \");\n            for(int j=i; j>=1; j--) System.out.print(j);\n            System.out.println();\n            spaces -= 2;\n        }\n    }\n}",
+          "time_complexity": "O(N^2)",
+          "space_complexity": "O(1)",
+          "explanation": "Loop logic to print left side numbers, then dynamic spaces decreasing by 2 each row, then right side numbers."
+        }
+      },
+      "approach": {
+        "brute_force": "Math formulation directly in nested loops",
+        "optimal": "Dynamic gap counting for spaces",
+        "algorithm": "Iteration / String Manipulation"
+      },
+      "pro_tip": "Calculate spaces as a separate mathematical entity. Space initially is 2*(N-1) and decreases by 2 every row.",
+      "common_mistakes": [
+        "Miscalculating spaces causing asymmetry",
+        "Printing numbers beyond 9 turning logic weird (constraints limit N<=9 usually)",
+        "Missing middle gap completely"
+      ],
+      "similar_problems": [
+        "Symmetric Void Pattern",
+        "Butterfly Pattern",
+        "Hollow Rhombus"
+      ],
+      "tags": [
+        "patterns",
+        "loops",
+        "TCS-NQT",
+        "medium"
+      ],
+      "year_asked": "2024",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "2_extra_148",
+      "category": "Coding Problems",
+      "subcategory": "Arrays & Strings",
+      "difficulty": "Easy",
+      "difficulty_level": 1,
+      "title": "Find Max and Min in Array",
+      "problem_statement": "Given an array of size N, find the maximum and minimum elements in the array.",
+      "input_format": "First line contains N. Second line contains N space-separated integers.",
+      "output_format": "Print max and min space-separated.",
+      "constraints": "1 <= N <= 10^5\n-10^9 <= A[i] <= 10^9",
+      "sample_input": "5\n1 5 3 9 2",
+      "sample_output": "9 1",
+      "explanation_of_example": "The maximum element is 9 and the minimum is 1.",
+      "solutions": {
+        "python": {
+          "code": "n = int(input())\narr = list(map(int, input().split()))\nmax_val = arr[0]\nmin_val = arr[0]\nfor num in arr:\n    if num > max_val: max_val = num\n    if num < min_val: min_val = num\nprint(f\"{max_val} {min_val}\")",
+          "time_complexity": "O(n)",
+          "space_complexity": "O(1)",
+          "explanation": "Initialize max and min with the first element. Iterate through the array updating max and min accordingly."
+        },
+        "java": {
+          "code": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        int max = Integer.MIN_VALUE;\n        int min = Integer.MAX_VALUE;\n        for(int i=0; i<n; i++) {\n            int val = sc.nextInt();\n            if(val > max) max = val;\n            if(val < min) min = val;\n        }\n        System.out.println(max + \" \" + min);\n    }\n}",
+          "time_complexity": "O(n)",
+          "space_complexity": "O(1)",
+          "explanation": "Read input dynamically without storing the whole array to save space. Update max and min for each input."
+        }
+      },
+      "approach": {
+        "brute_force": "Sort the array and take first and last elements",
+        "optimal": "Linear scan comparing each element with current max and min",
+        "algorithm": "Linear Search"
+      },
+      "pro_tip": "You can process elements in pairs to reduce the number of comparisons by half.",
+      "common_mistakes": [
+        "Initializing max to 0 instead of INT_MIN",
+        "Initializing min to 0 instead of INT_MAX",
+        "Sorting the array which takes O(N log N) time"
+      ],
+      "similar_problems": [
+        "Kth largest element in an array",
+        "Find the peak element",
+        "Find the third largest element"
+      ],
+      "tags": [
+        "arrays",
+        "searching",
+        "TCS-NQT",
+        "easy"
+      ],
+      "year_asked": "2023",
+      "is_previous_year": true,
+      "bookmark": false,
+      "attempted": false,
+      "solved": false
+    },
+    {
+      "id": "13_extra_149",
+      "category": "Coding Problems",
+      "subcategory": "Patterns & Series",
+      "difficulty": "Easy",
+      "difficulty_level": 1,
+      "title": "Pyramid Star Pattern",
+      "problem_statement": "Print a full pyramid star pattern of N rows.",
+      "input_format": "A single integer N.",
+      "output_format": "Pyramid pattern using stars and spaces.",
+      "constraints": "1 <= N <= 100",
+      "sample_input": "3",
+      "sample_output": "  *\n ***\n*****",
+      "explanation_of_example": "Row 1: 2 spaces, 1 star. Row 2: 1 space, 3 stars. Row 3: 0 spaces, 5 stars.",
+      "solutions": {
+        "python": {
+          "code": "n = int(input())\nfor i in range(n):\n    print(' ' * (n - i - 1) + '*' * (2 * i + 1))",
+          "time_complexity": "O(N^2) considering string operations",
+          "space_complexity": "O(1)",
+          "explanation": "For each row i, print spaces equal to N-i-1 and stars equal to 2*i+1."
+        },
+        "java": {
+          "code": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        for(int i=0; i<n; i++) {\n            for(int j=0; j<n-i-1; j++) System.out.print(\" \");\n            for(int j=0; j<2*i+1; j++) System.out.print(\"*\");\n            System.out.println();\n        }\n    }\n}",
+          "time_complexity": "O(n^2)",
+          "space_complexity": "O(1)",
+          "explanation": "Nested loops for spaces followed by nested loops for stars. Calculation based on row index."
+        }
+      },
+      "approach": {
+        "brute_force": "Nested loops formatting spaces and stars",
+        "optimal": "Nested loops formatting spaces and stars",
+        "algorithm": "Iteration"
+      },
+      "pro_tip": "Notice the mathematical relation: stars = 2 * row_index + 1, spaces = total_rows - row_index - 1.",
+      "common_mistakes": [
+        "Printing spaces after the stars",
+        "Incorrect math for number of spaces",
+        "Using even numbers of stars making pyramid lopsided"
+      ],
+      "similar_problems": [
+        "Inverted Pyramid",
+        "Diamond Star Pattern",
+        "Hollow Pyramid"
+      ],
+      "tags": [
+        "patterns",
+        "loops",
+        "TCS-NQT",
+        "easy"
+      ],
+      "year_asked": "2023",
       "is_previous_year": true,
       "bookmark": false,
       "attempted": false,

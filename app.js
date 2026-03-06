@@ -139,7 +139,7 @@ function renderDashboard() {
     const totalAnswered = Object.keys(state.answeredQuestions).length;
     content.querySelector('#answered-count').textContent = totalAnswered;
 
-    const progress = (totalAnswered / 803) * 100;
+    const progress = (totalAnswered / 1000) * 100;
     content.querySelector('#overall-progress').style.width = `${progress}%`;
 
     contentArea.innerHTML = '';
