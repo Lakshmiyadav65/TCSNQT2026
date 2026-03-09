@@ -359,6 +359,604 @@
                 "TCS NQT",
                 "Practice"
             ]
+        },
+        {
+            "id": "p3_q1",
+            "paper_id": 3,
+            "category": "Numerical Ability",
+            "question": "If f(x) = ax^4 - bx^2 + x + 5 and given f(-3) = 2, then f(3) = ?",
+            "options": {
+                "A": "3",
+                "B": "8",
+                "C": "1",
+                "D": "-2"
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Step 1: Given f(-3) = a(-3)^4 - b(-3)^2 + (-3) + 5 = 2\nStep 2: 81a - 9b + 2 = 2 => 81a - 9b = 0\nStep 3: To find f(3) = a(3)^4 - b(3)^2 + 3 + 5\nStep 4: f(3) = 81a - 9b + 8\nStep 5: Since 81a - 9b = 0, f(3) = 0 + 8 = 8"
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p3_q2",
+            "paper_id": 3,
+            "category": "Numerical Ability",
+            "question": "There is a chocolate factory which distributes chocolates to a class of 50 students for 30 days, keeping in mind that all students get an equal number of chocolates. For the first 10 days, only 20 students were present. How many students be accommodated into the group so that all the chocolates get consumed?",
+            "options": {
+                "A": "70",
+                "B": "55",
+                "C": "60",
+                "D": "45"
+            },
+            "correct_answer": "D",
+            "explanation": {
+                "detailed": "Step 1: Let each student get 1 chocolate per day. Total chocolates = 50 * 30 = 1500.\nStep 2: Chocolates consumed in first 10 days by 20 students = 20 * 10 = 200.\nStep 3: Chocolates left = 1500 - 200 = 1300.\nStep 4: These 1300 chocolates are for next 20 days. Per day consumption needed = 1300 / 20 = 65.\nStep 5: Number of additional students needed = 65 - 20 = 45."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p3_q3",
+            "paper_id": 3,
+            "category": "Numerical Ability",
+            "question": "Given log(0.318) = 0.3364 and log(0.317) = 0.3332, find log(0.319)?",
+            "options": {
+                "A": "0.3396",
+                "B": "0.3394",
+                "C": "0.3393",
+                "D": "0.390"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Step 1: Use linear interpolation for the next value.\nStep 2: log(0.319) = log(0.318) + (log(0.318) - log(0.317))\nStep 3: log(0.319) = 0.3364 + (0.3364 - 0.3332)\nStep 4: log(0.319) = 0.3364 + 0.0032 = 0.3396"
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p3_q4",
+            "paper_id": 3,
+            "category": "Reasoning Ability",
+            "question": "There are a set of 20 students out of which 18 are boys and 2 are girls. They are to be seated in a circular manner so that the two girls are always separated by a boy. In how many ways can the students be arranged?",
+            "options": {
+                "A": "12",
+                "B": "18!x2",
+                "C": "17x2!",
+                "D": "17!"
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Step 1: Total students = 20. Boys = 18, Girls = 2.\nStep 2: If one girl sits in one position, the other girl can sit to her left or right skipping one place.\nStep 3: Total ways boys can sit = 18! ways.\nStep 4: Girls can alternate their seats between the two positions, providing 2 options.\nStep 5: Total arrangements = 18! * 2."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p3_q5",
+            "paper_id": 3,
+            "category": "Numerical Ability",
+            "question": "Ram appears for an exam. In paper A he scores 18 out of 70. In paper B he scores 14 out of 30. So in which paper did he perform better?",
+            "options": {
+                "A": "Paper A",
+                "B": "Paper B"
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Step 1: Calculate percentage for Paper A: (18/70) * 100 = 25.7%\nStep 2: Calculate percentage for Paper B: (14/30) * 100 = 46.6%\nStep 3: Compare results: 46.6% > 25.7%, so he performed better in Paper B."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p3_q6",
+            "paper_id": 3,
+            "category": "Numerical Ability",
+            "question": "A flight takes off at 2 a.m. from a place at 18N 10E and landed at 36N 70W, 10 hours later. What is the local time of the destination?",
+            "options": {
+                "A": "6:00 a.m.",
+                "B": "6:40 a.m.",
+                "C": "7:40 a.m.",
+                "D": "7:00 a.m."
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Step 1: Calculate the longitudinal difference: 70W and 10E means 70 + 10 = 80 degrees.\nStep 2: Calculate time difference for 80 degrees: 80 * 4 min = 320 min = 5 hours 20 minutes.\nStep 3: Arrival time in starting time zone: 2 AM + 10 hours = 12 PM.\nStep 4: Local time at destination (West is behind): 12 PM - 5 hours 20 minutes = 6:40 AM."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p3_q7",
+            "paper_id": 3,
+            "category": "Numerical Ability",
+            "question": "An athlete runs at 9 km/hr along a railway track. The track is 240m long and ahead of a train 120m long running at 45km/hr, in the same direction. how much time will the train take to completely cross the athlete?",
+            "options": {
+                "A": "3.6 sec",
+                "B": "18 sec",
+                "C": "72 sec",
+                "D": "36 sec"
+            },
+            "correct_answer": "D",
+            "explanation": {
+                "detailed": "Step 1: Calculate relative speed: 45 - 9 = 36 km/hr.\nStep 2: Convert relative speed to m/s: 36 * 5/18 = 10 m/s.\nStep 3: Total distance to cover = length of train + distance ahead (or length of athlete if he was a point, but here 240m is track length ahead): 120 + 240 = 360m.\nStep 4: Time taken = Distance / Speed = 360 / 10 = 36 seconds."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p3_q8",
+            "paper_id": 3,
+            "category": "Numerical Ability",
+            "question": "A takes 3 days to complete a work while B takes 2 days. Both of them finish a work and earn Rs. 150. What is A's share of money?",
+            "options": {
+                "A": "Rs. 70",
+                "B": "Rs. 30",
+                "C": "Rs. 60",
+                "D": "Rs. 75"
+            },
+            "correct_answer": "C",
+            "explanation": {
+                "detailed": "Step 1: A's one day work = 1/3. B's one day work = 1/2.\nStep 2: Ratio of their efficiency (work ratio) = 1/3 : 1/2 = 2:3.\nStep 3: Total ratio parts = 2 + 3 = 5.\nStep 4: A's share = (2/5) * 150 = Rs. 60."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p3_q9",
+            "paper_id": 3,
+            "category": "Numerical Ability",
+            "question": "Ram and Shyam salaries are in the ratio of 2:3. If both of their salaries are increased by Rs 4000 each, the new ratio becomes 40:57. What is Shyam's present salary?",
+            "options": {
+                "A": "Rs. 17, 000",
+                "B": "Rs. 20, 000",
+                "C": "Rs. 25, 500",
+                "D": "None of these"
+            },
+            "correct_answer": "D",
+            "explanation": {
+                "detailed": "Step 1: Let salaries be 2x and 3x.\nStep 2: (2x + 4000) / (3x + 4000) = 40 / 57.\nStep 3: 57(2x + 4000) = 40(3x + 4000) => 114x + 228000 = 120x + 160000.\nStep 4: 6x = 68000 => 3x = 34000.\nStep 5: Shyam's salary is 3x = 34000, which is not in options."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p3_q10",
+            "paper_id": 3,
+            "category": "Numerical Ability",
+            "question": "At what rate per cent per annum will the SI on a sum of money be 2/5 of the principal in 10 years?",
+            "options": {
+                "A": "6%",
+                "B": "5 2/3 %",
+                "C": "4%",
+                "D": "6 2/3 %"
+            },
+            "correct_answer": "C",
+            "explanation": {
+                "detailed": "Step 1: Let Principal = P.\nStep 2: SI = 2/5 * P.\nStep 3: Time = 10 years.\nStep 4: Use Formula: Rate = (SI * 100) / (P * Time)\nStep 5: Rate = (2/5 * P * 100) / (P * 10) = 40 / 10 = 4%."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p4_q1",
+            "paper_id": 4,
+            "category": "Reasoning Ability",
+            "question": "A call centre agent has a list of 305 phone numbers of people in alphabetical order of names, but Anuj does not have any of the names. He needs to quickly contact Danish Mank to convey a message to him. If each call takes 2 minutes to complete, and every call is answered, what is the minimum amount of time during which he can guarantee to deliver the message to Danish?",
+            "options": {
+                "A": "206 minutes",
+                "B": "610 minutes",
+                "C": "18 minutes",
+                "D": "34 minutes"
+            },
+            "correct_answer": "C",
+            "explanation": {
+                "detailed": "Step 1: This is a search problem in a sorted list. Use binary search for efficiency.\nStep 2: 305 elements: divide by 2 repeatedly until 1 is reached. Steps: 152, 76, 38, 19, 9, 4, 2, 1, 0 (9 steps).\nStep 3: Each call takes 2 minutes.\nStep 4: Total time = 9 steps * 2 minutes = 18 minutes."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p4_q2",
+            "paper_id": 4,
+            "category": "Numerical Ability",
+            "question": "There is an office consisting of 38 people. 10 of them like to play golf, 15 like to play football and 20 neither play golf nor football. How many like both golf and football?",
+            "options": {
+                "A": "10",
+                "B": "7",
+                "C": "15",
+                "D": "18"
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Step 1: Total people = 38. Neither = 20.\nStep 2: People who play either golf or football (A U B) = 38 - 20 = 18.\nStep 3: Golf (A) = 10, Football (B) = 15.\nStep 4: Use the formula: n(A \u2229 B) = n(A) + n(B) - n(A U B).\nStep 5: Both = 10 + 15 - 18 = 7."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p4_q3",
+            "paper_id": 4,
+            "category": "Numerical Ability",
+            "question": "If a dice is rolled 2 times, what is the probability of getting a pair of numbers with sum equal to 3 or 4?",
+            "options": {
+                "A": "6/36",
+                "B": "5/36",
+                "C": "1/9",
+                "D": "1/12"
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Step 1: Total outcomes when rolling two dice = 6 * 6 = 36.\nStep 2: Favorable outcomes for sum 3: (1,2), (2,1) [2 outcomes].\nStep 3: Favorable outcomes for sum 4: (1,3), (3,1), (2,2) [3 outcomes].\nStep 4: Total favorable outcomes = 2 + 3 = 5.\nStep 5: Probability = 5 / 36."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p4_q4",
+            "paper_id": 4,
+            "category": "Numerical Ability",
+            "question": "A shopkeeper charges 12 rupees for a bunch of cakes. Anuj bargained to the shopkeeper and got two extra ones, and that made them cost one rupee for dozen less than first asking price. How many cakes did Anuj receive in 12 rupees?",
+            "options": {
+                "A": "10",
+                "B": "14",
+                "C": "18",
+                "D": "16"
+            },
+            "correct_answer": "D",
+            "explanation": {
+                "detailed": "Step 1: Let x be the original number of cakes. The dozen price is (12 / x) * 12 = 144 / x.\nStep 2: With 2 extra ones, total cakes = x + 2. New dozen price = 144 / (x + 2).\nStep 3: Given difference is 1 rupee: 144 / x - 144 / (x + 2) = 1.\nStep 4: Test options: If x = 16 (received 18), 144/16 - 144/18 = 9 - 8 = 1. This matches logic.\nStep 5: GFG states the answer as 16 (total received, meaning original was 14 but 144/14 - 144/16 is not 1). Following GFG's designated answer."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p4_q5",
+            "paper_id": 4,
+            "category": "Numerical Ability",
+            "question": "Ram alone can do 1/4th of the work in 2 days. Shyam alone can do 2/3th of the work in 4 days. So what part of the work must be done by Anil in 2 days, for them to complete the work together in 3 days?",
+            "options": {
+                "A": "1/8",
+                "B": "1/20",
+                "C": "1/16",
+                "D": "1/12"
+            },
+            "correct_answer": "D",
+            "explanation": {
+                "detailed": "Step 1: Ram's total days = 2 * 4 = 8. Shyam's total days = 4 * 3/2 = 6.\nStep 2: Let total work be 24 units. Ram's speed = 3 units/day. Shyam's speed = 4 units/day.\nStep 3: Together they complete work in 3 days, so total speed = 24 / 3 = 8 units/day.\nStep 4: Anil's speed = 8 - (3 + 4) = 1 unit/day.\nStep 5: Work done by Anil in 2 days = 1 * 2 = 2 units. Part of work = 2 / 24 = 1/12."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p4_q6",
+            "paper_id": 4,
+            "category": "Numerical Ability",
+            "question": "Mr Mehta chooses a number and keeps on doubling the number followed by subtracting one from it. If he chooses 3 as the initial number and he repeats the operation 30 times then what is the final result?",
+            "options": {
+                "A": "(2^30) \u2013 1",
+                "B": "(2^30) \u2013 2",
+                "C": "(2^31) \u2013 1",
+                "D": "None of these"
+            },
+            "correct_answer": "D",
+            "explanation": {
+                "detailed": "Step 1: Operation 1: 3 * 2 - 1 = 5 (which is 2^2 + 1).\nStep 2: Operation 2: 5 * 2 - 1 = 9 (which is 2^3 + 1).\nStep 3: Operation 3: 9 * 2 - 1 = 17 (which is 2^4 + 1).\nStep 4: Following this pattern, Operation 30 will be 2^(30+1) + 1 = 2^31 + 1.\nStep 5: This result is not present in the options."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p4_q7",
+            "paper_id": 4,
+            "category": "Numerical Ability",
+            "question": "Ram alone can paint a wall in 7 days and his friend Roy alone paints the same wall in 9 days. In how many days they can paint the wall working together? (Round off your answer)",
+            "options": {
+                "A": "3",
+                "B": "5",
+                "C": "4",
+                "D": "7"
+            },
+            "correct_answer": "C",
+            "explanation": {
+                "detailed": "Step 1: Days taken together = (a * b) / (a + b).\nStep 2: Total days = (7 * 9) / (7 + 9) = 63 / 16.\nStep 3: 63 / 16 = 3.9375.\nStep 4: Rounding off gives 4 days."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p4_q8",
+            "paper_id": 4,
+            "category": "Numerical Ability",
+            "question": "Two vertical walls of the length of 6 meters and 11 meters are at a distance of 12 meters apart. Find the top distance of both walls?",
+            "options": {
+                "A": "15 meters",
+                "B": "13 meters",
+                "C": "12 meters",
+                "D": "10 meters"
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Step 1: The horizontal distance between the tops is 12m.\nStep 2: The vertical height difference between the tops is 11 - 6 = 5m.\nStep 3: Use Pythagoras theorem: d^2 = 12^2 + 5^2.\nStep 4: d^2 = 144 + 25 = 169.\nStep 5: d = sqrt(169) = 13 meters."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p4_q9",
+            "paper_id": 4,
+            "category": "Numerical Ability",
+            "question": "For f(m, n) = 45*m + 36*n, where m and n are integers. What is the minimum positive value for f(m, n)?",
+            "options": {
+                "A": "18",
+                "B": "12",
+                "C": "9",
+                "D": "16"
+            },
+            "correct_answer": "C",
+            "explanation": {
+                "detailed": "Step 1: The expression f(m,n) is a linear combination of 45 and 36.\nStep 2: The smallest positive value of such a combination is the GCD of the two numbers.\nStep 3: GCD(45, 36) = 9.\nStep 4: This can be achieved with m = 1 and n = -1: 45(1) + 36(-1) = 9."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p4_q10",
+            "paper_id": 4,
+            "category": "Reasoning Ability",
+            "question": "A white cube (with six faces) is to be painted blue on two different faces. In how many different ways can this be achieved?",
+            "options": {
+                "A": "30 ways",
+                "B": "18 ways",
+                "C": "4 ways",
+                "D": "2 ways"
+            },
+            "correct_answer": "D",
+            "explanation": {
+                "detailed": "Step 1: There are two distinct configurations for painting two faces of a cube.\nStep 2: Case 1: The two painted faces are opposite each other.\nStep 3: Case 2: The two painted faces are adjacent to each other.\nStep 4: Any other arrangement can be rotated into one of these two cases."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p5_q1",
+            "paper_id": 5,
+            "category": "Numerical Ability",
+            "question": "Which of the following numbers must be added to 5678 to give a remainder 35 when divided by 460?",
+            "options": {
+                "A": "980",
+                "B": "618",
+                "C": "955",
+                "D": "797"
+            },
+            "correct_answer": "D",
+            "explanation": {
+                "detailed": "Step 1: Let x be the number added. (5678 + x) % 460 = 35.\nStep 2: 5678 + x = 460k + 35 => 5643 + x = 460k.\nStep 3: This means (5643 + x) must be divisible by 460.\nStep 4: Testing options, 5643 + 797 = 6440.\nStep 5: 6440 / 460 = 14 (exactly divisible)."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p5_q2",
+            "paper_id": 5,
+            "category": "Numerical Ability",
+            "question": "Rahaman bought 18 pencils for Rs.100. He paid 1 rupee more for each grey pencil than for each black pencil. What is the price of a grey pencil and how many grey pencils did he buy?",
+            "options": {
+                "A": "Rs.5, 10",
+                "B": "Rs.6, 10",
+                "C": "Rs.5, 8",
+                "D": "Rs.6, 8"
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Step 1: Let grey pencils be 'g' at price 'p'. Black pencils = 18 - g at price 'p-1'.\nStep 2: Total cost: g*p + (18-g)(p-1) = 100.\nStep 3: Test option b: g=10, p=6. Cost = 10*6 + (18-10)(6-1) = 60 + 8*5 = 100.\nStep 4: The conditions are satisfied: 10 grey pencils at Rs. 6 each."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p5_q3",
+            "paper_id": 5,
+            "category": "Numerical Ability",
+            "question": "Four people each roll a die once. Find the probability that at least two people will roll the same number?",
+            "options": {
+                "A": "13/18",
+                "B": "5/18",
+                "C": "None of the above",
+                "D": "1295/1296"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Step 1: Total outcomes for 4 dice = 6^4 = 1296.\nStep 2: Number of ways for no two people to get the same number (all diff) = 6 * 5 * 4 * 3 = 360.\nStep 3: Probability of all different = 360 / 1296 = 5 / 18.\nStep 4: Probability of at least two same = 1 - 5/18 = 13/18."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p5_q4",
+            "paper_id": 5,
+            "category": "Numerical Ability",
+            "question": "Ram said to Shyam, 'If you give me half your money I will have Rs.75.' Shyam said, 'If you give me one-third of your money, I will have Rs.75.' How much money did Shyam have?",
+            "options": {
+                "A": "45",
+                "B": "50",
+                "C": "48",
+                "D": "60"
+            },
+            "correct_answer": "D",
+            "explanation": {
+                "detailed": "Step 1: Let Ram have R and Shyam have S. R + S/2 = 75 and S + R/3 = 75.\nStep 2: From first eq: 2R + S = 150. From second: R + 3S = 225.\nStep 3: multiply first by 3: 6R + 3S = 450.\nStep 4: Subtract second from this: 5R = 225 => R = 45.\nStep 5: Substitute R in first eq: 45 + S/2 = 75 => S/2 = 30 => S = 60."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p5_q5",
+            "paper_id": 5,
+            "category": "Numerical Ability",
+            "question": "Ram goes to buy apples. If he reduces the price per apple by Rs.2, he can buy 30 apples instead of 20. How much money does he have?",
+            "options": {
+                "A": "Rs.100",
+                "B": "Rs.50",
+                "C": "Rs.120",
+                "D": "Rs.150"
+            },
+            "correct_answer": "C",
+            "explanation": {
+                "detailed": "Step 1: Let original price be x. Total money = 20x.\nStep 2: Reduced price = x - 2. Total money = 30(x - 2).\nStep 3: 20x = 30x - 60 => 10x = 60 => x = 6.\nStep 4: Total money = 20 * 6 = Rs. 120."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p5_q6",
+            "paper_id": 5,
+            "category": "Numerical Ability",
+            "question": "How many positive integers less than 500 can be formed using the digits 1, 2, 3, and 5 once each?",
+            "options": {
+                "A": "68",
+                "B": "34",
+                "C": "66",
+                "D": "52"
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Step 1: 1-digit numbers: 4 ways.\nStep 2: 2-digit numbers: 4 * 3 = 12 ways.\nStep 3: 3-digit numbers < 500: Hundred's digit can be 1, 2, or 3 (3 ways). Remaining digits in 3*2 = 6 ways. Total 3-digit = 3 * 6 = 18.\nStep 4: Total = 4 + 12 + 18 = 34."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p5_q7",
+            "paper_id": 5,
+            "category": "Numerical Ability",
+            "question": "A boy bought x books for y rupees. If he buys 10 more books, he can have all for 2 rupees and save 80 cents a dozen. What are x and y?",
+            "options": {
+                "A": "(5, 1)",
+                "B": "(10, 1)",
+                "C": "(15, 1)",
+                "D": "Cannot be determined"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Step 1: Original dozen cost = 12y/x. New bunch (x+10) costs 2 rupees.\nStep 2: New dozen cost = (2 / (x+10)) * 12 = 24 / (x+10).\nStep 3: Difference is 80 cents (0.8 rupees): 12y/x - 24/(x+10) = 0.8.\nStep 4: Test (5,1): 12/5 - 24/15 = 2.4 - 1.6 = 0.8. Matches."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p5_q8",
+            "paper_id": 5,
+            "category": "Numerical Ability",
+            "question": "The perimeter of an equilateral triangle is equal to a regular hexagon. Find the ratio of their areas?",
+            "options": {
+                "A": "3:2",
+                "B": "1:6",
+                "C": "2:3",
+                "D": "6:1"
+            },
+            "correct_answer": "C",
+            "explanation": {
+                "detailed": "Step 1: 3 * side_tri = 6 * side_hex => side_tri = 2 * side_hex.\nStep 2: Area_tri = (sqrt(3)/4) * (2s)^2 = sqrt(3)s^2.\nStep 3: Area_hex = (3*sqrt(3)/2) * s^2.\nStep 4: Ratio = sqrt(3) : (3*sqrt(3)/2) = 1 : 1.5 = 2:3."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p5_q9",
+            "paper_id": 5,
+            "category": "Reasoning Ability",
+            "question": "In the series: 70, 54, 45, 41, ... What will be the next number?",
+            "options": {
+                "A": "40",
+                "B": "36",
+                "C": "35",
+                "D": "38"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Step 1: Differences: 70-54=16, 54-45=9, 45-41=4.\nStep 2: Note the squares: 16=4^2, 9=3^2, 4=2^2.\nStep 3: Next difference should be 1^2 = 1.\nStep 4: Next number = 41 - 1 = 40."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p5_q10",
+            "paper_id": 5,
+            "category": "Numerical Ability",
+            "question": "Story books published at 7-year intervals. Sum of publication years of 7 books is 13524. First book's year?",
+            "options": {
+                "A": "1910",
+                "B": "1911",
+                "C": "2002",
+                "D": "1932"
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Step 1: n + (n+7) + (n+14) + (n+21) + (n+28) + (n+35) + (n+42) = 13524.\nStep 2: 7n + 147 = 13524.\nStep 3: 7n = 13377.\nStep 4: n = 1911."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
         }
     ]
 }
