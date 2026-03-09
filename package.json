@@ -4,8 +4,8 @@
     "description": "Premium preparation platform for TCS NQT and other placement exams.",
     "main": "index.html",
     "scripts": {
-        "dev": "npx http-server .",
-        "start": "npx http-server ."
+        "dev": "npx http-server -c-1 .",
+        "start": "npx http-server -c-1 ."
     },
     "keywords": [],
     "author": "",

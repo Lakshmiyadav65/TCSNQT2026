@@ -105,21 +105,27 @@ async function loadCategoryData(category) {
 
     try {
         if (!state.loadedData[category]) {
-            const response = await fetch(`./data/${category}.json`);
+            const cacheBust = category === 'practice' ? `?v=${Date.now()}` : '';
+            const response = await fetch(`./data/${category}.json${cacheBust}`);
             const data = await response.json();
-            // Data structure check: verbal.json has {metadata, questions}, but others might vary
-            state.loadedData[category] = data.questions || data;
+
+            if (category === 'practice') {
+                // For practice, we can either shuffle all or focus on specific papers
+                state.loadedData[category] = data.questions || [];
+            } else {
+                state.loadedData[category] = data.questions || data;
+            }
         }
 
-        if (category === 'coding') {
-            state.questions = shuffleArray([...state.loadedData[category]]);
-        } else {
-            state.questions = shuffleArray([...(state.loadedData[category] || [])]);
-        }
+        state.questions = shuffleArray([...(state.loadedData[category] || [])]);
 
         console.log(`Loaded ${state.questions.length} questions for ${category}`);
 
-        renderQuestions(state.questions);
+        if (category === 'practice' && state.questions.length > 0) {
+            renderPracticeLanding();
+        } else {
+            renderQuestions(state.questions);
+        }
     } catch (error) {
         console.error('Error loading data:', error);
         contentArea.innerHTML = `<div class="error-state">
@@ -150,12 +156,13 @@ function renderQuestions(questionsToRender) {
     contentArea.innerHTML = `
         <div class="category-header">
             <div class="header-main">
-                <h2>${state.currentCategory.charAt(0).toUpperCase() + state.currentCategory.slice(1)} Preparation</h2>
+                ${state.currentCategory === 'practice' ? '<button class="back-btn-minimal" id="back-to-papers"><span class="icon">←</span> Back to selection</button>' : ''}
+                <h2>${state.currentCategory === 'practice' ? 'Mock Test' : state.currentCategory.charAt(0).toUpperCase() + state.currentCategory.slice(1)} Preparation</h2>
                 <p>Curated Collection • ${questionsToRender.length} Questions</p>
             </div>
             <div class="header-actions">
                 <div class="header-timer" id="header-timer" style="display: ${state.timerInterval ? 'flex' : 'none'}">
-                    <span class="timer-label">⏱️ Session Time</span>
+                    <span class="timer-label">⏱️ SESSION TIME</span>
                     <span class="timer-val">${formatTime(state.timer)}</span>
                 </div>
                 ${!state.timerInterval ? '<button class="start-session-btn" id="start-header-timer">▶ Start Practice</button>' : ''}
@@ -163,6 +170,13 @@ function renderQuestions(questionsToRender) {
         </div>
         <div class="question-list" id="question-list-container"></div>
     `;
+
+    if (state.currentCategory === 'practice') {
+        const backBtn = document.getElementById('back-to-papers');
+        if (backBtn) {
+            backBtn.onclick = () => renderPracticeLanding();
+        }
+    }
 
     const startBtn = document.getElementById('start-header-timer');
     if (startBtn) {
@@ -418,13 +432,31 @@ function formatExplanationContent(content, type) {
 
     if (type === 'detailed') {
         const steps = content.split(/Step \d+:/g).filter(s => s.trim().length > 0);
-        if (steps.length > 1) {
-            return steps.map((step, idx) => `
-                <div class="solution-step" style="animation-delay: ${idx * 0.1}s">
-                    <div class="step-number">${idx + 1}</div>
-                    <div class="step-text">${step.trim().replace(/\n/g, '<br>')}</div>
+        if (steps.length > 0) {
+            let html = `
+                <div class="solution-steps-header">
+                    <span>Step-by-Step Analysis</span>
+                    <div class="header-line"></div>
                 </div>
-            `).join('');
+                <div class="steps-timeline">
+            `;
+            html += steps.map((step, idx) => {
+                const isLast = idx === steps.length - 1;
+                return `
+                    <div class="solution-step ${isLast ? 'final-step' : ''}" style="animation-delay: ${idx * 0.1}s">
+                        <div class="step-indicator">
+                            <div class="step-number">${idx + 1}</div>
+                            ${!isLast ? '<div class="step-line"></div>' : ''}
+                        </div>
+                        <div class="step-content">
+                            <div class="step-text">${step.trim().replace(/\n/g, '<br>')}</div>
+                            ${isLast ? '<div class="final-badge-minimal">Final Result</div>' : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            html += '</div>';
+            return html;
         }
     }
 
@@ -461,7 +493,8 @@ function renderCategoryLanding(category) {
         'verbal': '🗣️',
         'reasoning': '🧠',
         'programming': '💻',
-        'coding': '⚙️'
+        'coding': '⚙️',
+        'practice': '📝'
     };
 
     const categoryNames = {
@@ -469,7 +502,8 @@ function renderCategoryLanding(category) {
         'verbal': 'Verbal Ability',
         'reasoning': 'Reasoning Ability',
         'programming': 'Programming MCQs',
-        'coding': 'Coding Challenges'
+        'coding': 'Coding Challenges',
+        'practice': 'Mock Tests Aptitude'
     };
 
     contentArea.innerHTML = `
@@ -501,6 +535,48 @@ function renderCategoryLanding(category) {
         startTimer();
     }
     renderQuestions(state.questions);
+}
+
+function renderPracticeLanding() {
+    const papers = [...new Set(state.questions.map(q => q.paper_id || 1))].sort((a, b) => a - b);
+    console.log(`Debug: Found ${papers.length} unique papers. IDs: ${papers.join(', ')}`);
+
+    // Default to Paper 1 if only one or no paper_id found
+    if (papers.length === 0) papers.push(1);
+
+    contentArea.innerHTML = `
+        <div class="category-header">
+            <div class="header-main">
+                <h2>Mock Tests Aptitude</h2>
+                <p>10 Complete Practice Papers</p>
+            </div>
+        </div>
+        <div class="papers-grid">
+            ${papers.map(p => {
+        const paperQuestions = state.questions.filter(q => (q.paper_id || 1) === p);
+        const approxTime = Math.ceil(paperQuestions.length * 1.5);
+        return `
+                    <div class="paper-card" onclick="startPaper(${p})">
+                        <div class="paper-badge">Paper ${p}</div>
+                        <h3>Mock Test #${p}</h3>
+                        <p>${paperQuestions.length} Questions</p>
+                        <div class="paper-meta">
+                            <span>⏱️ ~${approxTime} Mins</span>
+                            <span>🏆 TCS-NQT Pattern</span>
+                        </div>
+                        <button class="start-paper-btn">Start Test</button>
+                    </div>
+                `;
+    }).join('')}
+        </div>
+    `;
+}
+
+function startPaper(paperId) {
+    const paperQuestions = state.questions.filter(q => (q.paper_id || 1) === paperId);
+    state.timer = 0;
+    startTimer();
+    renderQuestions(paperQuestions);
 }
 
 // Start app

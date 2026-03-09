@@ -1,0 +1,364 @@
+{
+    "questions": [
+        {
+            "id": "p1_q1",
+            "paper_id": 1,
+            "category": "Numerical Ability",
+            "question": "An exam was conducted and the following was analyzed. 4 men were able to check some exam papers in 8 days working 5 hours regularly. What is the total number of hours taken by 2 men in 20 days to check double the number of exam papers?",
+            "options": {
+                "A": "6 hours",
+                "B": "7 hours",
+                "C": "8 hours",
+                "D": "10 hours"
+            },
+            "correct_answer": "C",
+            "explanation": {
+                "detailed": "Step 1: Let 1 unit of work be done in 1 hour. Total initial work = 4 men * 8 days * 5 hours = 160 units.\nStep 2: Double the work = 320 units.\nStep 3: For 2 men in 20 days: 2 * 20 * X = 320 => 40X = 320.\nStep 4: X = 8 hours."
+            },
+            "tags": [
+                "TCS NQT",
+                "Time and Work"
+            ]
+        },
+        {
+            "id": "p1_q2",
+            "paper_id": 1,
+            "category": "Numerical Ability",
+            "question": "The numbers from 101 to 150 are written as 101102103104105...146147148149150. What will be the remainder when this total number is divided by 3?",
+            "options": {
+                "A": "0",
+                "B": "1",
+                "C": "2",
+                "D": "3"
+            },
+            "correct_answer": "C",
+            "explanation": {
+                "detailed": "Step 1: The divisibility rule for 3 is that the sum of all digits must be divisible by 3.\nStep 2: Calculating the sum of all digits from 101 to 150 gives 380.\nStep 3: 380 divided by 3 leaves a remainder of 2."
+            },
+            "tags": [
+                "TCS NQT",
+                "Number System"
+            ]
+        },
+        {
+            "id": "p1_q3",
+            "paper_id": 1,
+            "category": "Reasoning Ability",
+            "question": "If the alphabets are written in the sequence of a, bb, ccc, dddd, eeeee, ffffff, .... What will be the 120th letter?",
+            "options": {
+                "A": "N",
+                "B": "O",
+                "C": "P",
+                "D": "Q"
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Step 1: This follows an Arithmetic Progression sequence where the nth letter appears n times.\nStep 2: The sum of the first n terms is n(n+1)/2.\nStep 3: For n=14, sum = 105. For n=15, sum = 120.\nStep 4: The 15th letter of the alphabet is 'O'."
+            },
+            "tags": [
+                "TCS NQT",
+                "Series"
+            ]
+        },
+        {
+            "id": "p1_q4",
+            "paper_id": 1,
+            "category": "Numerical Ability",
+            "question": "There is a tank whose 1/7th part is filled with fuel. If 22 liters of fuel is poured into the tank, the indicator rises to the 1/5th mark. What is the total capacity of the tank?",
+            "options": {
+                "A": "350 liters",
+                "B": "385 liters",
+                "C": "400 liters",
+                "D": "420 liters"
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Step 1: Let total capacity be 'x'. x/7 + 22 = x/5.\nStep 2: Rearranging: x/5 - x/7 = 22.\nStep 3: (7x - 5x) / 35 = 22 => 2x/35 = 22.\nStep 4: x = 11 * 35 = 385 liters."
+            },
+            "tags": [
+                "TCS NQT",
+                "Fractions"
+            ]
+        },
+        {
+            "id": "p1_q5",
+            "paper_id": 1,
+            "category": "Numerical Ability",
+            "question": "In a square with an inscribed triangle (where the triangle vertex is at the midpoint of the top side and base is the bottom side), find the ratio of the area of the square to the area of the triangle.",
+            "options": {
+                "A": "3:2",
+                "B": "2:3",
+                "C": "2:1",
+                "D": "1:2"
+            },
+            "correct_answer": "C",
+            "explanation": {
+                "detailed": "Step 1: Let side of square be 'a'. Area of square = a^2.\nStep 2: Area of triangle = (1/2) * base * height.\nStep 3: Here, base = a and height = a.\nStep 4: Area of triangle = (1/2) * a * a = a^2 / 2.\nStep 5: Ratio = a^2 : (a^2/2) = 2 : 1."
+            },
+            "tags": [
+                "TCS NQT",
+                "Geometry"
+            ]
+        },
+        {
+            "id": "p1_q6",
+            "paper_id": 1,
+            "category": "Numerical Ability",
+            "question": "Find the number of perfect squares in the given series: 2013, 2020, 2027, ..., 2300.",
+            "options": {
+                "A": "2",
+                "B": "1",
+                "C": "3",
+                "D": "None of the above"
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Step 1: The series follows the arithmetic progression 2013 + 7d.\nStep 2: We check squares near this range: 45^2=2025, 46^2=2116, 47^2=2209, 48^2=2304.\nStep 3: 2025: 2025 - 2013 = 12 (not divisible by 7).\nStep 4: 2116: 2116 - 2013 = 103 (not divisible by 7).\nStep 5: 2209: 2209 - 2013 = 196 (196 / 7 = 28). So 2209 is in the series.\nStep 6: Only one perfect square (2209) exists in the series."
+            },
+            "tags": [
+                "TCS NQT",
+                "Number System"
+            ]
+        },
+        {
+            "id": "p1_q7",
+            "paper_id": 1,
+            "category": "Numerical Ability",
+            "question": "In the series 7^1 + 7^2 + 7^3 + ... + 7^205, how many numbers in the sequence have 3 in the units place?",
+            "options": {
+                "A": "50",
+                "B": "51",
+                "C": "52",
+                "D": "53"
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Step 1: The units digit of 7^n follows a cycle of 4: (7, 9, 3, 1).\nStep 2: A '3' appears once every 4 terms (at n=3, 7, 11, ...).\nStep 3: 205 / 4 = 51 with a remainder of 1.\nStep 4: Thus, there are 51 complete cycles, each containing one '3'."
+            },
+            "tags": [
+                "TCS NQT",
+                "Unit Digit"
+            ]
+        },
+        {
+            "id": "p1_q8",
+            "paper_id": 1,
+            "category": "Numerical Ability",
+            "question": "Find the number of divisors of 1728 (including 1 and the number itself).",
+            "options": {
+                "A": "24",
+                "B": "26",
+                "C": "28",
+                "D": "30"
+            },
+            "correct_answer": "C",
+            "explanation": {
+                "detailed": "Step 1: Prime factorization of 1728: 1728 = 2^6 * 3^3.\nStep 2: Formula for number of divisors: (p1+1)(p2+1)...(pn+1).\nStep 3: (6+1) * (3+1) = 7 * 4 = 28."
+            },
+            "tags": [
+                "TCS NQT",
+                "Number System"
+            ]
+        },
+        {
+            "id": "p2_q1",
+            "paper_id": 2,
+            "category": "Numerical Ability",
+            "question": "There is a set of 30 numbers. The average of the first 10 numbers is equal to the average of last 20 numbers. What is the sum of last 20 numbers?",
+            "options": {
+                "A": "Twice the sum of the first ten numbers",
+                "B": "Sum of first 10 numbers",
+                "C": "Twice the sum of the last ten numbers",
+                "D": "Cannot be determined"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Step 1: Let the sum of the first 10 numbers be 'x'.\nStep 2: Let the sum of the last 20 numbers be 'y'.\nStep 3: According to the question: x/10 = y/20\nStep 4: Therefore, y = 2x. So the sum of the last 20 numbers is twice the sum of the first ten numbers."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p2_q2",
+            "paper_id": 2,
+            "category": "Numerical Ability",
+            "question": "There is a town called Metron, where the wheels of the front and rear of vehicles are of different sizes. The circumference of the front wheel of the car is 133 meters and that of rear wheels is 190 meters. What is the distance travelled by the cart in meters when the front wheel has done nine more revolutions than the rear wheel?",
+            "options": {
+                "A": "1330",
+                "B": "572",
+                "C": "399",
+                "D": "3990"
+            },
+            "correct_answer": "D",
+            "explanation": {
+                "detailed": "Step 1: From the question, the front wheel has 9 more revolutions than the rear wheel to cover the same distance.\nStep 2: Let the total revolutions by the rear wheel be 'x'.\nStep 3: Distance equation: 190 * x = 133 * (x + 9)\nStep 4: 190x = 133x + 1197 => 57x = 1197 => x = 21\nStep 5: Total distance = 190 * 21 = 3990 meters."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p2_q3",
+            "paper_id": 2,
+            "category": "Numerical Ability",
+            "question": "Let a number 'x' when divided by 406 leaves a remainder 115. What will be the remainder when the number is divided by 29?",
+            "options": {
+                "A": "27",
+                "B": "28",
+                "C": "115",
+                "D": "0"
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Step 1: The number can be written as 406 * y + 115.\nStep 2: We need to find (406 * y + 115) mod 29.\nStep 3: 406 is divisible by 29 (406 / 29 = 14).\nStep 4: So we only need to find the remainder of 115 divided by 29.\nStep 5: 115 = (29 * 3) + 28. Thus, the remainder is 28."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p2_q4",
+            "paper_id": 2,
+            "category": "Numerical Ability",
+            "question": "A sequence of an alpha-numeric is to be formed. The sequence consisting of two alphabets followed by two numbers is to be formed with no repetitions. In how many ways can it be formed?",
+            "options": {
+                "A": "65000",
+                "B": "64320",
+                "C": "58500",
+                "D": "67600"
+            },
+            "correct_answer": "C",
+            "explanation": {
+                "detailed": "Step 1: Number of available alphabets is 26 and numeric digits is 10.\nStep 2: 1st alphabet can be selected in 26 ways, 2nd alphabet in 25 ways (no repetition).\nStep 3: 1st digit can be selected in 10 ways, 2nd digit in 9 ways (no repetition).\nStep 4: Total combinations = 26 * 25 * 10 * 9 = 58500."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p2_q5",
+            "paper_id": 2,
+            "category": "Reasoning Ability",
+            "question": "According to a particular code language, A=0, B=1, C=2, ..., Y=24, Z=25 then how can ONE+ONE (in the form of alphabets only) be coded?",
+            "options": {
+                "A": "DABI",
+                "B": "CIDA",
+                "C": "BDAI",
+                "D": "ABDI"
+            },
+            "correct_answer": "C",
+            "explanation": {
+                "detailed": "Step 1: This is a base-26 system: A=0, B=1, ..., Z=25.\nStep 2: ONE + ONE calculation in base 26.\nStep 3: E(4) + E(4) = 8 (I).\nStep 4: N(13) + N(13) = 26. In base 26, this is 10 (0 at position, 1 carry). 0 is A.\nStep 5: O(14) + O(14) + 1 (carry) = 29. 29 mod 26 = 3 (D), with 1 (B) as carry.\nStep 6: Result is BDAI."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p2_q6",
+            "paper_id": 2,
+            "category": "Reasoning Ability",
+            "question": "In the sequence of problemsolvingproblemsolvingproblemsolving... what is the 2015th alphabet?",
+            "options": {
+                "A": "p",
+                "B": "g",
+                "C": "r",
+                "D": "n"
+            },
+            "correct_answer": "D",
+            "explanation": {
+                "detailed": "Step 1: The string 'problemsolving' consists of 14 letters.\nStep 2: Divide 2015 by 14: 2015 = 14 * 143 + 13.\nStep 3: The 13th letter of 'problemsolving' is 'n'.\nStep 4: Therefore, the 2015th alphabet is 'n'."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p2_q7",
+            "paper_id": 2,
+            "category": "Numerical Ability",
+            "question": "What is the remainder when the number 101102103104105106107...148149150 is divided by 9?",
+            "options": {
+                "A": "1",
+                "B": "2",
+                "C": "3",
+                "D": "4"
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Step 1: Divisibility rule for 9: the sum of all digits must be divisible by 9.\nStep 2: Calculate the sum of digits from 101 up to 150.\nStep 3: Sum of digits = 380 (as calculated in the solution).\nStep 4: 380 / 9 leaves a remainder of 2."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p2_q8",
+            "paper_id": 2,
+            "category": "Numerical Ability",
+            "question": "30 liters of 78% of a concentrated acid solution is to be prepared. How many litres of 90% concentrated acid needs to be mixed with 75% solution of concentrated acid to get the result?",
+            "options": {
+                "A": "10",
+                "B": "6",
+                "C": "3",
+                "D": "4"
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Step 1: Let n1 be litres of 90% solution and n2 be litres of 75% solution.\nStep 2: Weighted average formula: 78 = (90 * n1 + 75 * n2) / (n1 + n2).\nStep 3: n1 + n2 = 30. From the formula, 78(n1 + n2) = 90n1 + 75n2.\nStep 4: 3n2 = 12n1 => n1/n2 = 1/4.\nStep 5: Dividing 30 in ratio 1:4 gives n1 = 6 litres."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p2_q9",
+            "paper_id": 2,
+            "category": "Numerical Ability",
+            "question": "Ram will be 32 years old in eight years from now. In 4 years, Ram's father's age will be twice as Ram's age and two years ago, his mother's age was twice as his age. What are the present ages of Ram's father and mother respectively?",
+            "options": {
+                "A": "52, 46",
+                "B": "56, 44",
+                "C": "52, 44",
+                "D": "56, 46"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Step 1: Ram's present age = 32 - 8 = 24 years.\nStep 2: In 4 years, Ram will be 28. Father's age will be 28 * 2 = 56. Father's present age = 56 - 4 = 52.\nStep 3: Two years ago, Ram was 22. Mother's age was 22 * 2 = 44. Mother's present age = 44 + 2 = 46.\nStep 4: Father: 52, Mother: 46."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        },
+        {
+            "id": "p2_q10",
+            "paper_id": 2,
+            "category": "Numerical Ability",
+            "question": "In a class, the number of boys is equal to the number of girls. What was the total number of students if twice as many boys as girls remain when 12 girls left?",
+            "options": {
+                "A": "24",
+                "B": "48",
+                "C": "36",
+                "D": "60"
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Step 1: Let b be the number of boys and g be the number of girls. Given b = g.\nStep 2: After 12 girls leave, girls remaining = g - 12.\nStep 3: According to the question: b / (g - 12) = 2 / 1.\nStep 4: Since b = g, g = 2 * (g - 12) => g = 2g - 24 => g = 24.\nStep 5: Total students = b + g = 24 + 24 = 48."
+            },
+            "tags": [
+                "TCS NQT",
+                "Practice"
+            ]
+        }
+    ]
+}
