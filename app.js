@@ -14,6 +14,8 @@ const sidebar = document.getElementById('sidebar');
 const contentArea = document.getElementById('content-area');
 const searchInput = document.getElementById('question-search');
 const timerDisplay = document.getElementById('session-timer');
+const menuToggle = document.getElementById('mobile-menu-toggle');
+const sidebarOverlay = document.getElementById('sidebar-overlay');
 
 // Initialize
 function init() {
@@ -47,6 +49,25 @@ function setupEventListeners() {
             switchCategory(shortcutCard.dataset.category);
         }
     });
+
+    // Mobile Menu Toggling
+    if (menuToggle) {
+        menuToggle.addEventListener('click', toggleSidebar);
+    }
+
+    if (sidebarOverlay) {
+        sidebarOverlay.addEventListener('click', toggleSidebar);
+    }
+}
+
+function toggleSidebar() {
+    sidebar.classList.toggle('active');
+    sidebarOverlay.classList.toggle('active');
+
+    // Hamburger animation
+    if (menuToggle) {
+        menuToggle.classList.toggle('active');
+    }
 }
 
 function startTimer() {
@@ -92,6 +113,11 @@ async function switchCategory(category) {
         renderDashboard();
     } else {
         await loadCategoryData(category);
+    }
+
+    // Close sidebar on mobile after navigation
+    if (window.innerWidth <= 768 && sidebar.classList.contains('active')) {
+        toggleSidebar();
     }
 }
 
