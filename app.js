@@ -37,7 +37,7 @@ function setupEventListeners() {
     // Search
     searchInput.addEventListener('input', (e) => {
         const query = e.target.value.toLowerCase();
-        if (state.currentCategory !== 'dashboard' && state.questions.length > 0) {
+        if (state.currentCategory !== 'dashboard' && state.currentCategory !== 'input-guide' && state.questions.length > 0) {
             filterQuestions(query);
         }
     });
@@ -111,6 +111,8 @@ async function switchCategory(category) {
 
     if (category === 'dashboard') {
         renderDashboard();
+    } else if (category === 'input-guide') {
+        renderInputGuide();
     } else {
         await loadCategoryData(category);
     }
@@ -603,6 +605,353 @@ function startPaper(paperId) {
     state.timer = 0;
     startTimer();
     renderQuestions(paperQuestions);
+}
+
+function renderInputGuide() {
+    contentArea.innerHTML = `
+        <div class="article-container">
+            <header class="article-header">
+                <div class="article-badge">Coding Fundamentals</div>
+                <h1>TCS NQT 2026 — How to Take Input</h1>
+                <p class="subtitle">Super Simple Guide — Anyone Can Understand!</p>
+            </header>
+
+            <div class="article-video-section">
+                <div class="video-grid">
+                    <div class="video-card">
+                        <div class="video-wrapper">
+                            <iframe src="https://www.youtube.com/embed/TfZrr1ruex8?si=tJN6A0Zny5ucBNva" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                        <div class="video-info">
+                            <p>For more understanding, refer to this video</p>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <div class="video-wrapper">
+                            <iframe src="https://www.youtube.com/embed/K-Y3KoHZuI0?si=BU3GEw5Mys6MvfCP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                        <div class="video-info">
+                            <p>Detailed coding walkthrough</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section class="article-section">
+                <div class="concept-card highlight-card">
+                    <h3>🤔 FIRST — WHAT IS INPUT?</h3>
+                    <p>Think like this —</p>
+                    <div class="analogy-box">
+                        <div class="analogy-item">
+                            <span class="icon">🏪</span>
+                            <p>You go to a shop</p>
+                        </div>
+                        <div class="analogy-arrow">➜</div>
+                        <div class="analogy-item">
+                            <span class="icon">🗣️</span>
+                            <p>You say — "Bhaiya ek Parle-G do!"</p>
+                        </div>
+                        <div class="analogy-arrow">➜</div>
+                        <div class="analogy-item">
+                            <span class="icon">🍪</span>
+                            <p>Shopkeeper hears order and gives biscuit!</p>
+                        </div>
+                    </div>
+
+                    <p style="margin-top: 1.5rem;">Or another example —</p>
+                    <div class="analogy-box">
+                        <div class="analogy-item">
+                            <span class="icon">🍊</span>
+                            <p>You put Fruits in Mixer</p>
+                        </div>
+                        <div class="analogy-arrow">➜</div>
+                        <div class="analogy-item">
+                            <span class="icon">⚙️</span>
+                            <p>Mixer processes it</p>
+                        </div>
+                        <div class="analogy-arrow">➜</div>
+                        <div class="analogy-item">
+                            <span class="icon">🥤</span>
+                            <p>You get Juice as result!</p>
+                        </div>
+                    </div>
+                    <div class="logic-flow">
+                        <p><strong>You give information to computer</strong> = INPUT</p>
+                        <p><strong>Computer gives answer back</strong> = OUTPUT</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="article-section">
+                <div class="importance-card">
+                    <h3>🎯 WHY IS INPUT IMPORTANT IN TCS NQT?</h3>
+                    <p>Imagine you are solving a maths problem —</p>
+                    <ul>
+                        <li>Teacher gives you numbers on paper ✏️</li>
+                        <li>You read those numbers and solve it!</li>
+                    </ul>
+                    <div class="warning-box">
+                        <p>Computer reads your numbers through <strong>INPUT</strong>! If you don't read correctly — answer will be <strong>WRONG</strong>, even if your logic is 100% correct! 😱</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="tabs-container article-tabs">
+                <div class="tab-triggers">
+                    <button class="tab-trigger active" data-target="python-guide">🐍 Python Guide</button>
+                    <button class="tab-trigger" data-target="java-guide">☕ Java Guide</button>
+                </div>
+                
+                <div class="tab-content active" id="python-guide">
+                    <div class="step-guide">
+                        <div class="guide-item">
+                            <h4>Step 1 — Taking One Number</h4>
+                            <p class="example-text">"Teacher asks — how many students are in your class?" ➜ "30!"</p>
+                            <pre class="code-block"><code>n = int(input())</code></pre>
+                            <div class="explanation-small">
+                                <span><strong>input()</strong> = Computer asking something</span>
+                                <span><strong>int()</strong> = Converting to a number</span>
+                                <span><strong>n</strong> = Storing your answer</span>
+                            </div>
+                        </div>
+
+                        <div class="guide-item">
+                            <h4>Step 2 — Taking One Word or Sentence</h4>
+                            <p class="example-text">"Teacher asks — what is your name?" ➜ "Raju!"</p>
+                            <pre class="code-block"><code>name = input()</code></pre>
+                        </div>
+
+                        <div class="guide-item">
+                            <h4>Step 3 — Taking Two Numbers at Once</h4>
+                            <p class="example-text">"Teacher asks — tell me length and width!" ➜ "30 20!"</p>
+                            <pre class="code-block"><code>a, b = map(int, input().split())</code></pre>
+                            <div class="explanation-small">
+                                <span><strong>split()</strong> = Separating 30 and 20</span>
+                                <span><strong>map(int)</strong> = Converting both to numbers</span>
+                            </div>
+                        </div>
+
+                        <div class="guide-item">
+                            <h4>Step 4 — Taking a List of Numbers</h4>
+                            <p class="example-text">"Marks of 5 students" ➜ "90 85 78 92 88"</p>
+                            <pre class="code-block"><code>arr = list(map(int, input().split()))</code></pre>
+                        </div>
+
+                        <div class="guide-item pattern-highlight">
+                            <h4>Step 5 — Most Common TCS NQT Pattern</h4>
+                            <p class="example-text">"First tell me how many students (n), then tell me their marks!"</p>
+                            <pre class="code-block"><code>n = int(input())
+arr = list(map(int, input().split()))</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="java-guide">
+                    <div class="step-guide">
+                        <div class="guide-item">
+                            <h4>Step 1 — Getting Ready (The Scanner)</h4>
+                            <p>Think like this: Before eating, you need a plate and spoon! In Java, you need a <strong>Scanner</strong>.</p>
+                            <pre class="code-block"><code>import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        // Your code here
+    }
+}</code></pre>
+                        </div>
+
+                        <div class="guide-item">
+                            <h4>Step 2 — Taking One Number</h4>
+                            <pre class="code-block"><code>int n = sc.nextInt();</code></pre>
+                        </div>
+
+                        <div class="guide-item">
+                            <h4>Step 3 — Taking One Word</h4>
+                            <pre class="code-block"><code>String name = sc.next();</code></pre>
+                        </div>
+
+                        <div class="guide-item">
+                            <h4>Step 4 — Taking Two Numbers</h4>
+                            <pre class="code-block"><code>int a = sc.nextInt();
+int b = sc.nextInt();</code></pre>
+                        </div>
+
+                        <div class="guide-item pattern-highlight">
+                            <h4>Step 5 — Taking List of Numbers</h4>
+                            <pre class="code-block"><code>int n = sc.nextInt();
+int[] arr = new int[n];
+for(int i = 0; i < n; i++){
+    arr[i] = sc.nextInt();
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section class="article-section">
+                <h2 class="section-title center">🎯 5 MOST COMMON TCS NQT PATTERNS</h2>
+                <div class="patterns-container">
+                    <div class="pattern-box">
+                        <div class="pattern-header">Pattern 1 — Just One Number</div>
+                        <div class="pattern-io">Input: 5</div>
+                        <div class="pattern-grid">
+                            <div class="lang-code">
+                                <span>🐍 Python</span>
+                                <pre><code>n = int(input())</code></pre>
+                            </div>
+                            <div class="lang-code">
+                                <span>☕ Java</span>
+                                <pre><code>int n = sc.nextInt();</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pattern-box">
+                        <div class="pattern-header">Pattern 2 — Two Numbers Same Line</div>
+                        <div class="pattern-io">Input: 5 10</div>
+                        <div class="pattern-grid">
+                            <div class="lang-code">
+                                <span>🐍 Python</span>
+                                <pre><code>a, b = map(int, input().split())</code></pre>
+                            </div>
+                            <div class="lang-code">
+                                <span>☕ Java</span>
+                                <pre><code>int a = sc.nextInt();
+int b = sc.nextInt();</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pattern-box">
+                        <div class="pattern-header">Pattern 3 — List of Numbers</div>
+                        <div class="pattern-io">Input: 5 \n 1 2 3 4 5</div>
+                        <div class="pattern-grid">
+                            <div class="lang-code">
+                                <span>🐍 Python</span>
+                                <pre><code>n = int(input())
+arr = list(map(int, input().split()))</code></pre>
+                            </div>
+                            <div class="lang-code">
+                                <span>☕ Java</span>
+                                <pre><code>int n = sc.nextInt();
+int[] arr = new int[n];
+for(int i = 0; i < n; i++) {
+    arr[i] = sc.nextInt();
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="pattern-box">
+                        <div class="pattern-header">Pattern 4 — Table of Numbers (Matrix)</div>
+                        <div class="pattern-io">Input: 3 3 \n 1 2 3...</div>
+                        <div class="pattern-grid">
+                            <div class="lang-code">
+                                <span>🐍 Python</span>
+                                <pre><code>r, c = map(int, input().split())
+matrix = []
+for i in range(r):
+    row = list(map(int, input().split()))
+    matrix.append(row)</code></pre>
+                            </div>
+                            <div class="lang-code">
+                                <span>☕ Java</span>
+                                <pre><code>int r = sc.nextInt();
+int c = sc.nextInt();
+int[][] matrix = new int[r][c];
+for(int i = 0; i < r; i++){
+    for(int j = 0; j < c; j++){
+        matrix[i][j] = sc.nextInt();
+    }
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="article-section">
+                <h2 class="section-title">❌ COMMON MISTAKES — DON'T DO THIS!</h2>
+                <div class="table-scroll">
+                    <table class="mistake-table">
+                        <thead>
+                            <tr>
+                                <th>Mistake</th>
+                                <th>❌ Wrong</th>
+                                <th>✅ Right</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Forgetting <strong>int</strong> in Python</td>
+                                <td class="wrong-val">input()</td>
+                                <td class="right-val">int(input())</td>
+                            </tr>
+                            <tr>
+                                <td>Forgetting <strong>Scanner</strong> in Java</td>
+                                <td class="wrong-val">sc.nextInt() directly</td>
+                                <td class="right-val">import Scanner first</td>
+                            </tr>
+                            <tr>
+                                <td>Forgetting <strong>split()</strong></td>
+                                <td class="wrong-val">map(int, input())</td>
+                                <td class="right-val">map(int, input().split())</td>
+                            </tr>
+                            <tr>
+                                <td>Forgetting <strong>list()</strong></td>
+                                <td class="wrong-val">map(int, input().split())</td>
+                                <td class="right-val">list(map(int, input().split()))</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="article-section golden-rules">
+                <h2 class="section-title">✅ GOLDEN RULES — REMEMBER ALWAYS!</h2>
+                <div class="rules-grid">
+                    <div class="rule-card python">
+                        <h3>🐍 Python Rules</h3>
+                        <ul>
+                            <li><span>1</span> One number = <code>int(input())</code></li>
+                            <li><span>2</span> One word = <code>input()</code></li>
+                            <li><span>3</span> Many numbers = <code>list(map(int, input().split()))</code></li>
+                            <li><span>4</span> Two numbers = <code>a, b = map(int, input().split())</code></li>
+                            <li><span>5</span> Size + List = Always use two lines!</li>
+                        </ul>
+                    </div>
+                    <div class="rule-card java">
+                        <h3>☕ Java Rules</h3>
+                        <ul>
+                            <li><span>1</span> Always import Scanner first!</li>
+                            <li><span>2</span> One number = <code>sc.nextInt()</code></li>
+                            <li><span>3</span> One word = <code>sc.next()</code></li>
+                            <li><span>4</span> Many numbers = use loop with <code>sc.nextInt()</code></li>
+                            <li><span>5</span> Never forget: <code>Scanner sc = new Scanner(System.in)</code></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    `;
+
+    // Add tab functionality
+    const triggers = document.querySelectorAll('.tab-trigger');
+    const contents = document.querySelectorAll('.tab-content');
+
+    triggers.forEach(trigger => {
+        trigger.addEventListener('click', () => {
+            const target = trigger.dataset.target;
+            triggers.forEach(t => t.classList.remove('active'));
+            contents.forEach(c => c.classList.remove('active'));
+            trigger.classList.add('active');
+            document.getElementById(target).classList.add('active');
+        });
+    });
+
+    // Smooth scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // Start app
