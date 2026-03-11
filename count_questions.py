@@ -1,7 +1,7 @@
 import json
 import os
 
-files = ['numerical.json', 'verbal.json', 'reasoning.json', 'programming.json', 'coding.json']
+files = ['numerical.json', 'verbal.json', 'reasoning.json', 'programming.json', 'coding.json', 'scenario.json']
 base_path = 'c:/Users/laksh/Downloads/Projects/TCS NQT/data/'
 
 results = {}

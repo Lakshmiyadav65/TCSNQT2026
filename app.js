@@ -42,11 +42,11 @@ function setupEventListeners() {
         }
     });
 
-    // Global click for shortcut cards in dashboard
+    // Global click for shortcut cards and alert banners in dashboard
     document.addEventListener('click', (e) => {
-        const shortcutCard = e.target.closest('.shortcut-card');
-        if (shortcutCard && shortcutCard.dataset.category) {
-            switchCategory(shortcutCard.dataset.category);
+        const clickable = e.target.closest('.shortcut-card, .alert-banner');
+        if (clickable && clickable.dataset.category) {
+            switchCategory(clickable.dataset.category);
         }
     });
 
@@ -223,7 +223,7 @@ function renderQuestions(questionsToRender) {
 
     itemsToShow.forEach((q, index) => {
         let qCard;
-        if (state.currentCategory === 'coding') {
+        if (state.currentCategory === 'coding' || state.currentCategory === 'scenario') {
             qCard = createCodingCard(q, index);
         } else {
             qCard = createQuestionCard(q, index);
@@ -522,6 +522,7 @@ function renderCategoryLanding(category) {
         'reasoning': '🧠',
         'programming': '💻',
         'coding': '⚙️',
+        'scenario': '🧩',
         'practice': '📝'
     };
 
@@ -531,6 +532,7 @@ function renderCategoryLanding(category) {
         'reasoning': 'Reasoning Ability',
         'programming': 'Programming MCQs',
         'coding': 'Coding Challenges',
+        'scenario': 'Scenario Based',
         'practice': 'Mock Tests Aptitude'
     };
 
