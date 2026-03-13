@@ -21,7 +21,32 @@ const sidebarOverlay = document.getElementById('sidebar-overlay');
 function init() {
     setupEventListeners();
     renderDashboard();
-    // Timer state will be managed per category
+    checkDevice();
+}
+
+function checkDevice() {
+    const banner = document.getElementById('desktop-recommendation');
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 1024;
+    const isDismissed = localStorage.getItem('device_banner_dismissed');
+
+    if (isMobile && !isDismissed && banner) {
+        setTimeout(() => {
+            banner.classList.add('show');
+        }, 2000);
+    }
+
+    if (banner) {
+        const closeBtn = document.getElementById('close-banner');
+        const dismiss = () => {
+            banner.classList.remove('show');
+            localStorage.setItem('device_banner_dismissed', 'true');
+        };
+        
+        if (closeBtn) closeBtn.onclick = dismiss;
+        banner.onclick = (e) => {
+            if (e.target === banner) dismiss();
+        };
+    }
 }
 
 function setupEventListeners() {
@@ -31,6 +56,11 @@ function setupEventListeners() {
         if (navItem) {
             const category = navItem.dataset.category;
             switchCategory(category);
+            
+            // Auto close sidebar on mobile
+            if (window.innerWidth <= 768 && sidebar.classList.contains('active')) {
+                toggleSidebar();
+            }
         }
     });
 
@@ -113,6 +143,8 @@ async function switchCategory(category) {
         renderDashboard();
     } else if (category === 'input-guide') {
         renderInputGuide();
+    } else if (category === 'input-practice') {
+        await loadCategoryData(category);
     } else {
         await loadCategoryData(category);
     }
@@ -151,6 +183,8 @@ async function loadCategoryData(category) {
 
         if (category === 'practice' && state.questions.length > 0) {
             renderPracticeLanding();
+        } else if (category === 'input-practice') {
+            renderInputPractice(state.questions);
         } else {
             renderQuestions(state.questions);
         }
@@ -954,6 +988,229 @@ for(int i = 0; i < r; i++){
 
     // Smooth scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderInputPractice(questions) {
+    contentArea.innerHTML = `
+        <div class="category-header">
+            <div class="header-main">
+                <h2>Input Master — Practice Room</h2>
+                <p>Learn TCS NQT patterns by doing. Try the problems and check your logic!</p>
+            </div>
+        </div>
+        <div class="practice-layout">
+            <aside class="practice-nav" id="practice-nav">
+                <div class="nav-title">SESSIONS</div>
+                <div class="nav-list">
+                    ${questions.map((q, idx) => `
+                        <button class="practice-nav-item ${idx === 0 ? 'active' : ''}" data-id="${q.id}">
+                            <div class="item-icon">${idx + 1}</div>
+                            <div class="item-info">
+                                <span class="title">${q.title}</span>
+                                <span class="tag">Pattern Master</span>
+                            </div>
+                        </button>
+                    `).join('')}
+                </div>
+            </aside>
+            <div class="practice-workspace" id="practice-content">
+                <!-- Rendered dynamically -->
+            </div>
+        </div>
+    `;
+
+    const navItems = document.querySelectorAll('.practice-nav-item');
+    navItems.forEach(item => {
+        item.onclick = () => {
+            navItems.forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+            renderPracticeProblem(item.dataset.id);
+        };
+    });
+
+    if (questions.length > 0) {
+        renderPracticeProblem(questions[0].id);
+    }
+}
+
+function renderPracticeProblem(id) {
+    const q = state.questions.find(item => item.id === id);
+    if (!q) return;
+
+    const container = document.getElementById('practice-content');
+    container.innerHTML = `
+        <div class="workspace-card fade-in">
+            <div class="problem-details">
+                <div class="detail-header">
+                    <span class="badge red">REAL TCS PATTERN</span>
+                    <h3>${q.title}</h3>
+                </div>
+                <div class="problem-description">
+                    <div class="desc-content">${q.problem_statement.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div>
+                </div>
+
+                <div class="constraints-box">
+                    <h4>💡 Goal & Logic</h4>
+                    <div class="constraints-content">${q.constraints.replace(/\n/g, '<br>')}</div>
+                </div>
+
+                <div class="format-grid">
+                    ${q.input_format ? `
+                    <div class="format-item">
+                        <label>📥 Input Format</label>
+                        <p>${q.input_format}</p>
+                    </div>
+                    ` : ''}
+                    ${q.output_format ? `
+                    <div class="format-item">
+                        <label>📤 Output Format</label>
+                        <p>${q.output_format}</p>
+                    </div>
+                    ` : ''}
+                </div>
+                
+                <div class="io-sample-grid">
+                    <div class="sample-box">
+                        <label>📥 Sample Input</label>
+                        <pre class="code-block">${q.sample_input}</pre>
+                    </div>
+                    <div class="sample-box">
+                        <label>📤 Expected Output</label>
+                        <pre class="code-block">${q.sample_output}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="coding-playground">
+                <div class="playground-header">
+                    <div class="play-title-wrap">
+                        <div class="window-dots">
+                            <div class="dot red"></div>
+                            <div class="dot yellow"></div>
+                            <div class="dot green"></div>
+                        </div>
+                        <div class="play-title">Try Mode — Code Editor</div>
+                    </div>
+                    <div class="lang-selector">
+                        <button class="lang-btn active" data-lang="python">Python 3</button>
+                        <button class="lang-btn" data-lang="java">Java</button>
+                    </div>
+                </div>
+                
+                <div class="editor-area">
+                    <textarea id="code-playground" spellcheck="false" placeholder="Write your input reading logic here..."></textarea>
+                </div>
+                
+                <div class="playground-footer">
+                    <div class="playground-status">
+                        <span class="status-dot"></span>
+                        <span class="status-text">Ready to code</span>
+                    </div>
+                    <div class="footer-actions" style="display: flex; gap: 1rem;">
+                        <button class="btn btn-secondary" id="show-solution"><span>🔓</span> Reveal Solution</button>
+                        <button class="btn btn-primary" id="run-simulation"><span>▶</span> Run Simulation</button>
+                    </div>
+                </div>
+
+                <div class="simulation-result" id="simulation-result" style="display: none;">
+                    <!-- Results -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Logic Modal -->
+        <div id="logic-modal" class="modal">
+            <div class="modal-content glass-effect">
+                <div class="modal-header">
+                    <h3>Logical Solution Code</h3>
+                    <button class="close-modal">✕</button>
+                </div>
+                <div class="modal-body">
+                    <div class="logic-header-text">
+                        <p>${q.explanation}</p>
+                    </div>
+                    <div class="solution-code-section">
+                        <div class="code-header">TCS Standard Solution (${q.title})</div>
+                        <pre class="code-block" id="modal-code-block"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    const editor = document.getElementById('code-playground');
+    const runBtn = document.getElementById('run-simulation');
+    const solutionBtn = document.getElementById('show-solution');
+    const resultPanel = document.getElementById('simulation-result');
+    const langBtns = document.querySelectorAll('.lang-btn');
+    const modal = document.getElementById('logic-modal');
+    const closeModal = modal.querySelector('.close-modal');
+
+    let currentLang = 'python';
+
+    langBtns.forEach(btn => {
+        btn.onclick = () => {
+            langBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentLang = btn.dataset.lang;
+            resultPanel.style.display = 'none';
+        }
+    });
+
+    runBtn.onclick = () => {
+        const userCode = editor.value.trim();
+        const solutionCode = q.solutions[currentLang].trim();
+
+        if(!userCode) {
+            resultPanel.style.display = 'block';
+            resultPanel.innerHTML = '<div class="result-error"><span class="icon">⚠️</span> Please write some code before simulating!</div>';
+            return;
+        }
+
+        resultPanel.style.display = 'block';
+        resultPanel.innerHTML = `
+            <div class="running-indicator">
+                <div class="spinner-small"></div>
+                Analyzing logic and input patterns...
+            </div>
+        `;
+
+        setTimeout(() => {
+            // Basic normalization: remove extra whitespace and newlines for a fairer comparison
+            const normalize = (str) => str.replace(/\s+/g, ' ').trim();
+            const isMatch = normalize(userCode) === normalize(solutionCode);
+
+            if(isMatch) {
+                resultPanel.innerHTML = `
+                    <div class="result-success fade-in">
+                        <div class="res-head">
+                            <span class="icon">✨</span>
+                            <strong>Logic Matched!</strong>
+                        </div>
+                        <p>Perfect: Your <strong>${currentLang}</strong> code matches the required logic for this problem. You've mastered this pattern!</p>
+                    </div>
+                `;
+            } else {
+                resultPanel.innerHTML = `
+                    <div class="result-error fade-in" style="background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.2); color: #f87171;">
+                        <div class="res-head" style="color: #f87171; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.75rem;">
+                            <span class="icon">❌</span>
+                            <strong>Logic Mismatch</strong>
+                        </div>
+                        <p style="font-size: 0.85rem; color: #fca5a5;">Your logic doesn't quite match the required pattern for this problem. Review the "Reveal Solution" if you're stuck!</p>
+                    </div>
+                `;
+            }
+        }, 1200);
+    };
+
+    solutionBtn.onclick = () => {
+        document.getElementById('modal-code-block').textContent = q.solutions[currentLang];
+        modal.classList.add('active');
+    };
+
+    closeModal.onclick = () => modal.classList.remove('active');
+    window.onclick = (event) => { if (event.target == modal) modal.classList.remove('active'); };
 }
 
 // Start app

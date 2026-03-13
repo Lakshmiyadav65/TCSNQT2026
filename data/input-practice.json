@@ -1,0 +1,368 @@
+{
+    "questions": [
+        {
+            "id": "ip_1",
+            "title": "Jar of Candies",
+            "problem_statement": "There is a jar full of candies for sale at a sweet shop. The jar has a capacity **N** and it already contains **M** candies.\n\nIf a customer orders **n** candies, sell them if available; otherwise, print 'INVALID INPUT'. If the remaining candies are less than or equal to **K**, refill the jar back to its full capacity N.",
+            "input_format": "A single integer representing the number of candies ordered (n).",
+            "output_format": "Number of candies sold and available, or 'INVALID INPUT'.",
+            "constraints": "• N = 10 (Fixed Capacity)\n• K = 5 (Refill Limit)\n• 1 <= n <= N (Valid Order Range)",
+            "sample_input": "3",
+            "sample_output": "NUMBER OF CANDIES SOLD: 3\nNUMBER OF CANDIES AVAILABLE: 7",
+            "test_cases": [
+                { "input": "3", "output": "NUMBER OF CANDIES SOLD: 3\nNUMBER OF CANDIES AVAILABLE: 7" },
+                { "input": "0", "output": "INVALID INPUT\nNUMBER OF CANDIES AVAILABLE: 10" },
+                { "input": "11", "output": "INVALID INPUT\nNUMBER OF CANDIES AVAILABLE: 10" }
+            ],
+            "solutions": {
+                "python": "n = int(input())\nN = 10\nK = 5\nif n >= 1 and n <= N:\n    print('NUMBER OF CANDIES SOLD:', n)\n    remaining = N - n\n    print('NUMBER OF CANDIES AVAILABLE:', remaining)\nelse:\n    print('INVALID INPUT')\n    print('NUMBER OF CANDIES AVAILABLE:', N)",
+                "java": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        int N = 10, K = 5;\n        if (n >= 1 && n <= N) {\n            System.out.println(\"NUMBER OF CANDIES SOLD: \" + n);\n            System.out.println(\"NUMBER OF CANDIES AVAILABLE: \" + (N - n));\n        } else {\n            System.out.println(\"INVALID INPUT\");\n            System.out.println(\"NUMBER OF CANDIES AVAILABLE: \" + N);\n        }\n    }\n}"
+            },
+            "explanation": "The core logic is to check if the ordered count 'n' is within valid bounds (1 to N). If it is, subtract it from N. If the balance falls below or equal to K, the jar is refilled."
+        },
+        {
+            "id": "ip_2",
+            "title": "Fuzzy Washing Machine",
+            "problem_statement": "A tobacco company is installing a fully automatic washing machine. The machine operates on a fuzzy logic system with 3 levels: **Low, Medium, and High** based on the weight of clothes.\n\nWrite a program to calculate the estimated time for washing based on the input weight.",
+            "input_format": "An integer representing the weight of clothes in grams.",
+            "output_format": "Estimated time in minutes or 'OVERLOAD' / 'INVALID INPUT'.",
+            "constraints": "• 0 grams: 0 minutes\n• 1-2000 grams: 25 minutes (Low)\n• 2001-4000 grams: 35 minutes (Medium)\n• 4001-7000 grams: 45 minutes (High)\n• Above 7000: OVERLOAD\n• Below 0: INVALID INPUT",
+            "sample_input": "2000",
+            "sample_output": "Estimated Time: 25 minutes",
+            "test_cases": [
+                { "input": "2000", "output": "Estimated Time: 25 minutes" },
+                { "input": "7001", "output": "OVERLOAD" },
+                { "input": "-5", "output": "INVALID INPUT" }
+            ],
+            "solutions": {
+                "python": "w = int(input())\nif w == 0:\n    print('Estimated Time: 0 minutes')\nelif w > 0 and w <= 2000:\n    print('Estimated Time: 25 minutes')\nelif w > 2000 and w <= 4000:\n    print('Estimated Time: 35 minutes')\nelif w > 4000 and w <= 7000:\n    print('Estimated Time: 45 minutes')\nelif w > 7000:\n    print('OVERLOAD')\nelse:\n    print('INVALID INPUT')",
+                "java": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int w = sc.nextInt();\n        if (w == 0) System.out.println(\"Estimated Time: 0 minutes\");\n        else if (w > 0 && w <= 2000) System.out.println(\"Estimated Time: 25 minutes\");\n        else if (w > 2000 && w <= 4000) System.out.println(\"Estimated Time: 35 minutes\");\n        else if (w > 4000 && w <= 7000) System.out.println(\"Estimated Time: 45 minutes\");\n        else if (w > 7000) System.out.println(\"OVERLOAD\");\n        else System.out.println(\"INVALID INPUT\");\n    }\n}"
+            },
+            "explanation": "This is a simple range-based conditional problem. Be careful with boundaries like 2000 and 4000."
+        },
+        {
+            "id": "ip_3",
+            "title": "Oxygen Level Analysis",
+            "problem_statement": "The selection of MP trainees is based on their fitness. Three trainees (A, B, C) undergo 3 rounds of fitness tests. The oxygen level of each trainee is recorded for each round.\n\nCalculate the **average oxygen level** for each trainee over 3 rounds. The trainee with the highest average is selected. If multiple trainees have the same maximum average, select all of them.",
+            "input_format": "9 integers representing 3 rounds of oxygen levels for each trainee in the order: T1-R1, T2-R1, T3-R1, T1-R2, T2-R2, T3-R2, T1-R3, T2-R3, T3-R3.",
+            "output_format": "The selected trainee number(s) or 'All trainees are unfit'.",
+            "constraints": "• Oxygen level must be between 1 and 100.\n• If average oxygen level < 70, the trainee is unfit.\n• If all trainees' averages < 70, print 'All trainees are unfit'.",
+            "sample_input": "95\n92\n95\n92\n90\n92\n90\n92\n90",
+            "sample_output": "Trainee Number: 1\nTrainee Number: 3",
+            "test_cases": [
+                { "input": "95\n92\n95\n92\n90\n92\n90\n92\n90", "output": "Trainee Number: 1\nTrainee Number: 3" }
+            ],
+            "solutions": {
+                "python": "trainees = [[], [], []]\nfor i in range(9):\n    val = int(input())\n    if val < 1 or val > 100:\n        val = 0 # Invalid\n    trainees[i%3].append(val)\n\navgs = []\nfor t in trainees:\n    avgs.append(sum(t)/3)\n\nmax_avg = max(avgs)\nif max_avg < 70:\n    print('All trainees are unfit')\nelse:\n    for i in range(3):\n        if avgs[i] == max_avg:\n            print('Trainee Number:', i+1)",
+                "java": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int[] t1 = new int[3], t2 = new int[3], t3 = new int[3];\n        double a1=0, a2=0, a3=0;\n        for(int i=0; i<3; i++) {\n            t1[i] = sc.nextInt();\n            t2[i] = sc.nextInt();\n            t3[i] = sc.nextInt();\n        }\n        for(int i=0; i<3; i++) {\n            a1 += t1[i]; a2 += t2[i]; a3 += t3[i];\n        }\n        a1/=3; a2/=3; a3/=3;\n        double max = Math.max(a1, Math.max(a2, a3));\n        if(max < 70) System.out.println(\"All trainees are unfit\");\n        else {\n            if(a1 == max) System.out.println(\"Trainee Number: 1\");\n            if(a2 == max) System.out.println(\"Trainee Number: 2\");\n            if(a3 == max) System.out.println(\"Trainee Number: 3\");\n        }\n    }\n}"
+            },
+            "explanation": "Inputs are given in interleaved rounds. We collect scores for each trainee and compare averages. If the max average is below 70, everyone is unfit."
+        },
+        {
+            "id": "ip_4",
+            "title": "Monkeys and Food",
+            "problem_statement": "There are **n** monkeys on a tree. There are **m** bananas and **p** peanuts available. Each monkey can eat **k** bananas or **j** peanuts.\n\nCalculate the number of monkeys remaining on the tree after some monkeys eat and leave. A monkey will leave if it gets its full quota of either bananas or peanuts.",
+            "input_format": "Five integers: n, k, j, m, p.",
+            "output_format": "Number of monkeys left on the tree: X.",
+            "constraints": "• All inputs must be non-negative.\n• If any input is negative, print 'INVALID INPUT'.",
+            "sample_input": "20 2 3 12 12",
+            "sample_output": "Number of Monkeys left on the tree: 10",
+            "test_cases": [
+                { "input": "20 2 3 12 12", "output": "Number of Monkeys left on the tree: 10" }
+            ],
+            "solutions": {
+                "python": "n, k, j, m, p = map(int, input().split())\nif n<0 or k<=0 or j<=0 or m<0 or p<0:\n    print('INVALID INPUT')\nelse:\n    ate_bananas = m // k\n    ate_peanuts = p // j\n    total_ate = ate_bananas + ate_peanuts\n    remaining = n - total_ate\n    print('Number of Monkeys left on the tree:', int(remaining))",
+                "java": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt(), k = sc.nextInt(), j = sc.nextInt(), m = sc.nextInt(), p = sc.nextInt();\n        if(n<0 || k<=0 || j<=0 || m<0 || p<0) System.out.println(\"INVALID INPUT\");\n        else {\n            int ateBananas = m / k;\n            int atePeanuts = p / j;\n            System.out.println(\"Number of Monkeys left on the tree: \" + (n - (ateBananas + atePeanuts)));\n        }\n    }\n}"
+            },
+            "explanation": "Calculates how many monkeys are satisfied by the available quantity of bananas and peanuts respectively, then subtracts from total. Uses floor division."
+        },
+        {
+            "id": "ip_5",
+            "title": "Subarray with Given Sum",
+            "problem_statement": "Imagine you are analyzing a sequence of financial transactions where each entry is the gain or loss for the day. You want to find continuous periods where the sum of the transactions is a specific target amount (0), which could signify a balance being achieved.\n\nYou are given an array of integers representing daily gains and losses. Find the first contiguous subarray that sums up to zero.",
+            "input_format": "First line contains the size of array N. Second line contains N integers separated by space. (Wait, for simplicity in this practice session, we use a space-separated string).",
+            "output_format": "The subarray elements or 'None'.",
+            "constraints": "• -1000 <= Elements <= 1000\n• 1 <= N <= 100",
+            "sample_input": "3 4 -7 1 3 3 1 -4",
+            "sample_output": "[3, 4, -7]",
+            "test_cases": [
+                { "input": "3 4 -7 1 3 3 1 -4", "output": "[3, 4, -7]" }
+            ],
+            "solutions": {
+                "python": "arr = list(map(int, input().split()))\nfound = False\nfor i in range(len(arr)):\n    current_sum = 0\n    for j in range(i, len(arr)):\n        current_sum += arr[j]\n        if current_sum == 0:\n            print(arr[i:j+1])\n            found = True\n            break\n    if found: break",
+                "java": "import java.util.Scanner;\nimport java.util.ArrayList;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        ArrayList<Integer> list = new ArrayList<>();\n        while(sc.hasNextInt()) list.add(sc.nextInt());\n        int[] arr = list.stream().mapToInt(i -> i).toArray();\n        boolean found = false;\n        for(int i=0; i<arr.length; i++) {\n            int sum = 0;\n            for(int j=i; j<arr.length; j++) {\n                sum += arr[j];\n                if(sum == 0) {\n                    System.out.print(\"[\");\n                    for(int k=i; k<=j; k++) {\n                        System.out.print(arr[k] + (k==j ? \"\" : \", \"));\n                    }\n                    System.out.println(\"]\");\n                    found = true; break;\n                }\n            }\n            if(found) break;\n        }\n    }\n}"
+            },
+            "explanation": "Iterate through all possible subarrays using nested loops and keep track of the running sum. When the sum equals zero, print that segment."
+        },
+        {
+            "id": "ip_6",
+            "title": "Cyclic Array Rotation",
+            "problem_statement": "Imagine a group of people standing in a circle, and you want to rotate their positions. Given an array and a number K, cyclically rotate the array K times in the clockwise direction.",
+            "input_format": "First line: N (size). Second line: N elements. Third line: K (rotation count).",
+            "output_format": "Modified array elements.",
+            "constraints": "• 1 <= N <= 100\n• 0 <= K <= 1000",
+            "sample_input": "5\n10 20 30 40 50\n2",
+            "sample_output": "40 50 10 20 30",
+            "test_cases": [
+                { "input": "5\n10 20 30 40 50\n2", "output": "40 50 10 20 30" }
+            ],
+            "solutions": {
+                "python": "n = int(input())\narr = list(map(int, input().split()))\nk = int(input())\nk %= n\nres = arr[-k:] + arr[:-k]\nprint(*(res))",
+                "java": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        int[] arr = new int[n];\n        for(int i=0; i<n; i++) arr[i] = sc.nextInt();\n        int k = sc.nextInt();\n        k %= n;\n        for(int i=n-k; i<n; i++) System.out.print(arr[i] + \" \");\n        for(int i=0; i<n-k; i++) System.out.print(arr[i] + \" \");\n    }\n}"
+            },
+            "explanation": "To rotate clockwise, elements from the end move to the front. Using k % n handles cases where K is larger than the array size."
+        },
+        {
+            "id": "ip_7",
+            "title": "No Repeated Digits",
+            "problem_statement": "A company wants to find unique product codes that do not have repeated digits within a range. Given two numbers n1 and n2, count how many numbers in that range (inclusive) have all unique digits.",
+            "input_format": "Two integers n1 and n2 on separate lines.",
+            "output_format": "Count of numbers with unique digits.",
+            "constraints": "• 1 <= n1 <= n2 <= 10000",
+            "sample_input": "11\n15",
+            "sample_output": "4",
+            "test_cases": [
+                { "input": "11\n15", "output": "4" }
+            ],
+            "solutions": {
+                "python": "n1 = int(input())\nn2 = int(input())\ncount = 0\nfor i in range(n1, n2 + 1):\n    s = str(i)\n    if len(set(s)) == len(s):\n        count += 1\nprint(count)",
+                "java": "import java.util.Scanner;\nimport java.util.HashSet;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n1 = sc.nextInt();\n        int n2 = sc.nextInt();\n        int count = 0;\n        for(int i=n1; i<=n2; i++) {\n            if(isUnique(i)) count++;\n        }\n        System.out.println(count);\n    }\n    static boolean isUnique(int n) {\n        String s = String.valueOf(n);\n        HashSet<Character> set = new HashSet<>();\n        for(char c : s.toCharArray()) {\n            if(!set.add(c)) return false;\n        }\n        return true;\n    }\n}"
+            },
+            "explanation": "Convert each number to a string and check if the number of unique characters (set) matches the string length."
+        },
+        {
+            "id": "ip_8",
+            "title": "Trailing Multiples of 10",
+            "problem_statement": "An inventory system needs to push all out-of-stock items (marked as multiples of 10) to the end of the list while maintaining the relative order of other items.",
+            "input_format": "First line: N (size). Second line: N elements.",
+            "output_format": "Reordered list.",
+            "constraints": "• 1 <= N <= 100",
+            "sample_input": "9\n10 12 5 40 30 7 5 9 10",
+            "sample_output": "12 5 7 5 9 10 40 30 10",
+            "test_cases": [
+                { "input": "9\n10 12 5 40 30 7 5 9 10", "output": "12 5 7 5 9 10 40 30 10" }
+            ],
+            "solutions": {
+                "python": "n = int(input())\narr = list(map(int, input().split()))\nothers = [x for x in arr if x % 10 != 0]\ntens = [x for x in arr if x % 10 == 0]\nprint(*(others + tens))",
+                "java": "import java.util.Scanner;\nimport java.util.ArrayList;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        ArrayList<Integer> others = new ArrayList<>();\n        ArrayList<Integer> tens = new ArrayList<>();\n        for(int i=0; i<n; i++) {\n            int x = sc.nextInt();\n            if(x % 10 == 0) tens.add(x);\n            else others.add(x);\n        }\n        for(int x : others) System.out.print(x + \" \");\n        for(int x : tens) System.out.print(x + \" \");\n    }\n}"
+            },
+            "explanation": "Filter the array into two lists: one for non-multiples of 10 and one for multiples of 10. Concatenate them to get the result."
+        },
+        {
+            "id": "ip_9",
+            "title": "Camel Case Break",
+            "problem_statement": "In an automation system, names are often written in CamelCase. You need to convert these into space-separated lowercase words for better readability.",
+            "input_format": "A single CamelCase string.",
+            "output_format": "Space-separated lowercase string.",
+            "constraints": "• Length <= 1000",
+            "sample_input": "ThisIsAnAutomationEra",
+            "sample_output": "this is an automation era",
+            "test_cases": [
+                { "input": "ThisIsAnAutomationEra", "output": "this is an automation era" }
+            ],
+            "solutions": {
+                "python": "s = input()\nres = \"\"\nfor char in s:\n    if char.isupper():\n        res += \" \" + char.lower()\n    else:\n        res += char\nprint(res.strip())",
+                "java": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = sc.nextLine();\n        StringBuilder sb = new StringBuilder();\n        for(char c : s.toCharArray()) {\n            if(Character.isUpperCase(c)) {\n                sb.append(\" \").append(Character.toLowerCase(c));\n            } else {\n                sb.append(c);\n            }\n        }\n        System.out.println(sb.toString().trim());\n    }\n}"
+            },
+            "explanation": "Iterate through the string. When you find an uppercase letter, prepend a space and convert it to lowercase."
+        },
+        {
+            "id": "ip_10",
+            "title": "Pairing Colleagues",
+            "problem_statement": "An HR department is organizing a team-building game. N employees can either stay single or pair up with one another. Each employee can only be part of one pair. If the total number N is odd, the pairing is not possible for everyone (return 1 in specific patterns or calculate combinations). \n\nActually, a common TCS variation is: Find the number of ways N people can remain single or pair up.",
+            "input_format": "An integer N.",
+            "output_format": "An integer representing total ways.",
+            "constraints": "• 1 <= N <= 20",
+            "sample_input": "3",
+            "sample_output": "4",
+            "test_cases": [
+                { "input": "3", "output": "4" }
+            ],
+            "solutions": {
+                "python": "n = int(input())\ndp = [0] * (n + 1)\ndp[0] = 1\nif n >= 1: dp[1] = 1\nfor i in range(2, n + 1):\n    dp[i] = dp[i-1] + (i-1) * dp[i-2]\nprint(dp[n])",
+                "java": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        long[] dp = new long[n + 1];\n        dp[0] = 1; if(n >= 1) dp[1] = 1;\n        for(int i=2; i<=n; i++) {\n            dp[i] = dp[i-1] + (i-1) * dp[i-2];\n        }\n        System.out.println(dp[n]);\n    }\n}"
+            },
+            "explanation": "This is a dynamic programming problem. For the n-th person: either they stay single (dp[n-1] ways) or they pair with any of the (n-1) people remaining (dp[n-2] ways for each pair)."
+        },
+        {
+            "id": "ip_11",
+            "title": "Longest Equal Binary Subarray",
+            "problem_statement": "In a digital signal processing task, you have a sequence of 0s and 1s. Find the length of the longest continuous segment that has an equal number of 0s and 1s.",
+            "input_format": "Size N followed by N binary elements.",
+            "output_format": "Integer length.",
+            "constraints": "• 1 <= N <= 1000",
+            "sample_input": "[1, 0, 0, 1, 0, 1, 1]",
+            "sample_output": "6",
+            "test_cases": [
+                { "input": "[1, 0, 0, 1, 0, 1, 1]", "output": "6" }
+            ],
+            "solutions": {
+                "python": "import ast\narr = ast.literal_eval(input())\nd = {0: -1}\ncur = 0\nres = 0\nfor i, x in enumerate(arr):\n    cur += 1 if x == 1 else -1\n    if cur in d:\n        res = max(res, i - d[cur])\n    else:\n        d[cur] = i\nprint(res)",
+                "java": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String line = sc.nextLine().replace(\"[\", \"\").replace(\"]\", \"\").replace(\",\", \"\");\n        String[] parts = line.split(\"\\\\s+\");\n        int[] arr = new int[parts.length];\n        for(int i=0; i<parts.length; i++) arr[i] = Integer.parseInt(parts[i]);\n        Map<Integer, Integer> map = new HashMap<>();\n        map.put(0, -1);\n        int cur = 0, res = 0;\n        for(int i=0; i<arr.length; i++) {\n            cur += (arr[i] == 1 ? 1 : -1);\n            if(map.containsKey(cur)) res = Math.max(res, i - map.get(cur));\n            else map.put(cur, i);\n        }\n        System.out.println(res);\n    }\n}"
+            },
+            "explanation": "Replace 0 with -1 and find the longest subarray with sum 0 using a prefix sum hash map."
+        },
+        {
+            "id": "ip_12",
+            "title": "Stock Buy Sell Profit",
+            "problem_statement": "Given an array of daily stock prices, find the maximum profit you can achieve by buying on one day and selling on a future day. If no profit is possible, print 0.",
+            "input_format": "Space-separated prices.",
+            "output_format": "Max profit.",
+            "constraints": "• 1 <= Prices.length <= 10000",
+            "sample_input": "7 1 5 3 6 4",
+            "sample_output": "5",
+            "test_cases": [
+                { "input": "7 1 5 3 6 4", "output": "5" }
+            ],
+            "solutions": {
+                "python": "prices = list(map(int, input().split()))\nmin_p = float('inf')\nmax_prof = 0\nfor p in prices:\n    min_p = min(min_p, p)\n    max_prof = max(max_prof, p - min_p)\nprint(max_prof)",
+                "java": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int min = Integer.MAX_VALUE, maxProf = 0;\n        while(sc.hasNextInt()) {\n            int p = sc.nextInt();\n            min = Math.min(min, p);\n            maxProf = Math.max(maxProf, p - min);\n        }\n        System.out.println(maxProf);\n    }\n}"
+            },
+            "explanation": "Keep track of the minimum price seen so far and calculate the potential profit at each step."
+        },
+        {
+            "id": "ip_13",
+            "title": "Merge Sorted Lists",
+            "problem_statement": "Combine two lists of sorted employee IDs into a single sorted list. Do not use built-in sort functions.",
+            "input_format": "Two lines, each containing a sorted array.",
+            "output_format": "Combined sorted list.",
+            "constraints": "• 1 <= Total size <= 200",
+            "sample_input": "1 3 5\n2 4 6",
+            "sample_output": "1 2 3 4 5 6",
+            "test_cases": [
+                { "input": "1 3 5\n2 4 6", "output": "1 2 3 4 5 6" }
+            ],
+            "solutions": {
+                "python": "arr1 = list(map(int, input().split()))\narr2 = list(map(int, input().split()))\ni = j = 0\nres = []\nwhile i < len(arr1) and j < len(arr2):\n    if arr1[i] < arr2[j]:\n        res.append(arr1[i])\n        i += 1\n    else:\n        res.append(arr2[j])\n        j += 1\nres.extend(arr1[i:])\nres.extend(arr2[j:])\nprint(*res)",
+                "java": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String[] l1 = sc.nextLine().split(\" \");\n        String[] l2 = sc.nextLine().split(\" \");\n        int i=0, j=0;\n        while(i < l1.length && j < l2.length) {\n            int a = Integer.parseInt(l1[i]);\n            int b = Integer.parseInt(l2[j]);\n            if(a < b) { System.out.print(a + \" \"); i++; }\n            else { System.out.print(b + \" \"); j++; }\n        }\n        while(i < l1.length) System.out.print(l1[i++] + \" \");\n        while(j < l2.length) System.out.print(l2[j++] + \" \");\n    }\n}"
+            },
+            "explanation": "Standard 2-pointer merge approach used in Merge Sort."
+        },
+        {
+            "id": "ip_14",
+            "title": "Balance Check (Parentheses)",
+            "problem_statement": "Check if a sequence of opening and closing parentheses is balanced. Every '(' must have a matching ')'.",
+            "input_format": "A string of brackets.",
+            "output_format": "True or False.",
+            "constraints": "• Length <= 1000",
+            "sample_input": "((()))",
+            "sample_output": "True",
+            "test_cases": [
+                { "input": "((()))", "output": "True" },
+                { "input": "(()", "output": "False" }
+            ],
+            "solutions": {
+                "python": "s = input()\nc = 0\nfor b in s:\n    if b == '(':\n        c += 1\n    elif b == ')':\n        c -= 1\n    if c < 0: break\nprint(c == 0)",
+                "java": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = sc.nextLine();\n        int c = 0;\n        boolean fail = false;\n        for(char b : s.toCharArray()) {\n            if(b == '(') c++;\n            else if(b == ')') c--;\n            if(c < 0) { fail = true; break; }\n        }\n        System.out.println(!fail && c == 0);\n    }\n}"
+            },
+            "explanation": "Use a counter to track depth. It should never go negative and must end at zero."
+        },
+        {
+            "id": "ip_15",
+            "title": "Find Missing Element",
+            "problem_statement": "In a series of consecutive numbers from 1 to N, one number is missing. Find that missing number.",
+            "input_format": "N followed by N-1 space separated integers.",
+            "output_format": "The missing number.",
+            "constraints": "• 1 <= N <= 1000",
+            "sample_input": "5\n1 2 4 5",
+            "sample_output": "3",
+            "test_cases": [
+                { "input": "5\n1 2 4 5", "output": "3" }
+            ],
+            "solutions": {
+                "python": "n = int(input())\narr = list(map(int, input().split()))\ntotal = n * (n + 1) // 2\nprint(total - sum(arr))",
+                "java": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        int sum = 0;\n        for(int i=0; i<n-1; i++) sum += sc.nextInt();\n        int total = n * (n + 1) / 2;\n        System.out.println(total - sum);\n    }\n}"
+            },
+            "explanation": "Subtract the sum of given numbers from the expected sum of the first N natural numbers."
+        },
+        {
+            "id": "ip_16",
+            "title": "Unique Character Search",
+            "problem_statement": "In a long string of log data, find the index of the first character that only appears once.",
+            "input_format": "A single string.",
+            "output_format": "Index (0-based) or -1.",
+            "constraints": "• Length <= 10000",
+            "sample_input": "loveleetcode",
+            "sample_output": "2",
+            "test_cases": [
+                { "input": "loveleetcode", "output": "2" }
+            ],
+            "solutions": {
+                "python": "s = input()\nd = {}\nfor char in s:\n    d[char] = d.get(char, 0) + 1\nfor i, char in enumerate(s):\n    if d[char] == 1:\n        print(i)\n        break\nelse: print(-1)",
+                "java": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = sc.nextLine();\n        Map<Character, Integer> counts = new HashMap<>();\n        for(char c : s.toCharArray()) counts.put(c, counts.getOrDefault(c, 0) + 1);\n        for(int i=0; i<s.length(); i++) {\n            if(counts.get(s.charAt(i)) == 1) {\n                System.out.println(i);\n                return;\n            }\n        }\n        System.out.println(-1);\n    }\n}"
+            },
+            "explanation": "First count frequencies of all characters, then iterate again to find the first one with a count of 1."
+        },
+        {
+            "id": "ip_17",
+            "title": "Vowel Swap Logic",
+            "problem_statement": "Swap the positions of vowels in a given string while leaving consonants and symbols exactly where they are.",
+            "input_format": "A single string.",
+            "output_format": "Modified string.",
+            "constraints": "• Length <= 500",
+            "sample_input": "hello",
+            "sample_output": "holle",
+            "test_cases": [
+                { "input": "hello", "output": "holle" }
+            ],
+            "solutions": {
+                "python": "s = list(input())\nvowels = \"aeiouAEIOU\"\ni, j = 0, len(s) - 1\nwhile i < j:\n    if s[i] not in vowels: i += 1\n    elif s[j] not in vowels: j -= 1\n    else:\n        s[i], s[j] = s[j], s[i]\n        i += 1; j -= 1\nprint(''.join(s))",
+                "java": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        char[] s = sc.nextLine().toCharArray();\n        String v = \"aeiouAEIOU\";\n        int i=0, j=s.length-1;\n        while(i < j) {\n            if(v.indexOf(s[i]) == -1) i++;\n            else if(v.indexOf(s[j]) == -1) j--;\n            else {\n                char tmp = s[i]; s[i] = s[j]; s[j] = tmp;\n                i++; j--;\n            }\n        }\n        System.out.println(new String(s));\n    }\n}"
+            },
+            "explanation": "Use a 2-pointer approach to shrink the range and swap vowels when both pointers land on one."
+        },
+        {
+            "id": "ip_18",
+            "title": "Anagram Indices",
+            "problem_statement": "Given a long string S and a pattern P, find the starting index of any substring in S that is an anagram of P.",
+            "input_format": "S followed by P on separate lines.",
+            "output_format": "Space-separated indices.",
+            "constraints": "• S.length, P.length <= 1000",
+            "sample_input": "cbaebabacd\nabc",
+            "sample_output": "0 6",
+            "test_cases": [
+                { "input": "cbaebabacd\nabc", "output": "0 6" }
+            ],
+            "solutions": {
+                "python": "s, p = input(), input()\nfrom collections import Counter\np_count = Counter(p)\ns_count = Counter(s[:len(p)])\nres = []\nif s_count == p_count: res.append(0)\nfor i in range(1, len(s) - len(p) + 1):\n    s_count[s[i-1]] -= 1\n    if s_count[s[i-1]] == 0: del s_count[s[i-1]]\n    s_count[s[i+len(p)-1]] += 1\n    if s_count == p_count: res.append(i)\nprint(*res)",
+                "java": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = sc.nextLine(), p = sc.nextLine();\n        if(s.length() < p.length()) return;\n        int[] pc = new int[26], sc_arr = new int[26];\n        for(char c : p.toCharArray()) pc[c-'a']++;\n        for(int i=0; i<p.length(); i++) sc_arr[s.charAt(i)-'a']++;\n        if(Arrays.equals(pc, sc_arr)) System.out.print(\"0 \");\n        for(int i=1; i <= s.length()-p.length(); i++) {\n            sc_arr[s.charAt(i-1)-'a']--;\n            sc_arr[s.charAt(i+p.length()-1)-'a']++;\n            if(Arrays.equals(pc, sc_arr)) System.out.print(i + \" \");\n        }\n    }\n}"
+            },
+            "explanation": "Sliding window with character frequency map/array to efficiently check anagram status."
+        },
+        {
+            "id": "ip_19",
+            "title": "GCD Calculator",
+            "problem_statement": "Calculate the Greatest Common Divisor (GCD) of two integers, which is the largest positive integer that divides both numbers without a remainder.",
+            "input_format": "Two integers a and b.",
+            "output_format": "The GCD.",
+            "constraints": "• 1 <= a, b <= 10^9",
+            "sample_input": "54 24",
+            "sample_output": "6",
+            "test_cases": [
+                { "input": "54 24", "output": "6" }
+            ],
+            "solutions": {
+                "python": "def gcd(a, b):\n    while b: a, b = b, a % b\n    return a\na, b = map(int, input().split())\nprint(gcd(a, b))",
+                "java": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int a = sc.nextInt(), b = sc.nextInt();\n        System.out.println(gcd(a, b));\n    }\n    static int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }\n}"
+            },
+            "explanation": "Euclidean algorithm using the property: gcd(a, b) = gcd(b, a % b)."
+        },
+        {
+            "id": "ip_20",
+            "title": "Valid Palindrome 2.0",
+            "problem_statement": "Verify if a sentence is a palindrome, considering only alphanumeric characters and ignoring cases.",
+            "input_format": "A full sentence or phrase.",
+            "output_format": "True or False.",
+            "sample_input": "A man, a plan, a canal: Panama",
+            "sample_output": "True",
+            "test_cases": [
+                { "input": "A man, a plan, a canal: Panama", "output": "True" }
+            ],
+            "solutions": {
+                "python": "s = ''.join(c.lower() for c in input() if c.isalnum())\nprint(s == s[::-1])",
+                "java": "import java.util.Scanner;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = sc.nextLine().replaceAll(\"[^a-zA-Z0-9]\", \"\").toLowerCase();\n        String rev = new StringBuilder(s).reverse().toString();\n        System.out.println(s.equals(rev));\n    }\n}"
+            },
+            "explanation": "Clean the string to remove punctuation and case differences, then compare with its reverse."
+        }
+    ]
+}
