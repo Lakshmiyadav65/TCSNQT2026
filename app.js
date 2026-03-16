@@ -304,6 +304,25 @@ function renderQuestions(questionsToRender) {
                 <p>Try adjusting your search query or select another category.</p>
             </div>
         `;
+    } else {
+        if (state.currentCategory === 'shortcuts-practice' && !state.testSubmitted) {
+            const submitBtn = document.createElement('button');
+            submitBtn.className = 'start-session-btn submit-test-btn';
+            submitBtn.style.marginTop = '2rem';
+            submitBtn.style.width = '100%';
+            submitBtn.textContent = 'Submit Test & View Results';
+            submitBtn.onclick = () => submitShortcutsTest();
+            container.appendChild(submitBtn);
+        } else if (state.currentCategory === 'shortcuts-practice' && state.testSubmitted) {
+            const returnedBtn = document.createElement('button');
+            returnedBtn.className = 'shortcut-card';
+            returnedBtn.style.textAlign = 'center';
+            returnedBtn.style.marginTop = '2rem';
+            returnedBtn.style.width = '100%';
+            returnedBtn.textContent = 'Return to Categories';
+            returnedBtn.onclick = () => renderShortcutsPracticeLanding();
+            container.appendChild(returnedBtn);
+        }
     }
 }
 
@@ -312,7 +331,11 @@ function createQuestionCard(q, index) {
     card.className = 'question-card';
     card.id = `q-${q.id}`;
 
-    const isAnswered = state.answeredQuestions[`${state.currentCategory}-${q.id}`];
+    const isTestMode = state.currentCategory === 'shortcuts-practice';
+    const isAnswered = isTestMode ? state.testSubmitted : state.answeredQuestions[`${state.currentCategory}-${q.id}`];
+    const savedAnswer = isTestMode 
+        ? (state.testAnswers && state.testAnswers[q.id] ? state.testAnswers[q.id].answer : null) 
+        : (state.answeredQuestions[`${state.currentCategory}-${q.id}`] ? state.answeredQuestions[`${state.currentCategory}-${q.id}`].answer : null);
 
     card.innerHTML = `
         <div class="question-header">
@@ -325,7 +348,7 @@ function createQuestionCard(q, index) {
         ${q.code_snippet ? `<pre class="code-block">${q.code_snippet}</pre>` : ''}
         <div class="options-grid">
             ${q.options ? Object.entries(q.options).map(([key, val]) => `
-                <div class="option" data-key="${key}">
+                <div class="option ${savedAnswer === key && !isAnswered ? 'selected' : ''}" data-key="${key}">
                     <div class="option-marker">${key}</div>
                     <div class="option-text">${val}</div>
                 </div>
@@ -373,7 +396,6 @@ function createQuestionCard(q, index) {
 
     if (isAnswered) {
         card.classList.add('answered');
-        const savedAnswer = isAnswered.answer;
         const correct = q.correct_answer;
 
         card.querySelectorAll('.option').forEach(opt => {
@@ -459,6 +481,18 @@ function createCodingCard(p, index) {
 function handleAnswer(card, selectedOpt, q) {
     const selectedKey = selectedOpt.dataset.key;
     const correctKey = q.correct_answer;
+
+    if (state.currentCategory === 'shortcuts-practice') {
+        card.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+        selectedOpt.classList.add('selected');
+        
+        state.testAnswers = state.testAnswers || {};
+        state.testAnswers[q.id] = {
+            answer: selectedKey,
+            isCorrect: selectedKey === correctKey
+        };
+        return;
+    }
 
     card.classList.add('answered');
 
@@ -685,10 +719,53 @@ function renderShortcutsPracticeLanding() {
 
 function startShortcutsPaper(category) {
     const paperQuestions = state.questions.filter(q => q.category === category);
+    state.testAnswers = {};
+    state.testSubmitted = false;
     state.timer = 0;
     startTimer();
     state.currentPage = 1;
     renderQuestions(paperQuestions);
+}
+
+function submitShortcutsTest() {
+    state.testSubmitted = true;
+    stopTimer();
+    
+    // Save all to answeredQuestions so it persists or just re-render
+    if (state.testAnswers) {
+        Object.keys(state.testAnswers).forEach(qId => {
+            state.answeredQuestions[`shortcuts-practice-${qId}`] = state.testAnswers[qId];
+        });
+        localStorage.setItem('prep_answered', JSON.stringify(state.answeredQuestions));
+    }
+    
+    // Re-render questions to show correct/wrong states
+    renderQuestions(state.questions.filter(q => q.category === state.questions[0].category));
+    
+    // Calculate Score
+    const total = Object.keys(state.testAnswers || {}).length;
+    const correct = Object.values(state.testAnswers || {}).filter(a => a.isCorrect).length;
+    
+    // Show results
+    contentArea.insertAdjacentHTML('afterbegin', `
+        <div class="result-banner" style="background: linear-gradient(135deg, #1A202C 0%, #2D3748 100%); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 2rem; text-align: center; animation: fadeIn 0.5s ease;">
+            <h2 style="color: #EAB308; margin-bottom: 0.5rem; font-size: 2rem;">Test Submitted!</h2>
+            <p style="color: #A0AEC0; font-size: 1.1rem; margin-bottom: 1.5rem;">Here is how you did on the ${state.questions[0].category} test</p>
+            <div style="display: flex; justify-content: center; gap: 2rem;">
+                <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; min-width: 120px;">
+                    <div style="font-size: 2.5rem; color: white; font-weight: 700;">${correct}</div>
+                    <div style="color: #48BB78; font-size: 0.9rem; margin-top: 0.5rem; text-transform: uppercase; letter-spacing: 1px;">Correct</div>
+                </div>
+                <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; min-width: 120px;">
+                    <div style="font-size: 2.5rem; color: white; font-weight: 700;">${total}</div>
+                    <div style="color: #A0AEC0; font-size: 0.9rem; margin-top: 0.5rem; text-transform: uppercase; letter-spacing: 1px;">Attempted</div>
+                </div>
+            </div>
+            <button class="start-session-btn" style="margin-top: 2rem;" onclick="renderShortcutsPracticeLanding()">Return to Categories</button>
+        </div>
+    `);
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function renderInputGuide() {
