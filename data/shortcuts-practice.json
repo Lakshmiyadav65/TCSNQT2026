@@ -1,0 +1,1524 @@
+{
+    "questions": [
+        {
+            "id": "Numerical_1",
+            "category": "Numerical Ability",
+            "question": "Que. 1 A man has to travel 50 km in two hours. He could 20 km in one hour, and then had to stop for 10 minutes for refueling. By what factor should he increase his speed with reference to that of the first hour so as to be able to complete the journey as per schedule?",
+            "options": {
+                "A": "1.2",
+                "B": "1.8",
+                "C": "2.4",
+                "D": "1.5"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Numerical_2",
+            "category": "Numerical Ability",
+            "question": "Que. 2 If (x + 10)% of 240 is 60% more than x% of 180, then 15% of (x + 20) is what percent less than 25% of x?",
+            "options": {
+                "A": "16",
+                "B": "15",
+                "C": "15 (1/2)",
+                "D": "19 (1/21)"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Numerical_3",
+            "category": "Numerical Ability",
+            "question": "Que. 3 Five consecutive positive even numbers are arranged in ascending order. The sum of squares of 3rd number and 5th number is equal to 400. Then the average of the five numbers is",
+            "options": {
+                "A": "8",
+                "B": "10",
+                "C": "12",
+                "D": "14"
+            },
+            "correct_answer": "C",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Numerical_4",
+            "category": "Numerical Ability",
+            "question": "Que. 4 A fruit seller purchased 32 kg grapes for Rs. 960. He dried them to make raisins and would be able to sell raisins for Rs. 65 per kg. He can get 800 gm raisins from 1 kg grapes. Find profit %.",
+            "options": {
+                "A": "Profit 73.33%",
+                "B": "Loss 73.33%",
+                "C": "Profit 26.67%",
+                "D": "Loss 26.67%"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Numerical_5",
+            "category": "Numerical Ability",
+            "question": "Que. 5 What is the sum (in RS) which divided among X Y Z in the proportion 3 \u2236 5 \u2236 7 provides rupees 8000 more to Z than what it would have done to him when the proportion is 11 \u2236 15 \u2236 19? 1800001. 1200002. 1750003. 1350004.",
+            "options": {
+                "A": "Option missing",
+                "B": "Option missing",
+                "C": "Option missing",
+                "D": "Option missing"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Numerical_6",
+            "category": "Numerical Ability",
+            "question": "Que. 6 Elan, Jeff and Bill together started the business where Elan invested $ 2500 for 8 months, Jeff invested $ 2000 for 12 months and Bill invested $ 6000 for 4 months. If the profit earned from the business is $ 1360, then find the share of Jeff.",
+            "options": {
+                "A": "$ 360",
+                "B": "$ 420",
+                "C": "$ 400",
+                "D": "$ 480"
+            },
+            "correct_answer": "D",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Numerical_7",
+            "category": "Numerical Ability",
+            "question": "Que. 7 The marks scored by a student out of 100 in English and Mathematics at four consecutive monthly tests held in 2019 are presented through a Bar Graph shown below. In each case the marks is a multiple of five. In which month is the difference of marks scored in the two subjects are highest?",
+            "options": {
+                "A": "Apr",
+                "B": "Mar",
+                "C": "Feb",
+                "D": "Jan"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Numerical_8",
+            "category": "Numerical Ability",
+            "question": "Que. 8 In a class of 25 students, 12 have taken mathematics, 8 have taken mathematics and computer science. The number of students who have taken computer science but NOT mathematics is:",
+            "options": {
+                "A": "13",
+                "B": "8",
+                "C": "4",
+                "D": "17"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Numerical_9",
+            "category": "Numerical Ability",
+            "question": "Que. 9 What is the mean proportional (MP) between the MPs of (2/7 & 32/343) and (2 & 1/5000)? 3/351. 4/352. 2/353. 2/1754.",
+            "options": {
+                "A": "Option missing",
+                "B": "Option missing",
+                "C": "Option missing",
+                "D": "Option missing"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Numerical_10",
+            "category": "Numerical Ability",
+            "question": "Que. 10 Three bells ring simultaneously at 11 a.m. They ring at regular intervals of 20 min., 30 min., 40 min. respectively. The time when all the three bells ring together next is",
+            "options": {
+                "A": "2 p.m.",
+                "B": "1 p.m.",
+                "C": "1:15 p.m.",
+                "D": "1:30 p.m."
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Numerical_11",
+            "category": "Numerical Ability",
+            "question": "Que. 11 When a number is divided by 12, 16, 18 and 21 it will leave a remainder of 7 in each case find the third smallest number of this type.",
+            "options": {
+                "A": "1015",
+                "B": "2023",
+                "C": "3031",
+                "D": "4039"
+            },
+            "correct_answer": "C",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Numerical_12",
+            "category": "Numerical Ability",
+            "question": "Que. 12 If 5x 3y = 225 \u00d7 405,find the value of x2y - 3x",
+            "options": {
+                "A": "27",
+                "B": "81",
+                "C": "125",
+                "D": "25"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Numerical_13",
+            "category": "Numerical Ability",
+            "question": "Que. 13 If six digits number 25a64b is divisible by 11. Find the value of (a \u2013 b).",
+            "options": {
+                "A": "5",
+                "B": "4",
+                "C": "3",
+                "D": "7"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Numerical_14",
+            "category": "Numerical Ability",
+            "question": "Que. 14 The collection numbers below is in ascending order (3, 7, 9, N-1, 15, 18, 19, 20) if the median of data 12.5, what is the value of n? 111. 11.52. 123. 10.54.",
+            "options": {
+                "A": "Option missing",
+                "B": "Option missing",
+                "C": "Option missing",
+                "D": "Option missing"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Numerical_15",
+            "category": "Numerical Ability",
+            "question": "Que. 15 A work can be completed by A, B and C in 12 days,15 days and 24 days respectively. A started the work and worked for 2 days then B joined A and together they worked for 5 days. C completed the remaining work alone. Find the time taken by C to complete remaining work.",
+            "options": {
+                "A": "1 days",
+                "B": "2 days",
+                "C": "5 days",
+                "D": "3 days"
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Numerical_16",
+            "category": "Numerical Ability",
+            "question": "Que. 16 Pipe X, Y and Z can fill a cistern 8 hrs, 12 hrs and 24 hrs respectively. All three began to fill the cistern together but X and Y left 4 hrs and 3 hrs respectively before filling the cistern. What is the total time taken by all of them to fill the cistern?",
+            "options": {
+                "A": "10 hrs",
+                "B": "7 hrs",
+                "C": "3 hrs",
+                "D": "14 hrs"
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Numerical_17",
+            "category": "Numerical Ability",
+            "question": "Que. 17 What is the mean deviation of the data 8, 9, 12, 15, 16, 20, 24, 30, 32, 34?",
+            "options": {
+                "A": "10.2",
+                "B": "9.6",
+                "C": "8",
+                "D": "0"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Numerical_18",
+            "category": "Numerical Ability",
+            "question": "Que. 18 How much percentage is (0.025% of 240% of 1.5%) of 0.9?",
+            "options": {
+                "A": "0.01",
+                "B": "10",
+                "C": "0.1",
+                "D": "1"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Numerical_19",
+            "category": "Numerical Ability",
+            "question": "Que. 19 Dalip can row 42 km downstream in 2 hours and the same distance upstream in 2 hours and 48 minutes. How much time will he take to row 31.5 km downstream and 22.5 km upstream?",
+            "options": {
+                "A": "3 h 15 m",
+                "B": "3 h",
+                "C": "2 h 50 m",
+                "D": "3 h 5 m"
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Numerical_20",
+            "category": "Numerical Ability",
+            "question": "Que. 20 A student goes to college at the rate of 5 km/h and reaches 12 minutes late. If he travels at the speed of 8 km/h he is 15 minutes early. Find the distance between his college and his starting point?",
+            "options": {
+                "A": "7 km",
+                "B": "9 km",
+                "C": "5 km",
+                "D": "6 km"
+            },
+            "correct_answer": "D",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Numerical_21",
+            "category": "Numerical Ability",
+            "question": "Que. 21 If the positive square root of (\u221a90 + \u221a80) is multiplied by (\u221a2 - 1) and the product is raised to the power of four, the result would be",
+            "options": {
+                "A": "100",
+                "B": "1600",
+                "C": "11520000",
+                "D": "10"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Numerical_22",
+            "category": "Numerical Ability",
+            "question": "Que. 22 The average of 41 numbers is 62. The average of the first 21 numbers is 56 and that of the last 21 numbers is 70. If the 21st number is removed, then what will be the average of the remaining numbers?",
+            "options": {
+                "A": "64.25",
+                "B": "66.75",
+                "C": "68.85",
+                "D": "60.95"
+            },
+            "correct_answer": "D",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Numerical_23",
+            "category": "Numerical Ability",
+            "question": "Que. 23 In a competitive exam, 5 marks are awarded for every correct answer and for every wrong answer 2 marks are duducted. Sathwik scored 32 marks in this examination. If the 4 marks had been awarded for each correct answer and 1 marks are deducted for each incorrect answer, sathwik should have scored 34 marks. If sathwik attempted all the question, how many question were there in test?",
+            "options": {
+                "A": "12",
+                "B": "26",
+                "C": "14",
+                "D": "20"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Numerical_24",
+            "category": "Numerical Ability",
+            "question": "Que. 24 Calculate the ratio in which Jeff Bezos mix two varieties of flour costing Rs. 70 per kg and Rs. 75 per kg so that he may gain of 10%. When the selling price of the mixture is Rs. 79.20 per kg.",
+            "options": {
+                "A": "3 : 2",
+                "B": "3 : 5",
+                "C": "3 : 4",
+                "D": "4 : 5"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Numerical_25",
+            "category": "Numerical Ability",
+            "question": "Que. 25 A sum invested on simple interest grows to Rs. 22500 and Rs. 25500 in seven and nine years respectively. What is the rate percentage of the interest?",
+            "options": {
+                "A": "9.6",
+                "B": "13.5",
+                "C": "12.5",
+                "D": "7.5"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Numerical_26",
+            "category": "Numerical Ability",
+            "question": "Que. 26 The work done by (x - 1) men in (x + 1) days and the work done by (x + 1) men in (x + 2) days are in the ratio 5 \u2236 6. The value of x is:",
+            "options": {
+                "A": "16",
+                "B": "10",
+                "C": "8",
+                "D": "6"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Reasoning_1",
+            "category": "Reasoning Ability",
+            "question": "Que. 1 Five friends A, B, C, D and E are sitting in a line facing North. Who is sitting exactly in the middle. 1. C is sitting between A and B. E is at the fourth Place to the left of B. 2. E is sitting to the immediate left of D. C is to the immediate left of B.",
+            "options": {
+                "A": "if the question can be answered by using first statement alone.",
+                "B": "if the question can be answered by using second statement alone.",
+                "C": "if the question can be answered by using both statements together.",
+                "D": "if the question cannot be answered even by using both statements together"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Reasoning_2",
+            "category": "Reasoning Ability",
+            "question": "Que. 2 A series is given with one term missing. Select the correct alternative from the given ones that will complete the series. TONY , WTGP, ZYZG, ?, FILO",
+            "options": {
+                "A": "CESY",
+                "B": "CDSX",
+                "C": "CDSY",
+                "D": "CESX"
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Reasoning_3",
+            "category": "Reasoning Ability",
+            "question": "Que. 3 Consider the following arrangement that has some missing letters: a b _ b b _ a b a _  b a _ b a b_a Which one set of letters when subsequently placed at the gaps in the above letter series shall complete it?",
+            "options": {
+                "A": "aabab",
+                "B": "bbabb",
+                "C": "abbab",
+                "D": "aaaab"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Reasoning_4",
+            "category": "Reasoning Ability",
+            "question": "Que. 4 Five teachers P, Q, R, S and T teach a group of students in a sequence between 9:00 am to 2:00 pm. Each teacher teaches for one hour. Q takes the first class. S teaches just after the T. R teaches before P and T. Who takes the second class from 10:00 am to 11:00 am?",
+            "options": {
+                "A": "P",
+                "B": "T",
+                "C": "S",
+                "D": "R"
+            },
+            "correct_answer": "D",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Reasoning_5",
+            "category": "Reasoning Ability",
+            "question": "Que. 5 Read the given statements and conclusions carefully. Assuming that the information given in the statements is true, even if it appears to be at variance with commonly known facts, decide which of the given conclusions logically follow(s) from the statements. Statements: 1. No apple is a banana. 2. No banana is a mango. Conclusions: I. Some apples are mangoes. II. Some mangoes can be bananas. III. No mango is an apple.",
+            "options": {
+                "A": "Only II follows",
+                "B": "Only I follows",
+                "C": "Both I and II follows",
+                "D": "Either I or III follow."
+            },
+            "correct_answer": "D",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Reasoning_6",
+            "category": "Reasoning Ability",
+            "question": "Que. 6 Read the given statements and conclusions carefully. Assuming that the information given in the statements is true, even if it appears to be at variance with commonly known facts, decide which of the given conclusions logically follow(s) from the statements. Statements: Some insects are animals. Some animals are frogs. All frogs are cats. Conclusions: I. Some cats are frogs. II. Some frogs are animals. III. Some animals are insects.",
+            "options": {
+                "A": "All conclusions follow",
+                "B": "Only conclusions I and III follow",
+                "C": "Only conclusions I and II follow",
+                "D": "Only conclusions II and III follow"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Reasoning_7",
+            "category": "Reasoning Ability",
+            "question": "Que. 7 You are given a question and two statements. Identify which of the statements is/are sufficient to answer the question. Question: When is Yuvi's wedding anniversary? Statements: 1: On 7th day of a month. 2. The month has 29 days only in a leap year.",
+            "options": {
+                "A": "Only statement 1 is sufficient but statement 2 is not sufficient.",
+                "B": "Both statement 1 and statement 2 are sufficient independently.",
+                "C": "Only statement 2 is sufficient but statement 1 is not sufficient.",
+                "D": "Both statement 1 and statement 2 are sufficient together."
+            },
+            "correct_answer": "D",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Reasoning_8",
+            "category": "Reasoning Ability",
+            "question": "Que. 8 In each of the 5 pairs of the letter clusters the letter in the second term is arranged / transformed form of the letters in the first term in a particular pattern. Which two pairs has the transformation in same way. A. MASON : AMNOS B. PARTY : APRYT C. FAULT : AFTLU D. LODGE : DOLEG E. CARGO : ACOGS",
+            "options": {
+                "A": "A and C",
+                "B": "C and D",
+                "C": "B and C",
+                "D": "D and E"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Reasoning_9",
+            "category": "Reasoning Ability",
+            "question": "Que. 9 In the given Venn diagram, the 'rectangle' represents 'persons in a cool bar', the 'circle' represents 'like to apple juice', the 'triangle' represents 'like to orange juice', and the 'pentagon' represents 'like to pineapple juice'. The numbers given in the diagram represent the number of persons in that particular category. How many persons of the cool bar neither like apple juice nor like orange juice?",
+            "options": {
+                "A": "52",
+                "B": "60",
+                "C": "64",
+                "D": "48"
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Reasoning_10",
+            "category": "Reasoning Ability",
+            "question": "Que. 10 \u2018A + B\u2019 means \u2018A is the husband of B\u2019. \u2018A % B\u2019 means \u2018A is the father of B\u2019. \u2018A $ B\u2019 means \u2018A is the mother of B\u2019. If \u2018Y + Z $ H % C $ D + S\u2019, then which of the following statements is INCORRECT?",
+            "options": {
+                "A": "C is the mother-in-law of S.",
+                "B": "Z is the maternal grandmother of C.",
+                "C": "H is the son of Y .",
+                "D": "H is the maternal grandfather of D."
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Reasoning_11",
+            "category": "Reasoning Ability",
+            "question": "Que. 11",
+            "options": {
+                "A": "",
+                "B": "",
+                "C": "",
+                "D": ""
+            },
+            "correct_answer": "C",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Reasoning_12",
+            "category": "Reasoning Ability",
+            "question": "Que. 12 How many Rs. Would Shalini need to spend to buy 11 pencils and 14 pens. 1. Shalini spent an amount of Rs. 201 to buy 15 pencils and 12 pens. 2. Shalini spent an amount of Rs. 121 to buy 7 pencils and 9 pens.",
+            "options": {
+                "A": "if the question can be answered by using one of the statements.",
+                "B": "if the question can be answered by using either statement alone.",
+                "C": "if the question can be answered by using both statements together.",
+                "D": "if the question cannot be answered even by using both statements together"
+            },
+            "correct_answer": "C",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Reasoning_13",
+            "category": "Reasoning Ability",
+            "question": "Que. 13 A = B means B is the father of A; A * B means A is the sister of B; A ? B means B is the mother of A; A $ B means A is the brother of B; A @ B means B is the son of A; and A \u00d7 B means A is the daughter of B. Then which of the following is not correct?",
+            "options": {
+                "A": "E $ F * G means G is the sister of E",
+                "B": "P \u00d7 R ? Q means P is the granddaughter of Q",
+                "C": "G * H @ I = J means J and H are the husband and wife",
+                "D": "X = Y ? Z means Z is the grandmother of X"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Reasoning_14",
+            "category": "Reasoning Ability",
+            "question": "Que. 14 Who is the youngest in the group? Statements: In a group of four people: I. Amit is older than Mahesh and younger than Tanuja. II. Rahim is younger than Mahesh.",
+            "options": {
+                "A": "Both the Statements, 1 and 2 are necessary.",
+                "B": "Either statement I alone or statement II alone is sufficient.",
+                "C": "Statement I alone is sufficient.",
+                "D": "Statement II alone is sufficient."
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Reasoning_15",
+            "category": "Reasoning Ability",
+            "question": "Que. 15 Read the information given below carefully and answer the given questions. For the recruitment process in an accounting organization, the following eligibility criteria are required for the candidates: i) Graduation in Commerce with minimum 60% marks. ii) At least 24 years and not more than 40 years of age as of 1-7-2016. iii) Candidates should have at least 2 years of work experience after education. iv) They should have secured 55% marks in the selection process. However, if the candidate fulfills the above criteria, except: (A) In case of (i), if the candidate is not a graduate in commerce but has a master's degree in finance with 60% marks, he/she should approach the Institute of Finance Management. (B) In case of (iii), if the candidate fulfills the eligibility criteria of at least 2 years work experience after education, not only that he has secured 75% marks in the selection process, he/she may be referred for Trainee Accountant. Based on the above information decide whether the following candidates are eligible in the selection process, and select the appropriate option. You do not have to think about anything other than the information given in the question. All the cases given to you are dated 1-7-2016. Anurag Kumar has 6 years of work experience after education. His birthday is 05-4-1992. He has scored 62% marks in the selection process. He has done his graduation in commerce and has scored 76% marks.",
+            "options": {
+                "A": "May be referred for Finance Manager",
+                "B": "Should be selected",
+                "C": "Should not be selected",
+                "D": "May be referred for Trainee Accountant"
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Reasoning_16",
+            "category": "Reasoning Ability",
+            "question": "Que. 16 If 24 N 16 A 4 = 12 and 14 A 18 N 12 = 20, then 48 N 16 A 15 = ?",
+            "options": {
+                "A": "47",
+                "B": "59",
+                "C": "43",
+                "D": "51"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Reasoning_17",
+            "category": "Reasoning Ability",
+            "question": "Que. 17 Rajpal is going to buy a laptop, following are the criteria of selection of the laptop given by his father. a. Must be for less than 38000 INR. b. Must have RAM equal to or more than 8 GB. c. Must have Intel processor of version i3 or above. d. If any laptop is satisfying all the above criteria except (a), It will need his dad's permission if it for less than 45K. e. If any laptop is satisfying all the above criteria except (b), It will need his mom's permission if it has storage of more than 512 GB. ATC58 is a new laptop in the market cost Rs. 36000 and having 16 GB RAM. It consist processor Pentium 8 and pre-installed windows 10. Which of the following option is CORRECT for the laptop given above.",
+            "options": {
+                "A": "He will buy the laptop.",
+                "B": "He needs mom's permission to buy it.",
+                "C": "He will not buy the laptop.",
+                "D": "He needs dad's permission to buy it."
+            },
+            "correct_answer": "C",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Reasoning_18",
+            "category": "Reasoning Ability",
+            "question": "Que. 18 Six girls F, G, H, J, K and L are sitting in a row facing north (not necessarily in the same order). L and K are sitting at extreme ends. Only G is between F and K. J is to the immediate left of H. G is to the immediate right of F. What is the position of F from the left end?",
+            "options": {
+                "A": "Fourth",
+                "B": "Second",
+                "C": "Third",
+                "D": "Fifth"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Reasoning_19",
+            "category": "Reasoning Ability",
+            "question": "Que. 19 In a class, there are five students A, B, C, D, E who sit on a bench. i) B and D are close friends and they always sit together but not at the end sides of the bench ii) E and C sit as far as possible iii) A is a friend of C and sits to the immediate right of C, and also to the immediate left of B The two end sides of the bench are occupied by",
+            "options": {
+                "A": "E, C",
+                "B": "B, D",
+                "C": "E, A",
+                "D": "C, D"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Reasoning_20",
+            "category": "Reasoning Ability",
+            "question": "Que. 20 In the following question, select the related letter/letters from the given alternatives. OPCM : NXKL :: ? :  QPJM.",
+            "options": {
+                "A": "NQKJ",
+                "B": ".NQLJ",
+                "C": "NQOJ",
+                "D": "NQJK"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Reasoning_21",
+            "category": "Reasoning Ability",
+            "question": "Que. 21 Identify the figure that completes the pattern.",
+            "options": {
+                "A": "",
+                "B": "",
+                "C": "",
+                "D": ""
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Reasoning_22",
+            "category": "Reasoning Ability",
+            "question": "Que. 22 Standing on a platform, Amit told Sunita that Aligarh was more than ten kilometres but less than fourteen kilometres from there. Sunita knew that it was more than twelve but less than fifteen kilometres from there. If both of them were correct, which of the following could be the distance of Aligarh from the platform?",
+            "options": {
+                "A": "11 km",
+                "B": "12 km",
+                "C": "13 km",
+                "D": "14 km"
+            },
+            "correct_answer": "C",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Reasoning_23",
+            "category": "Reasoning Ability",
+            "question": "Que. 23 In a psychology test of 6 students- P, Q, R, A, B, and C, the teacher found following information regarding the intelligence level of students. P is more intelligent than A. R is less intelligent than C. P is more intelligent than Y . Q is as much intelligent as B. If B and C are not the most intelligent student, then who will be the most intelligent student? A1. Q2. R3. P4.",
+            "options": {
+                "A": "Option missing",
+                "B": "Option missing",
+                "C": "Option missing",
+                "D": "Option missing"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Reasoning_24",
+            "category": "Reasoning Ability",
+            "question": "Que. 24 Five friends A, B, C, D, and E are placed in order of their heights. 1. B is taller than C and E. 2. C is taller than D and B is not the tallest. Regarding the given arrangement, which of the following is incorrect?",
+            "options": {
+                "A": "A is taller than D",
+                "B": "C is taller than D",
+                "C": "B is taller than D",
+                "D": "E is taller than C"
+            },
+            "correct_answer": "D",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Reasoning_25",
+            "category": "Reasoning Ability",
+            "question": "Que. 25 Direction: Answer the question based on the following information. Six people (A, B, C, D, E and F) read a novel but have only one copy of the book. Therefore, one person can read the novel at a time. A careful look at the method of reading his novel reveals the following: Two individuals have read the novel before E C gives the novel to the last person Before reading F, B and D have finished reading the novel There are three people between A and F who have read the book A does not get novel from D Who is the first person to read the novel?",
+            "options": {
+                "A": "D",
+                "B": "A",
+                "C": "B",
+                "D": "F"
+            },
+            "correct_answer": "C",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Reasoning_26",
+            "category": "Reasoning Ability",
+            "question": "Que. 26 Statement: The next meeting of the Board of Directors of the company will be held after one year. Assumptions: I. The company will remain in function after one year. II. The Board of Directors will be dissolved after one year. Which of the assumptions is implicit in the statement? Only assumption I is implicit1. Only assumption II is implicit2. Either I or II is implicit3. Both I and II are implicit4.",
+            "options": {
+                "A": "Option missing",
+                "B": "Option missing",
+                "C": "Option missing",
+                "D": "Option missing"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Reasoning_27",
+            "category": "Reasoning Ability",
+            "question": "Que. 27 Direction: Study the following information carefully and answer the questions given below. Following are the alternative eligibility criteria for short-listing Candidates for interview for entry-level job in a bank. i. The candidate should have passed SSC with at least 80% marks. ii. The candidate should have passed HSC with at least 75% marks. iii. The candidate should be an Arts/Science/Commerce graduate with at least 60% marks. iv. The candidate should be an engineer with at least 55% marks. v. The candidate should be a post-graduate in any discipline with at least 50% marks. Any candidate can be eligible under any one or more of the above criteria depending upon his/her academic pursuits. In each of the following questions details of one candidate are given. You have to find out under which of the above conditions the candidate is eligible and mark your answer accordingly based on the alternatives provided after each question. Satish Menon has secured 85% marks in graduation in science. He has also secured 65% and 75% marks in HSC and post-graduation respectively. He is presently pursuing his second post-graduation degree.",
+            "options": {
+                "A": "Eligible under (ii), (iv) and (v) only",
+                "B": "Eligible under (iii) and (v) only",
+                "C": "Eligible under (ii), (iii), (iv) only.",
+                "D": "Eligible under (iv) and (v) only"
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Reasoning_28",
+            "category": "Reasoning Ability",
+            "question": "Que. 28 Kartik Dare has secured 75% marks in SSC. He completed his B.Com with 65% marks after completing his Higher Secondary in Commerce. He has now enrolled in the Master\u2019s Degree of Commerce.",
+            "options": {
+                "A": "Eligible under (i) only",
+                "B": "Eligible under (ii) only",
+                "C": "Eligible under (iii) only",
+                "D": "Eligible under (i) and (iii) only"
+            },
+            "correct_answer": "C",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Reasoning_29",
+            "category": "Reasoning Ability",
+            "question": "Que. 29 MadanGiri is a mechanical engineer. He has secured 60% marks in his final degree examination. He has secured 65% marks in HSC. He has secured 55% marks in his post-graduation in mechanical engineering.",
+            "options": {
+                "A": "Eligible under (i), (iv),(v) only",
+                "B": "Eligible under (ii), (iv), (v) only",
+                "C": "Eligible under (iii), (iv), (v) only",
+                "D": "Eligible under (iv) and (v) only"
+            },
+            "correct_answer": "D",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Reasoning_30",
+            "category": "Reasoning Ability",
+            "question": "Que. 30 Nikhil Grover is a post graduate in Physics. He has secured 80% marks in SSC. He has also secured 70% marks both in HSC and graduation. Eligible under (i), (ii), (iii) only1. Eligible under (ii) and (iii) only2. Eligible under (iii) only3. Eligible under (i) and (iii) only4.",
+            "options": {
+                "A": "Option missing",
+                "B": "Option missing",
+                "C": "Option missing",
+                "D": "Option missing"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Verbal_1",
+            "category": "Verbal Ability",
+            "question": "Que. 1 Identify the segment in the sentence which contains the grammatical error from the given options. A lunar eclipse occurs when the sun, the Earth, and the moon align so that Earth\u2019s shadow falls above the lunar disk.",
+            "options": {
+                "A": "A lunar eclipse occurs",
+                "B": "align so that Earth\u2019s shadow",
+                "C": "falls above the lunar disk",
+                "D": "when the sun, the Earth, and the moon"
+            },
+            "correct_answer": "C",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Verbal_2",
+            "category": "Verbal Ability",
+            "question": "Que. 2 Direction: In the following question, some part of the sentence may have errors. Find out which part of the sentence has an error and select the appropriate option. If a sentence is free from error, select No error. (1)She was not wearing /(2)her spectacles, so she was not able/ (3)to identify the gangster who attacked her./(4)No error.",
+            "options": {
+                "A": "She was not wearing",
+                "B": "her spectacles, so she was not able",
+                "C": "to identify the gangster who attacked her.",
+                "D": "No error."
+            },
+            "correct_answer": "D",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Verbal_3",
+            "category": "Verbal Ability",
+            "question": "Que. 3 For the four-sentence (S1 to S4) paragraph below, sentences S1 and S4 are given. From the options P, Q and R, choose appropriate sentences for S2 and S3 respectively. S1: Why do birds sing? S2: _________ S3: _________ S4: The length and complexity of the song give information about the health of the bird. Options: P: Birds sing to warn other birds to stay off their territory. Q: You might assume that birds sing because they are happy. R: Birds also sing to find a healthy mate.",
+            "options": {
+                "A": "QR",
+                "B": "QP",
+                "C": "PQ",
+                "D": "PR"
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Verbal_4",
+            "category": "Verbal Ability",
+            "question": "Que. 4 Identify the segment in the sentence that contains a grammatical error. By the linking of the rivers / it is proposed to provide / a continuous supplies of water / to those parts of India / where there is a shortage. By the linking of the rivers1. it is proposed to provide2. where there is a shortage.3. a continuous supplies of water4.",
+            "options": {
+                "A": "Option missing",
+                "B": "Option missing",
+                "C": "Option missing",
+                "D": "Option missing"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Verbal_5",
+            "category": "Verbal Ability",
+            "question": "Que. 5 Which of the following sentences does NOT use informal language?",
+            "options": {
+                "A": "Did you locate our office quite easily?",
+                "B": "You will be working with different managers during your training",
+                "C": "We shall endeavour to inform you of the position in two weeks time",
+                "D": "Is there anything else you want to ask?"
+            },
+            "correct_answer": "C",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Verbal_6",
+            "category": "Verbal Ability",
+            "question": "Que. 6 Direction: In the following passage, some words/phrases have been deleted. Fill in the blanks with the help of the alternatives given. Select the most appropriate option for each blank. Once an elephant lived in a village. He got in friendship ________ (1) ________ a tailor. The elephant used to go to a river for a bath. After drinking water and taking a bath it would pass by a tailor\u2019s shop and the tailor would give it something to eat. One day the tailor was in an angry mood due to a quarrel with one of the customers. The elephant came as usual. Instead of giving anything to eat, he ________ (2) ________ the elephant\u2019s trunk with his needle. The elephant  ________ (3) ________ in pain. It made up its mind to teach the tailor a lesson. It went to the river, had its bath, and then filled ________ (4) ________ its trunk with muddy water. It stopped ________ (5) ________ the tailor\u2019s shop and emptied all the muddy water on the garments in the shop. The clothes were spoiled with mud. The tailor suffered a great loss. He felt sad for his misdeed. But it was too late. Select the most appropriate option to fill in blank no. 1.",
+            "options": {
+                "A": "of",
+                "B": "with",
+                "C": "into",
+                "D": "by"
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Verbal_7",
+            "category": "Verbal Ability",
+            "question": "Que. 7 Select the most appropriate option to fill in blank no. 2.",
+            "options": {
+                "A": "Split",
+                "B": "assuaged",
+                "C": "soothed",
+                "D": "pricked"
+            },
+            "correct_answer": "D",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Verbal_8",
+            "category": "Verbal Ability",
+            "question": "Que. 8 Select the most appropriate option to fill in blank no. 3.",
+            "options": {
+                "A": "Agonized",
+                "B": "ecstatic",
+                "C": "Bemoaning",
+                "D": "miserable"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Verbal_9",
+            "category": "Verbal Ability",
+            "question": "Que. 9 Select the most appropriate option to fill in blank no. 4.",
+            "options": {
+                "A": "upon",
+                "B": "upto",
+                "C": "with",
+                "D": "up"
+            },
+            "correct_answer": "D",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Verbal_10",
+            "category": "Verbal Ability",
+            "question": "Que. 10 Select the most appropriate option to fill in blank no. 5.",
+            "options": {
+                "A": "at",
+                "B": "on",
+                "C": "upon",
+                "D": "beyond"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Verbal_11",
+            "category": "Verbal Ability",
+            "question": "Que. 11 Aisha had been very successful in managing her team in Edinburgh and was asked by the company to lead a remote team for an important two-year project. Keen to demonstrate her leadership, Aisha got her team members together for a remote meeting. But right from that first meeting, she realized that this was going to be a different challenge. _________ Lucia kept asking about really specific details while Aisha was hoping to use the meeting to get to know the team members and identify priorities. Archie and Lucia kept accidentally talking at the same time, and when they didn't speak, there was an uncomfortable silence. Valentina hardly said a word. _________ Without these visual clues, Aisha had no idea whether people were interested, lost, confused or bored. A. No one had their cameras on, so there was none of the usual communication through body language and facial expressions. B. Compared to a face-to-face meeting the remote team is not preferred by all the managers. C. For a start, Archie was late for the meeting by about 15 minutes because of the 'technical problems'.",
+            "options": {
+                "A": "A, C",
+                "B": "B, A",
+                "C": "A, B",
+                "D": "C, A"
+            },
+            "correct_answer": "D",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Verbal_12",
+            "category": "Verbal Ability",
+            "question": "Que. 12 Select the most appropriate option to substitute the underlined segment in the given sentence. If there is no need to substitute it, select No Improvement. These flowers smell sweetly and are sold at high prices in the market.",
+            "options": {
+                "A": "These flowers will smell sweetly",
+                "B": "These flowers smelt sweetly",
+                "C": "No improvement",
+                "D": "These flowers smell sweet"
+            },
+            "correct_answer": "D",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Verbal_13",
+            "category": "Verbal Ability",
+            "question": "Que. 13 Direction: Rearrange the following part of the sentence in form of a meaningful sentence. The practice of taking performance-boosting drugs among athletes but checking it is not going to be easy (P) / is generally conceded to be unfair (Q) / of the detection technology (R) / for the user is generally one jump ahead (S).",
+            "options": {
+                "A": "RSPQ",
+                "B": "QPSR",
+                "C": "QPRS",
+                "D": "PQRS"
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Verbal_14",
+            "category": "Verbal Ability",
+            "question": "Que. 14 In these questions, the first and last sentences of the passage are numbered 1 and 6. The rest of the passage is split into four parts and named P, Q, R, and S. These four parts are not given in their proper order. Read the sentences carefully and find out the correct sequence of the sentences. S1: A gentleman who lived alone always had two plates placed on the table at dinner time. P : One day just as he sat down to dine, the cat rushed into the room. Q : One plate was for himself and the other was for his cat. R : she dropped a mouse into her own plate and another into her master plate. S : He used to give the cat a piece of meat from his own plate. S6: In this way, the cat showed her gratitude to her master.",
+            "options": {
+                "A": "QSPR",
+                "B": "PSRQ",
+                "C": "QRPS",
+                "D": "RPQS"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Verbal_15",
+            "category": "Verbal Ability",
+            "question": "Que. 15 Directions: Read the following passage and answer the questions that follow. Your answers to these questions should be based on the passage only. The best way to ensure peace is to make life comfortable for the world's majority. To a large extent, this has been achieved. Before the world wars, comfort was a privilege for a few affluent people in high society. Now, we have reached a minimum critical mass for the comfort level, such that it does not pay to fight anymore. In the present consumer-oriented culture, people want jobs, money, exposure, entertainment, products, and services. They are least concerned about conflict and confrontation. They are part of the new 'ME' generation that is concerned only about personal freedom and personal prosperity and is least bothered about wars and victories. The new awakening offers great hope for a free, fair, and flexible world full of enjoyable opportunities to travel, entertain and explore. What phrase does the author use to describe the present day culture?",
+            "options": {
+                "A": "Conflict-oriented",
+                "B": "Consumer-oriented",
+                "C": "People-oriented",
+                "D": "Freedom-oriented"
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Verbal_16",
+            "category": "Verbal Ability",
+            "question": "Que. 16 The 'ME' generation in the passage addresses The victorious1. The selfless2. The women of today3. The selfish4.",
+            "options": {
+                "A": "Option missing",
+                "B": "Option missing",
+                "C": "Option missing",
+                "D": "Option missing"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Verbal_17",
+            "category": "Verbal Ability",
+            "question": "Que. 17 In the given question, a sentence is given with a part of it missing and represented by a blank. Choose the phrase that can be placed in the given blank to make a meaningful and grammatically correct sentence. A short hour-long drive from the Doon Valley, Mussoorie is a charming little hill station __________ at an altitude of 1880 m in the Garhwal hills.",
+            "options": {
+                "A": "cocooned",
+                "B": "exposed",
+                "C": "denuded",
+                "D": "none of these"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Verbal_18",
+            "category": "Verbal Ability",
+            "question": "Que. 18 Identify the best way to complete the  given sentence. To evaluate reading comprehension at class III level, students may be asked to---------",
+            "options": {
+                "A": "Retell a story in their own words or to summarise the main idea or the moral the story",
+                "B": "take a short dictation of what they have read",
+                "C": "write a diary based on one of the characters",
+                "D": "use a set of identified vocabulary on their own"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Verbal_19",
+            "category": "Verbal Ability",
+            "question": "Que. 19 In the following question, out of the four alternatives, select the alternative which will improve the bracketed part of the sentence. In case no improvement is needed, select \"no improvement\". Students (are making) to work in the garden.",
+            "options": {
+                "A": "Is made",
+                "B": "Was made",
+                "C": "Are made",
+                "D": "No improvement"
+            },
+            "correct_answer": "C",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Verbal_20",
+            "category": "Verbal Ability",
+            "question": "Que. 20 Direction: In the following passage, some words have been deleted. Fill in the blanks with the help of the alternatives given. Select the most appropriate option for each number. India's history and culture are ______(1)______, spanning back to the beginning of human civilization. It begins with a mysterious ______(2)______ along the Indus River and in farming communities in the southern lands of India. The history of India is punctuated by the constant integration of migrating people with the diverse cultures that surround India. Available evidence suggests that the use of iron, copper, and other metals was widely prevalent in the Indian sub-continent at a fairly early period, which is indicative of the progress that this part of the world had made. By the end of the fourth millennium BC, India had emerged as a region of highly developed civilization. The History of India begins with the birth of the Indus Valley Civilization, more precisely known as the Harappan Civilization. It ______(3)______ around 2,500 BC, in the western part of South Asia, what today is Pakistan and Western India. Which of these words most appropriately fits the blank labelled (1)?",
+            "options": {
+                "A": "lethargic",
+                "B": "dynamic",
+                "C": "inactive",
+                "D": "lazy"
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Verbal_21",
+            "category": "Verbal Ability",
+            "question": "Que. 21 Which of these words most appropriately fits the blank labelled (2)?",
+            "options": {
+                "A": "fight",
+                "B": "inelegance",
+                "C": "family",
+                "D": "culture"
+            },
+            "correct_answer": "D",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Verbal_22",
+            "category": "Verbal Ability",
+            "question": "Que. 22 Which of these words most appropriately fits the blank labelled (3)?",
+            "options": {
+                "A": "halted",
+                "B": "twirled",
+                "C": "flourished",
+                "D": "withered"
+            },
+            "correct_answer": "C",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Verbal_23",
+            "category": "Verbal Ability",
+            "question": "Que. 23 Choose the right word to fill in the blank According to NCF 2005 (3.1.3), \"at the initial stages of learning any language, a___ may be used as one of the languages for learning activities to create an awareness of the world in the child\".",
+            "options": {
+                "A": "English",
+                "B": "Vernacular language",
+                "C": "Second language",
+                "D": "Hindi"
+            },
+            "correct_answer": "B",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        },
+        {
+            "id": "Verbal_24",
+            "category": "Verbal Ability",
+            "question": "Que. 24 The below question contains a paragraph of 6 sentences. The first and the sixth sentences are given in the beginning and end and numbered 1 and 6 respectively. The four sentences in the middle are jumbled and labelled P, Q, R and S. Identify the proper order of these four sentences and mark the correct option. 1. In 1857, fighting broke out all over the country. P. Everywhere the people rose in rebellion. Q. In March 1858, British troops attacked the fort at Jhansi. R. Thousands of people were killed on both sides. S. The British fought back. 6. the Rani's troops fought back bravely. P S R Q1. Q R P S2. Q S R P3. S Q R P4.",
+            "options": {
+                "A": "Option missing",
+                "B": "Option missing",
+                "C": "Option missing",
+                "D": "Option missing"
+            },
+            "correct_answer": "A",
+            "explanation": {
+                "detailed": "Official Solution"
+            },
+            "tags": [
+                "TCS NQT 2020",
+                "Shortcuts Practice"
+            ]
+        }
+    ]
+}

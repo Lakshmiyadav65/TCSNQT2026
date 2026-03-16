@@ -144,7 +144,9 @@ async function switchCategory(category) {
     } else if (category === 'input-guide') {
         renderInputGuide();
     } else if (category === 'input-practice') {
-        await loadCategoryData(category);
+        renderInputPractice(state.questions);
+    } else if (category === 'shortcuts-practice') {
+        renderShortcutsPracticeLanding();
     } else {
         await loadCategoryData(category);
     }
@@ -237,6 +239,13 @@ function renderQuestions(questionsToRender) {
         const backBtn = document.getElementById('back-to-papers');
         if (backBtn) {
             backBtn.onclick = () => renderPracticeLanding();
+        }
+    }
+    
+    if (state.currentCategory === 'shortcuts-practice') {
+        const backBtn = document.getElementById('back-to-papers');
+        if (backBtn) {
+            backBtn.onclick = () => renderShortcutsPracticeLanding();
         }
     }
 
@@ -557,6 +566,7 @@ function renderCategoryLanding(category) {
         'programming': '💻',
         'coding': '⚙️',
         'scenario': '🧩',
+        'shortcuts-practice': '⚡',
         'practice': '📝'
     };
 
@@ -567,6 +577,7 @@ function renderCategoryLanding(category) {
         'programming': 'Programming MCQs',
         'coding': 'Coding Challenges',
         'scenario': 'Scenario Based',
+        'shortcuts-practice': 'Shortcuts Practice',
         'practice': 'Mock Tests Aptitude'
     };
 
@@ -640,6 +651,41 @@ function startPaper(paperId) {
     const paperQuestions = state.questions.filter(q => (q.paper_id || 1) === paperId);
     state.timer = 0;
     startTimer();
+    renderQuestions(paperQuestions);
+}
+
+function renderShortcutsPracticeLanding() {
+    const papers = [...new Set(state.questions.map(q => q.category))];
+    contentArea.innerHTML = `
+        <div class="category-header">
+            <div class="header-main">
+                <h2>Shortcuts Practice</h2>
+                <p>Official Memory Based TCS NQT 2020 Questions</p>
+            </div>
+        </div>
+        <div class="papers-grid">
+            ${papers.map(p => {
+                const paperQuestions = state.questions.filter(q => q.category === p);
+                const approxTime = Math.ceil(paperQuestions.length * 1.5);
+                return `<div class="paper-card" onclick="startShortcutsPaper('${p}')">
+                    <h3>${p}</h3>
+                    <p>${paperQuestions.length} Questions</p>
+                    <div class="paper-meta">
+                        <span>⏱️ ~${approxTime} Mins</span>
+                        <span>🏆 2020 Memory Based</span>
+                    </div>
+                    <button class="start-paper-btn">Start Practice</button>
+                </div>`
+            }).join('')}
+        </div>
+    `;
+}
+
+function startShortcutsPaper(category) {
+    const paperQuestions = state.questions.filter(q => q.category === category);
+    state.timer = 0;
+    startTimer();
+    state.currentPage = 1;
     renderQuestions(paperQuestions);
 }
 
