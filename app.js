@@ -143,10 +143,6 @@ async function switchCategory(category) {
         renderDashboard();
     } else if (category === 'input-guide') {
         renderInputGuide();
-    } else if (category === 'input-practice') {
-        renderInputPractice(state.questions);
-    } else if (category === 'shortcuts-practice') {
-        renderShortcutsPracticeLanding();
     } else {
         await loadCategoryData(category);
     }
@@ -185,6 +181,8 @@ async function loadCategoryData(category) {
 
         if (category === 'practice' && state.questions.length > 0) {
             renderPracticeLanding();
+        } else if (category === 'shortcuts-practice' && state.questions.length > 0) {
+            renderShortcutsPracticeLanding();
         } else if (category === 'input-practice') {
             renderInputPractice(state.questions);
         } else {
@@ -220,8 +218,8 @@ function renderQuestions(questionsToRender) {
     contentArea.innerHTML = `
         <div class="category-header">
             <div class="header-main">
-                ${state.currentCategory === 'practice' ? '<button class="back-btn-minimal" id="back-to-papers"><span class="icon">←</span> Back to selection</button>' : ''}
-                <h2>${state.currentCategory === 'practice' ? 'Mock Test' : state.currentCategory.charAt(0).toUpperCase() + state.currentCategory.slice(1)} Preparation</h2>
+                ${state.currentCategory === 'practice' || state.currentCategory === 'shortcuts-practice' ? '<button class="back-btn-minimal" id="back-to-papers"><span class="icon">←</span> Back to selection</button>' : ''}
+                <h2>${state.currentCategory === 'practice' ? 'Mock Test' : state.currentCategory === 'shortcuts-practice' ? 'Shortcuts' : state.currentCategory.charAt(0).toUpperCase() + state.currentCategory.slice(1)} Preparation</h2>
                 <p>Curated Collection • ${questionsToRender.length} Questions</p>
             </div>
             <div class="header-actions">
