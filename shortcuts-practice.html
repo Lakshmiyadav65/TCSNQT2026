@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shortcuts Practice | Learn with Lakshmi</title>
+    <meta name="description" content="Practice 80 official memory-based TCS NQT 2020 questions in a real-exam format.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ─── Page‑specific overrides ─── */
+        body { font-family: 'Inter', sans-serif; background: #0d1117; color: #e2e8f0; min-height: 100vh; }
+
+        .sp-header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(13,17,23,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0.9rem 2rem; gap: 1.5rem;
+        }
+        .sp-logo { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1.1rem; color: #fff; text-decoration: none; }
+        .sp-logo span { color: #EAB308; }
+        .sp-timer-wrap { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: #A0AEC0; }
+        .sp-timer { font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 700; color: #EAB308; letter-spacing: 2px; }
+        .sp-back-link { font-size: 0.85rem; color: #A0AEC0; text-decoration: none; display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s; }
+        .sp-back-link:hover { color: #fff; }
+
+        /* ─── Layout ─── */
+        .sp-page { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+        /* ─── Landing ─── */
+        .sp-landing-hero {
+            text-align: center; padding: 3rem 1rem 2rem;
+        }
+        .sp-badge {
+            display: inline-block; background: rgba(234,179,8,0.15); color: #EAB308;
+            padding: 0.35rem 1rem; border-radius: 999px; font-size: 0.75rem;
+            font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 1.2rem;
+        }
+        .sp-landing-hero h1 { font-family: 'Outfit', sans-serif; font-size: 2.4rem; font-weight: 700; margin-bottom: 0.75rem; }
+        .sp-landing-hero p { color: #A0AEC0; font-size: 1rem; max-width: 520px; margin: 0 auto 2.5rem; }
+
+        .sp-cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; }
+        .sp-cat-card {
+            background: #161b27; border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 14px; padding: 1.8rem 1.5rem;
+            cursor: pointer; transition: transform 0.2s, border-color 0.2s;
+            display: flex; flex-direction: column; gap: 0.5rem;
+        }
+        .sp-cat-card:hover { transform: translateY(-4px); border-color: #EAB308; }
+        .sp-cat-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .sp-cat-card h3 { font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 600; }
+        .sp-cat-card .sp-meta { color: #A0AEC0; font-size: 0.85rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+        .sp-start-btn {
+            margin-top: 1rem; padding: 0.65rem 1.4rem;
+            background: linear-gradient(135deg, #EAB308, #F59E0B);
+            color: #0d1117; font-weight: 700; border: none; border-radius: 8px;
+            cursor: pointer; font-family: 'Inter', sans-serif; font-size: 0.9rem;
+            transition: opacity 0.2s;
+        }
+        .sp-start-btn:hover { opacity: 0.88; }
+
+        /* ─── Test view ─── */
+        .sp-test-header {
+            display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;
+            padding-bottom: 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .sp-back-btn {
+            background: rgba(255,255,255,0.07); border: none; color: #A0AEC0;
+            padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer;
+            font-size: 0.85rem; transition: background 0.2s;
+        }
+        .sp-back-btn:hover { background: rgba(255,255,255,0.12); color: #fff; }
+
+        .sp-progress-bar-wrap { background: rgba(255,255,255,0.07); border-radius: 4px; height: 6px; flex: 1; }
+        .sp-progress-bar-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, #EAB308, #F59E0B); transition: width 0.4s; }
+        .sp-q-count { font-size: 0.85rem; color: #A0AEC0; white-space: nowrap; }
+
+        /* ─── Question Card ─── */
+        .sp-question-card {
+            background: #161b27; border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 14px; padding: 2rem; margin-bottom: 1.2rem;
+        }
+        .sp-q-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; }
+        .sp-q-tag { font-size: 0.72rem; color: #A0AEC0; background: rgba(255,255,255,0.06); padding: 0.25rem 0.75rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .sp-q-num { font-size: 0.8rem; color: #718096; font-weight: 600; }
+        .sp-q-text { font-size: 1rem; line-height: 1.7; color: #e2e8f0; margin-bottom: 1.5rem; font-weight: 500; }
+
+        .sp-options { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+        @media (max-width: 580px) { .sp-options { grid-template-columns: 1fr; } }
+
+        .sp-option {
+            display: flex; align-items: center; gap: 0.8rem;
+            background: rgba(255,255,255,0.04); border: 1.5px solid rgba(255,255,255,0.09);
+            border-radius: 10px; padding: 0.8rem 1rem; cursor: pointer;
+            transition: border-color 0.15s, background 0.15s;
+        }
+        .sp-option:hover:not(.locked) { border-color: #EAB308; background: rgba(234,179,8,0.07); }
+        .sp-option.selected { border-color: #EAB308; background: rgba(234,179,8,0.1); }
+        .sp-option.correct  { border-color: #48BB78; background: rgba(72,187,120,0.12); }
+        .sp-option.wrong    { border-color: #FC8181; background: rgba(252,129,129,0.1); }
+        .sp-option.locked   { cursor: default; }
+
+        .sp-opt-marker {
+            width: 28px; height: 28px; border-radius: 50%;
+            background: rgba(255,255,255,0.07); display: flex; align-items: center; justify-content: center;
+            font-size: 0.75rem; font-weight: 700; flex-shrink: 0; color: #e2e8f0; transition: background 0.15s;
+        }
+        .sp-option.selected .sp-opt-marker { background: #EAB308; color: #0d1117; }
+        .sp-option.correct  .sp-opt-marker { background: #48BB78; color: #0d1117; }
+        .sp-option.wrong    .sp-opt-marker { background: #FC8181; color: #0d1117; }
+        .sp-opt-text { font-size: 0.9rem; color: #e2e8f0; }
+
+        /* ─── Solution Panel (post-submit) ─── */
+        .sp-solution {
+            display: none; margin-top: 1.2rem;
+            background: rgba(72,187,120,0.07); border: 1px solid rgba(72,187,120,0.2);
+            border-radius: 8px; padding: 1rem 1.2rem;
+        }
+        .sp-solution.show { display: block; }
+        .sp-sol-label { font-size: 0.75rem; color: #48BB78; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.4rem; }
+        .sp-sol-text { font-size: 0.9rem; color: #e2e8f0; }
+
+        /* ─── Submit / Result ─── */
+        .sp-submit-btn {
+            display: block; width: 100%; padding: 1.1rem;
+            background: linear-gradient(135deg, #EAB308, #F59E0B);
+            color: #0d1117; font-weight: 700; border: none; border-radius: 12px;
+            font-size: 1.05rem; cursor: pointer; font-family: 'Inter', sans-serif;
+            margin-top: 2rem; transition: opacity 0.2s; letter-spacing: 0.5px;
+        }
+        .sp-submit-btn:hover { opacity: 0.88; }
+
+        .sp-result-banner {
+            background: linear-gradient(135deg, #1A202C 0%, #2D3748 100%);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 14px;
+            padding: 2.5rem 2rem; text-align: center; margin-bottom: 2rem;
+            animation: spFadeIn 0.5s ease;
+        }
+        @keyframes spFadeIn { from { opacity:0; transform: translateY(-10px); } to { opacity:1; transform: none; } }
+        .sp-result-title { font-family: 'Outfit', sans-serif; font-size: 2rem; color: #EAB308; margin-bottom: 0.5rem; }
+        .sp-result-sub { color: #A0AEC0; margin-bottom: 2rem; }
+        .sp-scores { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+        .sp-score-box { background: rgba(0,0,0,0.25); padding: 1.5rem 2rem; border-radius: 10px; min-width: 110px; }
+        .sp-score-val { font-family: 'Outfit', sans-serif; font-size: 2.5rem; font-weight: 700; color: #fff; }
+        .sp-score-lab { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 0.4rem; }
+        .green { color: #48BB78; }
+        .red-text { color: #FC8181; }
+        .sp-return-btn {
+            padding: 0.8rem 2rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+            color: #e2e8f0; border-radius: 8px; font-size: 0.9rem; cursor: pointer; font-family: 'Inter', sans-serif;
+            transition: background 0.2s; margin: 0 0.4rem;
+        }
+        .sp-return-btn:hover { background: rgba(255,255,255,0.14); }
+        .sp-return-btn.primary { background: linear-gradient(135deg,#EAB308,#F59E0B); color: #0d1117; font-weight: 700; border: none; }
+    </style>
+</head>
+
+<body class="dark-theme">
+
+    <!-- ── Sticky Header ── -->
+    <header class="sp-header">
+        <a href="index.html" class="sp-back-link">← Back to App</a>
+        <a href="index.html" class="sp-logo">Learn with <span>Lakshmi</span></a>
+        <div class="sp-timer-wrap">
+            ⏱️ <span class="sp-timer" id="sp-timer">00:00:00</span>
+        </div>
+    </header>
+
+    <!-- ── Page Body ── -->
+    <div class="sp-page" id="sp-page">
+        <!-- JS renders here -->
+        <div style="text-align:center; padding: 4rem; color:#A0AEC0;">
+            <div class="spinner"></div>
+            <p style="margin-top:1rem;">Loading questions…</p>
+        </div>
+    </div>
+
+    <script>
+    // ── State ──────────────────────────────────────────────────────────────────
+    const st = {
+        allQuestions: [],
+        currentCategory: null,
+        currentQuestions: [],
+        answers: {},      // { qId: {answer, isCorrect} }
+        submitted: false,
+        timer: 0,
+        timerInterval: null
+    };
+
+    const page = document.getElementById('sp-page');
+    const timerEl = document.getElementById('sp-timer');
+
+    // ── Timer ──────────────────────────────────────────────────────────────────
+    function startTimer() {
+        if (st.timerInterval) return;
+        st.timerInterval = setInterval(() => {
+            st.timer++;
+            timerEl.textContent = fmt(st.timer);
+        }, 1000);
+    }
+    function stopTimer() {
+        clearInterval(st.timerInterval);
+        st.timerInterval = null;
+    }
+    function fmt(s) {
+        const h = String(Math.floor(s / 3600)).padStart(2,'0');
+        const m = String(Math.floor((s % 3600) / 60)).padStart(2,'0');
+        const sc = String(s % 60).padStart(2,'0');
+        return `${h}:${m}:${sc}`;
+    }
+
+    // ── Boot ───────────────────────────────────────────────────────────────────
+    async function boot() {
+        try {
+            const res = await fetch('./data/shortcuts-practice.json?v=' + Date.now());
+            const data = await res.json();
+            st.allQuestions = data.questions || [];
+            renderLanding();
+        } catch(e) {
+            page.innerHTML = `<div style="text-align:center;padding:4rem;color:#FC8181;">
+                <h2>⚠️ Failed to load questions</h2>
+                <p>Please check your connection and refresh.</p>
+            </div>`;
+        }
+    }
+
+    // ── Landing ────────────────────────────────────────────────────────────────
+    function renderLanding() {
+        st.currentCategory = null;
+        st.answers = {};
+        st.submitted = false;
+        stopTimer();
+        st.timer = 0;
+        timerEl.textContent = '00:00:00';
+
+        const cats = [...new Set(st.allQuestions.map(q => q.category))];
+        const iconMap = { 'Numerical Ability': '🔢', 'Reasoning Ability': '🧠', 'Verbal Ability': '🗣️' };
+
+        page.innerHTML = `
+            <div class="sp-landing-hero">
+                <div class="sp-badge">Memory Based · TCS NQT 2020</div>
+                <h1>Shortcuts Practice</h1>
+                <p>Official memory-based questions in a real exam format. Answer all, then submit to see your score!</p>
+            </div>
+            <div class="sp-cards-grid">
+                ${cats.map(cat => {
+                    const qs = st.allQuestions.filter(q => q.category === cat);
+                    const mins = Math.ceil(qs.length * 1.5);
+                    return `
+                        <div class="sp-cat-card" onclick="startTest('${cat}')">
+                            <div class="sp-cat-icon">${iconMap[cat] || '📚'}</div>
+                            <h3>${cat}</h3>
+                            <div class="sp-meta">
+                                <span>📋 ${qs.length} Questions</span>
+                                <span>⏱️ ~${mins} Mins</span>
+                            </div>
+                            <div class="sp-meta" style="margin-top:0.25rem;">
+                                <span style="color:#EAB308;">🏆 2020 Memory Based</span>
+                            </div>
+                            <button class="sp-start-btn">Start Practice →</button>
+                        </div>`;
+                }).join('')}
+            </div>`;
+    }
+
+    // ── Test View ──────────────────────────────────────────────────────────────
+    function startTest(category) {
+        st.currentCategory = category;
+        st.currentQuestions = st.allQuestions.filter(q => q.category === category);
+        st.answers = {};
+        st.submitted = false;
+        st.timer = 0;
+        timerEl.textContent = '00:00:00';
+        startTimer();
+        renderTest();
+    }
+
+    function renderTest() {
+        const qs = st.currentQuestions;
+        const total = qs.length;
+        const answered = Object.keys(st.answers).length;
+        const pct = total ? Math.round((answered / total) * 100) : 0;
+
+        page.innerHTML = `
+            <div class="sp-test-header">
+                <button class="sp-back-btn" onclick="renderLanding()">← Back</button>
+                <div class="sp-progress-bar-wrap">
+                    <div class="sp-progress-bar-fill" style="width:${pct}%"></div>
+                </div>
+                <div class="sp-q-count">${answered} / ${total} answered</div>
+            </div>
+            <div id="sp-questions-list"></div>
+            ${!st.submitted ? `<button class="sp-submit-btn" onclick="submitTest()">Submit Test & View Results</button>` : ''}
+        `;
+
+        const list = document.getElementById('sp-questions-list');
+        qs.forEach((q, idx) => {
+            list.appendChild(buildCard(q, idx));
+        });
+    }
+
+    function buildCard(q, idx) {
+        const saved = st.answers[q.id];
+        const card = document.createElement('div');
+        card.className = 'sp-question-card';
+        card.id = `sq-${q.id}`;
+
+        card.innerHTML = `
+            <div class="sp-q-meta">
+                <span class="sp-q-tag">${q.category}</span>
+                <span class="sp-q-num">Question ${idx + 1}</span>
+            </div>
+            <div class="sp-q-text">${q.question}</div>
+            <div class="sp-options" id="opts-${q.id}">
+                ${Object.entries(q.options).map(([k, v]) => {
+                    let cls = '';
+                    if (st.submitted && saved) {
+                        if (k === q.correct_answer) cls = 'correct locked';
+                        else if (k === saved.answer) cls = 'wrong locked';
+                        else cls = 'locked';
+                    } else if (saved && saved.answer === k && !st.submitted) {
+                        cls = 'selected';
+                    }
+                    return `<div class="sp-option ${cls}" data-qid="${q.id}" data-key="${k}" onclick="pickAnswer(this, '${q.id}', '${k}', '${q.correct_answer}')">
+                        <div class="sp-opt-marker">${k}</div>
+                        <div class="sp-opt-text">${v}</div>
+                    </div>`;
+                }).join('')}
+            </div>
+            <div class="sp-solution ${st.submitted && saved ? 'show' : ''}" id="sol-${q.id}">
+                <div class="sp-sol-label">✓ Correct Answer</div>
+                <div class="sp-sol-text">${q.options[q.correct_answer]} &nbsp;<strong style="color:#A0AEC0;">(Option ${q.correct_answer})</strong></div>
+            </div>`;
+        return card;
+    }
+
+    // ── Pick Answer ─────────────────────────────────────────────────────────────
+    function pickAnswer(el, qid, key, correct) {
+        if (st.submitted) return;
+        const opts = document.querySelectorAll(`#opts-${qid} .sp-option`);
+        opts.forEach(o => o.classList.remove('selected'));
+        el.classList.add('selected');
+
+        st.answers[qid] = { answer: key, isCorrect: key === correct };
+
+        // update progress bar
+        const qs = st.currentQuestions;
+        const total = qs.length;
+        const answered = Object.keys(st.answers).length;
+        const pct = Math.round((answered / total) * 100);
+        const bar = document.querySelector('.sp-progress-bar-fill');
+        if (bar) bar.style.width = pct + '%';
+        const cnt = document.querySelector('.sp-q-count');
+        if (cnt) cnt.textContent = `${answered} / ${total} answered`;
+    }
+
+    // ── Submit ─────────────────────────────────────────────────────────────────
+    function submitTest() {
+        st.submitted = true;
+        stopTimer();
+
+        const total = st.currentQuestions.length;
+        const attempted = Object.keys(st.answers).length;
+        const correct = Object.values(st.answers).filter(a => a.isCorrect).length;
+        const wrong = attempted - correct;
+        const pct = attempted ? Math.round((correct / attempted) * 100) : 0;
+
+        // Inject result banner at top
+        page.insertAdjacentHTML('afterbegin', `
+            <div class="sp-result-banner" id="sp-result-banner">
+                <div class="sp-result-title">Test Submitted! 🎉</div>
+                <div class="sp-result-sub">Here is your score for <strong>${st.currentCategory}</strong></div>
+                <div class="sp-scores">
+                    <div class="sp-score-box">
+                        <div class="sp-score-val green">${correct}</div>
+                        <div class="sp-score-lab green">Correct</div>
+                    </div>
+                    <div class="sp-score-box">
+                        <div class="sp-score-val red-text">${wrong}</div>
+                        <div class="sp-score-lab red-text">Wrong</div>
+                    </div>
+                    <div class="sp-score-box">
+                        <div class="sp-score-val">${total - attempted}</div>
+                        <div class="sp-score-lab" style="color:#A0AEC0;">Skipped</div>
+                    </div>
+                    <div class="sp-score-box">
+                        <div class="sp-score-val" style="color:#EAB308;">${pct}%</div>
+                        <div class="sp-score-lab" style="color:#EAB308;">Accuracy</div>
+                    </div>
+                </div>
+                <div>
+                    <button class="sp-return-btn" onclick="renderLanding()">← Back to Categories</button>
+                    <button class="sp-return-btn primary" onclick="window.scrollTo({top: document.getElementById('sp-result-banner').offsetHeight + 80, behavior:'smooth'})">Review Answers ↓</button>
+                </div>
+            </div>
+        `);
+
+        // Re-render questions to show correct/wrong
+        renderTest();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    boot();
+    </script>
+</body>
+</html>
