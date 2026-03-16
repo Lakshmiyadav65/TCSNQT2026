@@ -162,10 +162,65 @@
         }
         .sp-return-btn:hover { background: rgba(255,255,255,0.14); }
         .sp-return-btn.primary { background: linear-gradient(135deg,#EAB308,#F59E0B); color: #0d1117; font-weight: 700; border: none; }
+        /* ─── Mobile Popup ─── */
+        .sp-mobile-overlay {
+            display: none; position: fixed; inset: 0; z-index: 9999;
+            background: rgba(0,0,0,0.85); backdrop-filter: blur(6px);
+            align-items: center; justify-content: center; padding: 1.5rem;
+        }
+        .sp-mobile-overlay.show { display: flex; animation: spFadeIn 0.3s ease; }
+        .sp-mobile-popup {
+            background: linear-gradient(135deg, #1A202C, #2D3748);
+            border: 1px solid rgba(255,255,255,0.12); border-radius: 20px;
+            padding: 2.5rem 2rem; text-align: center; max-width: 380px; width: 100%;
+        }
+        .sp-mobile-popup .popup-emoji { font-size: 3rem; margin-bottom: 1rem; }
+        .sp-mobile-popup h2 { font-family: 'Outfit', sans-serif; font-size: 1.5rem; margin-bottom: 0.75rem; color: #fff; }
+        .sp-mobile-popup p { color: #A0AEC0; font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.5rem; }
+        .sp-mobile-popup .sp-popup-btns { display: flex; flex-direction: column; gap: 0.75rem; }
+        .sp-popup-dismiss { padding: 0.75rem; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); color: #e2e8f0; border-radius: 10px; font-size: 0.9rem; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.2s; }
+        .sp-popup-dismiss:hover { background: rgba(255,255,255,0.12); }
+        .sp-popup-continue { padding: 0.75rem; background: linear-gradient(135deg, #EAB308, #F59E0B); color: #0d1117; border: none; border-radius: 10px; font-size: 0.9rem; font-weight: 700; cursor: pointer; font-family: 'Inter', sans-serif; transition: opacity 0.2s; }
+        .sp-popup-continue:hover { opacity: 0.88; }
+
+        /* ─── Mobile Responsive ─── */
+        @media (max-width: 640px) {
+            .sp-header { padding: 0.8rem 1rem; }
+            .sp-back-link { font-size: 0.75rem; }
+            .sp-logo { font-size: 0.95rem; }
+            .sp-timer { font-size: 1.1rem; }
+            .sp-page { padding: 1.2rem 1rem 3rem; }
+            .sp-landing-hero h1 { font-size: 1.75rem; }
+            .sp-landing-hero { padding: 1.5rem 0.5rem 1.2rem; }
+            .sp-cards-grid { grid-template-columns: 1fr; }
+            .sp-question-card { padding: 1.2rem; border-radius: 10px; }
+            .sp-q-text { font-size: 0.9rem; }
+            .sp-options { grid-template-columns: 1fr; }
+            .sp-result-banner { padding: 1.5rem 1rem; }
+            .sp-result-title { font-size: 1.5rem; }
+            .sp-score-box { padding: 1rem 1.2rem; min-width: 80px; }
+            .sp-score-val { font-size: 2rem; }
+            .sp-return-btn { padding: 0.7rem 1rem; font-size: 0.82rem; margin: 0 0.2rem; }
+            .sp-test-header { gap: 0.6rem; }
+            .sp-q-count { font-size: 0.75rem; }
+        }
     </style>
 </head>
 
 <body class="dark-theme">
+
+    <!-- ── Mobile Warning Popup ── -->
+    <div class="sp-mobile-overlay" id="sp-mobile-overlay">
+        <div class="sp-mobile-popup">
+            <div class="popup-emoji">💻</div>
+            <h2>Better on Desktop</h2>
+            <p>This practice test is best experienced on a <strong style="color:#fff;">laptop or desktop</strong> for a proper exam-like environment. Mobile view may be cramped.</p>
+            <div class="sp-popup-btns">
+                <button class="sp-popup-continue" onclick="dismissMobilePopup()">Continue Anyway</button>
+                <button class="sp-popup-dismiss" onclick="dismissMobilePopup()">Got it, thanks!</button>
+            </div>
+        </div>
+    </div>
 
     <!-- ── Sticky Header ── -->
     <header class="sp-header">
@@ -411,6 +466,20 @@
     }
 
     boot();
+    
+    // ── Mobile Detection ─────────────────────────────────────────────────────
+    function checkMobile() {
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 1024;
+        const dismissed = sessionStorage.getItem('sp_mobile_dismissed');
+        if (isMobile && !dismissed) {
+            document.getElementById('sp-mobile-overlay').classList.add('show');
+        }
+    }
+    function dismissMobilePopup() {
+        sessionStorage.setItem('sp_mobile_dismissed', '1');
+        document.getElementById('sp-mobile-overlay').classList.remove('show');
+    }
+    checkMobile();
     </script>
 </body>
 </html>
