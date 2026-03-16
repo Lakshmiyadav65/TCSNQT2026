@@ -175,7 +175,11 @@ async function loadCategoryData(category) {
             }
         }
 
-        state.questions = shuffleArray([...(state.loadedData[category] || [])]);
+        if (category === 'shortcuts-practice') {
+            state.questions = [...(state.loadedData[category] || [])];
+        } else {
+            state.questions = shuffleArray([...(state.loadedData[category] || [])]);
+        }
 
         console.log(`Loaded ${state.questions.length} questions for ${category}`);
 
