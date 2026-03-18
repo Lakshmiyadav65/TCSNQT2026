@@ -10,9 +10,18 @@
             "sample_input": "3",
             "sample_output": "NUMBER OF CANDIES SOLD: 3\nNUMBER OF CANDIES AVAILABLE: 7",
             "test_cases": [
-                { "input": "3", "output": "NUMBER OF CANDIES SOLD: 3\nNUMBER OF CANDIES AVAILABLE: 7" },
-                { "input": "0", "output": "INVALID INPUT\nNUMBER OF CANDIES AVAILABLE: 10" },
-                { "input": "11", "output": "INVALID INPUT\nNUMBER OF CANDIES AVAILABLE: 10" }
+                {
+                    "input": "3",
+                    "output": "NUMBER OF CANDIES SOLD: 3\nNUMBER OF CANDIES AVAILABLE: 7"
+                },
+                {
+                    "input": "0",
+                    "output": "INVALID INPUT\nNUMBER OF CANDIES AVAILABLE: 10"
+                },
+                {
+                    "input": "11",
+                    "output": "INVALID INPUT\nNUMBER OF CANDIES AVAILABLE: 10"
+                }
             ],
             "solutions": {
                 "python": "n = int(input())\nN = 10\nK = 5\nif n >= 1 and n <= N:\n    print('NUMBER OF CANDIES SOLD:', n)\n    remaining = N - n\n    print('NUMBER OF CANDIES AVAILABLE:', remaining)\nelse:\n    print('INVALID INPUT')\n    print('NUMBER OF CANDIES AVAILABLE:', N)",
@@ -30,9 +39,18 @@
             "sample_input": "2000",
             "sample_output": "Estimated Time: 25 minutes",
             "test_cases": [
-                { "input": "2000", "output": "Estimated Time: 25 minutes" },
-                { "input": "7001", "output": "OVERLOAD" },
-                { "input": "-5", "output": "INVALID INPUT" }
+                {
+                    "input": "2000",
+                    "output": "Estimated Time: 25 minutes"
+                },
+                {
+                    "input": "7001",
+                    "output": "OVERLOAD"
+                },
+                {
+                    "input": "-5",
+                    "output": "INVALID INPUT"
+                }
             ],
             "solutions": {
                 "python": "w = int(input())\nif w == 0:\n    print('Estimated Time: 0 minutes')\nelif w > 0 and w <= 2000:\n    print('Estimated Time: 25 minutes')\nelif w > 2000 and w <= 4000:\n    print('Estimated Time: 35 minutes')\nelif w > 4000 and w <= 7000:\n    print('Estimated Time: 45 minutes')\nelif w > 7000:\n    print('OVERLOAD')\nelse:\n    print('INVALID INPUT')",
@@ -50,7 +68,10 @@
             "sample_input": "95\n92\n95\n92\n90\n92\n90\n92\n90",
             "sample_output": "Trainee Number: 1\nTrainee Number: 3",
             "test_cases": [
-                { "input": "95\n92\n95\n92\n90\n92\n90\n92\n90", "output": "Trainee Number: 1\nTrainee Number: 3" }
+                {
+                    "input": "95\n92\n95\n92\n90\n92\n90\n92\n90",
+                    "output": "Trainee Number: 1\nTrainee Number: 3"
+                }
             ],
             "solutions": {
                 "python": "trainees = [[], [], []]\nfor i in range(9):\n    val = int(input())\n    if val < 1 or val > 100:\n        val = 0 # Invalid\n    trainees[i%3].append(val)\n\navgs = []\nfor t in trainees:\n    avgs.append(sum(t)/3)\n\nmax_avg = max(avgs)\nif max_avg < 70:\n    print('All trainees are unfit')\nelse:\n    for i in range(3):\n        if avgs[i] == max_avg:\n            print('Trainee Number:', i+1)",
@@ -68,7 +89,10 @@
             "sample_input": "20 2 3 12 12",
             "sample_output": "Number of Monkeys left on the tree: 10",
             "test_cases": [
-                { "input": "20 2 3 12 12", "output": "Number of Monkeys left on the tree: 10" }
+                {
+                    "input": "20 2 3 12 12",
+                    "output": "Number of Monkeys left on the tree: 10"
+                }
             ],
             "solutions": {
                 "python": "n, k, j, m, p = map(int, input().split())\nif n<0 or k<=0 or j<=0 or m<0 or p<0:\n    print('INVALID INPUT')\nelse:\n    ate_bananas = m // k\n    ate_peanuts = p // j\n    total_ate = ate_bananas + ate_peanuts\n    remaining = n - total_ate\n    print('Number of Monkeys left on the tree:', int(remaining))",
@@ -86,7 +110,10 @@
             "sample_input": "3 4 -7 1 3 3 1 -4",
             "sample_output": "[3, 4, -7]",
             "test_cases": [
-                { "input": "3 4 -7 1 3 3 1 -4", "output": "[3, 4, -7]" }
+                {
+                    "input": "3 4 -7 1 3 3 1 -4",
+                    "output": "[3, 4, -7]"
+                }
             ],
             "solutions": {
                 "python": "arr = list(map(int, input().split()))\nfound = False\nfor i in range(len(arr)):\n    current_sum = 0\n    for j in range(i, len(arr)):\n        current_sum += arr[j]\n        if current_sum == 0:\n            print(arr[i:j+1])\n            found = True\n            break\n    if found: break",
@@ -104,7 +131,10 @@
             "sample_input": "5\n10 20 30 40 50\n2",
             "sample_output": "40 50 10 20 30",
             "test_cases": [
-                { "input": "5\n10 20 30 40 50\n2", "output": "40 50 10 20 30" }
+                {
+                    "input": "5\n10 20 30 40 50\n2",
+                    "output": "40 50 10 20 30"
+                }
             ],
             "solutions": {
                 "python": "n = int(input())\narr = list(map(int, input().split()))\nk = int(input())\nk %= n\nres = arr[-k:] + arr[:-k]\nprint(*(res))",
@@ -122,7 +152,10 @@
             "sample_input": "11\n15",
             "sample_output": "4",
             "test_cases": [
-                { "input": "11\n15", "output": "4" }
+                {
+                    "input": "11\n15",
+                    "output": "4"
+                }
             ],
             "solutions": {
                 "python": "n1 = int(input())\nn2 = int(input())\ncount = 0\nfor i in range(n1, n2 + 1):\n    s = str(i)\n    if len(set(s)) == len(s):\n        count += 1\nprint(count)",
@@ -140,7 +173,10 @@
             "sample_input": "9\n10 12 5 40 30 7 5 9 10",
             "sample_output": "12 5 7 5 9 10 40 30 10",
             "test_cases": [
-                { "input": "9\n10 12 5 40 30 7 5 9 10", "output": "12 5 7 5 9 10 40 30 10" }
+                {
+                    "input": "9\n10 12 5 40 30 7 5 9 10",
+                    "output": "12 5 7 5 9 10 40 30 10"
+                }
             ],
             "solutions": {
                 "python": "n = int(input())\narr = list(map(int, input().split()))\nothers = [x for x in arr if x % 10 != 0]\ntens = [x for x in arr if x % 10 == 0]\nprint(*(others + tens))",
@@ -158,7 +194,10 @@
             "sample_input": "ThisIsAnAutomationEra",
             "sample_output": "this is an automation era",
             "test_cases": [
-                { "input": "ThisIsAnAutomationEra", "output": "this is an automation era" }
+                {
+                    "input": "ThisIsAnAutomationEra",
+                    "output": "this is an automation era"
+                }
             ],
             "solutions": {
                 "python": "s = input()\nres = \"\"\nfor char in s:\n    if char.isupper():\n        res += \" \" + char.lower()\n    else:\n        res += char\nprint(res.strip())",
@@ -176,7 +215,10 @@
             "sample_input": "3",
             "sample_output": "4",
             "test_cases": [
-                { "input": "3", "output": "4" }
+                {
+                    "input": "3",
+                    "output": "4"
+                }
             ],
             "solutions": {
                 "python": "n = int(input())\ndp = [0] * (n + 1)\ndp[0] = 1\nif n >= 1: dp[1] = 1\nfor i in range(2, n + 1):\n    dp[i] = dp[i-1] + (i-1) * dp[i-2]\nprint(dp[n])",
@@ -194,7 +236,10 @@
             "sample_input": "[1, 0, 0, 1, 0, 1, 1]",
             "sample_output": "6",
             "test_cases": [
-                { "input": "[1, 0, 0, 1, 0, 1, 1]", "output": "6" }
+                {
+                    "input": "[1, 0, 0, 1, 0, 1, 1]",
+                    "output": "6"
+                }
             ],
             "solutions": {
                 "python": "import ast\narr = ast.literal_eval(input())\nd = {0: -1}\ncur = 0\nres = 0\nfor i, x in enumerate(arr):\n    cur += 1 if x == 1 else -1\n    if cur in d:\n        res = max(res, i - d[cur])\n    else:\n        d[cur] = i\nprint(res)",
@@ -212,7 +257,10 @@
             "sample_input": "7 1 5 3 6 4",
             "sample_output": "5",
             "test_cases": [
-                { "input": "7 1 5 3 6 4", "output": "5" }
+                {
+                    "input": "7 1 5 3 6 4",
+                    "output": "5"
+                }
             ],
             "solutions": {
                 "python": "prices = list(map(int, input().split()))\nmin_p = float('inf')\nmax_prof = 0\nfor p in prices:\n    min_p = min(min_p, p)\n    max_prof = max(max_prof, p - min_p)\nprint(max_prof)",
@@ -230,7 +278,10 @@
             "sample_input": "1 3 5\n2 4 6",
             "sample_output": "1 2 3 4 5 6",
             "test_cases": [
-                { "input": "1 3 5\n2 4 6", "output": "1 2 3 4 5 6" }
+                {
+                    "input": "1 3 5\n2 4 6",
+                    "output": "1 2 3 4 5 6"
+                }
             ],
             "solutions": {
                 "python": "arr1 = list(map(int, input().split()))\narr2 = list(map(int, input().split()))\ni = j = 0\nres = []\nwhile i < len(arr1) and j < len(arr2):\n    if arr1[i] < arr2[j]:\n        res.append(arr1[i])\n        i += 1\n    else:\n        res.append(arr2[j])\n        j += 1\nres.extend(arr1[i:])\nres.extend(arr2[j:])\nprint(*res)",
@@ -248,8 +299,14 @@
             "sample_input": "((()))",
             "sample_output": "True",
             "test_cases": [
-                { "input": "((()))", "output": "True" },
-                { "input": "(()", "output": "False" }
+                {
+                    "input": "((()))",
+                    "output": "True"
+                },
+                {
+                    "input": "(()",
+                    "output": "False"
+                }
             ],
             "solutions": {
                 "python": "s = input()\nc = 0\nfor b in s:\n    if b == '(':\n        c += 1\n    elif b == ')':\n        c -= 1\n    if c < 0: break\nprint(c == 0)",
@@ -267,7 +324,10 @@
             "sample_input": "5\n1 2 4 5",
             "sample_output": "3",
             "test_cases": [
-                { "input": "5\n1 2 4 5", "output": "3" }
+                {
+                    "input": "5\n1 2 4 5",
+                    "output": "3"
+                }
             ],
             "solutions": {
                 "python": "n = int(input())\narr = list(map(int, input().split()))\ntotal = n * (n + 1) // 2\nprint(total - sum(arr))",
@@ -285,7 +345,10 @@
             "sample_input": "loveleetcode",
             "sample_output": "2",
             "test_cases": [
-                { "input": "loveleetcode", "output": "2" }
+                {
+                    "input": "loveleetcode",
+                    "output": "2"
+                }
             ],
             "solutions": {
                 "python": "s = input()\nd = {}\nfor char in s:\n    d[char] = d.get(char, 0) + 1\nfor i, char in enumerate(s):\n    if d[char] == 1:\n        print(i)\n        break\nelse: print(-1)",
@@ -303,7 +366,10 @@
             "sample_input": "hello",
             "sample_output": "holle",
             "test_cases": [
-                { "input": "hello", "output": "holle" }
+                {
+                    "input": "hello",
+                    "output": "holle"
+                }
             ],
             "solutions": {
                 "python": "s = list(input())\nvowels = \"aeiouAEIOU\"\ni, j = 0, len(s) - 1\nwhile i < j:\n    if s[i] not in vowels: i += 1\n    elif s[j] not in vowels: j -= 1\n    else:\n        s[i], s[j] = s[j], s[i]\n        i += 1; j -= 1\nprint(''.join(s))",
@@ -321,7 +387,10 @@
             "sample_input": "cbaebabacd\nabc",
             "sample_output": "0 6",
             "test_cases": [
-                { "input": "cbaebabacd\nabc", "output": "0 6" }
+                {
+                    "input": "cbaebabacd\nabc",
+                    "output": "0 6"
+                }
             ],
             "solutions": {
                 "python": "s, p = input(), input()\nfrom collections import Counter\np_count = Counter(p)\ns_count = Counter(s[:len(p)])\nres = []\nif s_count == p_count: res.append(0)\nfor i in range(1, len(s) - len(p) + 1):\n    s_count[s[i-1]] -= 1\n    if s_count[s[i-1]] == 0: del s_count[s[i-1]]\n    s_count[s[i+len(p)-1]] += 1\n    if s_count == p_count: res.append(i)\nprint(*res)",
@@ -339,7 +408,10 @@
             "sample_input": "54 24",
             "sample_output": "6",
             "test_cases": [
-                { "input": "54 24", "output": "6" }
+                {
+                    "input": "54 24",
+                    "output": "6"
+                }
             ],
             "solutions": {
                 "python": "def gcd(a, b):\n    while b: a, b = b, a % b\n    return a\na, b = map(int, input().split())\nprint(gcd(a, b))",
@@ -356,7 +428,10 @@
             "sample_input": "A man, a plan, a canal: Panama",
             "sample_output": "True",
             "test_cases": [
-                { "input": "A man, a plan, a canal: Panama", "output": "True" }
+                {
+                    "input": "A man, a plan, a canal: Panama",
+                    "output": "True"
+                }
             ],
             "solutions": {
                 "python": "s = ''.join(c.lower() for c in input() if c.isalnum())\nprint(s == s[::-1])",

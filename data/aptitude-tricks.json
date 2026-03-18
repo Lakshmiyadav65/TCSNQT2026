@@ -1,0 +1,487 @@
+[
+    {
+        "id": "1",
+        "title": "1 - Ratio and Proportion",
+        "content": "Splitting a number in the given ratio. \n1. Divide 720 in the ratio 2: 3.\nSolution 1: \nTotal parts = 2 + 3 = 5 \nFirst number = (2/5) 720 = 288 \nSecond number = (3/5) 720 = 432 \nSolution 2: \n2x + 3x = 720; \n5x = 720; \nx = 144 \n2x = 2(144) = 288; \n3x = 3(144) = 432 \n2. Divide 720 in the ratio 2: 3: 4.\nSolution 1: \nTotal parts = 2 + 3 + 4 = 9 \nFirst number = (2/9) 720 = 160; Second number = (3/9) 720 = 240; Third \nnumber = (4/9)720 = 320 \nSolution 2: \n2x + 3x + 4x= 720; \n9x = 720; \nx = 80 \n2x = 2(80) = 160; 3x = 3(80) = 240; 4x = 4(80) = 320"
+    },
+    {
+        "id": "2",
+        "title": "2 \u2013 Ratio and Proportion",
+        "content": "Direct Proportion. \nWhen two parameters are in direct proportion if one parameter \nincreases the other one will also increase and if one parameter decreases \nthe other one will also decrease. \nIf the parameters A and B are in direct proportion they will satisfy the \nbelow equation. \nQuestion: \nPrice of diamond is directly proportional to its weight. If 2 grams of diamond \ncosts $ 45,000 then what is the price of a diamond that weighs 6 grams? \nAnswer: \nWeight of diamond in first case, \nA1\n= 2 \nWeight of diamond in second case, \nA2\n= 6 \nPrice of diamond in first case, \nB1\n= 45000 \nPrice of diamond in second case, \nAccording to the equation, \nB2\n=? \n2/6 = 45000/B2\nB2 = 45000 x (6/2) \nB2 = 135,000"
+    },
+    {
+        "id": "3",
+        "title": "3 \u2013 Ratio and Proportion",
+        "content": "Inverse Proportion. \n \nWhen two parameters are in inverse proportion if one parameter \nincreases the other one will decrease and if one parameter decreases the \nother one will decrease. \nIf the parameters A and B are in inverse proportion they will \nsatisfy the below equation. \n \nQuestion: \nMileage and Engine capacity are inversely proportional. A bike with 100cc \nengine capacity gives a mileage of 80 km. What will be the mileage given by a \nbike with 150cc engine capacity? \nAnswer: \n \nEngine capacity of first bike, \nA1 \n= 100 \nEngine capacity of second bike, \nA2 \n= 150 \nMileage of first bike, \nB1 \n= 80 \nMileage of second bike, \nAccording to the equation, \nB2 \n=? \n100/150 = B2/80 \nB2 = 100(80)/150 \nB2 = 53.33 km"
+    },
+    {
+        "id": "4",
+        "title": "4 \u2013 Ratio and Proportion",
+        "content": "Finding A: C from A: B and B: C \n \nQuestion: \nThe ratio between salary of A and B is 4: 5. The ratio between salary of B and \nC is 3: 4. Find the salary of C if A is earning $3600. \nAnswer: \n \nA: C = 12: 20 = 3: 5 \nA/C = 3/5 \n3600/C = 3/5; \nC = 6000"
+    },
+    {
+        "id": "5",
+        "title": "5 \u2013 Ratio and Proportion",
+        "content": "Finding A: D from A: B, B: C and C: D \n \nQuestion: \nRatio between salary of A and B is 3: 5, B and C is 4: 5, C and D is 6: 7. If the \nsalary of A is $ 7200, find the salary of D. \n \nAnswer: \nA: D = 72: 175 \n7200/D = 72/175 \nD = 17500"
+    },
+    {
+        "id": "6",
+        "title": "6 \u2013 Ratio and Proportion",
+        "content": "Usage of Common Factor x \n \nQuestion: \nTwo numbers are in the ratio 4: 5. Sum of their squares is 1025. Find the \nnumbers. \nAnswer: \nSubstitute the common factor x to the ratio 4: 5 \nAssume the actual numbers as 4x and 5x \nGiven, \n(4x) 2 + (5x) 2 = 1025 \n16x2  + 25x2 = 1025; \n \n41x2 = 1025 \nx2  = 25; \nx = 5 \nSubstitute x = 5 in 4x and 5x to find the numbers \nThe numbers are, 20 and 25. \nQuestion: \nTwo numbers are in the ratio 3: 2. Cube of their difference is 125. Find the \nnumbers. \nAnswer: \n(3x \u2013 2x) 3 = 125 \nx3 = 125 \nx = 5 \nThe numbers are 15 and 10."
+    },
+    {
+        "id": "7",
+        "title": "7 \u2013 Ratio and Proportion",
+        "content": "Finding number of Coins in a bag. \nQuestion: \nA bag contains 5 paise, 10 paise and 20 paise coins in the ratio 2:4:5. Total \namount in the bag is Rs. 4.50. How many coins are there in 20 paise? \nAnswer: \nT = (2 x 5) + (4 x 10) + (5 x 20) \n= 150 paise \n= Rs. 1.50 \nX = 4.50/1.50 \nX = 3 \nQuantity of 20 paise coins \n= 5 x 3 \n= 15 coins."
+    },
+    {
+        "id": "8",
+        "title": "8 \u2013 Ratio and Proportion",
+        "content": "Adding and removing quantities. \n \nQuestion: \n \nContainer 1 has milk and water in the ratio 2 : 5. After adding 4 liters of pure \nwater from container 2, the ratio between milk and water in container 1 \nbecame 1 : 3. Find the quantity of milk in the container. \n \nAnswer: \nLet us assume the actual quantity of milk and water as 2x and 5x. \nNew quantity of water = 5x + 4 \n2x/(5x + 4) = 1/3 \n6x = 5x + 4 \nx = 4 \nQuantity of milk = 2x \n= 2(4) \n= 8 liters."
+    },
+    {
+        "id": "9",
+        "title": "9 \u2013 Partnership",
+        "content": "Finding ratio of the profit share. \n \n \nIncome (or) Profit share from a business is determined using two parameters \u2013 \nInvestment and Duration. \nProfit share is directly proportional to the duration of investment and the \namount invested. \nP1 : P2 : P3 = Ratio between profits \nT1, T2, T3 = Respective time of investment \nI1, I2, I3 = Respective investment \nQuestion: \nA started a business investing Rs. 5000. After 1 year B joined him investing \nRs. 6000. After another year C joined them investing Rs. 9000. What is the \nratio between their profit shares at the end of 3 years? \nAnswer: \nP1 : P2 : P3 = 5000 x 3 : 6000 x 2 : 9000 x 1 \nP1 : P2 : P3 = 15000 : 12000 x 9000 \nP1 : P2 : P3 = 5 : 4 : 3"
+    },
+    {
+        "id": "10",
+        "title": "10 \u2013 Mixtures and Allegation",
+        "content": "Finding average price of a mixture. \n \nAp = Average price of the mixture. \nA1 = Price of the first variety. \nA2 = Price of the second variety. \nN1 = Quantity of the first variety. \nN2 = quantity of the second variety. \n \nQuestion: \nTwo varieties of rice with prices Rs. 30 per kg and Rs. 40 per kg are mixed in \nthe ratio 2 : 3. Find the mean price. \n \n \nAnswer: \nN1 = 2; \nN2 = 3 \nA1 = 30; \nA2 = 40 \nSubstitute the values in the above equation. \nMean price = Rs. 36"
+    },
+    {
+        "id": "11",
+        "title": "11 \u2013 Mixtures and Allegation",
+        "content": "Allegation Rule. \n \nQuestion: \nIn what ratio two varieties of rice worth Rs. 40 per kg and Rs. 60 per kg \nshould be mixed to give a variety worth Rs. 46 per kg? \n \nAnswer: \nThe two mixtures have to be mixed in the ratio 7 : 3 to get Rs. 46 mixture."
+    },
+    {
+        "id": "12",
+        "title": "12 \u2013 Mixtures and Allegation",
+        "content": "Successive removal and replacement type. \n \nI \u2013 Initial quantity; \nR \u2013 Removal quantity; \nF \u2013 Final quantity; \nN \u2013 Number of processes. \n \nQuestion: \nA container has 1000 liters of wine. 100 liters of wine is drawn from the \ncontainer and filled with water. This process is done two more times. What is \nthe ratio between wine and water in the final mixture? \n \nAnswer: \nNumber of draws n = 3 \nFQ = 1000 [1-(100/1000)]3 = 1000(0.9)3 = 729 \nPresent quantity of wine = 729 \nPresent quantity of water = 1000 \u2013 729 = 271 \nRatio between wine and water = 729 : 271 \n(Or) \n                     729 = final quantity of wine."
+    },
+    {
+        "id": "13",
+        "title": "13 \u2013 Average",
+        "content": "Common increase or decrease for all the elements. \n \nIf al the elements in a series are increased or decreased  \nor multiplied or divided by a certain number, the old average \nshould also be added or subtracted or multiplied or divided \nrespectively to get the new average. \n \nQuestion: \nAverage age of a family of four members is 34. What is the average age of the \nfamily after 4 years? \nAnswer: \nSince every ones age is increased by four in 4 years, the average will also \nincrease by 4 \nThe new average = 34 + 4 = 38 \n \n \n \nProof: \nTotal age of the family before 4 years = 34 x 4 = 136 \nTotal increased age for four members = 4 x 4 = 16 \nNew total age = 136 + 16 = 152 \nNew average \n= 152/4 \n= 38"
+    },
+    {
+        "id": "14",
+        "title": "14 \u2013 Average",
+        "content": "Adding or removing or replacing an element. \n \nA1N1 ~ A2N2 \nQuestion 1: \nAverage age of 5 students was 18. After adding teacher\u2019s age the average \nbecame 20. What is the age of the teacher? \n \nAnswer = (18 x 5) ~ (20 x 6) = 30 \n \nQuestion 2: \nAverage age of 5 students and a teacher was 21. After removing the teacher\u2019s \nage the average became 18. What is the age of the teacher? \n \nAnswer = (21 x 6) ~ (18 x 5) = 36 \n \nQuestion 3: \nAverage weight of 40 bags is 20kg. After removing 1 bag the average became \n19.5. What is the weight of removed bag? \n \nAnswer = (20 x 40) ~  (19.5 x 39) = 39.5 \n \nQuestion 4: \nAverage weight of 40 bags is 20kg. After replacing a bag by another bag the \naverage became 39. What is the difference between the weights of those two \nbags? \n \nAnswer = (20 x 40) ~ (20 x 39) = 20"
+    },
+    {
+        "id": "15",
+        "title": "15 \u2013 Average",
+        "content": "Weighted Average \n \n \nQuestion: \nAverage marks scored by students in three classes are 40, 50, and 60. If there \nare 10, 20 and 30 students in the classes respectively, find the overall average \nof the three classes. \n \n \nAnswer: \nA1  = 40; A2  = 50; A3  = 60 \nN1  = 10; N2  = 20; N3  = 30 \nSubstitute in the above formula. We get, \n=[(40x10) + (50x20) + (60x30)]/[10+20+30] \n=[400 + 1000 + 1800]/60 \n= 53.33"
+    },
+    {
+        "id": "16",
+        "title": "16 - Average",
+        "content": "Finding the middle subject mark, if the middle subject overlaps. \n \n \nQuestion: \nAverage marks scored by Sai in 11 subjects is 60. Average  marks  scored by \nher in first 6 subjects is 50 and average marks scored by her in last 6 subjects \nis 62. Find the mark scored by Sai in 6th subject. \nAnswer: \nAo = 60; No = 11 \nA1  = 50; N1  = 6 \nA2  = 62; N2  = 6 \nSubstituting the values in the formula, we get \nM = 50x6 + 62x6 \u2013 60x11 \n= 300 + 372 \u2013 660 \n= 12 \nMarks scored by Sai in 6th subject = 12"
+    },
+    {
+        "id": "17",
+        "title": "17 - Average",
+        "content": "Finding the middle subject mark if the middle subject is \nleft out. \n \n \nQuestion: \nThe average marks scored by Shradha in 9 subjects is 75. The  average marks \nin first 4 subjects is 69 and average marks in last 4 subjects is 78. Find the \nmarks scored by her in 5th subject. \nAnswer: \nAo  = 75; No  = 9 \nA1  = 69; N1  = 4 \nA2  = 78; N1  = 4 \nSubstituting the above values in the formula, we get \nM = 75x9 \u2013 69x4 \u2013 78x4 \n= 675 \u2013 276 \u2013 312 \n= 87 \nMarks scored by Sradha in 5th subject = 87"
+    },
+    {
+        "id": "18",
+        "title": "18 \u2013 Percentage",
+        "content": "Percentage Calculation \n \n \n \nVc = Value to be compared \nVb = Value to which it has to be compared, base value. \nQuestion: \nWhat is the percentage of marks scored by Sai in final exam, if she has scored \n1102 out of 1200? \nAnswer: \nVc  = 1102 \nVb  = 1200 \nPercentage = (1102/1200) x 100 \n= 91.83% \n \nQuestion: \n \nOut of 65000 population, men are 39000. What is the percentage of women? \n \nAnswer: \nWomen = 65000 \u2013 39000 = 26000 \nPercentage of women = (26000/65000) x 100 \n= (2/5) 100 = 40 %"
+    },
+    {
+        "id": "19",
+        "title": "19 \u2013 Percentage",
+        "content": "Percentage increase or decrease. \n \n \n \nFrom \u2013 the value from which the change is happening \nTo \u2013 the value to which the change has happened. \n \nIf From value is less than To value, it is % increase \nIf From value is more than To value, it is % decrease. \nQuestion: \nSradha\u2019s monthly salary is Rs. 40000. If an increment of Rs. 5000 is provided, \nwhat is the percentage increase in her salary? \nAnswer: \nFrom = 40000; \nTo = 45000. \nSubstituting the values in the above formula, we get \n% increase = [(45000 \u2013 40000)/40000] x 100 \n= (5000/40000)x 100 \n= 12.5 % increase"
+    },
+    {
+        "id": "20",
+        "title": "20 \u2013 Percentage",
+        "content": "Net change in percentage when two changes are made. \n \n \na = first percentage change \nb = second percentage change \nQuestion: \nSalary of Sai was Rs. 20000. If the salary is decreased by 10 percent and then \nincreased by 30 percent, what is the new salary of Sai? \nAnswer: \na = -10 \nb = 30 \nNet change = -10 + 30 + [(-10)(30)/100] \n= 20 \u2013 3 = +17% (positive value = % increase) \nNew salary of Sai \n= 20000 + (17/100)20000 \n= 23400 \n \nNote: \nIf the net change value is negative, it means percentage decrease."
+    },
+    {
+        "id": "21",
+        "title": "21 \u2013 Percentage",
+        "content": "Final value after multiple percentage changes. \n \n \n(a, b and c) are the percentage changes. \nThe formula can be expanded or reduce according to the number of changes \ngiven in the question. \nSubstitute \u2018+\u2019 for percentage increase. \nSubstitute \u2018-\u2018for percentage decrease. \n \nQuestion: \nSalary of Shradha is Rs. 30000. It is increased by 10%, then decreased by \n20% and again increased by 30%. What is her final salary? \nAnswer: \na = +10; \nb = -20; \nc = +30 \nSubstitute the values in the above formula, we get \nFinal Value \n= (11/10)(8/10)(13/10) x 30000 \n= 34320"
+    },
+    {
+        "id": "22",
+        "title": "22 \u2013 Percentage",
+        "content": "Net percentage change when (a %) increase and (a %) decrease. \n \nQuestion: \nPrice of a watch was Rs. 1000. The price is increased by 10% and then \ndecreased by 10%. What is the price of the watch now? \nAnswer: \na = 10 \nNet change in percentage = 102/100 = 1% decrease. \nNew price of watch = 1000 \u2013 (1/100)1000 \n= 1000 \u2013 10 \n= 990 \nQuestion: \nPrice of a product increased by 20% and the sales was reduced by 20%. By \nwhat percentage the income has reduced? \nAnswer: \na = 20% \nPercentage reduction in income \n= 202/100 \n= 4%"
+    },
+    {
+        "id": "23",
+        "title": "23 \u2013 Percentage",
+        "content": "Steady percentage increase or decrease. \n \n \n \na \u2013 steady rate of percentage increase or decrease. \nSubstitute \u2018+\u2019 for percentage increase. \nSubstitute \u2018-\u2018for percentage decrease. \nn \u2013 Number of times the percentage change occurs. \n \nQuestion: \nThe  population of a  city is 200000. The population increases by 10% every \nyear. What will be the population of the city after 3 years? \nAnswer: \na = + 10 \nInitial Value = 200000 \nSubstitute the values in the above equation, we get \nFinal Value = 200000[1.1]3 \nFinal Value = 266200 \nPopulation of the city after three years \n \n= 266200"
+    },
+    {
+        "id": "24",
+        "title": "24 \u2013 Profit, Loss and Discount",
+        "content": "Profit or Loss Percentage. \n \nS.P \u2013 Selling Price. \nC.P \u2013 Cost Price. \nQuestion: \nA bike worth Rs. 40000 is sold for Rs. 46000. What is the profit percentage? \nAnswer: \nS.P = 46000; \nC.P = 40000 \nSubstitute the values in the above equation, we get \nP% = [(46000-40000)/40000]x100 \n= 15% profit \nQuestion: \nA mobile phone worth Rs. 9900 is sold for Rs. 9000. What is the percentage \nloss? \nAnswer: \nS.P = 9000; \nC.P = 9900 \nSubstitute the values in the above equation, we get \nL%  = [(9900-9000)/9900] x 100; \nL% = 9.09% loss"
+    },
+    {
+        "id": "25",
+        "title": "25 \u2013 Profit, Loss and Discount",
+        "content": "Net Profit or Loss Percentage when two changes are made. \n \na = percentage profit or loss in the first case. \nb = percentage profit or loss in the second case. \n \nSubstitute \u2018+\u2019 for profit percentage. \nSubstitute \u2018-\u2018 for loss percentage. \n \nQuestion: \nA product worth $ 3000 is sold for 10% profit and then for 20% loss. What is \nthe overall profit or loss percentage in the sale? \n \nAnswer: \nNet change = 10 \u2013 20 + [(10)(-20)/100] \n \n= -12 \n \nThe value obtained is negative. \n \nThis indicates that a loss is incurred in the sale. \n12% loss."
+    },
+    {
+        "id": "26",
+        "title": "26 \u2013 Profit, Loss and Discount",
+        "content": "Finding selling price after multiple changes. \n \n(a, b and c) are the profit or loss percentages. \nThe formula can be expanded or reduce according to the number of changes \ngiven in the question. \nSubstitute \u2018+\u2019 for profit percentage. \nSubstitute \u2018-\u2018 for loss percentage. \nQuestion: \nA watch worth Rs. 5000 is sold by A to B at 10% loss. B sold it to C at 30% \nloss. C sold it to D at 40% profit. What is the price at which D bought the \nwatch? \nAnswer: \na = -10; b = -30; c = 40 \nC.P = 5000 \nSubstitute the values in the above equation, we get \nS.P = (9/10)(7/10)(14/10) x 5000 \nS.P = 4410"
+    },
+    {
+        "id": "27",
+        "title": "27 \u2013 Profit, Loss and Discount",
+        "content": "Steady Profit or Loss. \n \n \na \u2013 steady rate of profit or loss percentage. \nSubstitute \u2018+\u2019 for profit percentage. \nSubstitute \u2018-\u2018 for loss percentage. \nn \u2013 Number of times the percentage change occurs. \n \nQuestion: \nThe price of a laptop decreases by 20% every year. It the laptop was bought  \nfor Rs. 45000, at what price will it be sold after 2 years? \nAnswer: \na = -20 \nC.P = 45000 \nSubstitute the values in the above equation, we get \nS.P = 45000[0.8]2 \nS.P = 28800 \nSelling price after two years \n \n= Rs. 28800"
+    },
+    {
+        "id": "28",
+        "title": "28 \u2013 Profit, Loss and Discount",
+        "content": "Net gain or loss percentage when (a %) profit and (a %) loss occurs. \n \na \u2013 percent loss and percentage gain. \n \nQuestion: \n \nTwo laptops were sold for the same selling price. The first one is sold at 50% \nprofit and the second one is sold at 50% loss. Due to this sale  what is the  \nprofit or loss percentage incurred by the seller? \n \nAnswer: \nAssume that the selling price of each laptop = Rs. 150 \nCost price of first laptop: \n150 = (150/100)CP \nC.P1 = 100 \nCost price of second laptop: \n150 = (50/100)CP \nC.P2 = 300 \nTotal cost price = 100 + 300 = 400 \nTotal selling price = 150 + 150 = 300 \nLoss % = (100/400)100 = 25% \n(Or) \n(a2/100)% loss = (502/100)%loss = 25% loss. \n \nNote: \nShortcut applicable only when selling price of both products are equal."
+    },
+    {
+        "id": "29",
+        "title": "29 \u2013 Profit, Loss and Discount",
+        "content": "Discount, Marked Price and Selling Price. \n \n \nd \u2013 Discount percentage \n \nM.P = Marked price or Market price of the product \nQuestion: \nA product is marked Rs. 450 by the seller. If he sells at a price of Rs. 330, \nwhat is the discount provided in percentage? \nAnswer: \nM.P = 450 \nS.P = 330 \nSubstitute the values in the above equation, we get \nD% = [(450-330)/450]x100 \nD% = 26.67% \nDiscount provided in percentage = 26.67%"
+    },
+    {
+        "id": "30",
+        "title": "30 \u2013 Problems on ages",
+        "content": "One variable  linear equation. \n \nQuestion: \nAge of father is twice that of son at present. After 5 years, sum of their ages \nwill be 100. What is the present age of father? \nAnswer: \nAssume age of son = S \nAge of father = 2S \nAge of father after 5 years = 2S + 5 \nAge of son after 5 years = S + 5 \nGiven, \n(2S + 5) + (S + 5) = 100 \n3S + 10 = 100 \nS = 30 \nPresent age of father = 2S = 60"
+    },
+    {
+        "id": "31",
+        "title": "31 \u2013 Problems on ages",
+        "content": "One variable  quadratic equation. \n \nQuestion: \nSum of the ages of father and son is 45. Product of their ages is 350. What is \nthe difference between their ages? \nAnswer: \nAge of father = F; Age of son = S \nF + S = 45; F = 45 \u2013 S --- Equ (1) \nF x S = 350 --- Equ (2) \nSub Equ (1) in (2) \n(45 \u2013 S)S = 350 \n45S \u2013 S2 = 350 \nS2 \u2013 45S + 350 = 0 \nBy solving this quadratic equation, we get \nS = 10, 35. (Neglect 35 since son\u2019s age cannot be greater than father\u2019s.) \nFrom (1) Father\u2019s age = 35 \nDifference between their ages = 35 -10 = 25 \nFormula to find roots of a quadratic equation: \n \nA \u2013 Coefficient of x2; \nb - coefficient of x; \nc \u2013 constant"
+    },
+    {
+        "id": "32",
+        "title": "32 \u2013 Problems on ages",
+        "content": "Simultaneous equations. \n \nQuestion: \nSum of ages of father and son at present is 40. After 5 years the ratio between \ntheir ages become 7 : 3. Find the present ages of father and son. \nAnswer: \nAssume present age of father = F \nAssume present age of son = S \nGiven, F + S = 40 --- Equ (1) \nFather\u2019s age after 5 years = F + 5 \nSon\u2019s age after 5 years = S + 5 \nGiven, (F + 5)/(S + 5) = 7/3, which gives \n3F + 15 = 7S + 35 \n3F \u2013 7S = 20 --- Equ (2) \nBy solving Equ (1) and (2), we get \nAge of son, S = 10 \nAge of father, F = 30"
+    },
+    {
+        "id": "33",
+        "title": "33 \u2013 Problems on ages",
+        "content": "Solution using common factor \u2018x\u2019. \n \nQuestion: \nAge of MS and VK were in the ratio 4 : 3 five years back. Their ages  will be \nin the ratio 5 : 4 in two years. Find their present ages. \n \nAnswer: \nDifference between the two compared years = 7. \nDifference in ratio = 1 \nx = 7/1 = 7 \nAge of MS and VK 5 years ago = 4x and 3x \n4x = 4(7) = 28 \n3x = 3(7) = 21 \nAge of MS at present = 28 + 5 = 34 \nAge of VK at present = 21 + 5 = 26 \nNote: \nThis method is applicable only when \u2018d\u2019 is equal on both sides. \nThe ratios can be modified to get \u2018d\u2019 same in both sides."
+    },
+    {
+        "id": "34",
+        "title": "34 \u2013 Time, Speed and Distance",
+        "content": "Relative Speed \u2013 Same direction \n \nWhen two objects are moving we have to take relative speed for the \ncalculation. \nRelative speed of two objects moving in same direction \n= S1 ~ S2 \nRelative speed of two objects moving in opposite direction \n= S1  + S2 \n \nQuestion: \n \nA thief standing 50 away from a dog starts running away from it at a speed of 2 \nm/s. The dog suddenly starts chasing him at a speed of 3m/s. How long will the \ndog take to catch the thief? \nAnswer: \nD = 50m; \nS1 = 3; \nS2 = 2 \nTime taken, T = 50/(3-2) = 50 seconds \nDistance travelled by the thief = Speed x Time to catch \n= 2 x 50 = 100 m \nDistance travelled by the dog = 3 x 50 = 150 m"
+    },
+    {
+        "id": "35",
+        "title": "35 \u2013 Time, Speed and Distance",
+        "content": "Relative Speed \u2013 Opposite direction \n \nWhen two objects are moving we have to take relative speed for the \ncalculation. \nRelative speed of two objects moving in same direction \n= S1 ~ S2 \nRelative speed of two objects moving in opposite direction \n= S1  + S2 \n \nQuestion: \nTwo friends start from their home 300 m apart and walk towards each other at \na speed of 2mps and 3mps. How long (in minutes) will they take to meet each \nother? \n \nAnswer: \nD = 300m \nS1 = 2mps; \nS2 = 3mps \nT = 3000/(2+3) = 60 seconds \nTime taken in minutes = 60/60 = 1 minute.\n\nQuestion:"
+    },
+    {
+        "id": "36",
+        "title": "36 \u2013 Time, Speed and Distance",
+        "content": "Average Speed \u2013 Different distance and time \n \n \nA man travels from a point to other. The first 100 km he travels at a speed of \n25 kmph. The next 80 km he travels at a speed of 40 kmph. The last 120 km he \ntravels at a speed of 20 kmph. What is the average speed of his journey? \n \n \nAnswer: \n \n= 300/12 \n \n= 25 kmph"
+    },
+    {
+        "id": "37",
+        "title": "37 \u2013 Time, Speed and Distance",
+        "content": "Average Speed \u2013 Distance is same. \n \nGeneral formula when distance is same in all the cases. \nFormula for 2 cases with same distance. \n(Or) \n \n \n \nQuestion: \nSai travels from her house to office at a speed of 50kmph. She suddenly returns \nhome at a speed of 60kmph. What is her average speed? \n \nAnswer: \nS1 = 50; \nS2 = 60 \nSa = 2(50x60)/(50+60) \n= 6000/110 \n= 54.54 kmph \nNote: Distance value is unnecessary.\n\nQuestion:"
+    },
+    {
+        "id": "38",
+        "title": "38 \u2013 Time, Speed and Distance",
+        "content": "Average Speed \u2013 Time taken is same in all the cases. \n \n \nA man travels from a point to other. The first 100 km he travels at a speed of \n50 kmph. The next 80 km he travels at a speed of 40 kmph. The last 120 km he \ntravels at a speed of 60 kmph. What is the average speed of his journey? \n \nAnswer: \nTime taken in the first case = 100/50 = 2 hours \nTime taken in the second case = 80/40 = 2 hours \nTime taken in the third case = 120/60 = 2 hours \n \nTime taken is same in all the cases. So, average speed can be calculated by \ndirectly taking the average of the speeds in each case. \n \nAverage speed = (50 + 40 + 60)/3 \n= 50 kmph"
+    },
+    {
+        "id": "39",
+        "title": "39 \u2013 Time, Speed and Distance",
+        "content": "Circular race \u2013 Time in which the runners meet at the starting point \n \nD \u2013 Circumference of the race track. \nS1, S2, \u2026 , Sn \u2013 Speed of the individual runners. \nT1, T2 , \u2026 , Tn \u2013 Time taken by the respective runners to complete one round \nthe track. \n \nQuestion: \n \nAnswer: \n \nThree persons participate in a race on a circular \ntrack of length 400m. They can run at a speed of \n2mps, 4mps and 5mps respectively. How long will \nthey take to meet in the starting point for the first \ntime? \nTime taken by each person to complete one circle \nPerson 1 = 400/2 = 200 seconds = T1 \nPerson 2 = 400/4 = 100 seconds = T2 \nPerson 3 = 400/5 = 80 seconds = T3 \nLCM(T1, T2, T3) = 400 seconds \nTime taken by them to meet at starting point for the first time = 400 seconds."
+    },
+    {
+        "id": "40",
+        "title": "40 \u2013 Trains",
+        "content": "Train crossing a stationary object with negligible width. \n \nLt \u2013 Length of the train \nSt \u2013 Speed of the train \n \nQuestion: \nA train of length 450m is travelling at a speed of 54kmph. How long will it \ntake to cross a pole? \n \nAnswer: \nSpeed of train ST in m/s = 54x(5/18) \n= 15mps \nLength of train = LT = 450m \nTime taken to cross = 450/15 \n= 30 seconds"
+    },
+    {
+        "id": "41",
+        "title": "41 \u2013 Trains",
+        "content": "Train crossing a stationary object with considerable length. \n \nLt   \u2013 Length of the train; \nLp \u2013 Length of the platform \nSt \u2013 Speed of the train \n \nQuestion: \nA train of length 200m crosses a platform of length 150m at a speed of \n72kmph. How long will the train take to cross the platform? \n \nAnswer:  \nLt = 200m \nLp = 150m \nSt = 72x(5/18) = 20mps \nTime taken to cross the platform = (200+150)/20 \n= 17.5 seconds"
+    },
+    {
+        "id": "42",
+        "title": "42 \u2013 Trains",
+        "content": "Two trains crossing in the opposite directions. \n \nL1  \u2013 Length of the train 1; \n L2 \u2013 Length of train 2 \nS1  \u2013 Speed of the train 1; \nS2 \u2013 Speed of train 2 \n \nQuestion: \nTwo trains A and B of length 200m and 300 are travelling at a speed of \n54kmph and 36kmph respectively in opposite directions. How long will they \ntake to cross each other? \n \nAnswer: \nL1 = 200; L2 = 300 \nS1 + S2 = 66 + 24 = 90 kmph = 25 mps. \nSubstitute the values in the above equation, we get \nT = (200+300)/(25) \n= 20 seconds"
+    },
+    {
+        "id": "43",
+        "title": "43 \u2013 Trains",
+        "content": "Train crossing another train from the same direction. \n \nL1  \u2013 Length of the train 1; \n L2 \u2013 Length of train 2 \nS1  \u2013 Speed of the train 1; \nS2 \u2013 Speed of train 2 \n \nQuestion: \nTwo trains A and B of length 200m and 300 are travelling at a speed of 66 \nkmph and 30 kmph respectively in same directions. How long will they take to \ncross each other? \n \nAnswer: \nL1 = 200; L2 = 300 \nS1 ~ S2 = 66 \u2013 30 = 36 kmph = 10 mps \nSubstitute the values in the above equation, we get \nT = (200+300)/(10) \n= 50 seconds"
+    },
+    {
+        "id": "44",
+        "title": "44 \u2013 Trains",
+        "content": "Train crossing a man sitting on another train travelling in opposite \ndirection. \n \nL1 \u2013 Length of the train which is crossing the man \nS1  \u2013 Speed of the train 1; \nS2 \u2013 Speed of train 2 \n \nQuestion: \nTwo trains A and B of length 300m and 400 are travelling at a speed of \n72kmph and 36kmph respectively in opposite directions. How long will train \nA take to cross a man travelling in train B? \n \nAnswer: \nL1 = 300, (Length of train crossing the man) \nS1 + S2 = 72 + 36 = 108 kmph = 30 mps \nSubstitute the values in the above equation, we get \nT = (300)/(30) \n= 10 seconds"
+    },
+    {
+        "id": "45",
+        "title": "45 \u2013 Trains",
+        "content": "Train crossing a man sitting on another train travelling in same direction. \nL1 \u2013 Length of the train which is crossing the man \nS1  \u2013 Speed of the train 1; \nS2 \u2013 Speed of train 2 \n \nQuestion: \nTwo trains A and B of length 100m and 200 are travelling at a speed of \n72kmph and 54kmph respectively in same directions. How long will train A \ntake to cross a man travelling in train B? \n \nAnswer: \nLT = 100, (Length of train crossing the man) \nS1 = 72kmph = 72(5/18) mps = 20mps \nS2 = speed of the man travelling in train B \nS2 = 54kmph = 36(5/18) mps = 10mps \nSubstitute the values in the above formula, we get \nT = (100)/(20-10) \n= 10 seconds"
+    },
+    {
+        "id": "46",
+        "title": "46 \u2013 Boats",
+        "content": "Time taken to row upstream. \n \n \nDus \u2013 Distance travelled upstream. \nSb \u2013 Speed of the boat in still water. \nSr \u2013 Speed of the river flow (or) stream (or) current. \n \nQuestion: \nThe speed of boat in still water is 40kmph. How long will the boat take to row \n175 km upstream in a river of speed 5kmph? \n \nAnswer: \nD = 175km \nSb = 40kmph, (speed of boat in still water) \nSr = 5kmph, (speed of river water) \nSb \u2013 Sr = 35kmph, (Upstream speed of boat) \nSubstitute the values in the above formula, we get \nT = 175/35 \n= 5 hours"
+    },
+    {
+        "id": "47",
+        "title": "47 \u2013 Boats",
+        "content": "Time taken to row downstream. \n \nDds \u2013 Distance travelled downstream. \nSb \u2013 Speed of the boat in still water. \nSr \u2013 Speed of the river flow (or) stream (or) current. \n \nQuestion: \nThe speed of boat in still water is 30kmph. How long will the boat take to row \n96 km downstream in a river of speed 2kmph? \n \nAnswer: \nD = 96km \nSb = 30kmph, (speed of boat in still water) \nSr = 2kmph, (speed of river water) \nSb + Sr = 32kmph, (Downstream speed of boat) \nSubstitute the values in the above formula, we get \nT = 96/32 \n= 3 hours"
+    },
+    {
+        "id": "48",
+        "title": "48 \u2013 Boats",
+        "content": "Finding speed of the boat when upstream and downstream speed are \nknown. \n \n \nSb \u2013 Speed of the boat in still water. \nSus - Upstream speed. \nSds \u2013 Downstream speed. \nQuestion: \nTime taken by a boat to row 40km upstream in 4 hours. It took 2 hours to return \nback to the starting point. Find the speed of the boat. \n \nAnswer: \nStep 1: Find the speed upstream and downstream. \nSus = 40/4 = 10kmph \nSds  = 40/2 = 20kmph \nStep 2: Find the speed of boat. \nSb = (10 + 20)/2 = 15kmph"
+    },
+    {
+        "id": "49",
+        "title": "49 \u2013 Boats",
+        "content": "Finding speed of the river when upstream and downstream speed are \nknown. \n \nSb \u2013 Speed of the boat in still water. \nSus - Upstream speed. \nSds \u2013 Downstream speed. \n \nQuestion: \nTime taken by a boat to row 40km upstream in 4 hours. It took 2 hours to return \nback to the starting point. Find the speed the river. \n \nAnswer: \nStep 1: Find the speed upstream and downstream \nSus = 40/4 = 10kmph \nSds  = 40/2 = 20kmph \nStep 2: Find the speed of the river \nSr = (20 \u2013 10)/2 = 5kmph"
+    },
+    {
+        "id": "50",
+        "title": "50 \u2013 Time and Work",
+        "content": "Work is directly proportional to time. \n \nW1 \n\u2013 Work done in first case. \nT1 \n\u2013 Time taken in first case. \nW2 \n\u2013 Work done in second case. \nT2 \n\u2013 Time taken in second case. \n \nQuestion: \nIt took 40 days to build 10 buildings. How long will it take to build 50 \nbuildings using same number of employees? \n \nAnswer: \nW1 = 10; W2 = 50 \nT1 = 40; T2 = ? \nSubstitute the values in the above formula, we get \n10/50 = 40/T2 \nT2  = 200 days"
+    },
+    {
+        "id": "51",
+        "title": "51 \u2013 Time and Work",
+        "content": "Work is directly proportional to Resource. \n \n \nQuestion: \n40 men are required to complete 20 buildings. How many men are required to \nbuild 50 buildings in the same time? \n \nAnswer: \nR1 = 40; R2 = ? \nW1 = 20; W2 = 50 \nSubstitute the values in the above formula, we get \n40/R2 = 20/50 \nR2 = 100"
+    },
+    {
+        "id": "52",
+        "title": "52 \u2013 Time and Work",
+        "content": "Time is inversely proportional to Resource. \n \n \nQuestion: \nIf 20 men can do the work in 40 days, how many men are required to do the \nsame work in 10 days? \n \nAnswer: \nR1 = 20; R2 = ? \nT1 = 40; T2 = 10 \nSubstitute the values in the above formula, we get \n20/R2 = 10/40 \nR2 = 80"
+    },
+    {
+        "id": "53",
+        "title": "53 \u2013 Time and Work",
+        "content": "Comparison of Time, Work and Resource. \n \n \nQuestion: \nIf 10 men can cut 40 trees in 4 days, how many trees can be cut by 40 men 6 \ndays? \n \nAnswer: \nR1  = 10; R2  = 40 \nT1 = 4; T2 = 6 \nW1  = 40; W2  = ? \nSubstitute the values in the above formula, we get \n40/W2 = (10 x 4)/(40 x 6) \nW2 = 240 trees"
+    },
+    {
+        "id": "54",
+        "title": "54 \u2013 Time and Work",
+        "content": "When the number of working hours per day is included in the question. \n \nQuestion: \n30 men working 6 hours day for 50 days can make 2000 toys. How many hours \nper day should 40 men work for 60 days to make 3000 toys? \n \nAnswer: \nR1 = 30; R2 = 40, (Resources in each case) \nT1 = 50; T2 = 60, (Days in each case) \nW1 = 2000; W2 = 3000, (Work in each case) \nH1 = 6; H2 = ?, (Hours per day in each case) \nSubstitute the values in the above formula, we get \n2000/3000 = (30 x 50 x 6)/(40 x 60 x H2) \nH2 = 5(5/8) hours = 5 hours 32 minutes 30 seconds"
+    },
+    {
+        "id": "55",
+        "title": "55 \u2013 Time and Work",
+        "content": "Two resources working together. \n \n \nQuestion: \nA can complete a work in 40 days. B can complete the same work in 60 days. \nHow long will they take to complete the work if they are working together? \n \nAnswer: \nA = 40 \nB = 60 \nSubstitute the values in the above formula, we get \nTime taken together = (40 x 60)/(40 + 60) \n= 24 days"
+    },
+    {
+        "id": "56",
+        "title": "56 \u2013 Time and Work",
+        "content": "Three resources working together. \n \n \n \nQuestion: \nA can do a work in 40 days, B in 50 days and C in 60 days. If they work \ntogether, how long will they take to complete the work? \n \nAnswer: \nA = 40 \nB = 50 \nC = 60 \nSubstitute the values in the above formula, we get \nTime taken together = (40 x 50 x 60)/(40 + 50 + 60) \n= 16.21 days"
+    },
+    {
+        "id": "57",
+        "title": "57 \u2013 Time and Work",
+        "content": "Work done. \n \n \nQuestion: \nA can do a piece of work in 40 days. What is the fraction of work done by him \nin 25 days? \nAnswer: \nPer day work of A = 1/40 \nNumber of days for which A worked = 25 \nWork done = (1/40) x 25 \n=  \n \nQuestion: \nA can do a piece of work in 30 days. What is the fraction of work done by him \nin 45 days? \nAnswer: \nPer day work of A = 1/30 \nNumber of days for which A worked = 45 \nWork done = (1/30) x 45 \n="
+    },
+    {
+        "id": "58",
+        "title": "58 \u2013 Time and Work",
+        "content": "Remaining work. \n \n \nQuestion: \nA can do a work in 30 days, B in 40 days. A works for 9 days and the \nremaining work is done by B. What is the fraction of work done by B? \nAnswer: \nRemaining work for B = 1 \u2013 Work done by A \nWork done by A = (1/30) x 9 = 3/10 \nRemaining work for B = 1 \u2013 (3/10) = 7/10 \n \nQuestion: \nA can do a work in 40 days, B in 60 days. A works for 24 days and the \nremaining work is done by B. What is the fraction of work done by B? \nAnswer: \nRemaining work for B = 1 \u2013 Work done by A \nWork done by A = (1/40) x 24 = 6/10 \nRemaining work for B = 1 \u2013 (6/10) = 4/10 \n= 2/5"
+    },
+    {
+        "id": "59",
+        "title": "59 \u2013 Time and Work",
+        "content": "Time taken to do the remaining work. \n \n \nQuestion: \nA can do a work in 30 days, B in 40 days. A works for 9 days and the \nremaining work is done by B. What is the total number of days to complete the \nwork? \nAnswer: \nTime taken to complete the work \n= Remaining work x time to finish full work \nRemaining work for B = 1 \u2013 Work done by A \nWork done by A = (1/30) x 9 = 3/10 \nRemaining work for B = 1 \u2013 3/10 = 7/10 \nTime taken by B to complete the remaining work \n= 7/10 x 40 \n= 28 days \nTotal time taken \n= 28 + 9 \n= 37 days"
+    },
+    {
+        "id": "60",
+        "title": "60 \u2013 Time and Wok",
+        "content": "Salary ratio of resources working together. \n \nSalary of a resource is directly proportional to the per day work. \n \nQuestion: \nA can do a work in 20 days and B can do the same work in 40 days. They both \nwork together and get a combined salary of Rs. 3000. What is the salary of A? \nAnswer: \nSA  = Salary of A; \nSB = Salary of B \nA = 20; B = 40 \nSA : SB = 40 : 20 = 2 : 1 \nSA = [2/(2+1)] x 3000 = 2000 \n \nQuestion: \nA can do a work in 30 days B in 40 days and C in 50 days. If they all work \ntogether, what will the ratio between their salaries? \nAnswer: \nA = 30; \nB = 40; \nC = 50 \nSA : SB : SC = (1/30) : (1/40) : (1/50) = 20 : 15 : 12"
+    },
+    {
+        "id": "61",
+        "title": "61 \u2013 Pipes and Cisterns",
+        "content": "One pipe fills the tank and the other empties the tank. \n \nThe pipe which empties the tank is doing negative work. So we have to assign \n\u2018-\u2018symbol for the work done by that pipe. \nT \u2013 Total time taken to fill the tank. \n \nQuestion: \nPipe A can fill a tank in 4 hours and pipe B can empty the tank in 5 hours. If \nboth pipes are opened together, how long will they take to fill a complete tank? \n \nAnswer: \nA = 4; \nB = 5 \nSubstitute the values in the above equation, we get \nTime taken to fill the tank = (4 x 5)/(-4 + 5) \n= 20 hours"
+    },
+    {
+        "id": "62",
+        "title": "62 \u2013 Pipes and Cisterns",
+        "content": "Two pipes fill a tank and another pipes empties the tank. \n \nQuestion: \nPipes A and B can fill a tank in 10 hours and 12 hours respectively. Pipe C can \nempty a tank in 20 hours. If all the pipes are opened together, how long will \nthey take to fill a complete tank? \n \nAnswer: \nA = 10; \nB = 12; \nC = 20 \nSubstitute the values in the above equation, we get \nTime taken to fill the tank \n= (10 x 12 x 20 )/[(-10 x 12) + (12 x 20) + (10 x 20)] \n= 7. 5 hours \n= 7 hours 30 minutes"
+    },
+    {
+        "id": "63",
+        "title": "63 \u2013 Interest \u2013 Simple and Compound",
+        "content": "Simple Interest \n \n \nP = Principle amount invested or borrowed \nR = Rate of interest per term \nN = Number of terms \nTerm = duration for which interest is calculated \nQuestion: \nA man invested Rs. 10000 at 4% per annum simple interest. \n1. \nWhat is the interest he will get at the end of 3 years? \n2. \nWhat is the total amount earned after 3 years? \nAnswer: \nP = 10000; N = 3; R = 4 \nSubstitute the values in the above equation, we get \nSI = 10000 x 3 x 4/100 \n= 1200 \nAmount = Principle + Interest \nAmount = 10000 + 1200 = 11200"
+    },
+    {
+        "id": "64",
+        "title": "64 \u2013 Interest \u2013 Simple and Compound",
+        "content": "Compound Interest. \n \n \nQuestion: \nWhat is the compound interest obtained for Rs. 16000 at 2% per annum for \nthree years? \nAnswer: \nAmount at the end of 1st  year = \n x 16000 = 16320 \nAmount at the end of 2nd  year = \n x 16320 = 16646.4 \nAmount at the end of 3rd year = \n x 16646.4 = 16979.328 \nInterest obtained at the end of three years: \n \nInterest = Amount \u2013 Principle \n \nInterest = 16979.328 \u2013 16000 = 979.328 \n \nNote: \nIn simple interest, the interest is calculated only for the principle. In compound \ninterest, the interest is calculated for the principle as well as the interest \nobtained till the last term."
+    },
+    {
+        "id": "65",
+        "title": "65 \u2013 Number Systems",
+        "content": "Divisibility. \n \nDivisibility rule for composite numbers: \nIf a number is a multiple of \u2018x\u2019 and \u2018y\u2019, then it is divisible by LCM of (x, y). \n30 is the LCM of (2, 3 and 5). So all the multiples of 30 are divisible by 2, 3 \nand 5. \n \nQuestion: \nWhich of the following numbers is divisible by both 5 and 9? \n1115, 11115, 111115, 1111115 \nAnswer: \n11115 \u2013 It is divisible by 5 and 9."
+    },
+    {
+        "id": "66",
+        "title": "66 \u2013 Number Systems",
+        "content": "Finding largest four digit number that is divisible by certain numbers. \n \n \nQuestion: \n \nFind the largest number that leaves \n1. \nRemainder 0 when divided by 12, 15 and 20. \n2. \nRemainder 2 when divided by 12, 15 and 20. \n3. \nRemainder 9, 12 and 17 when divided by 12, 15 and 20 \nrespectively. \n \nAnswer: \n \n1. \nRemainder 0: \nLCM(12, 15, 20) = 60 \nRemainder(10000/60) = 40 \n10000 \u2013 40 = 9960. \nThe largest number that leaves remainder 0 = 9960 \n \n2. \nRemainder 2: \n9960 + 2 = 9962 is the largest 4 digit number that leaves remainder 2 when \ndivided by 12, 15 and 20. \n \n3. \nRemainder 9, 12 and 17: \nDifference between divisor and remainder = 3. \n9960 \u2013 3 = 9957 is the largest 4 digit number that leaves remainder 9, 12 and \n17 when divided by 12, 15 and 20."
+    },
+    {
+        "id": "67",
+        "title": "67 \u2013 Number Systems",
+        "content": "Finding unit digit of a number with certain power. \n \nThe expression will be in the form XY = Z"
+    },
+    {
+        "id": "68",
+        "title": "68 \u2013 Number Systems",
+        "content": "Remainder Concept. \n \n \nThis concept is also applicable if the numbers in the numerator are added or \nsubtracted. \n \nQuestion: \nFind the remainder when 212 x 313 x 414 is divided by 5. \nAnswer: \nUsing the above concept we can find the remainder for each term and then we \ncan multiply. \nR(212/5) = 2 \nR(313/5) = 3 \nR(414/5) = 4 \n2 x 3 x 4 = 24 \nThe value we got is still greater than 5, so again divide it and find the \nremainder. \nR(24/5) = 4 \nThe remainder of the expression is = 4"
+    },
+    {
+        "id": "69",
+        "title": "69 \u2013 HCF and LCM",
+        "content": "Finding both HCF and LCM using single L-Division. \n \nWhile doing the L-Division method, initially divide only using the prime \nnumbers which are common factors for all the numbers, then divide using the \nprime numbers which are not common. \n \nQuestion: \n \nFind LCM, and HCF for the numbers 240, 450 and 570. \n \n \n \n2 240, 450, 570 \n120, 225, 285 \n24, 45, 57 \n8, 15, 19 \n8, 15, 1 \n8, 3, 1 \n8, 1, 1 \n4, 1 , 1 \n2, 1, 1 \n1, 1, 1 \n5 \n3 \n19 \n5 \n3 \n2 \n2 \n2 \n \nThe common factors for the three numbers are 2, 3 and 5. \nVariation between common factors and the others is shown by using different \nfont. \nMultiply only the common factors to get the HCF \nHCF = 2 x 3 x 5 = 30 \nMultiply all the factors to get LCM \nLCM \n= 2 x 3 x 5 x 19 x 5 x 3 x 2 x 2 x 2 \n= 24 x 32 x 52 x 191 \n= 68400"
+    },
+    {
+        "id": "70",
+        "title": "70 \u2013 HCF and LCM",
+        "content": "Application problem using HCF. \n \nThere will be different sets of elements with different quantities in each. They \nhave to be arranged based on the following conditions. \n1. \nEvery group should have equal number of elements. \n2. \nEvery group should have same kind of elements. \nUnder these conditions one must find out: \n1. The maximum number of elements per group. \n2. The minimum number of groups required. \n \nHCF of the numbers of elements in all the groups will give the maximum \nnumber of elements per group. \n \nTotal number of elements divided by HCF will give the minimum number of \ngroups required. \n \nQuestion: \nThere are 40 apples and 32 oranges. They have to be packed in boxes such that \neach box will have one kind of fruit and every box will have equal number of \nfruits. Under this condition, what is the: \n1. \nMaximum number of fruits per box? \n2. \nMinimum number of boxes required? \n \n \nAnswer: \nMaximum number of fruits per box = HCF(40, 32) = 8 \nMinimum number of boxes required = (40 + 32)/8 = 9"
+    },
+    {
+        "id": "71",
+        "title": "71 \u2013 HCF and LCM",
+        "content": "Application problem using HCF. \n \nFor three or more numbers, the HCF of the difference between the \nsuccessive numbers arranged in ascending order is the largest number that \ncan divide the given numbers and leave same remainder. \n \nQuestion: \n \nWhat is the largest number that can divide 212, 254, 310 and 338 and leave the \nsame remainder? \n \nAnswer: \nThe difference between the numbers = 42, 56 and 28. \nHCF (42, 56, 28) = 14 \nRemainder (212/14) = 2 \nRemainder (254/14) = 2 \nRemainder (310/14) = 2 \nRemainder (338/14) = 2 \n14 is the largest number that can divide the given numbers and leave the same \nremainder. \nQuestion: \n \nWhat is the largest number that can divide 34, 52 and 88 and leave the same \nremainder? \n \nAnswer: \nDifference between the numbers = 18 and 36 \nHCF (18, 36) = 18 \n \n18 is the largest number that can divide 34, 52 and 88 and leave same \nremainder."
+    },
+    {
+        "id": "72",
+        "title": "72 \u2013 HCF and LCM",
+        "content": "Application problem using LCM. \n \nWhen different events occur in different intervals of their own and if all \nthe events are started at the same time, at some point of time  all  the \nevents will again occur together. To find the duration between two \ncommon occurrences, LCM of the intervals of each event has to be \ncalculated. \n \nQuestion: \n \nThere are three different bells. The first bell rings every 4 hour, the  second  \nbell rings every 6 hours and the third bell rings every 15 hours. If all the three \nbells are rung at same time, how long will it take for them to  ring together \nagain at the same time? \nAnswer: \nTake LCM of 4, 6, 15 \nLCM (4,6,15) = 60 \nAll the three bells will ring after 60 hours. \nQuestion: \n \nThere are three different alarms. The first alarm rings every 2 minutes, the \nsecond alarm rings every 3 minutes and the third alarm rings every 5 minutes.  \nIf all the three alarms are rung at 6 am together, at what time the three alarms \nwill ring together for the next time? \n \nAnswer: \nLCM (2, 3, 5) = 30. After 30 minutes = 06:30 am."
+    },
+    {
+        "id": "73",
+        "title": "73 \u2013 Heights and Distances",
+        "content": "Solution using tan \u019f . \n \n \nQuestion: \nJack Sparrow from a boat saw a lighthouse of height 100m at an angle of \nelevation, 60o. What is the distance between Jack Sparrow and the tower? \n \nAnswer: \ntan \u019f = \n \ntan 60o = \n = \n\u221a 3 = \n= \nx = 57.7 m"
+    },
+    {
+        "id": "74",
+        "title": "74 \u2013 Heights and Distances",
+        "content": "Solution using Pythagoras theorem. \n \n \nQuestion: \nA man looks at the top of a tower which is 400m height. The minimum distance \nbetween him and top of the tower is 500m. What is the distance between him \nand the base of the tower? \n \n \nAnswer: \n \nhyp2 = opp2 + adj2 \n5002 = 4002 + x2 \nx2 = 90000 \nx = 300 m"
+    },
+    {
+        "id": "75",
+        "title": "75 \u2013 Arithmetic Progression.",
+        "content": "Finding nth term of an Arithmetic Progression. \n \n \nParameters: \na \n- first term of the series. \nd \n- common difference between successive terms. a2 \u2013 a1 \nn \n- the number position of the term. \ntn \n- the term that has to found out. \nQuestion: \n \nWhat is the 100th term of the series? \n1. \n2, 7, 12, 17, 22, \u2026 \n2. \n501, 497, 493, 489, 485, \u2026 \n \nAnswer: \n \n1. \na = 2; \nd = 5; \nn = 100 \ntn = 2 + (100 \u2013 1)5 \ntn = 2 + 495 = 497 \nt100 = 497 \n2. \na = 501; \nd = - 4; \nn = 100 \ntn = 501 + (100 \u2013 1)(- 4) \ntn = 105 \nt100 = 105"
+    },
+    {
+        "id": "76",
+        "title": "76 \u2013 Arithmetic Progression",
+        "content": "Number of terms in an Arithmetic Progression. \n \n                     - Last term of the series. \n \nQuestion: \n \nFind the number of terms in the series: \n1. \n2, 7, 12, 17, 22, \u2026 382 \n2. \n501, 497, 493, 489, 485, \u2026 201 \n \nAnswer: \n \n1. \nn = \n + 1 \nn = 77 \n \n2. \nn = \n + 1 \nn = 76"
+    },
+    {
+        "id": "77",
+        "title": "77 \u2013 Arithmetic Progression",
+        "content": "Sum of the terms in an Arithmetic Progression. \n \n \nl \n- Last term of the arithmetic series. \n \nQuestion: \n \nFind the sum of the series: \n1. \n2, 7, 12, 17, 22, \u2026 497 \n2. \n501, 497, 493, 489, 485, \u2026 105 \n \nAnswer: \n1. \nNumber of terms, n = \n + 1 \nn = 100 \nSum \n= (2 + 497)(100/2) \nS \n \n= 24950 \n3. \nNumber of terms, n =  \n + 1 \nn = 100 \nSum \n= (501 + 105)(100/2) \nS \n \n= 30300"
+    },
+    {
+        "id": "78",
+        "title": "78 \u2013 Geometric Progression",
+        "content": "Finding nth term of a Geometric Progression. \n \ntn \n- nth term. \na \n- first term of the series. \nr \n- common ratio between the successive terms. (a2/a1) \nn \n - number position of the term in the series. \n \nQuestion: \n \nFind 8th term of the series 3, 6, 12, \u2026 \n \nAnswer: \nn = 8; \na = 3; \nr = (6/3) = 2 \nt8 = 3(2)8-1 \nt8 = 3(128) = 384 \nQuestion: \n \nFind 6th term of the series 400, 200, 100, \u2026 \n \nAnswer: \nn = 6; \na = 400; r = (200/400) = 01/2 \nt6 = 400(1/2)6-1 \nt6 = 400(1/32) = 12.5"
+    },
+    {
+        "id": "79",
+        "title": "79 \u2013 Geometric Progression",
+        "content": "Sum of the terms of a finite series where r > 1. \n \n \nSn \n- Sum of n terms of the series. \nQuestion: \n \nFind the sum of the series 3, 6, 12, 24, \u2026 up to 10 terms. \n \nAnswer: \na \n= 3 \nn \n= 10 \nr \n= (6/3) = 2; \nhere r > 1. \nSn \n= \n                    = 3069 \n \n \nQuestion: \n \nFind the sum of the series 10, 30, 90, 270, \u2026 up to 8 terms. \n \nAnswer: \na \n= 10 \nn \n= 8 \nr \n= (30/10) = 3; \nhere r > 1. \nSn \n= \n                    = 32800\n\nQuestion:"
+    },
+    {
+        "id": "80",
+        "title": "80 \u2013 Geometric Progression",
+        "content": "Sum of the terms of a finite series where r < 1. \n \n \nFind the sum of the series 600, 300, 150, \u2026 up to 6 terms. \n \nAnswer: \n \na = 600 \nn = 6 \nr = (300/600) = 1/2; \nhere r < 1 \nSn = \n = 1181.25 \n \nQuestion: \n \nFind the sum of the series 128, 64, 32, \u2026 up to 10 terms. \n \nAnswer: \n \na = 128; \nn = 10; \nr = 64/128 = \u00bd \n(r < 1) \nSn = \n = 255.75\n\nQuestion:"
+    },
+    {
+        "id": "81",
+        "title": "81 \u2013 Geometric Progression",
+        "content": "Sum of the terms of an infinite series where r < 1. \n \n \nA ball is thrown up in the air for 400 m. every time the ball hits the ground it \nwill bounce back one third of the height it went the last time. The ball repeats \nthis bounce as long as it rests in the ground. What is the total distance covered \nby the ball? \n \nAnswer: \n \nDistance travelled in the first throw = 450 + 450 = 900. \n(450 + 450 is because the total distance is both up and down distance \ncovered). \n \nDistance covered in the first bounce = (1/3)900 = 300 \nDistance covered in second bounce = (1/3)300 = 100 \nThe series is 900, 300, 100, \u2026 infinite terms. \nSum = 900/[1 \u2013 (1/3)] \nSum = 1350 m"
+    },
+    {
+        "id": "82",
+        "title": "82 \u2013 Calendar",
+        "content": "Finding day of a date using a reference day. \n \nQuestion: \nFind the day of birth of MS Dhoni (7 July, 1981), if 31 Dec 1999 is Friday \nAnswer: \nStep 1: Number of days after 7/7/1981 in 1981 \n \n= 177 \nStep 2: Number of years between 1981 and 1999 \n= 17 \nStep 3: Number of leap years between 1981 and 1999 \n= 4 \nStep 4: Number of days in 1999 till Dec 31 \n= 365 \nStep 5: \n177 + 17 + 4 + 365 \n= 563 \nStep 6: \nRemainder of (563/7) \n= 3 \nOur reference day is Friday and the remainder is 3. \nStep 7: 3 days before Friday is Tuesday. \nMSD was born on Tuesday. \nNote: \nIf there are no years in between the day in the question and reference day, step \n2 and step 3 will be = 0 \nIf a date in the future is asked, remainder number of days after the reference  \nday will be the answer. \nIf remainder is 0, the day to be found out is the same day as the reference day."
+    },
+    {
+        "id": "83",
+        "title": "83 \u2013 Clocks",
+        "content": "Angle between the hour hand and the minute hand. \n \n \nH \n- Hour value \nM \n- Minute value \n \nQuestion: \n \nWhat is the angle between minute hand and hour hand at 05:40? \n \nAnswer: \n \nH = 5 \nM = 40 \nAngle \n= [30(5) + (40/2)] ~ 6(40) \n= 170 ~ 240 \n= 70` \nNote: \nIf the value is above 180`, subtract it from 360 to get refract angle."
+    },
+    {
+        "id": "84",
+        "title": "84 \u2013 Clocks",
+        "content": "Time at which the two hands overlap. \n \n \nH \n- Least hour between \u2018H\u2019 and \u2018H+1\u2019 hour \n \nQuestion: \n \nAt what time between 3 o\u2019 clock and 4 o\u2019 clock the two hands of the clock will \noverlap? \n \nAnswer: \n \nTime \n= [12/11][5(3)] \n= 180/11 minutes past 3 \u2018o\u2019 clock \n= 16.36 minutes past 3 \u2018o\u2019 clock \n= 16 minutes 22 seconds past 3 \n= 03 : 16 : 22 \n \nQuestion: \n \nAt what time between 10 o\u2019 clock and 11 o\u2019 clock the two hands of the clock \nwill overlap? \n \nAnswer: \n \nTime \n= [12/11][5(10)] \n= 600/11 minutes past 10 \u2018o\u2019 clock \n= 54.54 minutes past 10 \u2018o\u2019 clock \n= 54 minutes 32 seconds past 10 \n= 10 : 54 : 32"
+    },
+    {
+        "id": "85",
+        "title": "85 \u2013 Clocks",
+        "content": "Time at which the two hands face opposite directions. \n \nCase 1: H < 6 \nQuestion: \nAt what time between 1 o\u2019 clock and 2 o\u2019 clock the two hands will be facing \nopposite direction? \nAnswer: \nTime \n= 12/11[5(1) + (180/6)] \n= 12/11[5(1) + 30] \n= 420/11 minutes past 1 \u2018o\u2019 clock \n= 38.18 minutes past 1 \u2018o\u2019 clock \n= 38 minutes 11 seconds past 1 \n= 01 : 38 : 11 \n \nCase 2: H > 6 \nQuestion: \nAt what time between 9 o\u2019 clock and 10 o\u2019 clock the two hands will be facing \nopposite directions? \nAnswer: \nTime \n= 12/11[5(9) - (180/6)] \n= 12/11[5(9) - 30] \n= 180/11 minutes past 9 \u2018o\u2019 clock \n= 16.36 minutes past 9 \u2018o\u2019 clock \n= 16 minutes 22 seconds past 9 \n= 09 : 16 : 22"
+    },
+    {
+        "id": "86",
+        "title": "86 \u2013 Clocks",
+        "content": "Time at which the two hands will be certain angle apart. \n \n \nThere are two different time at which the hands will be certain degrees apart. \nT1 and T2. \nQuestion: \n \nAt what time between 4 o\u2019 clock and 5 o\u2019 clock the two hands of the clock will \nbe 60 degrees apart? \n \nAnswer: \n \nT1 \n= 12/11[5(4) + (60/6)] \n= 360/11 minutes past 4 \u2018o\u2019 clock \n= 32.72 minutes past 4 \u2018o\u2019 clock \n= 32 minutes 44 seconds past 4 \n= 04 : 32 : 44 \n \nT2 \n= 12/11[5(4) \u2013 (60/6)] \n= 120/11 minutes past 4 \u2018o\u2019 clock \n= 10.9 minutes past 4 \u2018o\u2019 clock \n= 10 minutes 54 seconds past 4 \n= 04 : 10 : 54"
+    },
+    {
+        "id": "87",
+        "title": "87 \u2013 Clocks",
+        "content": "Time at which the two hands will be certain minute spaces apart. \n \n \nThere are two different time at which the hands will be certain degrees apart. \nT1 and T2. \nQuestion: \n \nAt what time between 7 o\u2019 clock and 8 o\u2019 clock the two hands of the clock will \nbe 15 minutes apart? \n \nAnswer: \n \nT1 \n= 12/11[5(7) + 15] \n= 600/11 minutes past 7 \u2018o\u2019 clock \n= 54.54 minutes past 7 \u2018o\u2019 clock \n= 54 minutes 33 seconds past 7 \n= 07 : 54 : 33 \n \nT2 \n= 12/11[5(7) \u2013 15] \n= 240/11 minutes past 7 \u2018o\u2019 clock \n= 21.81 minutes past 7 \u2018o\u2019 clock \n= 21 minutes 48 seconds past 7 \n= 07 : 21 : 48"
+    },
+    {
+        "id": "88",
+        "title": "88 \u2013 Permutation Combination and Probability",
+        "content": "Dependent and Independent Events. \n \nDependent events \u2013 Multiplication; \nKey word \u2013 AND \nIndependent events \n- Addition; \n \nKey word \u2013 OR \n \nQuestion: \nThere 3 busses from city A to city B and there are 5 busses from city B to city \nC. In how many ways a person can travel from city A to C through B? \nAnswer: \nChoosing a bus from city B depends on choosing a bus from city A. \nNumber of ways = 3 x 5 = 15 \n \nQuestion: \nThere 3 busses from city A to city B and there are 5 busses from city A to city \nC. In how many ways a person can travel from city A to C or B? \nAnswer: \nChoosing a bus to city B or C are not dependent. \nNumber of ways = 3 + 5 = 8\n\nQuestion:"
+    },
+    {
+        "id": "89",
+        "title": "89 - Permutation Combination and Probability",
+        "content": "Permutation \u2013 Arrangement with repetition. \n \nnn \nIn how many ways the letters of the word \u201cORANGE\u201d can be arranged with \nrepetition? \nAnswer: \nn = 6 (n = total number of elements) \nSince all the elements are taken, \nNumber of arrangements = 66 \nnr \nQuestion: \nIn how many ways three letters from the word \u201cORANGE\u201d can be arranged \nwith repetition? \nAnswer: \nn = 6; r = 3 (r = number of elements taken for arrangement) \nNumber of arrangements = 63 = 216"
+    },
+    {
+        "id": "90",
+        "title": "90 - Permutation Combination and Probability",
+        "content": "Permutation \u2013 Arrangement without repetition. \n \nn! \nQuestion: \nIn how many ways the letters of the word \u201cMANGO\u201d can be arranged without \nrepetition? \nAnswer: \nn = 5 \nSince all the elements are taken for arrangement, \nNumber of elements = n! = 5! = 120 \n \n \n \n \n \n \nQuestion: \nnPr = \nIn how many ways any three letters of the word \u2018MANGO\u201d can be arranged \nwithout repetition? \nAnswer: \nn= 5; r = 3 \nnPr = 5!/(5 \u2013 3)! = 120/2 = 60 ways"
+    },
+    {
+        "id": "91",
+        "title": "91 - Permutation Combination and Probability",
+        "content": "Permutation \u2013 Elements occurring together. \n \nIf two elements occur together \n2!(n \u2013 1)! \nIf three elements occurtogther \n3!(n \u2013 2)! \nIf four elements occur together \n4!(n \u2013 3)! \nand so on \n \nQuestion: \nIn how many ways letters of the word \u201cORANGE\u201d arranged so that the vowels \nwill always occur together? \nAnswer: \nn = 6 \nThree letters \u2018O, A and E\u2019 should occur together. \nSince three letters occur together \n3! x (6 \u2013 2)! = 6 x 24 = 144 \nNote: \nIf there are 4 letters occurring together, the answer is \n4!(6 \u2013 3)! \nIf there are 5 letters occurring together, the answer is \n5!(6 \u2013 4)!"
+    },
+    {
+        "id": "92",
+        "title": "92 - Permutation Combination and Probability",
+        "content": "Permutation \u2013 When similar kind of elements occur. \n \n \n \nQuestion: \nIn how many ways the letters of the word \u201cENVIRONMENT\u201d can be \narranged? \nAnswer: \nn = 11 \nLet, a = 2 (E is repeated twice) \nLet, b = 3 (N is repeated thrice) \nNumber of arrangements = 11!/(2! x 3!) \n= 277200 \n \n \nQuestion: \n \nIn how many ways the letters of the word \u201cPIIZZZAAAA\u201d can be rearranged? \n \nAnswer: \n \nn = 10 \na = 2 (I is repeated twice) \nb = 3 (Z is repeated thrice) \nc = 4 (A is repeated four times) \nNumber of arrangements = 10!/(2! x 3! x 4!) \n= 12600"
+    },
+    {
+        "id": "93",
+        "title": "93 - Permutation Combination and Probability",
+        "content": "Permutation \u2013 Circular arrangement. \n \n(n \u2013 1)! \nQuestion: \nIn how many ways 6 persons can be arranged in a circle? \n \nAnswer: \nn = 6 \nNumber of arrangements = (6 \u2013 1)! = 5! = 120 \n \n \n \nQuestion: \nIn how many ways 8 persons can be arranged in a circle? \n \n \nAnswer: \nn = 8 \nNumber of arrangements = (8 \u2013 1)! = 7! = 5040"
+    },
+    {
+        "id": "94",
+        "title": "94 - Permutation Combination and Probability",
+        "content": "Permutation \u2013 Elements occurring together in a circle. \n \nIf two elements occur together \n2!(n \u2013 2)! \nIf three elements occur together \n3!(n \u2013 3)! \nIf four elements occur together \n4!(n \u2013 4)! \nand so on \n \nQuestion: \nIn how many ways 8 persons can be seated around a circular table with two \npersons always sitting together? \n \nAnswer: \n2! x (8 \u2013 2)! = 2 x 720 = 1440 \nNote: \nIf three persons are sitting together, the answer is \n3! x (8 \u2013 3)! \nIf four persons are sitting together, the answer is \n4! x (8 \u2013 4)!"
+    },
+    {
+        "id": "95",
+        "title": "95 - Permutation Combination and Probability",
+        "content": "Permutation \u2013 Arrangement of Necklace. \n \n(n \u2013 1)!/2 \nQuestion: \nIn how many ways a necklace with 8 different colored beads can be arranged? \n \nAnswer: \nn = 8 \nNumber of arrangements = (8 \u2013 1)!/2 = 2520"
+    },
+    {
+        "id": "96",
+        "title": "96 - Permutation Combination and Probability",
+        "content": "Combination \n \n \n \n \n \nQuestion: \nnCr = \nIn how many ways 2 shirts and 3 pants can be selected from 5 shirts and 7 \npants? \nAnswer: \nSelecting 2 shirts out of 5 = 5C2 = 5!/[2!(5 \u2013 2)!] \n= 10 \nSelecting 3 shirts out of 7 = 7C3 = 7!/[3!(7 \u2013 3)!] \n= 35 \nSince the two events are dependent, \nTotal ways of selecting = 10 x 35 = 350 \n \n \n \nQuestion: \nIn how many ways 2 shirts or 3 pants can be selected from 5 shirts and 7 \npants? \nAnswer: \nSelecting 2 shirts out of 5 = 5C2 = 5!/[2!(5 \u2013 2)!] \n= 10 \nSelecting 3 shirts out of 7 = 7C3 = 7!/[3!(7 \u2013 3)!] \n= 35 \nSince the two events are independent, \nTotal ways of selecting = 10 + 35 = 45"
+    },
+    {
+        "id": "97",
+        "title": "97 - Permutation Combination and Probability",
+        "content": "Probability. \n \nProbability = \n \n \n \nQuestion: \nWhat is the probability of selecting 2 spades from a pack of 52 cards? \nAnswer: \nTotal number of ways of selecting 2 cards from 52 = 52C2 = 1275 \nTotal ways of selecting 2 spades from 13 spades = 13C2 = 78 \nProbability = 78/1275 \n \n \nQuestion: \nWhat is the probability of selecting 2 students from a class of 10 boys and 8 \ngirls, where both the selected students are boys? \nAnswer: \nTotal number of ways of selecting 2 students from 18 \n= 18C2 = 153 \nTotal ways of selecting 2 boys from 10 boys \n= 10C2 = 45 \nProbability = 45/153\n\nProbability = \n \nQuestion: \n \nWhat is the probability of getting 4 heads when 7 coins are tossed? \n \nAnswer: \n \nTotal number of results = 2 x 2 x 2 x 2 x 2 x 2 x 2 = 28 = 128 \n \nWhen the required results need 4 heads, the remaining three will be tails. \nThe results will be the different arrangement of the following: \n \n\u201c H H H H T T T \u201d \n \nThe number of ways in which the above can be arranged is \n= 7!/(4! x 3!) \n \n= 5040/144 \n \n= 35 \n \nProbability = 35/128\n\nProbability = \n \n \n \nQuestion: \n \nWhat is the probability of getting a sum which is equal to prime number from \nthe results obtained by throwing two dice with six faces numbered 1 to 6 on the \nfaces? \n \nAnswer: \nThe above table shows the different sums obtained from different results. \nTotal number of results = 36. \nExpecting result = 15. (Highlighted with the shade). \nProbability = 15/36\n\nProbability = \n \nQuestion: \n \nWhat is the probability of selecting 4 balls from a bag that has 5 red balls and \n6 black balls where the selection has at least 1 red ball? \n \n \nAnswer: \nThe different cases are: \n1 red and 3 black \n= 5C1 x 6C3 \n= 100 \n2 red and 2 black \n= 5C2 x 6C2 \n= 150 \n3 red and 1 black \n= 5C3 x 6C1 \n= 60 \n4 red \n= 5C4 \n= 5 \n \nNumber of ways of selecting 4 balls with at least 1 red ball: \n= 100 + 150 + 60 + 5 = 315 \n \nTotal ways of selecting 4 balls without any condition: \n= 11C4 = 330 \nProbability = 315/330 \n \nAlternate method: \n \nProbability \n= 1 \u2013 probability of selecting no red balls \n= 1 \u2013 probability of selecting 4 black balls \nProbability \n= 1 \u2013 (6C4/11C4) \n= 1 \u2013 (15/330) \n= 315/330"
+    }
+]

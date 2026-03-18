@@ -1,0 +1,62 @@
+[
+    {
+        "page": 1,
+        "text": "IBPS \nSBI \nUPSC \nRBI \nRRB \nSSC \nBSNL \nNTPC \nBHEL \nTNEB \nNLC \nCBI \nTANCET GATE \nCAT \nMAT\nXAT \nSAT \nPOLICE \nARMY \nGMAT \nGRE \nPOST \nIPM \nAll Central and State Government Exams \nCampus Recruitment Tests"
+    },
+    {
+        "page": 2,
+        "text": "Table of Contents \nRatio and Proportion \nPartnership Mixtures \nand Allegation Average \nPercentage       Profit, \nLoss and Discount \nProblems on Ages Time, \nSpeed and Distance \nTrains \nBoats      Time \nand Work Pipes \nand Cisterns \nSimple and Compound Interest \nNumber System           HCF \nand LCM Heights and \nDistances Progressions \nCalendar \nClocks \nPermutation and Combination \nProbability \nwww.iascgl.com"
+    },
+    {
+        "page": 3,
+        "text": "Shortcut # 1 - Ratio and Proportion \nSplitting a number in the given ratio. \n1. Divide 720 in the ratio 2: 3.\nSolution 1: \nTotal parts = 2 + 3 = 5 \nFirst number = (2/5) 720 = 288 \nSecond number = (3/5) 720 = 432 \nSolution 2: \n2x + 3x = 720; \n5x = 720; \nx = 144 \n2x = 2(144) = 288; \n3x = 3(144) = 432 \n2. Divide 720 in the ratio 2: 3: 4.\nSolution 1: \nTotal parts = 2 + 3 + 4 = 9 \nFirst number = (2/9) 720 = 160; Second number = (3/9) 720 = 240; Third \nnumber = (4/9)720 = 320 \nSolution 2: \n2x + 3x + 4x= 720; \n9x = 720; \nx = 80 \n2x = 2(80) = 160; 3x = 3(80) = 240; 4x = 4(80) = 320"
+    },
+    {
+        "page": 4,
+        "text": "Shortcut # 2 \u2013 Ratio and Proportion \nDirect Proportion. \nWhen two parameters are in direct proportion if one parameter \nincreases the other one will also increase and if one parameter decreases \nthe other one will also decrease. \nIf the parameters A and B are in direct proportion they will satisfy the \nbelow equation. \nQuestion: \nPrice of diamond is directly proportional to its weight. If 2 grams of diamond \ncosts $ 45,000 then what is the price of a diamond that weighs 6 grams? \nAnswer: \nWeight of diamond in first case, \nA1\n= 2 \nWeight of diamond in second case, \nA2\n= 6 \nPrice of diamond in first case, \nB1\n= 45000 \nPrice of diamond in second case, \nAccording to the equation, \nB2\n=? \n2/6 = 45000/B2\nB2 = 45000 x (6/2) \nB2 = 135,000"
+    },
+    {
+        "page": 5,
+        "text": "Shortcut # 3 \u2013 Ratio and Proportion \nInverse Proportion. \n \nWhen two parameters are in inverse proportion if one parameter \nincreases the other one will decrease and if one parameter decreases the \nother one will decrease. \nIf the parameters A and B are in inverse proportion they will \nsatisfy the below equation. \n \nQuestion: \nMileage and Engine capacity are inversely proportional. A bike with 100cc \nengine capacity gives a mileage of 80 km. What will be the mileage given by a \nbike with 150cc engine capacity? \nAnswer: \n \nEngine capacity of first bike, \nA1 \n= 100 \nEngine capacity of second bike, \nA2 \n= 150 \nMileage of first bike, \nB1 \n= 80 \nMileage of second bike, \nAccording to the equation, \nB2 \n=? \n100/150 = B2/80 \nB2 = 100(80)/150 \nB2 = 53.33 km \nwww.iascgl.com"
+    },
+    {
+        "page": 6,
+        "text": "Shortcut # 4 \u2013 Ratio and Proportion \nFinding A: C from A: B and B: C \n \nQuestion: \nThe ratio between salary of A and B is 4: 5. The ratio between salary of B and \nC is 3: 4. Find the salary of C if A is earning $3600. \nAnswer: \n \nA: C = 12: 20 = 3: 5 \nA/C = 3/5 \n3600/C = 3/5; \nC = 6000 \nwww.iascgl.com"
+    },
+    {
+        "page": 7,
+        "text": "Shortcut # 5 \u2013 Ratio and Proportion \nFinding A: D from A: B, B: C and C: D \n \nQuestion: \nRatio between salary of A and B is 3: 5, B and C is 4: 5, C and D is 6: 7. If the \nsalary of A is $ 7200, find the salary of D. \n \nAnswer: \nA: D = 72: 175 \n7200/D = 72/175 \nD = 17500 \nwww.iascgl.com"
+    },
+    {
+        "page": 8,
+        "text": "Shortcut # 6 \u2013 Ratio and Proportion \nUsage of Common Factor x \n \nQuestion: \nTwo numbers are in the ratio 4: 5. Sum of their squares is 1025. Find the \nnumbers. \nAnswer: \nSubstitute the common factor x to the ratio 4: 5 \nAssume the actual numbers as 4x and 5x \nGiven, \n(4x) 2 + (5x) 2 = 1025 \n16x2  + 25x2 = 1025; \n \n41x2 = 1025 \nx2  = 25; \nx = 5 \nSubstitute x = 5 in 4x and 5x to find the numbers \nThe numbers are, 20 and 25. \nQuestion: \nTwo numbers are in the ratio 3: 2. Cube of their difference is 125. Find the \nnumbers. \nAnswer: \n(3x \u2013 2x) 3 = 125 \nx3 = 125 \nx = 5 \nThe numbers are 15 and 10. \nwww.iascgl.com"
+    },
+    {
+        "page": 9,
+        "text": "Shortcut # 7 \u2013 Ratio and Proportion \nFinding number of Coins in a bag. \nQuestion: \nA bag contains 5 paise, 10 paise and 20 paise coins in the ratio 2:4:5. Total \namount in the bag is Rs. 4.50. How many coins are there in 20 paise? \nAnswer: \nT = (2 x 5) + (4 x 10) + (5 x 20) \n= 150 paise \n= Rs. 1.50 \nX = 4.50/1.50 \nX = 3 \nQuantity of 20 paise coins \n= 5 x 3 \n= 15 coins. \nwww.iascgl.com"
+    },
+    {
+        "page": 10,
+        "text": "Shortcut # 8 \u2013 Ratio and Proportion \nAdding and removing quantities. \n \nQuestion: \n \nContainer 1 has milk and water in the ratio 2 : 5. After adding 4 liters of pure \nwater from container 2, the ratio between milk and water in container 1 \nbecame 1 : 3. Find the quantity of milk in the container. \n \nAnswer: \nLet us assume the actual quantity of milk and water as 2x and 5x. \nNew quantity of water = 5x + 4 \n2x/(5x + 4) = 1/3 \n6x = 5x + 4 \nx = 4 \nQuantity of milk = 2x \n= 2(4) \n= 8 liters. \nwww.iascgl.com"
+    },
+    {
+        "page": 11,
+        "text": "Shortcut # 9 \u2013 Partnership \nFinding ratio of the profit share. \n \n \nIncome (or) Profit share from a business is determined using two parameters \u2013 \nInvestment and Duration. \nProfit share is directly proportional to the duration of investment and the \namount invested. \nP1 : P2 : P3 = Ratio between profits \nT1, T2, T3 = Respective time of investment \nI1, I2, I3 = Respective investment \nQuestion: \nA started a business investing Rs. 5000. After 1 year B joined him investing \nRs. 6000. After another year C joined them investing Rs. 9000. What is the \nratio between their profit shares at the end of 3 years? \nAnswer: \nP1 : P2 : P3 = 5000 x 3 : 6000 x 2 : 9000 x 1 \nP1 : P2 : P3 = 15000 : 12000 x 9000 \nP1 : P2 : P3 = 5 : 4 : 3 \nwww.iascgl.com"
+    },
+    {
+        "page": 12,
+        "text": "Shortcut # 10 \u2013 Mixtures and Allegation \nFinding average price of a mixture. \n \nAp = Average price of the mixture. \nA1 = Price of the first variety. \nA2 = Price of the second variety. \nN1 = Quantity of the first variety. \nN2 = quantity of the second variety. \n \nQuestion: \nTwo varieties of rice with prices Rs. 30 per kg and Rs. 40 per kg are mixed in \nthe ratio 2 : 3. Find the mean price. \n \n \nAnswer: \nN1 = 2; \nN2 = 3 \nA1 = 30; \nA2 = 40 \nSubstitute the values in the above equation. \nMean price = Rs. 36 \nwww.iascgl.com"
+    },
+    {
+        "page": 13,
+        "text": "Shortcut # 11 \u2013 Mixtures and Allegation \nAllegation Rule. \n \nQuestion: \nIn what ratio two varieties of rice worth Rs. 40 per kg and Rs. 60 per kg \nshould be mixed to give a variety worth Rs. 46 per kg? \n \nAnswer: \nThe two mixtures have to be mixed in the ratio 7 : 3 to get Rs. 46 mixture. \nwww.iascgl.com"
+    },
+    {
+        "page": 14,
+        "text": "Shortcut # 12 \u2013 Mixtures and Allegation \nSuccessive removal and replacement type. \n \nI \u2013 Initial quantity; \nR \u2013 Removal quantity; \nF \u2013 Final quantity; \nN \u2013 Number of processes. \n \nQuestion: \nA container has 1000 liters of wine. 100 liters of wine is drawn from the \ncontainer and filled with water. This process is done two more times. What is \nthe ratio between wine and water in the final mixture? \n \nAnswer: \nNumber of draws n = 3 \nFQ = 1000 [1-(100/1000)]3 = 1000(0.9)3 = 729 \nPresent quantity of wine = 729 \nPresent quantity of water = 1000 \u2013 729 = 271 \nRatio between wine and water = 729 : 271 \n(Or) \n                     729 = final quantity of wine. \nwww.iascgl.com"
+    },
+    {
+        "page": 15,
+        "text": "Shortcut # 13 \u2013 Average \nCommon increase or decrease for all the elements. \n \nIf al the elements in a series are increased or decreased  \nor multiplied or divided by a certain number, the old average \nshould also be added or subtracted or multiplied or divided \nrespectively to get the new average. \n \nQuestion: \nAverage age of a family of four members is 34. What is the average age of the \nfamily after 4 years? \nAnswer: \nSince every ones age is increased by four in 4 years, the average will also \nincrease by 4 \nThe new average = 34 + 4 = 38 \n \n \n \nProof: \nTotal age of the family before 4 years = 34 x 4 = 136 \nTotal increased age for four members = 4 x 4 = 16 \nNew total age = 136 + 16 = 152 \nNew average \n= 152/4 \n= 38 \nwww.iascgl.com"
+    }
+]
