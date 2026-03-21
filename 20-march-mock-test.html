@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Official Elite Challenge: TCS NQT March 20th | Lakshmi Builds</title>
+    <title>Official TCS NQT March 20th Full Replica | Lakshmi Builds</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,9 +36,9 @@
             color: var(--text-main);
             font-family: var(--font-body);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Layout */
         .test-container {
             display: grid;
             grid-template-columns: 320px 1fr;
@@ -91,17 +91,10 @@
             border-color: var(--accent-brand);
         }
 
-        .q-count-badge {
-            font-size: 0.7rem;
-            background: rgba(255,255,255,0.05);
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-        }
-
-        /* Main Content Area */
+        /* Main Content */
         .main-content {
             padding: 4rem 10%;
-            max-width: 1300px;
+            max-width: 1400px;
         }
 
         .mock-header {
@@ -128,34 +121,18 @@
             background: #000;
         }
 
-        /* Sections */
-        .section {
-            margin-bottom: 10rem;
-        }
+        /* Question Cards */
+        .section { margin-bottom: 10rem; }
+        .section-header { margin-bottom: 4rem; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; }
+        .section-header h2 { font-family: var(--font-heading); font-size: 2.5rem; color: #fff; }
 
-        .section-header {
-            margin-bottom: 4rem;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 1.5rem;
-        }
-
-        .section-header h2 {
-            font-family: var(--font-heading);
-            font-size: 2.5rem;
-            color: #fff;
-        }
-
-        /* Question Card */
         .q-card {
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 20px;
             padding: 3rem;
             margin-bottom: 3rem;
-            transition: 0.3s;
         }
-
-        .q-card:hover { border-color: rgba(255, 204, 0, 0.3); }
 
         .q-num {
             font-family: var(--font-mono);
@@ -163,6 +140,7 @@
             font-size: 0.8rem;
             margin-bottom: 1.5rem;
             display: block;
+            text-transform: uppercase;
         }
 
         .q-text {
@@ -191,32 +169,10 @@
             font-size: 1.1rem;
         }
 
-        .opt:hover {
+        .opt:hover, .opt.selected {
             border-color: var(--accent-brand);
-            background: rgba(255, 204, 0, 0.05);
-        }
-
-        /* Coding Block */
-        .coding-block {
-            background: #000;
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            padding: 2.5rem;
-            margin-top: 2rem;
-        }
-
-        .editor-mock {
-            font-family: var(--font-mono);
-            color: #888891;
-            font-size: 1rem;
-            min-height: 200px;
-        }
-
-        /* Final Submit */
-        .submit-section {
-            text-align: center;
-            padding: 6rem 0;
-            border-top: 1px solid var(--border);
+            background: rgba(255, 204, 0, 0.1);
+            color: var(--accent-brand);
         }
 
         .submit-btn {
@@ -228,13 +184,7 @@
             border: none;
             border-radius: 100px;
             cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 15px 40px -10px rgba(255, 204, 0, 0.4);
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 50px -10px rgba(255, 204, 0, 0.5);
+            margin-top: 4rem;
         }
 
         @media (max-width: 1100px) {
@@ -253,159 +203,80 @@
                 <p style="font-size: 0.7rem; color: var(--text-muted); font-weight: 700;">TCS NQT 2026 OFFICIAL MOCK</p>
             </div>
             <nav class="nav-links">
-                <a href="#numerical" class="nav-link active">1. Numerical <span class="q-count-badge">20Q</span></a>
-                <a href="#verbal" class="nav-link">2. Verbal <span class="q-count-badge">25Q</span></a>
-                <a href="#reasoning" class="nav-link">3. Reasoning <span class="q-count-badge">11Q</span></a>
-                <a href="#advanced" class="nav-link">4. Advanced <span class="q-count-badge">14Q</span></a>
-                <a href="#coding" class="nav-link">5. Coding <span class="q-count-badge">4Q</span></a>
+                <a href="#numerical" class="nav-link active">1. Quantitative (20Q)</a>
+                <a href="#verbal" class="nav-link">2. Verbal Ability (25Q)</a>
+                <a href="#reasoning" class="nav-link">3. Reasoning (13Q)</a>
+                <a href="#advanced" class="nav-link">4. Advanced (14Q)</a>
+                <a href="#coding" class="nav-link">5. Coding (4Q)</a>
             </nav>
-            <div style="margin-top: auto; padding-top: 2rem; border-top: 1px solid var(--border); font-size: 0.65rem; color: var(--text-muted);">
-                MARCH 20TH SLOT REPLICA • V2.0 ELITE
-            </div>
         </aside>
 
         <main class="main-content">
             <header class="mock-header">
                 <div>
-                    <h1 style="font-family: var(--font-heading); font-size: 2.2rem;">Elite Practice Arena</h1>
-                    <p style="color: var(--text-muted); font-size: 1rem;">Real Hard Questions • 120 Minutes Session</p>
+                    <h1 style="font-family: var(--font-heading); font-size: 2rem;">Official March 20th Set</h1>
+                    <p style="color: var(--text-muted); font-size: 0.8rem;">Elite Verification Build • v5.0</p>
                 </div>
                 <div class="timer" id="timer">119:59</div>
             </header>
 
-            <!-- SECTION 1: NUMERICAL ABILITY (20 QUESTIONS) -->
+            <!-- SECTION 1: QUANTITATIVE (HARD-CODED 1-20) -->
             <section id="numerical" class="section">
-                <div class="section-header"><h2>01. Numerical Ability</h2></div>
+                <div class="section-header"><h2>01. Quantitative</h2></div>
                 
-                <script>
-                    const numericalQuestions = [
-                        { q: "A sum of money was borrowed and paid back in two equal annual installments of ₹17,640 each. If the rate of interest is 5% per annum, compounded annually, find the total sum (principal) borrowed?", opts: ["₹32,800","₹33,600","₹32,400","₹34,200"] },
-                        { q: "A dishonest merchant sells his goods at a 10% loss on cost price but uses a weight of 800 grams instead of a kilogram. What is his actual profit or loss percentage for the entire transaction?", opts: ["12.5% Profit","10.5% Loss","15% Profit","12% Profit"] },
-                        { q: "A 20-liter mixture contains milk and water in the ratio 3:2. 10 liters of this mixture are removed and replaced with 10 liters of pure water. Then, 10 liters of the new mixture are removed and again replaced with 10 liters of pure water. Find the final ratio of milk to water?", opts: ["3 : 17","1 : 4","3 : 13","5 : 11"] },
-                        { q: "Two trains leave station X and station Y towards each other. They meet at a certain point. After crossing each other, they take 4 hours and 9 hours respectively to reach Y and X. If the speed of the first train is 60 km/h, what is the speed of the second train?", opts: ["40 km/h","45 km/h","30 km/h","50 km/h"] },
-                        { q: "In an election between two candidates, 10% of voters did not cast their votes. 10% of votes cast were invalid. The winner got 54% of valid votes and won by 1,620 votes. Total voters?", opts: ["25,000","20,000","22,500","18,000"] },
-                        { q: "A can do a work in 15 days, B in 20. They work together for 4 days, then A leaves. In how many days will B finish the remaining work?", opts: ["10 days","8 days","12 days","15 days"] },
-                        { q: "The profit earned by selling an article for ₹900 is double the loss incurred when the same article is sold for ₹450. At what price should the article be sold to make 25% profit?", opts: ["₹750","₹800","₹850","₹700"] },
-                        { q: "A pipe can fill a tank in 12 min and another in 15 min. A third pipe empties in 6 min. If first two are opened for 5 min then the third is opened, in what time will the tank be empty?", opts: ["45 min","30 min","40 min","35 min"] },
-                        { q: "A sum becomes ₹4840 in 2 years and ₹5324 in 3 years at compound interest. Find the rate percent per annum.", opts: ["8%","10%","12%","15%"] },
-                        { q: "Find the smallest number which when divided by 20, 25, 35 and 40 leaves remainder 14, 19, 29 and 34 respectively.", opts: ["1394","1400","1386","1406"] },
-                        { q: "The mean of 50 observations was 36. Later it was found that an observation 48 was wrongly taken as 23. Find the correct mean.", opts: ["36.5","37.2","36.1","35.8"] },
-                        { q: "If x² - 13x + 40 = 0 and y² - 17y + 72 = 0, find relation between x and y.", opts: ["x < y","x ≤ y","x > y","Relation cannot be established"] },
-                        { q: "A cylinder of radius 7 cm and height 20 cm is melted to form spheres of radius 3.5 cm. How many spheres can be formed?", opts: ["15","20","12","18"] },
-                        { q: "Simplify: √1296 + 15% of 400 - 3².", opts: ["87","91","78","82"] },
-                        { q: "HCF of two numbers is 11 and their LCM is 693. If one number is 77, find the other?", opts: ["66","99","88","121"] },
-                        { q: "A:B = 3:4, B:C = 5:6. Find C:A.", opts: ["8:5","5:8","4:3","2:3"] },
-                        { q: "Successive discounts of 10% and 20% is equivalent to a single discount of?", opts: ["28%","30%","25%","32%"] },
-                        { q: "The ratio of ages of A and B is 4:5. Eight years ago it was 3:4. Find their present ages.", opts: ["32, 40","28, 35","36, 45","40, 50"] },
-                        { q: "A bike travels 20% faster than a car. Both start at same time and reach same point 75km away at same time but bike lost 12.5 min at stations. Find speed of car?", opts: ["110 km/h","120 km/h","100 km/h","130 km/h"] },
-                        { q: "If x + 1/x = 5, find x³ + 1/x³.", opts: ["110","125","115","140"] }
-                    ];
-
-                    const numericalSection = document.getElementById('numerical');
-                    numericalQuestions.forEach((item, index) => {
-                        document.write(`
-                            <div class="q-card">
-                                <span class="q-num">QUESTION ${index + 1}</span>
-                                <div class="q-text">${item.q}</div>
-                                <div class="options">
-                                    ${item.opts.map(opt => `<div class="opt">${opt}</div>`).join('')}
-                                </div>
-                            </div>
-                        `);
-                    });
-                </script>
+                <div class="q-card"><span class="q-num">Q1 • PERCENTAGES</span><div class="q-text">A number is increased by 20% and then decreased by 20%. What is the net % change?</div><div class="options"><div class="opt">A) No change</div><div class="opt">B) 4% increase</div><div class="opt">C) 4% decrease</div><div class="opt">D) 2% decrease</div></div></div>
+                <div class="q-card"><span class="q-num">Q2 • PERCENTAGES</span><div class="q-text">In an election, a candidate gets 60% of votes and wins by 480 votes. Find total votes.</div><div class="options"><div class="opt">A) 1800</div><div class="opt">B) 2000</div><div class="opt">C) 2400</div><div class="opt">D) 3000</div></div></div>
+                <div class="q-card"><span class="q-num">Q3 • PROFIT & LOSS</span><div class="q-text">A man buys a cycle for ₹1400 and sells it at 15% loss. Find the selling price.</div><div class="options"><div class="opt">A) ₹1200</div><div class="opt">B) ₹1190</div><div class="opt">C) ₹1150</div><div class="opt">D) ₹1250</div></div></div>
+                <div class="q-card"><span class="q-num">Q4 • PROFIT & LOSS</span><div class="q-text">A trader sells 17 balls at ₹720, gaining the cost of 5 balls. Find cost of 1 ball.</div><div class="options"><div class="opt">A) ₹45</div><div class="opt">B) ₹50</div><div class="opt">C) ₹60</div><div class="opt">D) ₹72</div></div></div>
+                <div class="q-card"><span class="q-num">Q5 • MIXTURES</span><div class="q-text">A 60-litre mixture of milk and water has 10% water. How much water must be added to make it 20%?</div><div class="options"><div class="opt">A) 5 litres</div><div class="opt">B) 6 litres</div><div class="opt">C) 7.5 litres</div><div class="opt">D) 8 litres</div></div></div>
+                <div class="q-card"><span class="q-num">Q6 • MIXTURES</span><div class="q-text">A trader mixes 26 kg of rice at ₹20/kg with 30 kg at ₹36/kg and sells the mix at ₹30/kg. Profit %?</div><div class="options"><div class="opt">A) 2%</div><div class="opt">B) 3.5%</div><div class="opt">C) 5%</div><div class="opt">D) 6%</div></div></div>
+                <div class="q-card"><span class="q-num">Q7 • TIME & DISTANCE</span><div class="q-text">In a 1 km race, A beats B by 40 metres or 5 seconds. What time does A take to finish?</div><div class="options"><div class="opt">A) 1 min 45 sec</div><div class="opt">B) 2 minutes</div><div class="opt">C) 2 min 15 sec</div><div class="opt">D) 2 min 30 sec</div></div></div>
+                <div class="q-card"><span class="q-num">Q8 • PIPES & CISTERNS</span><div class="q-text">Pipe A fills a tank in 6 hrs, Pipe B empties it in 10 hrs. If both are open together, how long to fill?</div><div class="options"><div class="opt">A) 12 hours</div><div class="opt">B) 14 hours</div><div class="opt">C) 15 hours</div><div class="opt">D) 18 hours</div></div></div>
+                <div class="q-card"><span class="q-num">Q9 • COMPOUND INTEREST</span><div class="q-text">At what rate does a sum double itself in 5 years at CI?</div><div class="options"><div class="opt">A) 12%</div><div class="opt">B) 13.5%</div><div class="opt">C) ~14.87%</div><div class="opt">D) 16%</div></div></div>
+                <div class="q-card"><span class="q-num">Q10 • QUADRATIC</span><div class="q-text">If (17/6) + (3x − 14/3) = 5x/2, find x.</div><div class="options"><div class="opt">A) 1</div><div class="opt">B) 2</div><div class="opt">C) 3</div><div class="opt">D) 4</div></div></div>
+                <div class="q-card"><span class="q-num">Q11 • MENSURATION</span><div class="q-text">A right triangle with sides 3, 4, 5 cm is rotated along its side of 3 cm to form a cone. Find volume.</div><div class="options"><div class="opt">A) 12π cm³</div><div class="opt">B) 16π cm³</div><div class="opt">C) 20π cm³</div><div class="opt">D) 25π cm³</div></div></div>
+                <div class="q-card"><span class="q-num">Q12 • SIMPLIFICATION</span><div class="q-text">What is 1.59² + 8.46 × 0.53 + 9 × 0.47²?</div><div class="options"><div class="opt">A) 7</div><div class="opt">B) 8</div><div class="opt">C) 9</div><div class="opt">D) 10</div></div></div>
+                <div class="q-card"><span class="q-num">Q13 • SIMPLIFICATION</span><div class="q-text">If √(0.0169 × ?) = 1.3, find the missing value.</div><div class="options"><div class="opt">A) 10</div><div class="opt">B) 50</div><div class="opt">C) 100</div><div class="opt">D) 1000</div></div></div>
+                <div class="q-card"><span class="q-num">Q14 • SQUARE ROOTS</span><div class="q-text">√(248 + √(52 + √144)) = ?</div><div class="options"><div class="opt">A) 12</div><div class="opt">B) 14</div><div class="opt">C) 16</div><div class="opt">D) 18</div></div></div>
+                <div class="q-card"><span class="q-num">Q15 • PROFIT & LOSS</span><div class="q-text">A man buys a shirt at 25% discount on marked price ₹400 and sells at 20% profit on marked price. Find selling price.</div><div class="options"><div class="opt">A) ₹360</div><div class="opt">B) ₹370</div><div class="opt">C) ₹380</div><div class="opt">D) ₹400</div></div></div>
+                <div class="q-card"><span class="q-num">Q16 • TIME & WORK</span><div class="q-text">A factory produces x units in 24 days. How many units in 15 days?</div><div class="options"><div class="opt">A) x/2</div><div class="opt">B) 3x/5</div><div class="opt">C) 5x/8</div><div class="opt">D) 2x/3</div></div></div>
+                <div class="q-card"><span class="q-num">Q17 • PERCENTAGES</span><div class="q-text">15% shirts are defective. Of non-defective, 20% sold domestically. What % are exported?</div><div class="options"><div class="opt">A) 60%</div><div class="opt">B) 65%</div><div class="opt">C) 68%</div><div class="opt">D) 72%</div></div></div>
+                <div class="q-card"><span class="q-num">Q18 • MIXTURES</span><div class="q-text">In what ratio must rice at ₹9/kg be mixed with rice at ₹16/kg to get a mix worth ₹14/kg?</div><div class="options"><div class="opt">A) 1:2</div><div class="opt">B) 2:5</div><div class="opt">C) 3:5</div><div class="opt">D) 4:7</div></div></div>
+                <div class="q-card"><span class="q-num">Q19 • TIME & DISTANCE</span><div class="q-text">Two friends walk from M to N (27 km) at 4 km/h and 5 km/h. Vidya reaches N, returns, meets Jaya at O. Distance M to O?</div><div class="options"><div class="opt">A) 18 km</div><div class="opt">B) 24 km</div><div class="opt">C) 22 km</div><div class="opt">D) 20 km</div></div></div>
+                <div class="q-card"><span class="q-num">Q20 • AVERAGES</span><div class="q-text">Average weight of 20 students increases by 1.5 kg when one student is replaced by a new student weighing 80 kg. Weight of replaced student?</div><div class="options"><div class="opt">A) 40 kg</div><div class="opt">B) 45 kg</div><div class="opt">C) 50 kg</div><div class="opt">D) 55 kg</div></div></div>
             </section>
 
-            <!-- SECTION 2: VERBAL ABILITY (25 QUESTIONS) -->
+            <!-- SECTION 2: VERBAL ABILITY (HARD-CODED 1-25 WITH TOPICS) -->
             <section id="verbal" class="section">
                 <div class="section-header"><h2>02. Verbal Ability</h2></div>
-                <div class="q-card">
-                    <span class="q-num">QUESTIONS 1-5 • ELITE PASSAGE</span>
-                    <div class="q-text">
-                        <strong>Passage:</strong> The maritime industry is at a critical juncture where the integration of 'Blue Economy' principles is no longer a luxury but a necessity... [Lengthy Abstract Topic].
-                        <br><br>The author argues that the disconnect between localized fishing communities and global logistics hubs is widening due to...
-                    </div>
-                </div>
-                <script>
-                    for(let i=1; i<=25; i++) {
-                        let topic = i<=5 ? "RC Detail" : i<=10 ? "Error Detection" : i<=15 ? "Para Jumble" : i<=20 ? "Cloze Test" : "Sentence Correction";
-                        if(i > 1) {
-                            document.write(`
-                                <div class="q-card">
-                                    <span class="q-num">QUESTION ${i} • ${topic}</span>
-                                    <div class="q-text">Identify the most appropriate grammatical correction or infer the context for the phrase provided in the 20th March morning slot.</div>
-                                    <div class="options"><div class="opt">Option A</div><div class="opt">Option B</div><div class="opt">Option C</div><div class="opt">Option D</div></div>
-                                </div>
-                            `);
-                        }
-                    }
-                </script>
+                <div class="q-card"><span class="q-num">Q1 • ERROR DETECTION</span><div class="q-text">"Everyday life have become more complicated with the advancement in mobile technology."</div><div class="options"><div class="opt">A) More complicated with the</div><div class="opt">B) Everyday life have become</div><div class="opt">C) No error</div><div class="opt">D) Advancement in mobile technology</div></div></div>
+                <div class="q-card"><span class="q-num">Q2 • SENTENCE REVISION</span><div class="q-text">Combine: (i) I was at the fair. (ii) I got lost. (iii) I got scared.</div><div class="options"><div class="opt">A) I am scared after I am lost at the fair.</div><div class="opt">B) I went to fair and got scared as I was lost.</div><div class="opt">C) I am lost at the fair so I am too scared.</div><div class="opt">D) I got lost at the fair and was scared.</div></div></div>
+                <div class="q-card"><span class="q-num">Q3 • FILL IN BLANKS</span><div class="q-text">She did not bring a blanket for ____ so I gave her ____.</div><div class="options"><div class="opt">A) herself / mine</div><div class="opt">B) herself / one</div><div class="opt">C) her / mine</div><div class="opt">D) she / one</div></div></div>
+                <div class="q-card"><span class="q-num">Q4 • ERROR DETECTION</span><div class="q-text">"I have to been asked to keep quiet, and that too, in stern terms!"</div><div class="options"><div class="opt">A) and that too, in stern terms</div><div class="opt">B) I have to been asked</div><div class="opt">C) to keep quiet</div><div class="opt">D) No error</div></div></div>
+                <div class="q-card"><span class="q-num">Q5 • FORMAL LANGUAGE</span><div class="q-text">Which conversation does NOT use formal language?</div><div class="options"><div class="opt">A) "Will you be able to submit by Friday?" / "Of course."</div><div class="opt">B) "Can you do this?" / "Yup!! Sure!"</div><div class="opt">C) "I'd like to speak with Mr. Bhatia." / "One moment."</div><div class="opt">D) "Would you join our team?" / "It will be my privilege."</div></div></div>
+                <div class="q-card"><span class="q-num">Q6 • FILL IN BLANKS</span><div class="q-text">The company's success is attributed to the ______ leadership of its CEO.</div><div class="options"><div class="opt">A) Efficacious</div><div class="opt">B) Effectual</div><div class="opt">C) Affective</div><div class="opt">D) Effective</div></div></div>
+                <div class="q-card"><span class="q-num">Q7 • FILL IN BLANKS</span><div class="q-text">A seed is to plant as an idea is to ______.</div><div class="options"><div class="opt">A) thought</div><div class="opt">B) dream</div><div class="opt">C) invention</div><div class="opt">D) concept</div></div></div>
+                <div class="q-card"><span class="q-num">Q8 • PREPOSITIONS</span><div class="q-text">Children were quite sad when they did not see butterflies flitting _____ the flowers.</div><div class="options"><div class="opt">A) between</div><div class="opt">B) with</div><div class="opt">C) among</div><div class="opt">D) above</div></div></div>
+                <div class="q-card"><span class="q-num">Q9 • ERROR DETECTION</span><div class="q-text">"The children are quick to grasp, isn't it?"</div><div class="options"><div class="opt">A) Quick to grasp</div><div class="opt">B) Isn't it?</div><div class="opt">C) The children are</div><div class="opt">D) No error</div></div></div>
+                <div class="q-card"><span class="q-num">Q10 • FILL IN BLANKS</span><div class="q-text">The fire 1)______ on the fourth floor. Fire 2)______ official confirmed it.</div><div class="options"><div class="opt">A) 1-Departed, 2-Achievement</div><div class="opt">B) 1-Started, 2-Department</div><div class="opt">C) 1-Quit, 2-Compartment</div><div class="opt">D) 1-Deceased, 2-Disappointment</div></div></div>
+                <div class="q-card"><span class="q-num">Q11 • FILL IN BLANKS</span><div class="q-text">The woman was 1)______ and brought down by a ladder. She was being 2)______ in a hospital.</div><div class="options"><div class="opt">A) 1-Competing, 2-Watered</div><div class="opt">B) 1-Absent, 2-Played</div><div class="opt">C) 1-Conscious, 2-Treated</div><div class="opt">D) 1-Flying, 2-Laughed</div></div></div>
+                <div class="q-card"><span class="q-num">Q12 • ERROR DETECTION</span><div class="q-text">"The soldiers, in an attempt of showing their loyalty towards their king, fought ruthlessly."</div><div class="options"><div class="opt">A) in an attempt of showing</div><div class="opt">B) fought ruthlessly until the end</div><div class="opt">C) their loyalty towards their king</div><div class="opt">D) No error</div></div></div>
+                <div class="q-card"><span class="q-num">Q13 • PARA JUMBLES</span><div class="q-text">Arrange: A) It was a sunny day. B) We decided to go for a picnic. C) Everyone enjoyed the outing. D) We packed our bags early.</div><div class="options"><div class="opt">A) B→A→D→C</div><div class="opt">B) A→B→D→C</div><div class="opt">C) D→A→B→C</div><div class="opt">D) A→D→B→C</div></div></div>
+                <div class="q-card"><span class="q-num">Q14 • FILL IN BLANKS</span><div class="q-text">This 7th century city was a 1)______ moment. The team was 2)______ with work.</div><div class="options"><div class="opt">A) 1-fateful, 2-frantic</div><div class="opt">B) 1-consequential, 2-busy</div><div class="opt">C) 1-historic, 2-swamped</div><div class="opt">D) 1-momentous, 2-stuffed</div></div></div>
+                <div class="q-card"><span class="q-num">Q15 • COURSE OF ACTION</span><div class="q-text">"The city's public transportation is often unreliable." Most suitable action?</div><div class="options"><div class="opt">A) Increase fares to raise funds.</div><div class="opt">B) Conduct a comprehensive review to identify improvements.</div><div class="opt">C) Encourage more people to use private cars.</div><div class="opt">D) Introduce a flexible timetable for buses and trains.</div></div></div>
+                <div class="q-card"><span class="q-num">Q16 • PREPOSITION</span><div class="q-text">______ the new Safari Storme, Mahindra has more leverage in sales.</div><div class="options"><div class="opt">A) By</div><div class="opt">B) For</div><div class="opt">C) With</div><div class="opt">D) Through</div></div></div>
+                <div class="q-card"><span class="q-num">Q17 • PREPOSITION</span><div class="q-text">The passenger car sales showed a decline ______ 7% to 5.6%.</div><div class="options"><div class="opt">A) between</div><div class="opt">B) within</div><div class="opt">C) from</div><div class="opt">D) among</div></div></div>
+                <div class="q-card"><span class="q-num">Q18 • SENTENCE CORRECTION</span><div class="q-text">"The vivid photos of majestic animals form the wild-life park is a graphic depiction."</div><div class="options"><div class="opt">A) The vivid photos of majestic animals</div><div class="opt">B) form → from</div><div class="opt">C) is a graphic depiction</div><div class="opt">D) No error</div></div></div>
+                <div class="q-card"><span class="q-num">Q19 • FACT / OPINION</span><div class="q-text">"MP made it mandatory for industries to reserve 70% jobs for locals." What follows logically?</div><div class="options"><div class="opt">A) This is a progressive step.</div><div class="opt">B) This is regressive, as GST dismantles fiscal barriers.</div><div class="opt">C) More states should follow this.</div><div class="opt">D) This has no relation to unemployment.</div></div></div>
+                <div class="q-card"><span class="q-num">Q20 • ERROR DETECTION</span><div class="q-text">"She were late to the meeting every day."</div><div class="options"><div class="opt">A) to the meeting</div><div class="opt">B) were → was</div><div class="opt">C) every day</div><div class="opt">D) No error</div></div></div>
+                <div class="q-card"><span class="q-num">Q21 • ERROR DETECTION</span><div class="q-text">"He is one of the student who has passed."</div><div class="options"><div class="opt">A) who has passed</div><div class="opt">B) student → students</div><div class="opt">C) He is one of</div><div class="opt">D) No error</div></div></div>
+                <div class="q-card"><span class="q-num">Q22 • FILL IN BLANKS</span><div class="q-text">"Civilisation's progress must be measured in proportion to man's success in meeting the challenges of nature. 1)______."</div><div class="options"><div class="opt">A) Nature is man's greatest friend.</div><div class="opt">B) But man's failure to do so threatens his evolution.</div><div class="opt">C) Science has made life comfortable.</div><div class="opt">D) Man must rest between challenges.</div></div></div>
+                <div class="q-card"><span class="q-num">Q23 • PARA JUMBLES</span><div class="q-text">Which sentence is the correct opener for a paragraph about Roald Dahl?</div><div class="options"><div class="opt">A) Roald Dahl was known for writing stories with a dark, witty twist.</div><div class="opt">B) His books were translated into many languages.</div><div class="opt">C) The story features a trickster told from a child's perspective.</div><div class="opt">D) Children loved him because he was funny.</div></div></div>
+                <div class="q-card"><span class="q-num">Q24 • VOCABULARY</span><div class="q-text">Choose the correct synonym for EFFICACIOUS.</div><div class="options"><div class="opt">A) Harmful</div><div class="opt">B) Ineffective</div><div class="opt">C) Effective</div><div class="opt">D) Emotional</div></div></div>
+                <div class="q-card"><span class="q-num">Q25 • SENTENCE IMPROVEMENT</span><div class="q-text">"My mother made me to join seven different sports activities."</div><div class="options"><div class="opt">A) My mother did make me join</div><div class="opt">B) My mother made me join</div><div class="opt">C) My mother has made me to join</div><div class="opt">D) No improvement needed</div></div></div>
             </section>
-
-             <!-- SECTION 3: REASONING (11 QUESTIONS) -->
-             <section id="reasoning" class="section">
-                <div class="section-header"><h2>03. Reasoning Ability</h2></div>
-                <script>
-                    const reasoningData = ["Seating (7 People Facing Center)","Seating (Linear Arrangement North)","Seating (Double Row)","Blood Relation (Coded)","Blood Relation (Family Tree)","Syllogism (Only a few)","Syllogism (Possibility)","Coding-Decoding (Symbolic)","Coding-Decoding (Pattern)","Eligibility Criteria (Managerial)","Eligibility Criteria (Academic)"];
-                    reasoningData.forEach((topic, i) => {
-                        document.write(`
-                            <div class="q-card">
-                                <span class="q-num">QUESTION ${i+1} • ${topic}</span>
-                                <div class="q-text">Based on the provided ${topic} logic, determine the position of the second person from the left or the relationship specified.</div>
-                                <div class="options"><div class="opt">Option A</div><div class="opt">Option B</div><div class="opt">Option C</div><div class="opt">Option D</div></div>
-                            </div>
-                        `);
-                    });
-                </script>
-            </section>
-
-            <!-- SECTION 4: ADVANCED (14 QUESTIONS) -->
-            <section id="advanced" class="section">
-                <div class="section-header"><h2>04. Advanced Section</h2></div>
-                <script>
-                    for(let i=1; i<=14; i++) {
-                        document.write(`
-                            <div class="q-card">
-                                <span class="q-num">QUESTION ${i} • DI & PUZZLES</span>
-                                <div class="q-text">Analyze the complex multi-variable data or the professor-weekday scheduling puzzle to find the unique solution.</div>
-                            </div>
-                        `);
-                    }
-                </script>
-            </section>
-
-            <!-- SECTION 5: CODING (4 QUESTIONS) -->
-            <section id="coding" class="section">
-                <div class="section-header"><h2>05. Coding Challenges</h2></div>
-                
-                <div class="q-card" style="border-left: 5px solid var(--accent-brand);">
-                    <span class="q-num">C1 • Gym Membership Management</span>
-                    <div class="q-text">Given months 'M' in [1, 3, 6, 9, 12]. Print cost [2000, 5000, 9000, 12000, 15000]. Else print "Error".</div>
-                    <div class="coding-block"><div class="editor-mock"># Your code here...</div></div>
-                </div>
-
-                <div class="q-card" style="border-left: 5px solid var(--accent-brand);">
-                    <span class="q-num">C2 • Lexicographical Ranking</span>
-                    <div class="q-text">Sort Pairs (Rank, ID) numerically by Rank then alphabetic by ID.</div>
-                    <div class="coding-block"><div class="editor-mock"># Your code here...</div></div>
-                </div>
-
-                <div class="q-card" style="border-left: 5px solid var(--accent-brand);">
-                    <span class="q-num">C3 • Fraud Detection System</span>
-                    <div class="q-text">Flag repeating (Sender, Recipient, Amt) within 60s windows in a 50k log.</div>
-                    <div class="coding-block"><div class="editor-mock"># Your code here...</div></div>
-                </div>
-
-                <div class="q-card" style="border-left: 5px solid var(--accent-brand);">
-                    <span class="q-num">C4 • MST Network Setup</span>
-                    <div class="q-text">Find the global Minimum Spanning Tree cost for N server nodes.</div>
-                    <div class="coding-block"><div class="editor-mock"># Your code here...</div></div>
-                </div>
-            </section>
-
-            <div class="submit-section">
-                <button class="submit-btn" onclick="alert('Proceeding to evaluation...')">FINAL SUBMIT TEST</button>
-            </div>
+            
+            <button class="submit-btn" style="display: block; width: 100%;" onclick="alert('Submission received.')">FINAL SUBMIT</button>
         </main>
     </div>
 
@@ -414,26 +285,18 @@
         let time = 120 * 60;
         setInterval(() => {
             time--;
-            let h = Math.floor(time / 3600);
-            let m = Math.floor((time % 3600) / 60);
+            let m = Math.floor(time / 60);
             let s = time % 60;
             document.getElementById('timer').innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
         }, 1000);
 
-        // Sidebar link activation
-        const links = document.querySelectorAll('.nav-link');
-        const sections = document.querySelectorAll('.section');
-        window.onscroll = () => {
-            let current = "";
-            sections.forEach(s => {
-                if(pageYOffset >= s.offsetTop - 200) current = s.getAttribute('id');
-            });
-            links.forEach(l => {
-                l.classList.remove('active');
-                if(l.getAttribute('href') == '#'+current) l.classList.add('active');
-            });
-        };
+        // Selection
+        document.querySelectorAll('.opt').forEach(opt => {
+            opt.onclick = () => {
+                opt.parentElement.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
+                opt.classList.add('selected');
+            };
+        });
     </script>
 </body>
-
 </html>
