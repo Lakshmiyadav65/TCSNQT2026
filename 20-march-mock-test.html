@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official Elite Challenge: TCS NQT March 20th | Lakshmi Builds</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Syne:wght@800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #050505;
+            --surface: #0e0e11;
+            --border: rgba(255, 255, 255, 0.08);
+            --accent-brand: #ffcc00;
+            --text-main: #f0f0f2;
+            --text-muted: #888891;
+            --font-heading: 'Syne', sans-serif;
+            --font-body: 'Instrument Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+        }
+
+        /* Layout */
+        .test-container {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            padding: 3rem 2rem;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            z-index: 10;
+        }
+
+        .brand h2 {
+            font-family: var(--font-heading);
+            color: var(--accent-brand);
+            font-size: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .nav-link {
+            padding: 1rem 1.25rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: 0.2s;
+            border: 1px solid transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: rgba(255, 204, 0, 0.1);
+            color: var(--accent-brand);
+            border-color: var(--accent-brand);
+        }
+
+        .q-count-badge {
+            font-size: 0.7rem;
+            background: rgba(255,255,255,0.05);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            padding: 4rem 10%;
+            max-width: 1300px;
+        }
+
+        .mock-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6rem;
+            position: sticky;
+            top: 0;
+            background: rgba(5,5,5,0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 5;
+        }
+
+        .timer {
+            font-family: var(--font-mono);
+            font-size: 1.5rem;
+            color: var(--accent-brand);
+            font-weight: 700;
+            border: 1px solid var(--accent-brand);
+            padding: 0.5rem 1.5rem;
+            border-radius: 10px;
+            background: #000;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 10rem;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1.5rem;
+        }
+
+        .section-header h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            color: #fff;
+        }
+
+        /* Question Card */
+        .q-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            transition: 0.3s;
+        }
+
+        .q-card:hover { border-color: rgba(255, 204, 0, 0.3); }
+
+        .q-num {
+            font-family: var(--font-mono);
+            color: var(--accent-brand);
+            font-size: 0.8rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .q-text {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 2.5rem;
+            color: #efeff1;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .opt {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            padding: 1.25rem 1.5rem;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            font-size: 1.1rem;
+        }
+
+        .opt:hover {
+            border-color: var(--accent-brand);
+            background: rgba(255, 204, 0, 0.05);
+        }
+
+        /* Coding Block */
+        .coding-block {
+            background: #000;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .editor-mock {
+            font-family: var(--font-mono);
+            color: #888891;
+            font-size: 1rem;
+            min-height: 200px;
+        }
+
+        /* Final Submit */
+        .submit-section {
+            text-align: center;
+            padding: 6rem 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .submit-btn {
+            background: var(--accent-brand);
+            color: #000;
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            padding: 1.5rem 6rem;
+            border: none;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 15px 40px -10px rgba(255, 204, 0, 0.4);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 50px -10px rgba(255, 204, 0, 0.5);
+        }
+
+        @media (max-width: 1100px) {
+            .test-container { grid-template-columns: 1fr; }
+            .sidebar { display: none; }
+            .options { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="test-container">
+        <aside class="sidebar">
+            <div class="brand">
+                <h2>LAKSHMI BUILDS</h2>
+                <p style="font-size: 0.7rem; color: var(--text-muted); font-weight: 700;">TCS NQT 2026 OFFICIAL MOCK</p>
+            </div>
+            <nav class="nav-links">
+                <a href="#numerical" class="nav-link active">1. Numerical <span class="q-count-badge">20Q</span></a>
+                <a href="#verbal" class="nav-link">2. Verbal <span class="q-count-badge">25Q</span></a>
+                <a href="#reasoning" class="nav-link">3. Reasoning <span class="q-count-badge">11Q</span></a>
+                <a href="#advanced" class="nav-link">4. Advanced <span class="q-count-badge">14Q</span></a>
+                <a href="#coding" class="nav-link">5. Coding <span class="q-count-badge">4Q</span></a>
+            </nav>
+            <div style="margin-top: auto; padding-top: 2rem; border-top: 1px solid var(--border); font-size: 0.65rem; color: var(--text-muted);">
+                MARCH 20TH SLOT REPLICA • V2.0 ELITE
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="mock-header">
+                <div>
+                    <h1 style="font-family: var(--font-heading); font-size: 2.2rem;">Elite Practice Arena</h1>
+                    <p style="color: var(--text-muted); font-size: 1rem;">Real Hard Questions • 120 Minutes Session</p>
+                </div>
+                <div class="timer" id="timer">119:59</div>
+            </header>
+
+            <!-- SECTION 1: NUMERICAL ABILITY (20 QUESTIONS) -->
+            <section id="numerical" class="section">
+                <div class="section-header"><h2>01. Numerical Ability</h2></div>
+                
+                <script>
+                    const numericalQuestions = [
+                        { q: "A sum of money was borrowed and paid back in two equal annual installments of ₹17,640 each. If the rate of interest is 5% per annum, compounded annually, find the total sum (principal) borrowed?", opts: ["₹32,800","₹33,600","₹32,400","₹34,200"] },
+                        { q: "A dishonest merchant sells his goods at a 10% loss on cost price but uses a weight of 800 grams instead of a kilogram. What is his actual profit or loss percentage for the entire transaction?", opts: ["12.5% Profit","10.5% Loss","15% Profit","12% Profit"] },
+                        { q: "A 20-liter mixture contains milk and water in the ratio 3:2. 10 liters of this mixture are removed and replaced with 10 liters of pure water. Then, 10 liters of the new mixture are removed and again replaced with 10 liters of pure water. Find the final ratio of milk to water?", opts: ["3 : 17","1 : 4","3 : 13","5 : 11"] },
+                        { q: "Two trains leave station X and station Y towards each other. They meet at a certain point. After crossing each other, they take 4 hours and 9 hours respectively to reach Y and X. If the speed of the first train is 60 km/h, what is the speed of the second train?", opts: ["40 km/h","45 km/h","30 km/h","50 km/h"] },
+                        { q: "In an election between two candidates, 10% of voters did not cast their votes. 10% of votes cast were invalid. The winner got 54% of valid votes and won by 1,620 votes. Total voters?", opts: ["25,000","20,000","22,500","18,000"] },
+                        { q: "A can do a work in 15 days, B in 20. They work together for 4 days, then A leaves. In how many days will B finish the remaining work?", opts: ["10 days","8 days","12 days","15 days"] },
+                        { q: "The profit earned by selling an article for ₹900 is double the loss incurred when the same article is sold for ₹450. At what price should the article be sold to make 25% profit?", opts: ["₹750","₹800","₹850","₹700"] },
+                        { q: "A pipe can fill a tank in 12 min and another in 15 min. A third pipe empties in 6 min. If first two are opened for 5 min then the third is opened, in what time will the tank be empty?", opts: ["45 min","30 min","40 min","35 min"] },
+                        { q: "A sum becomes ₹4840 in 2 years and ₹5324 in 3 years at compound interest. Find the rate percent per annum.", opts: ["8%","10%","12%","15%"] },
+                        { q: "Find the smallest number which when divided by 20, 25, 35 and 40 leaves remainder 14, 19, 29 and 34 respectively.", opts: ["1394","1400","1386","1406"] },
+                        { q: "The mean of 50 observations was 36. Later it was found that an observation 48 was wrongly taken as 23. Find the correct mean.", opts: ["36.5","37.2","36.1","35.8"] },
+                        { q: "If x² - 13x + 40 = 0 and y² - 17y + 72 = 0, find relation between x and y.", opts: ["x < y","x ≤ y","x > y","Relation cannot be established"] },
+                        { q: "A cylinder of radius 7 cm and height 20 cm is melted to form spheres of radius 3.5 cm. How many spheres can be formed?", opts: ["15","20","12","18"] },
+                        { q: "Simplify: √1296 + 15% of 400 - 3².", opts: ["87","91","78","82"] },
+                        { q: "HCF of two numbers is 11 and their LCM is 693. If one number is 77, find the other?", opts: ["66","99","88","121"] },
+                        { q: "A:B = 3:4, B:C = 5:6. Find C:A.", opts: ["8:5","5:8","4:3","2:3"] },
+                        { q: "Successive discounts of 10% and 20% is equivalent to a single discount of?", opts: ["28%","30%","25%","32%"] },
+                        { q: "The ratio of ages of A and B is 4:5. Eight years ago it was 3:4. Find their present ages.", opts: ["32, 40","28, 35","36, 45","40, 50"] },
+                        { q: "A bike travels 20% faster than a car. Both start at same time and reach same point 75km away at same time but bike lost 12.5 min at stations. Find speed of car?", opts: ["110 km/h","120 km/h","100 km/h","130 km/h"] },
+                        { q: "If x + 1/x = 5, find x³ + 1/x³.", opts: ["110","125","115","140"] }
+                    ];
+
+                    const numericalSection = document.getElementById('numerical');
+                    numericalQuestions.forEach((item, index) => {
+                        document.write(`
+                            <div class="q-card">
+                                <span class="q-num">QUESTION ${index + 1}</span>
+                                <div class="q-text">${item.q}</div>
+                                <div class="options">
+                                    ${item.opts.map(opt => `<div class="opt">${opt}</div>`).join('')}
+                                </div>
+                            </div>
+                        `);
+                    });
+                </script>
+            </section>
+
+            <!-- SECTION 2: VERBAL ABILITY (25 QUESTIONS) -->
+            <section id="verbal" class="section">
+                <div class="section-header"><h2>02. Verbal Ability</h2></div>
+                <div class="q-card">
+                    <span class="q-num">QUESTIONS 1-5 • ELITE PASSAGE</span>
+                    <div class="q-text">
+                        <strong>Passage:</strong> The maritime industry is at a critical juncture where the integration of 'Blue Economy' principles is no longer a luxury but a necessity... [Lengthy Abstract Topic].
+                        <br><br>The author argues that the disconnect between localized fishing communities and global logistics hubs is widening due to...
+                    </div>
+                </div>
+                <script>
+                    for(let i=1; i<=25; i++) {
+                        let topic = i<=5 ? "RC Detail" : i<=10 ? "Error Detection" : i<=15 ? "Para Jumble" : i<=20 ? "Cloze Test" : "Sentence Correction";
+                        if(i > 1) {
+                            document.write(`
+                                <div class="q-card">
+                                    <span class="q-num">QUESTION ${i} • ${topic}</span>
+                                    <div class="q-text">Identify the most appropriate grammatical correction or infer the context for the phrase provided in the 20th March morning slot.</div>
+                                    <div class="options"><div class="opt">Option A</div><div class="opt">Option B</div><div class="opt">Option C</div><div class="opt">Option D</div></div>
+                                </div>
+                            `);
+                        }
+                    }
+                </script>
+            </section>
+
+             <!-- SECTION 3: REASONING (11 QUESTIONS) -->
+             <section id="reasoning" class="section">
+                <div class="section-header"><h2>03. Reasoning Ability</h2></div>
+                <script>
+                    const reasoningData = ["Seating (7 People Facing Center)","Seating (Linear Arrangement North)","Seating (Double Row)","Blood Relation (Coded)","Blood Relation (Family Tree)","Syllogism (Only a few)","Syllogism (Possibility)","Coding-Decoding (Symbolic)","Coding-Decoding (Pattern)","Eligibility Criteria (Managerial)","Eligibility Criteria (Academic)"];
+                    reasoningData.forEach((topic, i) => {
+                        document.write(`
+                            <div class="q-card">
+                                <span class="q-num">QUESTION ${i+1} • ${topic}</span>
+                                <div class="q-text">Based on the provided ${topic} logic, determine the position of the second person from the left or the relationship specified.</div>
+                                <div class="options"><div class="opt">Option A</div><div class="opt">Option B</div><div class="opt">Option C</div><div class="opt">Option D</div></div>
+                            </div>
+                        `);
+                    });
+                </script>
+            </section>
+
+            <!-- SECTION 4: ADVANCED (14 QUESTIONS) -->
+            <section id="advanced" class="section">
+                <div class="section-header"><h2>04. Advanced Section</h2></div>
+                <script>
+                    for(let i=1; i<=14; i++) {
+                        document.write(`
+                            <div class="q-card">
+                                <span class="q-num">QUESTION ${i} • DI & PUZZLES</span>
+                                <div class="q-text">Analyze the complex multi-variable data or the professor-weekday scheduling puzzle to find the unique solution.</div>
+                            </div>
+                        `);
+                    }
+                </script>
+            </section>
+
+            <!-- SECTION 5: CODING (4 QUESTIONS) -->
+            <section id="coding" class="section">
+                <div class="section-header"><h2>05. Coding Challenges</h2></div>
+                
+                <div class="q-card" style="border-left: 5px solid var(--accent-brand);">
+                    <span class="q-num">C1 • Gym Membership Management</span>
+                    <div class="q-text">Given months 'M' in [1, 3, 6, 9, 12]. Print cost [2000, 5000, 9000, 12000, 15000]. Else print "Error".</div>
+                    <div class="coding-block"><div class="editor-mock"># Your code here...</div></div>
+                </div>
+
+                <div class="q-card" style="border-left: 5px solid var(--accent-brand);">
+                    <span class="q-num">C2 • Lexicographical Ranking</span>
+                    <div class="q-text">Sort Pairs (Rank, ID) numerically by Rank then alphabetic by ID.</div>
+                    <div class="coding-block"><div class="editor-mock"># Your code here...</div></div>
+                </div>
+
+                <div class="q-card" style="border-left: 5px solid var(--accent-brand);">
+                    <span class="q-num">C3 • Fraud Detection System</span>
+                    <div class="q-text">Flag repeating (Sender, Recipient, Amt) within 60s windows in a 50k log.</div>
+                    <div class="coding-block"><div class="editor-mock"># Your code here...</div></div>
+                </div>
+
+                <div class="q-card" style="border-left: 5px solid var(--accent-brand);">
+                    <span class="q-num">C4 • MST Network Setup</span>
+                    <div class="q-text">Find the global Minimum Spanning Tree cost for N server nodes.</div>
+                    <div class="coding-block"><div class="editor-mock"># Your code here...</div></div>
+                </div>
+            </section>
+
+            <div class="submit-section">
+                <button class="submit-btn" onclick="alert('Proceeding to evaluation...')">FINAL SUBMIT TEST</button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Timer
+        let time = 120 * 60;
+        setInterval(() => {
+            time--;
+            let h = Math.floor(time / 3600);
+            let m = Math.floor((time % 3600) / 60);
+            let s = time % 60;
+            document.getElementById('timer').innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
+        }, 1000);
+
+        // Sidebar link activation
+        const links = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.section');
+        window.onscroll = () => {
+            let current = "";
+            sections.forEach(s => {
+                if(pageYOffset >= s.offsetTop - 200) current = s.getAttribute('id');
+            });
+            links.forEach(l => {
+                l.classList.remove('active');
+                if(l.getAttribute('href') == '#'+current) l.classList.add('active');
+            });
+        };
+    </script>
+</body>
+
+</html>

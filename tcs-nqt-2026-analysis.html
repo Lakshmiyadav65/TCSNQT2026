@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCS NQT 2026 Paper Analysis | Select Slot</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Syne:wght@800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #08080a;
+            --surface: #111114;
+            --border: rgba(255, 255, 255, 0.08);
+            --text-main: #efeff1;
+            --text-muted: #94949e;
+            --accent: #ffcc00; /* Yellow Brand Color */
+            --font-main: 'Instrument Sans', sans-serif;
+            --font-heading: 'Syne', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+            background-image: 
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            margin-bottom: 0.5rem;
+            letter-spacing: -1.5px;
+            color: var(--accent);
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .slot-sections-container {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .date-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .date-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .date-label::before { content: '📅'; font-size: 1rem; }
+
+        .slots-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .slot-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 20px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 160px;
+        }
+
+        .slot-card:hover:not(.locked) {
+            border-color: var(--accent);
+            background: rgba(255, 204, 0, 0.03);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+        }
+
+        .slot-card.locked {
+            opacity: 0.4;
+            cursor: not-allowed;
+            filter: grayscale(1);
+        }
+
+        .slot-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .slot-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .card-footer {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .status-pill {
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            text-transform: uppercase;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        .active-pill {
+            background: rgba(255, 204, 0, 0.15);
+            color: var(--accent);
+        }
+
+        .arrow { font-size: 1.2rem; color: var(--accent); opacity: 0; transition: var(--transition); }
+        .slot-card:hover .arrow { opacity: 1; transform: translateX(5px); }
+
+        .footer {
+            margin-top: 6rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .brand-name {
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 3rem;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover { color: var(--accent); }
+
+        @media (max-width: 650px) {
+            .slots-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="index.html" class="back-link">← Back to Dashboard</a>
+    
+    <header>
+        <h1>Select Date</h1>
+        <p class="subtitle">Complete paper analysis for each day of TCS NQT 2026</p>
+    </header>
+
+    <div class="slot-sections-container">
+        <!-- 20 March -->
+        <a href="20-march-morning-analysis.html" class="slot-card" style="min-height: auto; padding: 2rem;">
+            <div>
+                <span class="date-label" style="border:none; margin-bottom: 0.5rem; padding:0;">20 March 2026</span>
+                <h3>Full Day Analysis</h3>
+                <p>Mixed collection of Morning & Evening slot questions, patterns, and coding challenges.</p>
+            </div>
+            <div class="card-footer">
+                <span class="status-pill active-pill">Available</span>
+                <span class="arrow">→</span>
+            </div>
+        </a>
+
+        <!-- 21 March (Upcoming) -->
+        <div class="slot-card locked" style="min-height: auto; padding: 2rem;">
+            <div>
+                <span class="date-label" style="border:none; margin-bottom: 0.5rem; padding:0;">21 March 2026</span>
+                <h3>Analysis in Progress</h3>
+                <p>We are collecting data from the slots. Analysis will be available tomorrow.</p>
+            </div>
+            <div class="card-footer">
+                <span class="status-pill">Updating...</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        Curated with ❤️ by <a href="#" class="brand-name">Lakshmi Builds</a>
+    </div>
+</div>
+
+</body>
+</html>

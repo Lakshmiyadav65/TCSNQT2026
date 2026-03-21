@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis: 20 March Morning Slot | TCS NQT 2026</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Syne:wght@800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #08080a;
+            --surface: #111114;
+            --border: rgba(255, 255, 255, 0.08);
+            --text-main: #efeff1;
+            --text-muted: #94949e;
+
+            --accent-quant: #ffcc00;
+            /* Use brand yellow */
+            --accent-verbal: #ffd740;
+            --accent-reasoning: #448aff;
+            --accent-advanced: #69f0ae;
+            --accent-coding: #e040fb;
+            --accent-brand: #ffcc00;
+
+            --font-heading: 'Syne', sans-serif;
+            --font-sub: 'Instrument Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            --transition: all 0.25s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-sub);
+            line-height: 1.5;
+            overflow-x: hidden;
+            background-image:
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+
+        /* Hero */
+        header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .badge {
+            background: rgba(255, 204, 0, 0.1);
+            border: 1px solid var(--accent-brand);
+            padding: 0.6rem 1.5rem;
+            border-radius: 100px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--accent-brand);
+            display: inline-block;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(3rem, 12vw, 5rem);
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+            color: #fff;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+
+        .brand-footer-link {
+            color: var(--accent-brand);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Grid */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem;
+            margin-bottom: 6rem;
+        }
+
+        .overview-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 16px;
+            text-align: left;
+        }
+
+        .card-count {
+            font-size: 1.75rem;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-name {
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .diff-tag {
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Coding Section Enhanced */
+        .coding-detailed-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .code-card-full {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            width: 100%;
+        }
+
+        .code-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.75rem;
+        }
+
+        .tag-easy,
+        .tag-hard,
+        .tag-variant {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .tag-easy {
+            background: rgba(105, 240, 174, 0.1);
+            color: var(--accent-advanced);
+        }
+
+        .tag-hard {
+            background: rgba(255, 82, 82, 0.1);
+            color: var(--accent-quant);
+        }
+
+        .code-content-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .code-logic {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.01);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .code-solution {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 204, 0, 0.1);
+            margin-top: 1.5rem;
+        }
+
+        @media (max-width: 800px) {
+            .code-card-full {
+                padding: 1.5rem;
+            }
+
+            .code-solution {
+                padding: 1.25rem;
+            }
+        }
+
+        /* Gym Table Alignment Fix */
+        .fee-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .fee-table th {
+            text-align: left;
+            padding: 0.85rem 0.5rem;
+            border-bottom: 2px solid var(--border);
+            color: var(--accent-brand);
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            width: 50%;
+            /* Equal Columns */
+        }
+
+        .fee-table td {
+            padding: 0.85rem 0.5rem;
+            border-bottom: 1px solid var(--border);
+            width: 50%;
+            /* Equal Columns */
+        }
+
+        /* Visualization Redesign */
+        .visualizer {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .sort-flow {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            justify-content: start;
+            margin-top: 1rem;
+        }
+
+        .visual-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .visual-box {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            padding: 0.6rem 0.8rem;
+            border-radius: 10px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #fff;
+            transition: var(--transition);
+        }
+
+        .visual-box.active {
+            border-color: var(--accent-brand);
+            background: rgba(255, 204, 0, 0.1);
+            color: var(--accent-brand);
+        }
+
+        .flow-arrow {
+            color: var(--text-muted);
+            opacity: 0.5;
+            font-size: 1.1rem;
+        }
+
+        .timeline-visual {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            gap: 0.5rem;
+        }
+
+        .timeline-node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            text-align: center;
+        }
+
+        .node-dot {
+            width: 14px;
+            height: 14px;
+            background: var(--accent-brand);
+            border-radius: 50%;
+            border: 3px solid var(--bg-color);
+            box-shadow: 0 0 15px rgba(255, 204, 0, 0.3);
+        }
+
+        .node-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+        }
+
+        /* Helper Tags */
+        .label-chip {
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 0.2rem 0.5rem;
+            border-radius: 100px;
+            background: var(--border);
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 1100px) {
+            .code-content-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .fee-table th,
+            .fee-table td {
+                width: auto;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .code-card-full {
+                padding: 1.5rem;
+            }
+
+            .sort-flow {
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+            }
+        }
+
+        /* Sections Styling */
+        .hero-cta {
+            display: inline-block;
+            background: var(--accent-brand);
+            color: #000 !important;
+            padding: 1rem 2.5rem;
+            border-radius: 100px;
+            font-family: var(--font-heading);
+            font-weight: 800;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1rem;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px -10px rgba(255, 204, 0, 0.4);
+        }
+
+        .hero-cta:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+            box-shadow: 0 15px 40px -10px rgba(255, 204, 0, 0.6);
+        }
+
+        .section-header {
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .target-label {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.03);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+        }
+
+        .content-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+
+        .topic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .topic-row {
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+
+        .topic-q {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .alert-box {
+            padding: 1.25rem;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid #ccc;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        /* Coding */
+        .coding-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .code-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 20px;
+        }
+
+        .code-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+
+        /* Hero */
+        .code-block {
+            background: #000;
+            padding: 2rem;
+            border-radius: 12px;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            /* Increased size for readability */
+            margin-top: 1.5rem;
+            color: #d1d1d1;
+            line-height: 1.7;
+            overflow-x: auto;
+            border: 1px solid var(--border);
+            white-space: pre;
+        }
+
+        /* Overview Grid Fix */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 6rem;
+        }
+
+        .overview-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 1.25rem;
+            border-radius: 20px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 140px;
+        }
+
+        .card-count {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        @media (max-width: 1100px) {
+            .overview-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .code-content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .overview-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .kw {
+            color: #f472b6;
+        }
+
+        .st {
+            color: #fbbf24;
+        }
+
+        .fn {
+            color: #4ade80;
+        }
+
+        .cm {
+            color: #71717a;
+        }
+
+        .nu {
+            color: #a78bfa;
+        }
+
+        .fee-table {
+            width: 100%;
+            margin: 1rem 0;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        .fee-table td {
+            padding: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        footer {
+            text-align: center;
+            padding: 4rem 1.5rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .back-nav {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .back-btn {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .back-btn:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 800px) {
+            .coding-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="back-nav">
+            <a href="tcs-nqt-2026-analysis.html" class="back-btn">← Back to Slot Selection</a>
+        </div>
+
+        <header>
+            <div class="badge">📅 20 MARCH 2026 · FULL DAY ANALYSIS</div>
+            <h1>TCS NQT 2026</h1>
+            <p class="subtitle">Complete Paper Analysis by <a href="#" class="brand-footer-link" style="color: var(--accent-brand); text-decoration: none;">Lakshmi Builds</a></p>
+            <div class="cta-wrapper" style="margin-top: 3rem;">
+                <a href="20-march-mock-test.html" class="hero-cta">🚀 Take the real mock test</a>
+            </div>
+        </header>
+
+        <div class="overview-grid">
+            <div class="overview-card">
+                <span class="card-count" style="color: var(--accent-quant)">20Q</span>
+                <span class="card-name">Quant</span>
+                <span class="diff-tag"
+                    style="background: rgba(255, 82, 82, 0.1); color: var(--accent-quant)">Tough</span>
+            </div>
+            <div class="overview-card">
+                <span class="card-count" style="color: var(--accent-verbal)">25Q</span>
+                <span class="card-name">Verbal</span>
+                <span class="diff-tag"
+                    style="background: rgba(255, 215, 64, 0.1); color: var(--accent-verbal)">Lengthy</span>
+            </div>
+            <div class="overview-card">
+                <span class="card-count" style="color: var(--accent-reasoning)">~11Q</span>
+                <span class="card-name">Reasoning</span>
+                <span class="diff-tag"
+                    style="background: rgba(68, 138, 255, 0.1); color: var(--accent-reasoning)">Scoring</span>
+            </div>
+            <div class="overview-card">
+                <span class="card-count" style="color: var(--accent-advanced)">14Q</span>
+                <span class="card-name">Advanced</span>
+                <span class="diff-tag"
+                    style="background: rgba(105, 240, 174, 0.1); color: var(--accent-advanced)">Easy</span>
+            </div>
+            <div class="overview-card">
+                <span class="card-count" style="color: var(--accent-coding)">2Q</span>
+                <span class="card-name">Coding</span>
+                <span class="diff-tag"
+                    style="background: rgba(224, 64, 251, 0.1); color: var(--accent-coding)">Mixed</span>
+            </div>
+        </div>
+
+        <!-- Sections -->
+        <section>
+            <div class="section-header">
+                <h2 style="color: var(--accent-quant)">01. Quantitative</h2>
+                <span class="target-label">Target: 8–11Q</span>
+            </div>
+            <div class="content-card">
+                <div class="topic-grid">
+                    <div class="topic-row"><span>Percentages</span><span class="topic-q">2Q</span></div>
+                    <div class="topic-row"><span>Profit & Loss</span><span class="topic-q">2Q</span></div>
+                    <div class="topic-row"><span>Mixture & Alligation</span><span class="topic-q">2Q</span></div>
+                    <div class="topic-row"><span>Time & Distance</span><span class="topic-q">1Q</span></div>
+                    <div class="topic-row"><span>Quadratic Eq.</span><span class="topic-q">1Q</span></div>
+                    <div class="topic-row"><span>Mensuration</span><span class="topic-q">1Q</span></div>
+                    <div class="topic-row"><span>Simplification</span><span class="topic-q">2Q</span></div>
+                    <div class="topic-row"><span>Compound Interest</span><span class="topic-q">1Q</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-header">
+                <h2 style="color: var(--accent-verbal)">02. Verbal Ability</h2>
+                <span class="target-label">Target: 13–16Q</span>
+            </div>
+            <div class="content-card">
+                <div class="alert-box" style="border-left-color: var(--accent-verbal)">
+                    <strong>Time Warning:</strong> Reading Comprehension (6-8Q) is extremely lengthy. Ensure you don't
+                    get stuck on one passage.
+                </div>
+                <div class="topic-grid">
+                    <div class="topic-row"><span>Error Detection</span><span class="topic-q">2-3Q</span></div>
+                    <div class="topic-row"><span>Para Jumbles</span><span class="topic-q">2-3Q</span></div>
+                    <div class="topic-row"><span>Fill in Blanks</span><span class="topic-q">2-3Q</span></div>
+                    <div class="topic-row"><span>Vocabulary</span><span class="topic-q">3-4Q</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Reasoning -->
+        <section>
+            <div class="section-header">
+                <h2 style="color: var(--accent-reasoning)">03. Logical Reasoning</h2>
+                <span class="target-label">Target: 14+Q</span>
+            </div>
+            <div class="content-card">
+                <div class="topic-grid">
+                    <div class="topic-row"><span>Seating Arrangement</span><span class="topic-q">2-3Q</span></div>
+                    <div class="topic-row"><span>Blood Relations</span><span class="topic-q">2Q</span></div>
+                    <div class="topic-row"><span>Syllogisms</span><span class="topic-q">2Q</span></div>
+                    <div class="topic-row"><span>Coding-Decoding</span><span class="topic-q">2Q</span></div>
+                    <div class="topic-row"><span>Eligibility Criteria</span><span class="topic-q">1-2Q</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Advanced -->
+        <section>
+            <div class="section-header">
+                <h2 style="color: var(--accent-advanced)">04. Advanced Section</h2>
+                <span class="target-label">Target: 8–10Q</span>
+            </div>
+            <div class="content-card">
+                <div class="alert-box" style="border-left-color: var(--accent-advanced)">
+                    <strong>Strategy:</strong> Questions are lengthy but scores are high. Don't skip thinking they are
+                    time consuming!
+                </div>
+                <div class="topic-grid">
+                    <div class="topic-row"><span>Data Interpretation</span><span class="topic-q">2Q</span></div>
+                    <div class="topic-row"><span>Complex Arrangement</span><span class="topic-q">2-3Q</span></div>
+                    <div class="topic-row"><span>Puzzles</span><span class="topic-q">1Q</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Coding -->
+        <section>
+            <div class="section-header">
+                <h2 style="color: var(--accent-coding)">05. Coding Challenges</h2>
+            </div>
+
+            <div class="coding-detailed-wrapper">
+                <!-- Q1 Easy -->
+                <div class="code-card-full">
+                    <div class="code-header">
+                        <span class="tag-easy">EASY</span>
+                        <h3 class="code-title">Problem 01: Gym Membership Fee</h3>
+                    </div>
+                    <div class="code-content-grid">
+                        <div class="code-logic">
+                            <span class="label-chip"
+                                style="margin-bottom: 1rem; display: inline-block; background: rgba(255,204,0,0.1); border-color: var(--accent-brand); color: var(--accent-brand);">💡
+                                PROBLEM LOGIC & APPROACH</span>
+                            <p><strong>Input:</strong> Total months of membership.</p>
+                            <p><strong>Assignment:</strong> Map months to price using standard slabs.</p>
+                            <table class="fee-table">
+                                <thead>
+                                    <tr>
+                                        <th>Duration</th>
+                                        <th>Fee (₹)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1 Month</td>
+                                        <td>2,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3 Months</td>
+                                        <td>5,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6 Months</td>
+                                        <td>9,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>9 Months</td>
+                                        <td>12,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>12 Months</td>
+                                        <td>15,000</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="visualizer">
+                                <span class="card-name" style="font-size: 0.6rem; color: var(--accent-brand);">Logic
+                                    Visualization</span>
+                                <div class="sort-flow" style="margin-top: 10px;">
+                                    <div class="visual-box" style="border-color: #666;">Month</div>
+                                    <span class="flow-arrow">→</span>
+                                    <div class="visual-box">Dict.get()</div>
+                                    <span class="flow-arrow">→</span>
+                                    <div class="visual-box">Price / "Error"</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="code-solution">
+                            <div class="code-block">
+                                <span class="cm"># Complete Gym Fee calculator with Error Handling</span>
+                                <span class="kw">def</span> <span class="fn">get_membership_fee</span>():
+                                <span class="cm"># Mapping durations to their respective prices</span>
+                                fees = {
+                                <span class="nu">1</span>: <span class="nu">2000</span>, <span class="nu">3</span>:
+                                <span class="nu">5000</span>, <span class="nu">6</span>: <span class="nu">9000</span>,
+                                <span class="nu">9</span>: <span class="nu">12000</span>, <span class="nu">12</span>:
+                                <span class="nu">15000</span>
+                                }
+
+                                <span class="kw">try</span>:
+                                months = <span class="fn">int</span>(<span class="fn">input</span>(<span
+                                    class="st">"Enter Months: "</span>))
+                                <span class="cm"># Using .get() allows us to handle missing keys gracefully</span>
+                                result = fees.get(months, <span class="st">"Error"</span>)
+                                <span class="kw">print</span>(<span class="fn">str</span>(result))
+                                <span class="kw">except</span> <span class="cl">ValueError</span>:
+                                <span class="kw">print</span>(<span class="st">"Error"</span>) <span class="cm"># Handle
+                                    non-integer inputs</span>
+
+                                get_membership_fee()
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q1 Lexicographical -->
+                <div class="code-card-full">
+                    <div class="code-header">
+                        <span class="tag-easy">VARIANT</span>
+                        <h3 class="code-title">Lexicographical Sorting Rule</h3>
+                    </div>
+                    <div class="code-content-grid">
+                        <div class="code-logic">
+                            <span class="label-chip"
+                                style="margin-bottom: 1rem; display: inline-block; background: rgba(255,204,0,0.1); border-color: var(--accent-brand); color: var(--accent-brand);">💡
+                                PROBLEM LOGIC & APPROACH</span>
+                            <p>Pairs are compared element-wise. Priority: <strong>First</strong> (X), then
+                                <strong>Second</strong> (Y).</p>
+
+                            <div class="visualizer">
+                                <span class="card-name"
+                                    style="font-size: 0.6rem; color: var(--accent-brand);">Step-by-Step Logic</span>
+                                <div class="sort-flow">
+                                    <div class="visual-step">
+                                        <div class="visual-box">(3, 2)</div>
+                                        <span class="node-label">i=0</span>
+                                    </div>
+                                    <span class="flow-arrow">/</span>
+                                    <div class="visual-step">
+                                        <div class="visual-box">(3, 1)</div>
+                                        <span class="node-label">i=1</span>
+                                    </div>
+                                    <span class="flow-arrow">→</span>
+                                    <div class="visual-step">
+                                        <div class="visual-box active">(3, 1)</div>
+                                        <span class="node-label">Smaller Y</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="code-solution">
+                            <span class="label-chip" style="margin-bottom: 1rem; display: inline-block;">🐍 FULL PYTHON
+                                SOLUTION</span>
+                            <div class="code-block">
+                                <span class="cm"># Lexicographical (Dictionary) sorting in Python</span>
+                                <span class="cm"># Python's default tuple sorting is lexicographical.</span>
+                                <span class="cm"># It compares elements from left to right.</span>
+
+                                pairs_data = [(<span class="nu">10</span>, <span class="nu">4</span>), (<span
+                                    class="nu">3</span>, <span class="nu">2</span>), (<span class="nu">5</span>, <span
+                                    class="nu">2</span>), (<span class="nu">3</span>, <span class="nu">1</span>), (<span
+                                    class="nu">10</span>, <span class="nu">5</span>)]
+
+                                <span class="cm"># Method 1: Default behavior for tuples (X asc, then Y asc)</span>
+                                <span class="cm"># This is the standard lexicographical sort.</span>
+                                sorted_default = <span class="fn">sorted</span>(pairs_data)
+                                <span class="kw">print</span>(<span class="st">"Default (X asc, Y asc):"</span>,
+                                sorted_default)
+
+                                <span class="cm"># Method 2: Custom sort (e.g., X asc, then Y desc)</span>
+                                <span class="cm"># We use a lambda function to define a custom key.</span>
+                                <span class="cm"># For descending order, we can negate numerical values.</span>
+                                sorted_custom = <span class="fn">sorted</span>(pairs_data, <span
+                                    class="kw">key</span>=<span class="kw">lambda</span> p: (p[<span
+                                    class="nu">0</span>], -p[<span class="nu">1</span>]))
+                                <span class="kw">print</span>(<span class="st">"Custom (X asc, Y desc):"</span>,
+                                sorted_custom)
+
+                                <span class="cm"># Example of sorting by Y first, then X (both ascending)</span>
+                                sorted_y_first = <span class="fn">sorted</span>(pairs_data, <span
+                                    class="kw">key</span>=<span class="kw">lambda</span> p: (p[<span
+                                    class="nu">1</span>], p[<span class="nu">0</span>]))
+                                <span class="kw">print</span>(<span class="st">"Y first (Y asc, X asc):"</span>,
+                                sorted_y_first)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q2 Hard: Fraud -->
+                <div class="code-card-full">
+                    <div class="code-header">
+                        <span class="tag-hard">HARD</span>
+                        <h3 class="code-title">Problem 02: Fraud Transactions</h3>
+                    </div>
+                    <div class="code-content-grid">
+                        <div class="code-logic">
+                            <span class="label-chip"
+                                style="margin-bottom: 1rem; display: inline-block; background: rgba(255,204,0,0.1); border-color: var(--accent-brand); color: var(--accent-brand);">💡
+                                PROBLEM LOGIC & APPROACH</span>
+                            <p><strong>Problem:</strong> Identify fraud if the same Sender, Receiver, and Amount occur
+                                within 60 seconds.</p>
+                            <p><strong>Format:</strong> Sender, Receiver, Amount, Timestamp</p>
+                            <div class="approach-box">
+                                <strong>Logic:</strong> Use a HashMap where:<br>
+                                • Key = (Sender, Receiver, Amount)<br>
+                                • Value = Last Timestamp
+                            </div>
+                        </div>
+                        <div class="code-solution">
+                            <span class="label-chip" style="margin-bottom: 1rem; display: inline-block;">🐍 FULL PYTHON
+                                SOLUTION</span>
+                            <div class="code-block">
+                                <span class="cm"># Efficient Fraud Detection using a Dictionary (HashMap)</span>
+                                <span class="cm"># Time Complexity: O(N) where N is the number of transactions.</span>
+                                <span class="cm"># Space Complexity: O(M) where M is the number of unique (Sender,
+                                    Receiver, Amount) combinations.</span>
+
+                                <span class="kw">def</span> <span
+                                    class="fn">detect_fraudulent_transactions</span>(transactions):
+                                <span class="cm"># last_seen_time stores the timestamp of the last occurrence for each
+                                    unique transaction key.</span>
+                                <span class="cm"># Key: (sender, receiver, amount) tuple</span>
+                                <span class="cm"># Value: timestamp of its last occurrence</span>
+                                last_seen_time = {}
+
+                                <span class="cm"># List to store transactions identified as fraudulent</span>
+                                fraudulent_transactions = []
+
+                                <span class="kw">for</span> transaction_str <span class="kw">in</span> transactions:
+                                <span class="cm"># Parse the transaction string into its components</span>
+                                sender, receiver, amount_str, timestamp_str = transaction_str.split(<span
+                                    class="st">','</span>)
+
+                                <span class="cm"># Convert amount and timestamp to appropriate types</span>
+                                amount = <span class="fn">int</span>(amount_str)
+                                current_timestamp = <span class="fn">int</span>(timestamp_str)
+
+                                <span class="cm"># Create a unique key for this transaction type</span>
+                                transaction_key = (sender, receiver, amount)
+
+                                <span class="cm"># Check if this transaction key has been seen before</span>
+                                <span class="kw">if</span> transaction_key <span class="kw">in</span> last_seen_time:
+                                <span class="cm"># Calculate the time difference since its last occurrence</span>
+                                time_difference = current_timestamp - last_seen_time[transaction_key]
+
+                                <span class="cm"># If the difference is 60 seconds or less, it's a fraud</span>
+                                <span class="kw">if</span> time_difference <= <span class="nu">60</span>:
+                                    fraudulent_transactions.<span class="fn">append</span>(transaction_str)
+
+                                    <span class="cm"># Always update the last seen timestamp for the current transaction
+                                        key</span>
+                                    <span class="cm"># This ensures we always track the most recent occurrence.</span>
+                                    last_seen_time[transaction_key] = current_timestamp
+
+                                    <span class="kw">return</span> fraudulent_transactions
+
+                                    <span class="cm"># Example Usage:</span>
+                                    sample_transactions = [
+                                    <span class="st">"A,B,100,10"</span>, <span class="cm"># First occurrence of
+                                        (A,B,100)</span>
+                                    <span class="st">"C,D,50,20"</span>, <span class="cm"># Unique transaction</span>
+                                    <span class="st">"A,B,100,40"</span>, <span class="cm"># (A,B,100) again, within 60s
+                                        of timestamp 10 (40-10=30 <= 60) -> FRAUD</span>
+                                    <span class="st">"E,F,200,70"</span>, <span class="cm"># Unique transaction</span>
+                                    <span class="st">"A,B,100,120"</span>, <span class="cm"># (A,B,100) again, within
+                                        60s of timestamp 40 (120-40=80 > 60) -> NOT FRAUD</span>
+                                    <span class="st">"C,D,50,80"</span> <span class="cm"># (C,D,50) again, within 60s of
+                                        timestamp 20 (80-20=60 <= 60) -> FRAUD</span>
+                                    ]
+
+                                    detected_frauds = <span
+                                        class="fn">detect_fraudulent_transactions</span>(sample_transactions)
+                                    <span class="kw">print</span>(<span class="st">"Detected Fraudulent
+                                        Transactions:"</span>, detected_frauds)
+                                    <span class="cm"># Expected Output: ['A,B,100,40', 'C,D,50,80']</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q2 Hard: MST -->
+                <div class="code-card-full">
+                    <div class="code-header">
+                        <span class="tag-hard">CONCEPT</span>
+                        <h3 class="code-title">Minimum Cost to Connect All Nodes</h3>
+                    </div>
+                    <div class="code-content-grid">
+                        <div class="code-logic">
+                            <span class="label-chip"
+                                style="margin-bottom: 1rem; display: inline-block; background: rgba(255,204,0,0.1); border-color: var(--accent-brand); color: var(--accent-brand);">💡
+                                PROBLEM LOGIC & APPROACH</span>
+                            <p>Connect all <strong>N</strong> nodes using <strong>N-1</strong> edges with minimum total
+                                weight.</p>
+                            <div class="visualizer">
+                                <span class="card-name" style="font-size: 0.6rem; color: var(--accent-brand);">Logic
+                                    Visualization</span>
+                                <div class="sort-flow">
+                                    <div class="visual-box">Kruskal's</div>
+                                    <span class="flow-arrow">+</span>
+                                    <div class="visual-box">DSU</div>
+                                    <span class="flow-arrow">=</span>
+                                    <div class="visual-box" style="border-color: #69f0ae; color: #69f0ae;">MST</div>
+                                </div>
+                                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 10px;">Sort all
+                                    edges by weight and pick those that don't form a cycle.</p>
+                            </div>
+                        </div>
+                        <div class="code-solution">
+                            <div class="code-block">
+                                <span class="cm"># Full Kruskal's Algorithm with Disjoint Set Union (Union-Find)</span>
+                                <span class="cm"># Kruskal's algorithm finds a Minimum Spanning Tree (MST) for a
+                                    connected, undirected graph.</span>
+                                <span class="cm"># It works by sorting all edges by weight and adding them to the MST if
+                                    they don't form a cycle.</span>
+
+                                <span class="kw">class</span> <span class="cl">UnionFind</span>:
+                                <span class="cm"># Initializes the DSU structure. Each element is initially its own
+                                    parent.</span>
+                                <span class="kw">def</span> <span class="fn">__init__</span>(<span
+                                    class="kw">self</span>, num_elements):
+                                <span class="kw">self</span>.parent = <span class="fn">list</span>(<span
+                                    class="fn">range</span>(num_elements)) <span class="cm"># parent[i] stores the
+                                    parent of element i</span>
+                                <span class="kw">self</span>.rank = [<span class="nu">0</span>] * num_elements <span
+                                    class="cm"># Used for optimization (union by rank)</span>
+
+                                <span class="kw">def</span> <span class="fn">find</span>(<span class="kw">self</span>,
+                                i):
+                                <span class="cm"># Finds the representative (root) of the set containing element
+                                    i.</span>
+                                <span class="cm"># Implements path compression for efficiency.</span>
+                                <span class="kw">if</span> <span class="kw">self</span>.parent[i] == i:
+                                <span class="kw">return</span> i
+                                <span class="kw">self</span>.parent[i] = <span class="kw">self</span>.<span
+                                    class="fn">find</span>(<span class="kw">self</span>.parent[i]) <span class="cm">#
+                                    Path compression</span>
+                                <span class="kw">return</span> <span class="kw">self</span>.parent[i]
+
+                                <span class="kw">def</span> <span class="fn">union</span>(<span class="kw">self</span>,
+                                i, j):
+                                <span class="cm"># Unites the sets containing elements i and j.</span>
+                                <span class="cm"># Implements union by rank for efficiency.</span>
+                                root_i = <span class="kw">self</span>.<span class="fn">find</span>(i)
+                                root_j = <span class="kw">self</span>.<span class="fn">find</span>(j)
+
+                                <span class="kw">if</span> root_i != root_j:
+                                <span class="cm"># Attach smaller rank tree under root of high rank tree</span>
+                                <span class="cm"># (Union by Rank)</span>
+                                <span class="kw">if</span> <span class="kw">self</span>.rank[root_i] < <span class="kw">
+                                    self</span>.rank[root_j]:
+                                    <span class="kw">self</span>.parent[root_i] = root_j
+                                    <span class="kw">elif</span> <span class="kw">self</span>.rank[root_i] > <span
+                                        class="kw">self</span>.rank[root_j]:
+                                    <span class="kw">self</span>.parent[root_j] = root_i
+                                    <span class="kw">else</span>:
+                                    <span class="kw">self</span>.parent[root_j] = root_i
+                                    <span class="kw">self</span>.rank[root_i] += <span class="nu">1</span>
+                                    <span class="kw">return</span> <span class="kw">True</span> <span class="cm"># Union
+                                        successful</span>
+                                    <span class="kw">return</span> <span class="kw">False</span> <span class="cm"># i
+                                        and j are already in the same set (would form a cycle)</span>
+
+                                    <span class="kw">def</span> <span class="fn">kruskals_mst</span>(num_nodes, edges):
+                                    <span class="cm"># Input: num_nodes (int), edges (list of tuples: (u, v,
+                                        weight))</span>
+                                    <span class="cm"># Output: (total_min_cost, list_of_mst_edges)</span>
+
+                                    <span class="cm"># Step 1: Sort all edges in non-decreasing order of their
+                                        weights.</span>
+                                    <span class="cm"># This is crucial for Kruskal's greedy approach.</span>
+                                    edges.<span class="fn">sort</span>(<span class="kw">key</span>=<span
+                                        class="kw">lambda</span> edge: edge[<span class="nu">2</span>]) <span
+                                        class="cm"># Sort by the third element (weight)</span>
+
+                                    <span class="cm"># Initialize Disjoint Set Union (DSU) structure for num_nodes
+                                        nodes.</span>
+                                    dsu = <span class="cl">UnionFind</span>(num_nodes)
+
+                                    min_cost = <span class="nu">0</span>
+                                    mst_edges = []
+                                    edges_count = <span class="nu">0</span> <span class="cm"># To track how many edges
+                                        are added to MST</span>
+
+                                    <span class="cm"># Iterate through the sorted edges.</span>
+                                    <span class="kw">for</span> u, v, weight <span class="kw">in</span> edges:
+                                    <span class="cm"># An MST for N nodes has exactly N-1 edges.</span>
+                                    <span class="kw">if</span> edges_count == num_nodes - <span class="nu">1</span>:
+                                    <span class="kw">break</span> <span class="cm"># MST is complete</span>
+
+                                    <span class="cm"># Check if adding this edge (u, v) forms a cycle.</span>
+                                    <span class="cm"># If u and v are already in the same set, adding the edge creates a
+                                        cycle.</span>
+                                    <span class="kw">if</span> dsu.<span class="fn">find</span>(u) != dsu.<span
+                                        class="fn">find</span>(v):
+                                    <span class="cm"># If they are in different sets, unite them.</span>
+                                    dsu.<span class="fn">union</span>(u, v)
+                                    min_cost += weight
+                                    mst_edges.<span class="fn">append</span>((u, v, weight))
+                                    edges_count += <span class="nu">1</span>
+
+                                    <span class="cm"># Check if the graph was connected (MST should have num_nodes - 1
+                                        edges)</span>
+                                    <span class="kw">if</span> edges_count != num_nodes - <span class="nu">1</span>
+                                    <span class="kw">and</span> num_nodes > <span class="nu">1</span>:
+                                    <span class="kw">return</span> <span class="nu">float</span>(<span
+                                        class="st">'inf'</span>), [] <span class="cm"># Graph is not connected, no MST
+                                        possible</span>
+
+                                    <span class="kw">return</span> min_cost, mst_edges
+
+                                    <span class="cm"># Example Usage:</span>
+                                    <span class="cm"># Graph with 4 nodes (0, 1, 2, 3)</span>
+                                    <span class="cm"># Edges are (u, v, weight)</span>
+                                    graph_edges = [
+                                    (<span class="nu">0</span>, <span class="nu">1</span>, <span class="nu">10</span>),
+                                    (<span class="nu">0</span>, <span class="nu">2</span>, <span class="nu">6</span>),
+                                    (<span class="nu">0</span>, <span class="nu">3</span>, <span class="nu">5</span>),
+                                    (<span class="nu">1</span>, <span class="nu">3</span>, <span class="nu">15</span>),
+                                    (<span class="nu">2</span>, <span class="nu">3</span>, <span class="nu">4</span>)
+                                    ]
+                                    num_vertices = <span class="nu">4</span>
+
+                                    total_cost, mst_result = <span class="fn">kruskals_mst</span>(num_vertices,
+                                    graph_edges)
+                                    <span class="kw">print</span>(<span class="st">"Minimum Cost to Connect All
+                                        Nodes:"</span>, total_cost)
+                                    <span class="kw">print</span>(<span class="st">"Edges in MST:"</span>, mst_result)
+                                    <span class="cm"># Expected Output:</span>
+                                    <span class="cm"># Minimum Cost to Connect All Nodes: 19</span>
+                                    <span class="cm"># Edges in MST: [(2, 3, 4), (0, 3, 5), (0, 2, 6)] (order might vary
+                                        slightly based on tie-breaking)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Data sourced from real aspirants · <a href="#" class="brand-footer-link">Lakshmi Builds</a></p>
+            <p style="margin-top: 0.5rem; opacity: 0.5">TCS NQT Analysis 2026</p>
+        </footer>
+    </div>
+
+</body>
+
+</html>

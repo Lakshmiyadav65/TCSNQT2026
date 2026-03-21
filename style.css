@@ -5,8 +5,8 @@
     --bg-card: rgba(30, 41, 59, 0.7);
     --text-primary: #f8fafc;
     --text-secondary: #94a3b8;
-    --accent-primary: #38bdf8;
-    --accent-secondary: #818cf8;
+    --accent-primary: #ffcc00;
+    --accent-secondary: #ff9900;
     --accent-success: #4ade80;
     --accent-error: #f87171;
     --accent-warning: #fbbf24;
@@ -443,6 +443,10 @@ h3,
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 1.5rem;
+}
+
+.shortcuts-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
 .shortcut-card:hover {
