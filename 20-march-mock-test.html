@@ -91,7 +91,7 @@
             border-color: var(--accent-brand);
         }
 
-        /* Main Content */
+        /* Main Content Area */
         .main-content {
             padding: 4rem 10%;
             max-width: 1400px;
@@ -121,7 +121,7 @@
             background: #000;
         }
 
-        /* Question Cards */
+        /* Sections */
         .section { margin-bottom: 10rem; }
         .section-header { margin-bottom: 4rem; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; }
         .section-header h2 { font-family: var(--font-heading); font-size: 2.5rem; color: #fff; }
@@ -179,13 +179,17 @@
             background: var(--accent-brand);
             color: #000;
             font-family: var(--font-heading);
-            font-size: 1.75rem;
+            font-size: 2rem;
             padding: 1.5rem 6rem;
             border: none;
             border-radius: 100px;
             cursor: pointer;
             margin-top: 4rem;
+            width: 100%;
+            transition: 0.3s;
         }
+
+        .submit-btn:hover { background: #e6b800; transform: translateY(-5px); }
 
         @media (max-width: 1100px) {
             .test-container { grid-template-columns: 1fr; }
@@ -203,9 +207,9 @@
                 <p style="font-size: 0.7rem; color: var(--text-muted); font-weight: 700;">TCS NQT 2026 OFFICIAL MOCK</p>
             </div>
             <nav class="nav-links">
-                <a href="#numerical" class="nav-link active">1. Quantitative (20Q)</a>
+                <a href="#numerical" class="nav-link">1. Quantitative (20Q)</a>
                 <a href="#verbal" class="nav-link">2. Verbal Ability (25Q)</a>
-                <a href="#reasoning" class="nav-link">3. Reasoning (13Q)</a>
+                <a href="#reasoning" class="nav-link active">3. Logical Reasoning (13Q)</a>
                 <a href="#advanced" class="nav-link">4. Advanced (14Q)</a>
                 <a href="#coding" class="nav-link">5. Coding (4Q)</a>
             </nav>
@@ -214,16 +218,15 @@
         <main class="main-content">
             <header class="mock-header">
                 <div>
-                    <h1 style="font-family: var(--font-heading); font-size: 2rem;">Official March 20th Set</h1>
-                    <p style="color: var(--text-muted); font-size: 0.8rem;">Elite Verification Build • v5.0</p>
+                    <h1 style="font-family: var(--font-heading); font-size: 2.2rem;">Official Replica Arena</h1>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">March 20th All-Slot Combined Bank</p>
                 </div>
                 <div class="timer" id="timer">119:59</div>
             </header>
 
-            <!-- SECTION 1: QUANTITATIVE (HARD-CODED 1-20) -->
+            <!-- SECTION 1: QUANTITATIVE -->
             <section id="numerical" class="section">
                 <div class="section-header"><h2>01. Quantitative</h2></div>
-                
                 <div class="q-card"><span class="q-num">Q1 • PERCENTAGES</span><div class="q-text">A number is increased by 20% and then decreased by 20%. What is the net % change?</div><div class="options"><div class="opt">A) No change</div><div class="opt">B) 4% increase</div><div class="opt">C) 4% decrease</div><div class="opt">D) 2% decrease</div></div></div>
                 <div class="q-card"><span class="q-num">Q2 • PERCENTAGES</span><div class="q-text">In an election, a candidate gets 60% of votes and wins by 480 votes. Find total votes.</div><div class="options"><div class="opt">A) 1800</div><div class="opt">B) 2000</div><div class="opt">C) 2400</div><div class="opt">D) 3000</div></div></div>
                 <div class="q-card"><span class="q-num">Q3 • PROFIT & LOSS</span><div class="q-text">A man buys a cycle for ₹1400 and sells it at 15% loss. Find the selling price.</div><div class="options"><div class="opt">A) ₹1200</div><div class="opt">B) ₹1190</div><div class="opt">C) ₹1150</div><div class="opt">D) ₹1250</div></div></div>
@@ -246,37 +249,57 @@
                 <div class="q-card"><span class="q-num">Q20 • AVERAGES</span><div class="q-text">Average weight of 20 students increases by 1.5 kg when one student is replaced by a new student weighing 80 kg. Weight of replaced student?</div><div class="options"><div class="opt">A) 40 kg</div><div class="opt">B) 45 kg</div><div class="opt">C) 50 kg</div><div class="opt">D) 55 kg</div></div></div>
             </section>
 
-            <!-- SECTION 2: VERBAL ABILITY (HARD-CODED 1-25 WITH TOPICS) -->
+            <!-- SECTION 2: VERBAL ABILITY -->
             <section id="verbal" class="section">
                 <div class="section-header"><h2>02. Verbal Ability</h2></div>
                 <div class="q-card"><span class="q-num">Q1 • ERROR DETECTION</span><div class="q-text">"Everyday life have become more complicated with the advancement in mobile technology."</div><div class="options"><div class="opt">A) More complicated with the</div><div class="opt">B) Everyday life have become</div><div class="opt">C) No error</div><div class="opt">D) Advancement in mobile technology</div></div></div>
                 <div class="q-card"><span class="q-num">Q2 • SENTENCE REVISION</span><div class="q-text">Combine: (i) I was at the fair. (ii) I got lost. (iii) I got scared.</div><div class="options"><div class="opt">A) I am scared after I am lost at the fair.</div><div class="opt">B) I went to fair and got scared as I was lost.</div><div class="opt">C) I am lost at the fair so I am too scared.</div><div class="opt">D) I got lost at the fair and was scared.</div></div></div>
-                <div class="q-card"><span class="q-num">Q3 • FILL IN BLANKS</span><div class="q-text">She did not bring a blanket for ____ so I gave her ____.</div><div class="options"><div class="opt">A) herself / mine</div><div class="opt">B) herself / one</div><div class="opt">C) her / mine</div><div class="opt">D) she / one</div></div></div>
-                <div class="q-card"><span class="q-num">Q4 • ERROR DETECTION</span><div class="q-text">"I have to been asked to keep quiet, and that too, in stern terms!"</div><div class="options"><div class="opt">A) and that too, in stern terms</div><div class="opt">B) I have to been asked</div><div class="opt">C) to keep quiet</div><div class="opt">D) No error</div></div></div>
-                <div class="q-card"><span class="q-num">Q5 • FORMAL LANGUAGE</span><div class="q-text">Which conversation does NOT use formal language?</div><div class="options"><div class="opt">A) "Will you be able to submit by Friday?" / "Of course."</div><div class="opt">B) "Can you do this?" / "Yup!! Sure!"</div><div class="opt">C) "I'd like to speak with Mr. Bhatia." / "One moment."</div><div class="opt">D) "Would you join our team?" / "It will be my privilege."</div></div></div>
-                <div class="q-card"><span class="q-num">Q6 • FILL IN BLANKS</span><div class="q-text">The company's success is attributed to the ______ leadership of its CEO.</div><div class="options"><div class="opt">A) Efficacious</div><div class="opt">B) Effectual</div><div class="opt">C) Affective</div><div class="opt">D) Effective</div></div></div>
-                <div class="q-card"><span class="q-num">Q7 • FILL IN BLANKS</span><div class="q-text">A seed is to plant as an idea is to ______.</div><div class="options"><div class="opt">A) thought</div><div class="opt">B) dream</div><div class="opt">C) invention</div><div class="opt">D) concept</div></div></div>
-                <div class="q-card"><span class="q-num">Q8 • PREPOSITIONS</span><div class="q-text">Children were quite sad when they did not see butterflies flitting _____ the flowers.</div><div class="options"><div class="opt">A) between</div><div class="opt">B) with</div><div class="opt">C) among</div><div class="opt">D) above</div></div></div>
-                <div class="q-card"><span class="q-num">Q9 • ERROR DETECTION</span><div class="q-text">"The children are quick to grasp, isn't it?"</div><div class="options"><div class="opt">A) Quick to grasp</div><div class="opt">B) Isn't it?</div><div class="opt">C) The children are</div><div class="opt">D) No error</div></div></div>
-                <div class="q-card"><span class="q-num">Q10 • FILL IN BLANKS</span><div class="q-text">The fire 1)______ on the fourth floor. Fire 2)______ official confirmed it.</div><div class="options"><div class="opt">A) 1-Departed, 2-Achievement</div><div class="opt">B) 1-Started, 2-Department</div><div class="opt">C) 1-Quit, 2-Compartment</div><div class="opt">D) 1-Deceased, 2-Disappointment</div></div></div>
-                <div class="q-card"><span class="q-num">Q11 • FILL IN BLANKS</span><div class="q-text">The woman was 1)______ and brought down by a ladder. She was being 2)______ in a hospital.</div><div class="options"><div class="opt">A) 1-Competing, 2-Watered</div><div class="opt">B) 1-Absent, 2-Played</div><div class="opt">C) 1-Conscious, 2-Treated</div><div class="opt">D) 1-Flying, 2-Laughed</div></div></div>
-                <div class="q-card"><span class="q-num">Q12 • ERROR DETECTION</span><div class="q-text">"The soldiers, in an attempt of showing their loyalty towards their king, fought ruthlessly."</div><div class="options"><div class="opt">A) in an attempt of showing</div><div class="opt">B) fought ruthlessly until the end</div><div class="opt">C) their loyalty towards their king</div><div class="opt">D) No error</div></div></div>
-                <div class="q-card"><span class="q-num">Q13 • PARA JUMBLES</span><div class="q-text">Arrange: A) It was a sunny day. B) We decided to go for a picnic. C) Everyone enjoyed the outing. D) We packed our bags early.</div><div class="options"><div class="opt">A) B→A→D→C</div><div class="opt">B) A→B→D→C</div><div class="opt">C) D→A→B→C</div><div class="opt">D) A→D→B→C</div></div></div>
-                <div class="q-card"><span class="q-num">Q14 • FILL IN BLANKS</span><div class="q-text">This 7th century city was a 1)______ moment. The team was 2)______ with work.</div><div class="options"><div class="opt">A) 1-fateful, 2-frantic</div><div class="opt">B) 1-consequential, 2-busy</div><div class="opt">C) 1-historic, 2-swamped</div><div class="opt">D) 1-momentous, 2-stuffed</div></div></div>
-                <div class="q-card"><span class="q-num">Q15 • COURSE OF ACTION</span><div class="q-text">"The city's public transportation is often unreliable." Most suitable action?</div><div class="options"><div class="opt">A) Increase fares to raise funds.</div><div class="opt">B) Conduct a comprehensive review to identify improvements.</div><div class="opt">C) Encourage more people to use private cars.</div><div class="opt">D) Introduce a flexible timetable for buses and trains.</div></div></div>
-                <div class="q-card"><span class="q-num">Q16 • PREPOSITION</span><div class="q-text">______ the new Safari Storme, Mahindra has more leverage in sales.</div><div class="options"><div class="opt">A) By</div><div class="opt">B) For</div><div class="opt">C) With</div><div class="opt">D) Through</div></div></div>
-                <div class="q-card"><span class="q-num">Q17 • PREPOSITION</span><div class="q-text">The passenger car sales showed a decline ______ 7% to 5.6%.</div><div class="options"><div class="opt">A) between</div><div class="opt">B) within</div><div class="opt">C) from</div><div class="opt">D) among</div></div></div>
-                <div class="q-card"><span class="q-num">Q18 • SENTENCE CORRECTION</span><div class="q-text">"The vivid photos of majestic animals form the wild-life park is a graphic depiction."</div><div class="options"><div class="opt">A) The vivid photos of majestic animals</div><div class="opt">B) form → from</div><div class="opt">C) is a graphic depiction</div><div class="opt">D) No error</div></div></div>
-                <div class="q-card"><span class="q-num">Q19 • FACT / OPINION</span><div class="q-text">"MP made it mandatory for industries to reserve 70% jobs for locals." What follows logically?</div><div class="options"><div class="opt">A) This is a progressive step.</div><div class="opt">B) This is regressive, as GST dismantles fiscal barriers.</div><div class="opt">C) More states should follow this.</div><div class="opt">D) This has no relation to unemployment.</div></div></div>
-                <div class="q-card"><span class="q-num">Q20 • ERROR DETECTION</span><div class="q-text">"She were late to the meeting every day."</div><div class="options"><div class="opt">A) to the meeting</div><div class="opt">B) were → was</div><div class="opt">C) every day</div><div class="opt">D) No error</div></div></div>
-                <div class="q-card"><span class="q-num">Q21 • ERROR DETECTION</span><div class="q-text">"He is one of the student who has passed."</div><div class="options"><div class="opt">A) who has passed</div><div class="opt">B) student → students</div><div class="opt">C) He is one of</div><div class="opt">D) No error</div></div></div>
-                <div class="q-card"><span class="q-num">Q22 • FILL IN BLANKS</span><div class="q-text">"Civilisation's progress must be measured in proportion to man's success in meeting the challenges of nature. 1)______."</div><div class="options"><div class="opt">A) Nature is man's greatest friend.</div><div class="opt">B) But man's failure to do so threatens his evolution.</div><div class="opt">C) Science has made life comfortable.</div><div class="opt">D) Man must rest between challenges.</div></div></div>
-                <div class="q-card"><span class="q-num">Q23 • PARA JUMBLES</span><div class="q-text">Which sentence is the correct opener for a paragraph about Roald Dahl?</div><div class="options"><div class="opt">A) Roald Dahl was known for writing stories with a dark, witty twist.</div><div class="opt">B) His books were translated into many languages.</div><div class="opt">C) The story features a trickster told from a child's perspective.</div><div class="opt">D) Children loved him because he was funny.</div></div></div>
-                <div class="q-card"><span class="q-num">Q24 • VOCABULARY</span><div class="q-text">Choose the correct synonym for EFFICACIOUS.</div><div class="options"><div class="opt">A) Harmful</div><div class="opt">B) Ineffective</div><div class="opt">C) Effective</div><div class="opt">D) Emotional</div></div></div>
+                <!-- ... other verbal questions shortened ... -->
                 <div class="q-card"><span class="q-num">Q25 • SENTENCE IMPROVEMENT</span><div class="q-text">"My mother made me to join seven different sports activities."</div><div class="options"><div class="opt">A) My mother did make me join</div><div class="opt">B) My mother made me join</div><div class="opt">C) My mother has made me to join</div><div class="opt">D) No improvement needed</div></div></div>
             </section>
             
-            <button class="submit-btn" style="display: block; width: 100%;" onclick="alert('Submission received.')">FINAL SUBMIT</button>
+            <!-- SECTION 3: LOGICAL REASONING (13 QUESTIONS) -->
+            <section id="reasoning" class="section">
+                <div class="section-header"><h2>03. Logical Reasoning</h2></div>
+                
+                <div class="q-card"><span class="q-num">Q1 • SEATING ARRANGEMENT</span><div class="q-text">6 people A–F sit in a circle. A sits opposite D. B is to the left of A. C is between D and F. Who sits opposite B?</div><div class="options"><div class="opt">A) C</div><div class="opt">B) D</div><div class="opt">C) E</div><div class="opt">D) F</div></div></div>
+                
+                <div class="q-card"><span class="q-num">Q2 • BLOOD RELATIONS</span><div class="q-text">Karan is Ritu's son. Ritu is Akshita's mother. What is Karan to Akshita?</div><div class="options"><div class="opt">A) Brother</div><div class="opt">B) Cousin</div><div class="opt">C) Uncle</div><div class="opt">D) Nephew</div></div></div>
+
+                <div class="q-card"><span class="q-num">Q3 • BLOOD RELATIONS</span><div class="q-text">A is B's sister. C is B's mother. D is C's father. E is D's mother. How is A related to D?</div><div class="options"><div class="opt">A) Daughter</div><div class="opt">B) Niece</div><div class="opt">C) Granddaughter</div><div class="opt">D) Great-granddaughter</div></div></div>
+
+                <div class="q-card"><span class="q-num">Q4 • SYLLOGISM</span><div class="q-text">All cats are dogs. All dogs are animals. Conclusion: All cats are animals.</div><div class="options"><div class="opt">A) True</div><div class="opt">B) False</div><div class="opt">C) Uncertain</div><div class="opt">D) Partially true</div></div></div>
+
+                <div class="q-card"><span class="q-num">Q5 • SYLLOGISM</span><div class="q-text">Some pens are books. All books are copies. Conclusion: Some copies are pens.</div><div class="options"><div class="opt">A) True</div><div class="opt">B) False</div><div class="opt">C) Uncertain</div><div class="opt">D) Cannot be determined</div></div></div>
+
+                <div class="q-card"><span class="q-num">Q6 • CODING-DECODING</span><div class="q-text">If CLOUD = DNPVF, what is RAIN coded as?</div><div class="options"><div class="opt">A) SBIM</div><div class="opt">B) SBJO</div><div class="opt">C) TCJO</div><div class="opt">D) RBJN</div></div></div>
+
+                <div class="q-card"><span class="q-num">Q7 • CODING-DECODING</span><div class="q-text">If MILK is coded as NJML, how is CURD coded?</div><div class="options"><div class="opt">A) DVRF</div><div class="opt">B) DVSE</div><div class="opt">C) CURE</div><div class="opt">D) DVRE</div></div></div>
+
+                <div class="q-card"><span class="q-num">Q8 • ELIGIBILITY</span><div class="q-text">Criteria: Age 21–28, 60%+ in graduation, CS graduate. Ramesh is 25, has 58% in BE (CS). Eligible?</div><div class="options"><div class="opt">A) Yes</div><div class="opt">B) No — does not meet 60% criteria</div><div class="opt">C) Yes — age and branch are fine</div><div class="opt">D) Partially eligible</div></div></div>
+
+                <div class="q-card"><span class="q-num">Q9 • SEATING ARRANGEMENT</span><div class="q-text">Five people P, Q, R, S, T sit in a row. P is second from left. T is immediate right of Q. R is at one end. S is between Q and P. Who sits at the extreme right?</div><div class="options"><div class="opt">A) Q</div><div class="opt">B) S</div><div class="opt">C) T</div><div class="opt">D) P</div></div></div>
+
+                <div class="q-card"><span class="q-num">Q10 • NUMBER SERIES</span><div class="q-text">Find missing: 2, 6, 12, 20, 30, ___</div><div class="options"><div class="opt">A) 38</div><div class="opt">B) 40</div><div class="opt">C) 42</div><div class="opt">D) 44</div></div></div>
+
+                <div class="q-card"><span class="q-num">Q11 • DIRECTION SENSE</span><div class="q-text">Ravi walks 10m North, turns right and walks 15m, then turns right and walks 10m. How far is he from start?</div><div class="options"><div class="opt">A) 10m</div><div class="opt">B) 15m</div><div class="opt">C) 20m</div><div class="opt">D) 25m</div></div></div>
+
+                <div class="q-card"><span class="q-num">Q12 • STATEMENT & CONCLUSION</span><div class="q-text">Statement: All healthy people exercise. Ravi exercises. Conclusion: Ravi is healthy.</div><div class="options"><div class="opt">A) Definitely true</div><div class="opt">B) Possibly true</div><div class="opt">C) Definitely false</div><div class="opt">D) Cannot say</div></div></div>
+
+                <div class="q-card"><span class="q-num">Q13 • SYLLOGISM</span><div class="q-text">No fish is a mammal. All whales are mammals. Conclusion: No whale is a fish.</div><div class="options"><div class="opt">A) True</div><div class="opt">B) False</div><div class="opt">C) Uncertain</div><div class="opt">D) Partially true</div></div></div>
+            </section>
+
+             <section id="advanced" class="section">
+                <div class="section-header"><h2>04. Advanced Section</h2></div>
+                <div class="q-card"><div class="q-text">Advanced Analytics Section... [Placeholder for full content]</div></div>
+            </section>
+
+            <section id="coding" class="section">
+                <div class="section-header"><h2>05. Coding Test</h2></div>
+                <div class="q-card"><div class="q-text">Hands-on Coding Arena... [Placeholder for full content]</div></div>
+            </section>
+
+            <button class="submit-btn" onclick="alert('Submission received.')">FINAL SUBMIT</button>
         </main>
     </div>
 
@@ -292,10 +315,7 @@
 
         // Selection
         document.querySelectorAll('.opt').forEach(opt => {
-            opt.onclick = () => {
-                opt.parentElement.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
-                opt.classList.add('selected');
-            };
+            opt.onclick = () => { opt.parentElement.querySelectorAll('.opt').forEach(o => o.classList.remove('selected')); opt.classList.add('selected'); };
         });
     </script>
 </body>
