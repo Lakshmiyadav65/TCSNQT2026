@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering TCS NQT Input Handling | Learn with Lakshmi</title>
+    <meta name="description" content="A comprehensive guide to handling Python and Java inputs for TCS NQT exams, avoiding common errors like ValueError, and mastering word-to-number mapping.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Custom Styles for this Guide */
+        :root {
+            --error-glow: rgba(248, 113, 113, 0.2);
+            --success-glow: rgba(74, 222, 128, 0.2);
+        }
+
+        body {
+            overflow-y: auto;
+            height: auto;
+            background: #0b0f1a !important;
+        }
+
+        .guide-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 5rem;
+            position: relative;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #fff 0%, var(--accent-primary) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-section p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .guide-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            backdrop-filter: var(--glass-blur);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-label {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent-secondary);
+            opacity: 0.6;
+        }
+
+        .error-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .comparison-item {
+            padding: 1.5rem;
+            border-radius: 16px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-color);
+        }
+
+        .comparison-item.wrong {
+            border-color: rgba(248, 113, 113, 0.3);
+            box-shadow: 0 0 20px var(--error-glow);
+        }
+
+        .comparison-item.right {
+            border-color: rgba(74, 222, 128, 0.3);
+            box-shadow: 0 0 20px var(--success-glow);
+        }
+
+        .comparison-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .wrong .comparison-badge { background: var(--accent-error); color: white; }
+        .right .comparison-badge { background: var(--accent-success); color: white; }
+
+        .code-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .lang-section h2 {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            font-size: 1.75rem;
+        }
+
+        .lang-section.python-section h2 { color: #3776ab; }
+        .lang-section.java-section h2 { color: #f89820; }
+
+        .solution-box {
+            margin-bottom: 2rem;
+        }
+
+        .solution-box h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .solution-box pre {
+            background: #020617;
+            padding: 1.25rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #e2e8f0;
+            position: relative;
+        }
+
+        .solution-box pre::after {
+            content: 'CODE';
+            position: absolute;
+            top: 0.75rem;
+            right: 1rem;
+            font-size: 0.6rem;
+            font-weight: 800;
+            opacity: 0.3;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tip-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 16px;
+            transition: var(--transition);
+        }
+
+        .tip-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--accent-primary);
+            transform: translateY(-5px);
+        }
+
+        .tip-icon {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .tip-card h5 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-primary);
+        }
+
+        .tip-card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .floating-blob {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(60px);
+        }
+
+        .blob-1 { top: -100px; right: -100px; }
+        .blob-2 { bottom: -100px; left: -100px; }
+
+        @media (max-width: 992px) {
+            .solution-grid { grid-template-columns: 1fr; }
+            .hero-section h1 { font-size: 2.5rem; }
+        }
+
+        @media (max-width: 600px) {
+            .error-comparison { grid-template-columns: 1fr; }
+            .guide-card { padding: 1.5rem; }
+            .hero-section h1 { font-size: 2rem; }
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="dark-theme">
+    <div class="floating-blob blob-1"></div>
+    <div class="floating-blob blob-2"></div>
+
+    <div class="guide-container">
+        <!-- Hero Section -->
+        <header class="hero-section animate-in">
+            <div class="tag" style="margin-bottom: 1rem; display: inline-block;">TCS-NQT Placement Series</div>
+            <h1>The Complete <span class="highlight">Input Handling</span> Guide</h1>
+            <p>Mastering input is 50% of the battle in TCS NQT. Don't let a <code>ValueError</code> crash your performance!</p>
+        </header>
+
+        <!-- Common Errors Section -->
+        <section class="guide-card animate-in" style="animation-delay: 0.1s;">
+            <span class="card-label">Mistakes to Avoid</span>
+            <h3 style="margin-bottom: 1.5rem; color: #fff;">1. Common Errors in TCS NQT</h3>
+            <p style="margin-bottom: 2rem; color: var(--text-secondary);">Students often face errors due to unexpected input formats. Here's what they look like and how to spot them.</p>
+
+            <div class="error-comparison">
+                <div class="comparison-item wrong">
+                    <span class="comparison-badge">The Error</span>
+                    <div class="code-title"><span>❌</span> ValueError (Python)</div>
+                    <pre><code>invalid literal for int() with base 10: '10 20 30'</code></pre>
+                    <p style="font-size: 0.85rem; margin-top: 1rem; opacity: 0.7;">Happens when you try to <code>int()</code> a whole space-separated string.</p>
+                </div>
+                <div class="comparison-item wrong">
+                    <span class="comparison-badge">The Error</span>
+                    <div class="code-title"><span>❌</span> ValueError (Python)</div>
+                    <pre><code>invalid literal for int() with base 10: 'six'</code></pre>
+                    <p style="font-size: 0.85rem; margin-top: 1rem; opacity: 0.7;">Happens when you try to <code>int()</code> a word like "six" instead of "6".</p>
+                </div>
+            </div>
+
+            <div class="importance-card" style="margin-top: 2.5rem; background: rgba(56, 189, 248, 0.05); border: 1px solid rgba(56, 189, 248, 0.2); padding: 2rem; border-radius: 20px;">
+                <h4 style="color: var(--accent-primary); margin-bottom: 1rem; font-size: 1.25rem;">🔍 The Root Cause</h4>
+                <p style="color: var(--text-primary); line-height: 1.6;">The <code>int()</code> function in Python and <code>Integer.parseInt()</code> in Java only accept numeric digits. If your input contains spaces, extra characters, or words, it <strong>MUST</strong> be cleaned/processed before conversion.</p>
+            </div>
+        </section>
+
+        <!-- Solution Sections -->
+        <div class="solution-grid">
+            <!-- Python Section -->
+            <div class="lang-section python-section animate-in" style="animation-delay: 0.2s;">
+                <h2 style="color: #60A5FA;"><span>🐍</span> Python Solutions</h2>
+                
+                <div class="solution-box">
+                    <h4>Single Integer Input</h4>
+                    <pre><code>n = int(input().strip())</code></pre>
+                </div>
+
+                <div class="solution-box">
+                    <h4>Multiple Values (Array/List)</h4>
+                    <pre><code>arr = list(map(int, input().split()))</code></pre>
+                </div>
+
+                <div class="solution-box">
+                    <h4>Unknown Input Format (The Ultimate Safe Method)</h4>
+                    <pre><code>import sys
+data = list(map(int, sys.stdin.read().split()))</code></pre>
+                </div>
+
+                <div class="solution-box">
+                    <h4>Handling Word Inputs (e.g., 'six' ➜ 6)</h4>
+                    <pre><code>word_to_num = {
+    "zero":0, "one":1, "two":2, "three":3,
+    "four":4, "five":5, "six":6,
+    "seven":7, "eight":8, "nine":9
+}
+s = input().strip().lower()
+
+if s.isdigit():
+    print(int(s))
+elif s in word_to_num:
+    print(word_to_num[s])
+else:
+    print("Invalid")</code></pre>
+            </div>
+
+                <div class="solution-box">
+                    <h4>Safe Conversion (Try-Except)</h4>
+                    <pre><code>s = input().strip()
+try:
+    num = int(s)
+except:
+    print("Invalid Input")</code></pre>
+                </div>
+            </div>
+
+            <!-- Java Section -->
+            <div class="lang-section java-section animate-in" style="animation-delay: 0.3s;">
+                <h2 style="color: #FDBA74;"><span>☕</span> Java Solutions</h2>
+
+                <div class="solution-box">
+                    <h4>Single Input (Scanner)</h4>
+                    <pre><code>Scanner sc = new Scanner(System.in);
+int n = sc.nextInt();</code></pre>
+                </div>
+
+                <div class="solution-box">
+                    <h4>Multiple Inputs (Space Separated)</h4>
+                    <pre><code>Scanner sc = new Scanner(System.in);
+String[] arr = sc.nextLine().split(" ");
+for(String s : arr){
+    int num = Integer.parseInt(s.trim());
+}</code></pre>
+                </div>
+
+                <div class="solution-box">
+                    <h4>Fast I/O (BufferedReader)</h4>
+                    <pre><code>BufferedReader br = new BufferedReader(
+    new InputStreamReader(System.in)
+);
+String[] input = br.readLine().split(" ");</code></pre>
+                </div>
+
+                <div class="solution-box">
+                    <h4>Handling Word Inputs in Java</h4>
+                    <pre><code>Map<String, Integer> map = new HashMap<>();
+map.put("zero", 0);
+map.put("one", 1);
+map.put("two", 2);
+map.put("six", 6);
+// ... add others from mapping
+
+String s = br.readLine().toLowerCase().trim();
+if(map.containsKey(s)){
+    System.out.println(map.get(s));
+} else {
+    System.out.println("Invalid");
+}</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tips Section -->
+        <section class="guide-card animate-in" style="animation-delay: 0.4s; margin-top: 3rem;">
+            <span class="card-label">Expert Advice</span>
+            <h3 style="margin-bottom: 1.5rem; color: #fff;">🎯 Final Exam Tips</h3>
+            
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <span class="tip-icon">🧱</span>
+                    <h5>Always Strip/Trim</h5>
+                    <p>Unexpected leading or trailing spaces are the #1 cause of crashes. Always use <code>.strip()</code> in Python or <code>.trim()</code> in Java.</p>
+                </div>
+                <div class="tip-card">
+                    <span class="tip-icon">⚡</span>
+                    <h5>Space Separated</h5>
+                    <p>Assume input might be space-separated even if the problem doesn't emphasize it. <code>split()</code> is your best friend for robustness.</p>
+                </div>
+                <div class="tip-card">
+                    <span class="tip-icon">🛡️</span>
+                    <h5>Safe Conversion</h5>
+                    <p>In problems involving mixed strings and numbers, use <code>isdigit()</code> (Python) or a try-catch block (Java) to avoid runtime crashes.</p>
+                </div>
+                <div class="tip-card">
+                    <span class="tip-icon">📑</span>
+                    <h5>Mapping</h5>
+                    <p>For word-based inputs, pre-define a dictionary or map. It's much cleaner than using 10 different <code>if-else</code> statements.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer style="text-align: center; margin-top: 4rem; padding-bottom: 4rem;">
+            <p style="color: var(--text-secondary);">Happy Coding! • From Lakshmi with ❤️</p>
+            <div style="margin-top: 1rem;">
+                <a href="index.html" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;">← Back to Dashboard</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
