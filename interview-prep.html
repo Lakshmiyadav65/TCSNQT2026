@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCS NQT 2026 - Interview Preparation | Learn with Lakshmi</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Syne:wght@800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #08080a;
+            --surface: #111114;
+            --surface-2: #18181c;
+            --border: rgba(255, 255, 255, 0.08);
+            --text-main: #efeff1;
+            --text-muted: #94949e;
+            --accent-brand: #ffcc00;
+            --accent-green: #4ade80;
+            --accent-blue: #60a5fa;
+            --accent-pink: #f472b6;
+            --accent-orange: #fb923c;
+            --font-heading: 'Syne', sans-serif;
+            --font-sub: 'Instrument Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --transition: all 0.25s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-sub);
+            line-height: 1.6;
+            background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 4rem 1.5rem; }
+
+        /* Header */
+        header { text-align: center; margin-bottom: 4rem; }
+        .badge { background: rgba(74, 222, 128, 0.1); border: 1px solid var(--accent-green); padding: 0.6rem 1.5rem; border-radius: 100px; font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-green); display: inline-block; margin-bottom: 2rem; font-weight: 700; text-transform: uppercase; }
+        h1 { font-family: var(--font-heading); font-size: clamp(2.5rem, 8vw, 4.5rem); line-height: 1.1; margin-bottom: 1rem; color: #fff; text-transform: uppercase; }
+        h1 .highlight { color: var(--accent-brand); }
+        .subtitle { color: var(--text-muted); font-size: 1.15rem; max-width: 700px; margin: 0 auto 2rem; }
+
+        /* Congrats Banner */
+        .congrats-banner {
+            background: linear-gradient(135deg, rgba(74, 222, 128, 0.08), rgba(96, 165, 250, 0.08));
+            border: 1px solid rgba(74, 222, 128, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        .congrats-banner .emoji { font-size: 3rem; margin-bottom: 1rem; }
+        .congrats-banner h2 { font-family: var(--font-heading); font-size: 1.8rem; color: var(--accent-green); margin-bottom: 0.75rem; }
+        .congrats-banner p { color: var(--text-muted); font-size: 1.05rem; max-width: 600px; margin: 0 auto; }
+
+        /* Info Cards */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+        .info-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+        .info-card:hover { transform: translateY(-3px); border-color: rgba(255, 255, 255, 0.15); }
+        .info-card .icon { font-size: 2.5rem; margin-bottom: 1rem; }
+        .info-card h3 { font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.5rem; color: #fff; }
+        .info-card p { color: var(--text-muted); font-size: 0.9rem; }
+
+        /* Section Headers */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            margin-top: 4rem;
+        }
+        .section-header h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.5rem, 5vw, 2.25rem);
+            color: #fff;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        .section-header::after { content: ''; flex: 1; height: 2px; background: var(--border); }
+
+        .section-tag {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+        .tag-technical { color: var(--accent-blue); background: rgba(96, 165, 250, 0.1); border: 1px solid rgba(96, 165, 250, 0.2); }
+        .tag-hr { color: var(--accent-pink); background: rgba(244, 114, 182, 0.1); border: 1px solid rgba(244, 114, 182, 0.2); }
+        .tag-managerial { color: var(--accent-orange); background: rgba(251, 146, 60, 0.1); border: 1px solid rgba(251, 146, 60, 0.2); }
+
+        /* ========== ACCORDION CATEGORY ========== */
+        .accordion-category {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        .accordion-category:hover { border-color: rgba(255, 255, 255, 0.12); }
+
+        .category-toggle {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #fff;
+            text-align: left;
+            transition: var(--transition);
+        }
+        .category-toggle:hover { background: rgba(255, 255, 255, 0.02); }
+        .category-toggle-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .cat-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        .category-toggle h3 {
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+        }
+        .category-toggle .q-count {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            background: rgba(255,255,255,0.05);
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+            margin-left: 0.75rem;
+            white-space: nowrap;
+        }
+        .chevron {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+            color: var(--text-muted);
+        }
+        .accordion-category.open .chevron { transform: rotate(180deg); }
+
+        .category-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        .accordion-category.open .category-body { max-height: 50000px; }
+        .category-body-inner { padding: 0 2rem 2rem; }
+
+        /* ========== QUESTION ACCORDION ========== */
+        .qa-item {
+            border: 1px solid transparent;
+            border-radius: 14px;
+            margin-bottom: 0.5rem;
+            background: rgba(255, 255, 255, 0.015);
+            transition: var(--transition);
+        }
+        .qa-item:hover { background: rgba(255, 255, 255, 0.03); border-color: var(--border); }
+        .qa-item.open { border-color: var(--border); background: rgba(255, 255, 255, 0.03); }
+
+        .qa-toggle {
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 1rem 1.25rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-main);
+            text-align: left;
+            font-family: var(--font-sub);
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        .qa-num {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .qa-num.tech { background: rgba(96, 165, 250, 0.15); color: var(--accent-blue); }
+        .qa-num.hr { background: rgba(244, 114, 182, 0.15); color: var(--accent-pink); }
+        .qa-num.mgmt { background: rgba(251, 146, 60, 0.15); color: var(--accent-orange); }
+
+        .qa-question { flex: 1; }
+        .qa-chevron {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            color: var(--text-muted);
+            transition: transform 0.3s ease;
+            margin-top: 5px;
+        }
+        .qa-item.open .qa-chevron { transform: rotate(180deg); }
+
+        .qa-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+        }
+        .qa-item.open .qa-answer { max-height: 5000px; }
+        .qa-answer-inner {
+            padding: 0 1.25rem 1.25rem 3.75rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            border-top: 1px solid var(--border);
+            margin: 0 1.25rem;
+            padding-top: 1rem;
+            margin-left: 3.75rem;
+            padding-left: 0;
+        }
+        .qa-answer-inner code {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            background: rgba(255,255,255,0.06);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            color: var(--accent-brand);
+        }
+
+        /* Tips Section */
+        .tips-card {
+            background: linear-gradient(135deg, rgba(255, 204, 0, 0.06), rgba(255, 204, 0, 0.02));
+            border: 1px solid rgba(255, 204, 0, 0.15);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-top: 3rem;
+        }
+        .tips-card h3 { font-family: var(--font-heading); color: var(--accent-brand); font-size: 1.25rem; margin-bottom: 1.5rem; }
+        .tips-list { list-style: none; }
+        .tips-list li {
+            padding: 0.75rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .tips-list li:last-child { border-bottom: none; }
+        .tips-list li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--accent-brand);
+            font-family: var(--font-mono);
+            font-weight: 700;
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+        .back-btn:hover { color: var(--accent-brand); }
+
+        /* Footer */
+        footer { text-align: center; margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+        footer p { color: var(--text-muted); font-size: 0.85rem; }
+        footer .heart { color: #f87171; }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container { padding: 2rem 1rem; }
+            .congrats-banner { padding: 1.5rem; }
+            .category-toggle { padding: 1.25rem 1.25rem; }
+            .category-body-inner { padding: 0 1.25rem 1.5rem; }
+            .category-toggle h3 { font-size: 1rem; }
+            .qa-toggle { padding: 0.85rem 1rem; font-size: 0.95rem; }
+            .qa-answer-inner { margin-left: 2.75rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <a href="index.html" class="back-btn">&larr; Back to Dashboard</a>
+
+        <header>
+            <div class="badge">Interview Preparation</div>
+            <h1>TCS NQT <span class="highlight">Interview</span> Guide</h1>
+            <p class="subtitle">Previous year questions from Technical, Managerial & HR rounds to help you crack your TCS interview.</p>
+        </header>
+
+        <!-- Congrats Banner -->
+        <div class="congrats-banner">
+            <div class="emoji">&#127881;</div>
+            <h2>Hey, Congrats on getting shortlisted for the interview!</h2>
+            <p>You've cleared the TCS NQT exam — that's a huge deal. Now let's prepare you for the next step. Below you'll find real previous year interview questions from Technical, Managerial, and HR rounds. Go through them, practice out loud, and walk into that interview with confidence.</p>
+        </div>
+
+        <!-- Info Cards -->
+        <div class="info-grid">
+            <div class="info-card">
+                <div class="icon">&#128187;</div>
+                <h3>Technical Round</h3>
+                <p>OOPS, DBMS, OS, DSA, Coding, Networking — questions based on your resume & core CS subjects. (20-40 min)</p>
+            </div>
+            <div class="info-card">
+                <div class="icon">&#128188;</div>
+                <h3>Managerial Round</h3>
+                <p>Situational & behavioral questions to test your leadership, teamwork, and problem-solving skills. (15-30 min)</p>
+            </div>
+            <div class="info-card">
+                <div class="icon">&#129309;</div>
+                <h3>HR Round</h3>
+                <p>About you, your goals, strengths, weaknesses, relocation & shift flexibility. (10-15 min)</p>
+            </div>
+        </div>
+
+        <!-- ==================== TECHNICAL QUESTIONS ==================== -->
+        <div class="section-header">
+            <h2>Technical Round</h2>
+        </div>
+
+        <!-- OOPS & Programming -->
+        <div class="accordion-category">
+            <button class="category-toggle" onclick="toggleCategory(this)">
+                <div class="category-toggle-left">
+                    <span class="section-tag tag-technical" style="margin-bottom:0;">OOPS & Programming</span>
+                    <div class="cat-icon" style="background: rgba(96,165,250,0.15);">&#128421;</div>
+                    <h3>Object-Oriented Programming & Languages</h3>
+                    <span class="q-count">19 Qs</span>
+                </div>
+                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="category-body">
+                <div class="category-body-inner">
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">1</span>
+                            <span class="qa-question">What are the four basic principles/concepts of OOPS?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">The four fundamental principles of OOPS are: <strong>Encapsulation</strong> (bundling data and methods that operate on that data within a single unit/class), <strong>Abstraction</strong> (hiding complex implementation details and showing only the necessary features), <strong>Inheritance</strong> (allowing a new class to inherit properties and behaviors from an existing class), and <strong>Polymorphism</strong> (allowing objects to take many forms — same method name behaving differently based on the object).</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">2</span>
+                            <span class="qa-question">What is polymorphism?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Polymorphism means "many forms." It allows objects of different types to be accessed through the same interface. There are two types: <strong>Compile-time polymorphism</strong> (method overloading — same method name, different parameters) and <strong>Runtime polymorphism</strong> (method overriding — subclass provides a specific implementation of a method already defined in its parent class).</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">3</span>
+                            <span class="qa-question">What is Inheritance?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Inheritance is a mechanism where one class (child/derived) acquires all the properties and behaviors of a parent (base) class. It represents the <strong>IS-A relationship</strong>. For example, a Dog IS-A Animal. It promotes code reuse and establishes a natural hierarchy. Types include: Single, Multiple, Multilevel, Hierarchical, and Hybrid inheritance.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">4</span>
+                            <span class="qa-question">What is data abstraction? What are the three levels of data abstraction with examples?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Data abstraction is the process of hiding unwanted or irrelevant details from the end user, showing only essential features. The three levels are: <strong>Physical/Internal Level</strong> — describes how data is actually stored (files, indices); <strong>Logical/Conceptual Level</strong> — describes what data is stored and the relationships (tables, schemas); <strong>View/External Level</strong> — describes what part of the database each user sees. Example: Your phone hides all the signal transmission details — you just see the call screen.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">5</span>
+                            <span class="qa-question">Differentiate between classes and interfaces.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner"><strong>Classes</strong> can be instantiated (you can create objects from them), can have concrete method implementations, support single inheritance in Java, and can have any access modifier. <strong>Interfaces</strong> cannot be instantiated, only declare method signatures (abstract by default), support multiple inheritance, and all methods are implicitly public. A class uses <code>extends</code>, an interface uses <code>implements</code>.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">6</span>
+                            <span class="qa-question">Differentiate between virtual function and pure virtual function.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">A <strong>virtual function</strong> has a definition in the base class and can be optionally overridden in derived classes. The class remains non-abstract. A <strong>pure virtual function</strong> has no definition in the base class (declared as <code>virtual void func() = 0;</code>) and <em>must</em> be overridden in every derived class. Any class with at least one pure virtual function becomes an <strong>abstract class</strong> and cannot be instantiated.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">7</span>
+                            <span class="qa-question">Explain the difference between the 'operator new' and the 'new' operator.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">The <strong>operator new</strong> is a function that only allocates raw memory (like malloc). The <strong>new operator</strong> does two things: allocates memory using operator new AND then calls the constructor to initialize the object. So <code>new</code> = memory allocation + constructor call, while <code>operator new</code> = only memory allocation.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">8</span>
+                            <span class="qa-question">What is a conversion constructor?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">A conversion constructor is a constructor that accepts a single argument of a different type and converts it into an object of the class. The compiler uses it for implicit type conversions. For example, if class <code>MyClass</code> has a constructor <code>MyClass(int x)</code>, then writing <code>MyClass obj = 5;</code> will automatically invoke that constructor to convert the integer to a MyClass object.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">9</span>
+                            <span class="qa-question">What do you know about the garbage collector?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Garbage collection is an automatic memory management process (mainly in Java, C#, Python). It identifies objects on the heap that are no longer referenced by any part of the program and deletes them to free memory. This prevents memory leaks and overflow. In Java, the garbage collector runs in the background and you can suggest it using <code>System.gc()</code>, but you cannot force it.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">10</span>
+                            <span class="qa-question">Why is the main() method static in Java?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">The <code>main()</code> method is static because the JVM needs to call it without creating an instance of the class. Static methods belong to the class itself, not to any particular object. Since the JVM starts the program by calling <code>main()</code> directly, it must be accessible without object creation — hence it's declared <code>public static void main(String[] args)</code>.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">11</span>
+                            <span class="qa-question">Can constructors be overridden?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner"><strong>No</strong>, constructors cannot be overridden. Overriding means a subclass provides its own implementation of a parent class method. Since constructors are not inherited (they belong to the specific class), they cannot be overridden. However, constructors can be <strong>overloaded</strong> (same class, different parameters) and a subclass constructor can call the parent constructor using <code>super()</code>.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">12</span>
+                            <span class="qa-question">Can we override the private methods?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner"><strong>No</strong>, private methods cannot be overridden. Private methods have scope only within the class where they are defined and are not visible to subclasses. Since overriding requires the method to be accessible in the subclass, private methods are excluded. If a subclass defines a method with the same name, it's a completely new method — not an override.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">13</span>
+                            <span class="qa-question">Name the pillars of OOP. Is C++ purely object-oriented?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">The four pillars are: Abstraction, Encapsulation, Inheritance, and Polymorphism. <strong>C++ is NOT purely object-oriented</strong> because: (1) it allows functions outside of classes (global functions like <code>main()</code>), (2) it has primitive data types (int, float, etc.) that are not objects, and (3) it supports procedural programming. A purely OOP language (like Smalltalk) requires everything to be an object.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">14</span>
+                            <span class="qa-question">List comparisons and similarities between Java and C++.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner"><strong>Similarities:</strong> Both are object-oriented, use similar syntax (classes, loops, conditionals). <strong>Differences:</strong> Java is platform-independent (runs on JVM), C++ is platform-dependent (compiles to machine code). C++ supports multiple inheritance; Java doesn't (uses interfaces instead). C++ has pointers; Java doesn't (uses references). Java has automatic garbage collection; C++ requires manual memory management. Java requires all code inside classes; C++ allows standalone functions and structures.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">15</span>
+                            <span class="qa-question">Explain the primary difference between C and Python.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">C is a <strong>structure/procedure-oriented</strong> compiled language, while Python is an <strong>object-oriented</strong> interpreted language. C is used for hardware-operable, system-level applications (OS, drivers). Python is a general-purpose, high-level language used for web development, data science, AI/ML. C requires manual memory management; Python has garbage collection. C is faster in execution; Python is easier and faster to write.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">16</span>
+                            <span class="qa-question">Describe the key characteristics of JavaScript.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">JavaScript is a lightweight, interpreted scripting language. Key characteristics: it's <strong>dynamically typed</strong> (no need to declare variable types), <strong>single-threaded</strong> with an event-driven non-blocking model, supports <strong>prototypal inheritance</strong>, runs in browsers (client-side) and on servers (Node.js), supports first-class functions (functions can be passed as arguments), and is essential for making web pages interactive.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">17</span>
+                            <span class="qa-question">Explain Tuple in Python.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">A tuple is an <strong>immutable</strong>, ordered collection of elements in Python, defined using parentheses <code>(1, 2, 3)</code>. Unlike lists, tuples cannot be modified after creation (no add, remove, or change). They are faster than lists, can be used as dictionary keys (since they're hashable), and are ideal for storing fixed collections of data like coordinates <code>(x, y)</code> or RGB values <code>(255, 0, 0)</code>.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">18</span>
+                            <span class="qa-question">What is the importance of PEP 8?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">PEP 8 is Python's official <strong>style guide</strong> for writing clean, readable code. It defines conventions like: use 4 spaces for indentation, limit lines to 79 characters, use snake_case for functions/variables and PascalCase for classes, add blank lines between functions. Following PEP 8 ensures consistency across projects and makes code easier for teams to read and maintain.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">19</span>
+                            <span class="qa-question">Which programming language would you prefer — C, Java, Python? Why?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">This is a personal preference question — be honest about what you know best! A sample answer: "I prefer <strong>Java</strong> because it's platform-independent, has strong security features, excellent for building enterprise applications, and I'm most comfortable with it from my coursework and projects." The key is to justify your choice confidently and mention specific strengths of your chosen language.</div></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- DSA -->
+        <div class="accordion-category">
+            <button class="category-toggle" onclick="toggleCategory(this)">
+                <div class="category-toggle-left">
+                    <span class="section-tag tag-technical" style="margin-bottom:0;">DSA</span>
+                    <div class="cat-icon" style="background: rgba(96,165,250,0.15);">&#128200;</div>
+                    <h3>Data Structures & Algorithms</h3>
+                    <span class="q-count">18 Qs</span>
+                </div>
+                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="category-body">
+                <div class="category-body-inner">
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">1</span>
+                            <span class="qa-question">List linear and non-linear data structures.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner"><strong>Linear:</strong> Arrays, Linked Lists, Stacks, Queues, Dequeues — elements are arranged in sequential order. <strong>Non-Linear:</strong> Trees, Graphs, Priority Queues, Circular Linked Lists — elements are arranged in a hierarchical or interconnected manner. The key difference is that linear structures have a single level of traversal, while non-linear structures can have multiple paths.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">2</span>
+                            <span class="qa-question">Explain the functionality of a linked list.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">A linked list is a linear data structure where elements (nodes) are stored in non-contiguous memory. Each node contains two parts: <strong>data</strong> and a <strong>pointer/reference</strong> to the next node. Types: Singly Linked List (one-way traversal), Doubly Linked List (two-way traversal), Circular Linked List (last node points to first). Advantages over arrays: dynamic size, efficient insertion/deletion. Disadvantage: no random access (must traverse from head).</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">3</span>
+                            <span class="qa-question">What is fragmentation and what does Linked List have to do with it?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Fragmentation occurs when free memory exists in scattered, non-contiguous blocks, making it impossible to allocate a single large block even though total free memory is sufficient. <strong>Linked lists solve this problem</strong> because they don't require contiguous memory — each node can be stored anywhere in memory, connected through pointers. So even with fragmented memory, a linked list can utilize all available free blocks efficiently.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">4</span>
+                            <span class="qa-question">Explain the recursive function & what data structures are used to perform recursion.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">A recursive function is one that calls itself directly or indirectly to solve a problem by breaking it into smaller sub-problems. It must have a <strong>base case</strong> (stopping condition) and a <strong>recursive case</strong>. The data structure used is the <strong>Stack</strong> — specifically the call stack. Each recursive call is pushed onto the stack, and when the base case is reached, calls are popped off and resolved in LIFO order.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">5</span>
+                            <span class="qa-question">What is a Spanning Tree?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">A spanning tree is a subgraph of a connected, undirected graph that includes <strong>all vertices</strong> with the <strong>minimum number of edges</strong> (exactly n-1 edges for n vertices). It cannot be disconnected and has no cycles. A <strong>Minimum Spanning Tree (MST)</strong> is a spanning tree with the minimum total edge weight. Algorithms: Kruskal's and Prim's. A complete undirected graph with n vertices can produce n^(n-2) spanning trees.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">6</span>
+                            <span class="qa-question">What is Memory Alignment?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Memory alignment refers to how data is arranged and accessed in memory. CPUs read data in fixed-size chunks (word size, e.g., 4 bytes). When data is aligned to these boundaries, the CPU can read it in a single operation. Misaligned data may require two memory reads, reducing performance. Compilers often add <strong>padding bytes</strong> to structs to ensure alignment, which is why <code>sizeof(struct)</code> can be larger than the sum of its members.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">7</span>
+                            <span class="qa-question">What are the time complexities of bubble, selection, merge, insertion, and quick sort?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner"><strong>Bubble Sort:</strong> Best O(n), Avg/Worst O(n&sup2;). <strong>Selection Sort:</strong> Best/Avg/Worst O(n&sup2;). <strong>Insertion Sort:</strong> Best O(n), Avg/Worst O(n&sup2;). <strong>Merge Sort:</strong> Best/Avg/Worst O(n log n) — always consistent. <strong>Quick Sort:</strong> Best/Avg O(n log n), Worst O(n&sup2;) — when pivot is always the smallest/largest. For interviews, remember: Merge Sort is most stable and consistent, Quick Sort is fastest on average.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">8</span>
+                            <span class="qa-question">Write a Binary Search program.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Binary Search works on <strong>sorted arrays</strong>. Compare the target with the middle element — if it matches, return the index. If target is greater, search the right half; if smaller, search the left half. Repeat until found or the range is empty. Time complexity: <strong>O(log n)</strong>. Example logic: <code>low=0, high=n-1</code>. While low &le; high: <code>mid = (low+high)/2</code>. If arr[mid]==target, return mid. If arr[mid]&lt;target, low=mid+1. Else high=mid-1.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">9</span>
+                            <span class="qa-question">Write a program to find the maximum element in an array.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Initialize <code>max = arr[0]</code>. Traverse through the array from index 1 to n-1. For each element, if <code>arr[i] > max</code>, update <code>max = arr[i]</code>. After the loop, max holds the largest element. Time complexity: <strong>O(n)</strong> since we visit each element once. This is the optimal approach — you cannot find the maximum without checking every element at least once.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">10</span>
+                            <span class="qa-question">Merge two sorted arrays.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Use two pointers, one for each array. Compare elements at both pointers — put the smaller one into the result array and advance that pointer. Repeat until one array is exhausted, then copy the remaining elements from the other array. Time complexity: <strong>O(n + m)</strong> where n and m are the sizes of the two arrays. This is the same technique used in the merge step of Merge Sort.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">11</span>
+                            <span class="qa-question">Write a function to check if a given string is a palindrome.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner"><strong>Iterative:</strong> Use two pointers — one at the start, one at the end. Compare characters and move inward. If all match, it's a palindrome. <strong>Recursive:</strong> Compare first and last characters; if they match, recursively check the substring without those characters. Base case: if string length is 0 or 1, return true. Examples: "madam" &rarr; palindrome, "hello" &rarr; not. Time: O(n/2) = O(n).</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">12</span>
+                            <span class="qa-question">Write a code to reverse a given string.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Multiple approaches: (1) <strong>Two-pointer swap:</strong> Swap characters from both ends moving inward. (2) <strong>New string:</strong> Iterate from the last character to the first, appending to a new string. (3) <strong>Built-in:</strong> In Python: <code>s[::-1]</code>, in Java: <code>new StringBuilder(s).reverse().toString()</code>. All have O(n) time complexity.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">13</span>
+                            <span class="qa-question">Write a code to reverse a given string using Stack.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Push each character of the string onto a stack (LIFO). Then pop all characters one by one — since the last character pushed is popped first, you get the reversed string. This works because stack follows Last-In-First-Out order. Time: O(n), Space: O(n). This approach demonstrates understanding of stack behavior.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">14</span>
+                            <span class="qa-question">Write a program to swap two numbers without using a third variable.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Use arithmetic operations: <code>a = a + b; b = a - b; a = a - b;</code>. Example: If a=5, b=3 &rarr; a=8, b=8-3=5, a=8-5=3. Done! Alternatively, use multiplication/division (but watch for zero). This avoids using any temporary variable. Note: For very large numbers, addition may cause overflow.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">15</span>
+                            <span class="qa-question">Write a program to swap two numbers without using +, -, *, / operators.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Use the <strong>XOR bitwise operator</strong>: <code>x = x ^ y; y = x ^ y; x = x ^ y;</code>. XOR has the property that a ^ a = 0 and a ^ 0 = a. So after these three steps, the values are swapped without any arithmetic operators or temporary variables. This is the most elegant solution and has no overflow risk.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">16</span>
+                            <span class="qa-question">Write a Program to print the right triangle star pattern.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Use nested loops. Outer loop (i = 1 to n) controls rows. Inner loop (j = 1 to i) prints stars. After each row, print a newline. For n=4 output:
+<code>*</code>, <code>**</code>, <code>***</code>, <code>****</code>. The key insight is that row i has exactly i stars. This is one of the most commonly asked pattern questions in TCS interviews.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">17</span>
+                            <span class="qa-question">Write a Program to print the Half Pyramid Number Pattern.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Similar to star pattern but print numbers. Outer loop (i = 1 to n) for rows. Inner loop (j = 1 to i) prints j. For n=4:
+<code>1</code>, <code>1 2</code>, <code>1 2 3</code>, <code>1 2 3 4</code>. Variation: print the row number instead of column number for a different pattern. These pattern problems test your nested loop understanding.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">18</span>
+                            <span class="qa-question">Write a program to find if a number is even or odd without arithmetic operators.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Use the <strong>bitwise AND</strong> operator: <code>if (n & 1) == 0</code>, the number is even; otherwise it's odd. This works because even numbers have their least significant bit (LSB) as 0, and odd numbers have LSB as 1. ANDing with 1 checks only the last bit. Alternative: Use XOR — <code>if (n ^ 1) == n + 1</code>, it's even. Both avoid using %, /, or any arithmetic.</div></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- C / C++ -->
+        <div class="accordion-category">
+            <button class="category-toggle" onclick="toggleCategory(this)">
+                <div class="category-toggle-left">
+                    <span class="section-tag tag-technical" style="margin-bottom:0;">C / C++</span>
+                    <div class="cat-icon" style="background: rgba(96,165,250,0.15);">&#9881;</div>
+                    <h3>C / C++ Specific</h3>
+                    <span class="q-count">7 Qs</span>
+                </div>
+                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="category-body">
+                <div class="category-body-inner">
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">1</span>
+                            <span class="qa-question">Differentiate between Compiler and Interpreter.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner"><strong>Compiler:</strong> Translates the entire source code into machine code at once before execution. Takes longer to analyze but executes faster. Generates intermediate object code. Languages: C, C++, Java. <strong>Interpreter:</strong> Translates and executes code line by line. Faster to start but slower overall execution. No intermediate code generated. Languages: Python, JavaScript, Ruby. Compilers show all errors after compilation; interpreters stop at the first error.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">2</span>
+                            <span class="qa-question">What are the different storage classes in C?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">C has four storage classes: <strong>auto</strong> (default, local scope, stored in stack, destroyed when function ends), <strong>register</strong> (stored in CPU register for fast access, no address can be taken), <strong>static</strong> (retains value between function calls, initialized only once, exists for the program's lifetime), <strong>extern</strong> (global variable declared in another file, used to share variables across files). Each defines scope, lifetime, and default value of variables.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">3</span>
+                            <span class="qa-question">What is a command-line argument?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Command-line arguments are values passed to a program when it is executed from the terminal/command line. In C/C++, <code>main(int argc, char *argv[])</code> receives them — <code>argc</code> is the count of arguments and <code>argv[]</code> is an array of strings containing the arguments. Example: running <code>./program hello 42</code> gives argc=3, argv[0]="./program", argv[1]="hello", argv[2]="42".</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">4</span>
+                            <span class="qa-question">What is a dangling pointer? What is the use of a dangling pointer?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">A dangling pointer is a pointer that points to a memory location that has been <strong>deallocated/freed</strong>. It occurs when: (1) memory is freed but pointer isn't updated, (2) a local variable's address is returned from a function, (3) variable goes out of scope. Dereferencing a dangling pointer causes <strong>undefined behavior</strong> (segmentation fault, corrupted data). To avoid: set pointer to <code>NULL</code> after freeing memory. Dangling pointers have no useful purpose — they are bugs to be avoided!</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">5</span>
+                            <span class="qa-question">const char *p vs char const *p — What is the difference?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">There is <strong>no difference</strong> — both are identical! Both declare a pointer to a constant character, meaning you cannot modify the character being pointed to, but you can change where the pointer points. The <code>const</code> applies to <code>char</code> in both cases. However, <code>char * const p</code> is different — it's a constant pointer (pointer itself can't change, but the character value can).</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">6</span>
+                            <span class="qa-question">What are conditional statements?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Conditional statements control the flow of a program based on whether a condition is true or false (if-then logic). Types in C/C++/Java: <strong>if</strong> (executes block if condition is true), <strong>if-else</strong> (two branches), <strong>else if ladder</strong> (multiple conditions), <strong>switch-case</strong> (matches a value against multiple cases), <strong>ternary operator</strong> <code>condition ? value1 : value2</code> (shorthand if-else). They are fundamental to decision-making in any program.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">7</span>
+                            <span class="qa-question">What is a user-defined exception in Java?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">A user-defined exception is a custom exception class created by extending the <code>Exception</code> class (for checked) or <code>RuntimeException</code> class (for unchecked). You create it when built-in exceptions don't describe your specific error scenario. Example: <code>class InvalidAgeException extends Exception { ... }</code>. You throw it using the <code>throw</code> keyword and catch it with try-catch blocks. This provides meaningful error messages specific to your application.</div></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- DBMS & SQL -->
+        <div class="accordion-category">
+            <button class="category-toggle" onclick="toggleCategory(this)">
+                <div class="category-toggle-left">
+                    <span class="section-tag tag-technical" style="margin-bottom:0;">DBMS & SQL</span>
+                    <div class="cat-icon" style="background: rgba(96,165,250,0.15);">&#128451;</div>
+                    <h3>Database Management & SQL</h3>
+                    <span class="q-count">10 Qs</span>
+                </div>
+                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="category-body">
+                <div class="category-body-inner">
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">1</span>
+                            <span class="qa-question">What is a Database Management System?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">A DBMS is software that manages the creation, storage, retrieval, and manipulation of data in a database. It provides an interface between users and the database, ensuring data integrity, security, and concurrent access. Examples: MySQL, PostgreSQL, Oracle, MongoDB. Types: Relational (RDBMS — tables with rows/columns), NoSQL (document, key-value, graph-based). Key features: ACID properties, data redundancy control, backup & recovery.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">2</span>
+                            <span class="qa-question">What are DDL, DML, and DCL commands in SQL?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner"><strong>DDL (Data Definition Language):</strong> Defines database structure — CREATE, ALTER, DROP, TRUNCATE. <strong>DML (Data Manipulation Language):</strong> Manipulates data within tables — SELECT, INSERT, UPDATE, DELETE. <strong>DCL (Data Control Language):</strong> Controls access permissions — GRANT, REVOKE. Additionally, <strong>TCL (Transaction Control Language)</strong> manages transactions — COMMIT, ROLLBACK, SAVEPOINT.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">3</span>
+                            <span class="qa-question">What do you know about DCL (Data Control Language)?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">DCL is responsible for managing access permissions in a DBMS. It has two primary commands: <strong>GRANT</strong> — gives specific privileges (SELECT, INSERT, UPDATE, etc.) to users on database objects. Example: <code>GRANT SELECT ON students TO user1;</code>. <strong>REVOKE</strong> — withdraws previously granted privileges. Example: <code>REVOKE SELECT ON students FROM user1;</code>. DCL is crucial for database security and role-based access control.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">4</span>
+                            <span class="qa-question">What is the Difference Between DELETE and TRUNCATE?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner"><strong>DELETE:</strong> DML command, removes specific rows using WHERE clause, can be rolled back, slower (logs each row deletion), triggers are fired, doesn't reset auto-increment. <strong>TRUNCATE:</strong> DDL command, removes ALL rows (no WHERE), cannot be rolled back (in most DBMS), much faster (deallocates data pages), triggers not fired, resets auto-increment counter. Use DELETE for selective removal; TRUNCATE to clear an entire table quickly.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">5</span>
+                            <span class="qa-question">Differentiate between clustered index and non-clustered index.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner"><strong>Clustered Index:</strong> Physically sorts and stores data rows in the table based on the key. Only ONE per table (like a phone book sorted by name). Faster for range queries. <strong>Non-Clustered Index:</strong> Creates a separate structure with pointers to the actual data rows. Multiple per table allowed (like a book's index at the back). Requires extra storage. Think of it as: clustered = the data IS the index; non-clustered = a separate lookup table pointing to the data.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">6</span>
+                            <span class="qa-question">What is the difference between foreign keys and reference keys?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">A <strong>foreign key</strong> is a column in one table (child) that refers to the primary key of another table (parent), establishing a relationship between the two tables. It enforces referential integrity. A <strong>reference key</strong> (or referenced key) is the primary key being referenced by the foreign key — it exists in the parent table. Example: In an Orders table, <code>customer_id</code> is the foreign key that references the <code>id</code> (reference key) in the Customers table.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">7</span>
+                            <span class="qa-question">Define Joins, Views, Normalization, Triggers.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner"><strong>Joins:</strong> Combine rows from two or more tables based on a related column (INNER, LEFT, RIGHT, FULL). <strong>Views:</strong> Virtual tables created from a SQL query — they don't store data but display specific columns for security and simplification. <strong>Normalization:</strong> Process of organizing data to reduce redundancy (1NF, 2NF, 3NF, BCNF). <strong>Triggers:</strong> Automatic procedures that execute when specific events occur (INSERT, UPDATE, DELETE) — used to enforce business rules and maintain data integrity.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">8</span>
+                            <span class="qa-question">What is a Hash Query?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">A Query String Hash (QSH) is a security mechanism that prevents URL tampering. It creates a hash of the query parameters in a URL so the server can verify that the request hasn't been modified. In database context, hash-based queries use hash functions to quickly locate data — the hash function maps key values to specific memory locations, enabling O(1) average lookup time (like HashMap in Java or dictionaries in Python).</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">9</span>
+                            <span class="qa-question">Write SQL Query to select entries where name is "Rahul".</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner"><code>SELECT * FROM students WHERE name = 'Rahul';</code> — This selects all columns from the students table where the name column matches "Rahul". Use single quotes for string values in SQL. If you want case-insensitive matching: <code>SELECT * FROM students WHERE LOWER(name) = 'rahul';</code></div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">10</span>
+                            <span class="qa-question">Write SQL query to print the current date.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Depends on the database: <strong>MySQL:</strong> <code>SELECT CURDATE();</code> or <code>SELECT NOW();</code> (includes time). <strong>SQL Server:</strong> <code>SELECT GETDATE();</code>. <strong>PostgreSQL:</strong> <code>SELECT CURRENT_DATE;</code>. <strong>Oracle:</strong> <code>SELECT SYSDATE FROM dual;</code>. All return the current date, but the exact syntax varies by DBMS. <code>NOW()</code> typically returns both date and time.</div></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- OS, Networking & Others -->
+        <div class="accordion-category">
+            <button class="category-toggle" onclick="toggleCategory(this)">
+                <div class="category-toggle-left">
+                    <span class="section-tag tag-technical" style="margin-bottom:0;">OS & Networking</span>
+                    <div class="cat-icon" style="background: rgba(96,165,250,0.15);">&#127760;</div>
+                    <h3>OS, Networking & Other Topics</h3>
+                    <span class="q-count">16 Qs</span>
+                </div>
+                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="category-body">
+                <div class="category-body-inner">
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">1</span>
+                            <span class="qa-question">What is the relation between pages and frames in the OS?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">In OS paging, <strong>size of page = size of frame</strong>. A page is a fixed-size block of a process's logical memory. A frame is a fixed-size block of physical (main) memory. The OS maps pages to frames using a page table. Each frame can hold exactly one page. This allows non-contiguous memory allocation — a process's pages can be scattered across different frames in physical memory.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">2</span>
+                            <span class="qa-question">Difference between user-level thread and kernel-level thread.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner"><strong>User-level threads:</strong> Managed by user-space libraries (not OS), faster context switching, OS is unaware of them, if one thread blocks the entire process blocks. <strong>Kernel-level threads:</strong> Managed directly by the OS, slower context switching (requires system calls), OS schedules them individually, if one thread blocks others continue running. Most modern systems use kernel-level threads or a hybrid model.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">3</span>
+                            <span class="qa-question">Difference between Process and Thread.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner"><strong>Process:</strong> An independent program in execution with its own memory space (code, data, stack, heap). Heavyweight, higher overhead, isolated from other processes, communication via IPC (pipes, sockets). <strong>Thread:</strong> A lightweight unit of execution within a process. Shares the process's memory space. Lower overhead, faster context switching, threads within the same process can communicate directly through shared memory. A process can have multiple threads.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">4</span>
+                            <span class="qa-question">List some major roles performed by an Operating System.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner"><strong>Process Management:</strong> Creating, scheduling, and terminating processes using scheduling algorithms (FCFS, SJF, Round Robin). <strong>Memory Management:</strong> Allocating and deallocating RAM, handling paging and segmentation. <strong>Storage/File Management:</strong> Managing file systems, directories, and disk space. <strong>Resource Management:</strong> Allocating CPU, I/O devices to processes. <strong>Security & Privacy:</strong> Authentication, access control, protecting against threats. <strong>Device Management:</strong> Managing hardware through device drivers.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">5</span>
+                            <span class="qa-question">Explain the TCP/IP protocol.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">TCP/IP is a layered protocol suite for internet communication. <strong>TCP (Transmission Control Protocol)</strong> operates at the Transport Layer — breaks data into packets, ensures reliable delivery through acknowledgments, handles retransmission of lost packets. <strong>IP (Internet Protocol)</strong> operates at the Network Layer — handles addressing (IP addresses) and routing packets to the destination. Together, TCP/IP provides reliable, ordered data delivery across networks. The four layers: Application, Transport, Internet, Network Access.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">6</span>
+                            <span class="qa-question">Explain types of protocols.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Major protocol types: <strong>TCP</strong> — reliable, connection-oriented data transfer. <strong>UDP</strong> — fast, connectionless, no guarantee of delivery (used in streaming, gaming). <strong>HTTP/HTTPS</strong> — web page transfer (HTTPS is encrypted). <strong>FTP</strong> — file transfer between systems. <strong>SMTP</strong> — sending emails. <strong>POP3/IMAP</strong> — receiving emails. <strong>DNS</strong> — translates domain names to IP addresses. <strong>DHCP</strong> — automatically assigns IP addresses. <strong>SSH</strong> — secure remote access. <strong>Telnet</strong> — remote access (unencrypted).</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">7</span>
+                            <span class="qa-question">What is DOM (Document Object Model)?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">DOM is an API that represents an HTML/XML document as a tree structure of objects. Each HTML element becomes a node in the tree. JavaScript uses the DOM to access and manipulate page content dynamically — you can add, remove, or modify elements, change styles, and respond to events. For example, <code>document.getElementById('title')</code> accesses an element. The DOM enables interactive web pages without reloading.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">8</span>
+                            <span class="qa-question">What is Cloud Computing?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Cloud computing delivers computing services (servers, storage, databases, networking, software) over the internet ("the cloud") on a pay-as-you-go basis. Three service models: <strong>IaaS</strong> (Infrastructure — virtual machines, e.g., AWS EC2), <strong>PaaS</strong> (Platform — development tools, e.g., Google App Engine), <strong>SaaS</strong> (Software — ready-to-use apps, e.g., Gmail, Office 365). Benefits: scalability, cost-efficiency, no hardware maintenance, accessible from anywhere.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">9</span>
+                            <span class="qa-question">Define Machine Learning, Deep Learning & AI.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner"><strong>AI (Artificial Intelligence):</strong> The broadest concept — creating machines that can simulate human intelligence (decision-making, problem-solving). <strong>ML (Machine Learning):</strong> A subset of AI — algorithms that learn from data and improve without explicit programming (e.g., spam detection, recommendations). <strong>Deep Learning:</strong> A subset of ML — uses neural networks with many layers to learn from vast amounts of data (e.g., image recognition, voice assistants). Think: AI &supset; ML &supset; Deep Learning.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">10</span>
+                            <span class="qa-question">What are the characteristics of Big Data Analytics?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Big Data is characterized by the <strong>5 V's</strong>: <strong>Volume</strong> (massive amounts of data), <strong>Velocity</strong> (speed at which data is generated and processed), <strong>Variety</strong> (different types — structured, unstructured, semi-structured), <strong>Veracity</strong> (trustworthiness and quality of data), <strong>Value</strong> (useful insights that can be extracted). Additional V's sometimes included: Validity, Volatility, and Visualization.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">11</span>
+                            <span class="qa-question">What is the use of Linspace in NumPy?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner"><code>numpy.linspace(start, stop, num)</code> generates an array of <code>num</code> evenly spaced values between <code>start</code> and <code>stop</code> (inclusive). Example: <code>np.linspace(0, 10, 5)</code> gives <code>[0, 2.5, 5, 7.5, 10]</code>. It's commonly used for creating smooth ranges for plotting graphs, signal processing, and mathematical computations where you need uniform spacing.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">12</span>
+                            <span class="qa-question">What is Reinforcement Learning?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Reinforcement Learning (RL) is a type of ML where an <strong>agent</strong> learns by interacting with an <strong>environment</strong>. The agent takes actions, receives rewards or penalties, and learns to maximize cumulative rewards over time. Key concepts: states, actions, rewards, and policy. Think of it like training a dog — good behavior gets a treat (reward), bad behavior gets nothing (penalty). Applications: game AI (AlphaGo), robotics, self-driving cars, recommendation systems.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">13</span>
+                            <span class="qa-question">Difference between Waterfall and Agile Life Cycles.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner"><strong>Waterfall:</strong> Linear, sequential approach — each phase (Requirements, Design, Implementation, Testing, Deployment) must be completed before the next begins. Rigid, hard to accommodate changes, best for well-defined projects. <strong>Agile:</strong> Iterative, incremental approach — work is done in short sprints (2-4 weeks), continuous feedback and adaptation, flexible to changes, best for evolving requirements. TCS uses Agile extensively — mentioning this shows awareness.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">14</span>
+                            <span class="qa-question">What are the different stages of the Scrum model of Agile cycle?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Scrum stages: <strong>Product Backlog</strong> (prioritized list of all features/requirements), <strong>Sprint Planning</strong> (team selects items for the sprint), <strong>Sprint</strong> (2-4 week development cycle), <strong>Daily Standup</strong> (15-min daily meeting — what did you do, what will you do, any blockers), <strong>Sprint Review</strong> (demo completed work to stakeholders), <strong>Sprint Retrospective</strong> (team reflects on what went well and what to improve). Key roles: Product Owner, Scrum Master, Development Team.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">15</span>
+                            <span class="qa-question">What is the software development cycle?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">SDLC (Software Development Life Cycle) is a process for planning, creating, testing, and deploying software. Phases: <strong>1. Requirement Analysis</strong> (understand what's needed), <strong>2. Planning</strong> (timeline, resources, cost), <strong>3. Design</strong> (architecture, UI/UX), <strong>4. Implementation/Coding</strong> (actual development), <strong>5. Testing</strong> (QA, bug fixing), <strong>6. Deployment</strong> (release to users), <strong>7. Maintenance</strong> (updates, bug fixes). Common models: Waterfall, Agile, V-Model, Spiral.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num tech">16</span>
+                            <span class="qa-question">What are WPF and WCF?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner"><strong>WPF (Windows Presentation Foundation):</strong> A Microsoft framework for building desktop application UIs. It provides 2D/3D graphics, hardware acceleration, scalability, and uses XAML for designing interfaces. <strong>WCF (Windows Communication Foundation):</strong> A framework for building service-oriented applications. It handles communication — sending/receiving data, formatting, and serialization. Simply put: WPF = Presentation (how it looks), WCF = Communication (how data moves between systems).</div></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== MANAGERIAL ROUND ==================== -->
+        <div class="section-header">
+            <h2>Managerial Round</h2>
+        </div>
+
+        <div class="accordion-category">
+            <button class="category-toggle" onclick="toggleCategory(this)">
+                <div class="category-toggle-left">
+                    <span class="section-tag tag-managerial" style="margin-bottom:0;">Situational & Behavioral</span>
+                    <div class="cat-icon" style="background: rgba(251,146,60,0.15);">&#128188;</div>
+                    <h3>Managerial / MR Questions</h3>
+                    <span class="q-count">14 Qs</span>
+                </div>
+                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="category-body">
+                <div class="category-body-inner">
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num mgmt">1</span>
+                            <span class="qa-question">What would you do if you were assigned to a team that was riven by internal strife?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Sample approach: "I would first try to understand the root cause of the conflict by listening to each team member individually. Then I'd encourage open, respectful communication in a team meeting. I believe in focusing on common goals rather than personal differences. I'd suggest clear role definitions and establish regular check-ins to ensure everyone is aligned. If needed, I'd escalate to the manager while maintaining confidentiality."</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num mgmt">2</span>
+                            <span class="qa-question">What will you do if your project's deadline is abruptly pushed back?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">"I would take it as an opportunity to improve the quality of deliverables. I'd reassess the project plan, identify areas where we can add more value, improve testing, or refine features. I'd communicate the updated timeline to stakeholders and ensure the team stays motivated and productive rather than becoming complacent with the extra time."</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num mgmt">3</span>
+                            <span class="qa-question">What distinguishes you from the rest of the pack?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Highlight unique qualities: "What sets me apart is my combination of strong problem-solving skills and effective communication. I don't just solve technical problems — I can explain my solutions clearly to both technical and non-technical team members. Additionally, I'm a fast learner who actively seeks feedback to improve continuously." Be specific — mention a project, achievement, or skill that genuinely differentiates you.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num mgmt">4</span>
+                            <span class="qa-question">If you're on a boat with your wife and father, and the boat starts to sink, who do you think you'll save?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">This is a trick question testing your composure and critical thinking. Don't pick one person over another. A good answer: "In such a situation, I would stay calm and think rationally. I'd try to find a solution to save everyone — look for life jackets, signal for help, or find ways to keep the boat afloat. My priority would be to ensure everyone's safety, not to choose between my loved ones." Show problem-solving, not panic.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num mgmt">5</span>
+                            <span class="qa-question">What criteria should I use to evaluate you before entrusting you with any project?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">"You can evaluate me on my ability to learn quickly, my commitment to deadlines, and my willingness to go above and beyond. I'm reliable, take ownership of my work, and I'm not afraid to ask questions when needed. I believe in delivering quality work and communicating proactively about progress and challenges. Give me a small task first, and my work will speak for itself."</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num mgmt">6</span>
+                            <span class="qa-question">How do you plan to lead a group of trainees?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">"I'd start by understanding each trainee's strengths and areas of improvement. I'd set clear expectations and goals, provide structured training with hands-on tasks, encourage questions and open dialogue, and give regular constructive feedback. I believe in leading by example — being approachable, patient, and supportive while maintaining accountability. I'd also create a safe environment where making mistakes is part of learning."</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num mgmt">7</span>
+                            <span class="qa-question">What would you do if your supervisor repeatedly criticised your work?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">"I'd view constructive criticism as an opportunity to grow. I'd request a one-on-one meeting to understand specific areas of improvement and ask for clear expectations. I'd work on the feedback, show measurable improvement, and follow up. If the criticism feels unfair, I'd calmly share my perspective with facts and examples. The key is to stay professional, not take it personally, and focus on improvement."</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num mgmt">8</span>
+                            <span class="qa-question">What does success mean to you?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">"Success to me means continuous growth and making a meaningful impact. It's not just about achieving a specific position or salary — it's about consistently learning, improving my skills, contributing to my team's goals, and knowing that my work adds value. In the long term, I want to look back and see that I've grown as a professional and helped others grow too." Keep it genuine and aligned with the company's values.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num mgmt">9</span>
+                            <span class="qa-question">Are you more at ease working in a group or prefer to work alone?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">"I'm comfortable with both. When a task requires brainstorming, diverse perspectives, or collaboration, I thrive in a team setting. For tasks requiring deep focus and concentration — like debugging complex code — I work efficiently alone. I believe the best approach depends on the task at hand, and I'm flexible enough to adapt to what the project needs." This shows versatility without committing to one extreme.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num mgmt">10</span>
+                            <span class="qa-question">What if your selected location isn't available?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">"I understand that business needs come first. While I do have a preference, I'm open to working at any location TCS assigns me. I see it as an opportunity to experience a new city, meet new people, and grow both professionally and personally. My priority is to learn and contribute to the organization, regardless of the location." Always show flexibility — TCS values candidates who are adaptable.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num mgmt">11</span>
+                            <span class="qa-question">Describe a situation where you were asked to do something you do not like.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Use the STAR method: "During my college project (Situation), I was asked to handle documentation instead of coding which I preferred (Task). I realized that proper documentation is crucial for any project's success (Action), so I put in my best effort, created detailed documentation, and even learned new tools for it. The project received excellent feedback specifically for its documentation (Result). It taught me that stepping out of my comfort zone leads to growth."</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num mgmt">12</span>
+                            <span class="qa-question">Where do you see yourself in five years?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">"In five years, I see myself as a technically proficient professional who has grown within TCS, taken on leadership responsibilities, and contributed to impactful projects. I want to deepen my expertise in [your interest area — cloud, AI, full-stack, etc.] and eventually mentor junior team members. My goal is to grow with TCS and take on challenging roles that push me to learn continuously." Show ambition but keep it realistic and company-aligned.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num mgmt">13</span>
+                            <span class="qa-question">Tell me about a time you had to deal with a difficult team member.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Use the STAR method with a real example: "In a college group project, one member wasn't contributing (Situation). I had a private, respectful conversation to understand their challenges (Task). I found they were struggling with the technical part, so I helped break their tasks into smaller pieces and offered guidance (Action). They completed their part, and we delivered the project on time (Result). I learned that understanding the 'why' behind someone's behavior is more effective than confrontation."</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num mgmt">14</span>
+                            <span class="qa-question">How would you handle a situation where you disagree with your manager's decision?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">"I'd first try to understand my manager's perspective — they may have information or context that I don't. If I still feel my viewpoint is valid, I'd respectfully share my concerns with data or evidence to support my position, in a private setting. Ultimately, if my manager decides to proceed with their approach, I'd respect the decision and give my full effort to make it work. It's about being professional and knowing that disagreement doesn't mean disrespect."</div></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== HR ROUND ==================== -->
+        <div class="section-header">
+            <h2>HR Round</h2>
+        </div>
+
+        <div class="accordion-category">
+            <button class="category-toggle" onclick="toggleCategory(this)">
+                <div class="category-toggle-left">
+                    <span class="section-tag tag-hr" style="margin-bottom:0;">Personal & Behavioral</span>
+                    <div class="cat-icon" style="background: rgba(244,114,182,0.15);">&#129309;</div>
+                    <h3>HR Interview Questions</h3>
+                    <span class="q-count">16 Qs</span>
+                </div>
+                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="category-body">
+                <div class="category-body-inner">
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num hr">1</span>
+                            <span class="qa-question">Tell me something about yourself.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Structure your answer: <strong>Name + Education + Skills + Projects + Why TCS</strong>. Example: "I'm [Name], a recent [B.Tech/BE] graduate in [Branch] from [College]. During my studies, I developed strong skills in [Java/Python/etc.] and completed projects on [mention 1-2]. I'm passionate about [area] and excited to begin my career at TCS, a company known for innovation and growth opportunities." Keep it under 2 minutes. Be confident, not robotic.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num hr">2</span>
+                            <span class="qa-question">Tell me something about your family.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Keep it brief and positive: "I come from a [small/supportive] family. My father is [occupation] and my mother is [occupation/homemaker]. I have [number] siblings. My family has always supported my education and encouraged me to pursue my goals. They've been my biggest motivation." Don't go into too much detail — the interviewer wants to know your background, not your life story.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num hr">3</span>
+                            <span class="qa-question">Tell me something about yourself that your resume doesn't mention.</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Share something genuine that reveals your personality: a hobby, volunteer work, a challenge you overcame, or a unique experience. Example: "I'm an avid reader and enjoy solving puzzles in my free time — it's actually what got me into programming. I also volunteered for [event/cause], which taught me teamwork and time management outside the classroom." Make it interesting and show soft skills.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num hr">4</span>
+                            <span class="qa-question">What are your strengths and weaknesses?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner"><strong>Strengths:</strong> Pick 2-3 genuine strengths with examples — "My problem-solving ability is strong. During my project, I debugged a critical issue that the team had been stuck on for days." <strong>Weaknesses:</strong> Pick a real one but show improvement — "I tend to be a perfectionist, sometimes spending extra time on details. I've been working on this by setting time limits for tasks and prioritizing what matters most." Never say "I have no weaknesses" or pick a cliche answer.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num hr">5</span>
+                            <span class="qa-question">Where do you see yourself in 5 years?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">"In 5 years, I see myself as a skilled professional who has grown technically and taken on more responsibilities within TCS. I want to specialize in [your interest — cloud, AI, full-stack], lead projects, and contribute to the team's success. I'm committed to continuous learning and want to be someone my team can rely on." Don't mention switching companies or pursuing higher studies (MBA, MS) — it signals you might leave.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num hr">6</span>
+                            <span class="qa-question">Why do you want to join TCS?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">"TCS is a global leader in IT services and consulting, operating in 46+ countries. I admire TCS for its strong focus on innovation, employee development programs like TCS iON and initial learning programs, and its commitment to building a diverse and inclusive workplace. Being part of the Tata Group also means strong values and ethics. I believe TCS is the ideal place to start and grow my career." Show you've done research!</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num hr">7</span>
+                            <span class="qa-question">Why do you want to work in the IT sector?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">"The IT sector is at the forefront of innovation — it's transforming every industry from healthcare to finance. I'm passionate about technology and problem-solving, and IT gives me the platform to create solutions that impact millions of people. The continuous learning opportunities, dynamic work environment, and global exposure that IT offers are exactly what I'm looking for in my career."</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num hr">8</span>
+                            <span class="qa-question">Why do you want to join TCS despite having several job offers?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">"While I'm fortunate to have other offers, I've chosen TCS because of its unmatched training ecosystem, global project exposure, and strong ethical values as part of the Tata Group. TCS invests heavily in employee growth, and the opportunity to work across diverse domains and technologies is something other companies can't match. For me, it's not about the highest offer — it's about the best platform for long-term growth." Be diplomatic, never criticize other companies.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num hr">9</span>
+                            <span class="qa-question">What do you know about TCS?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Key facts to know: TCS (Tata Consultancy Services) is a subsidiary of the Tata Group. It's one of the largest IT services companies globally, operating in <strong>46+ countries</strong>. CEO: <strong>K Krithivasan</strong>. Headquarters: Mumbai, India. Services: IT consulting, software development, business solutions, digital transformation. TCS is known for its initial learning program (ILP), research & innovation labs, and was among the first Indian IT companies to achieve $1 billion in revenue. Mentioning recent TCS news or initiatives shows extra effort.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num hr">10</span>
+                            <span class="qa-question">Do you have any backlogs in your graduation?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner"><strong>If no backlogs:</strong> "No, I have a clear academic record with no backlogs." <strong>If you had backlogs (now cleared):</strong> "I had [number] backlog(s) in [subject] during [semester], but I cleared them and it taught me the importance of consistent effort and time management. Since then, I've maintained good grades." Be honest — TCS verifies academic records. If you have active backlogs, check TCS eligibility criteria first.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num hr">11</span>
+                            <span class="qa-question">What did you do to prepare for this interview, and did you get any help?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">"I prepared by revising my core CS subjects — OOPS, DBMS, OS, and DSA. I practiced coding problems on platforms like HackerRank and LeetCode. I also researched TCS thoroughly — its services, values, and recent achievements. I took mock interviews with friends and watched interview experience videos. While my preparation was largely self-driven, my college placement cell and mentors also provided guidance." Show initiative and effort.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num hr">12</span>
+                            <span class="qa-question">Do you mind working night shifts, and are you willing to relocate?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">The expected answer is <strong>Yes to both</strong>. "I'm completely flexible with shifts and willing to relocate wherever TCS needs me. I understand that as a global company, TCS works across different time zones, and night shifts are part of that. I see relocation as an opportunity to experience new places and grow both personally and professionally." Note: TCS's bond agreement typically requires this flexibility, so hesitation can be a red flag.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num hr">13</span>
+                            <span class="qa-question">Have you ever effectively led a team or a large group of people?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">Share a real example: "Yes, I led a team of [number] during my [college project/event/hackathon]. I was responsible for task allocation, setting deadlines, and ensuring team coordination. The biggest challenge was [mention one], and I handled it by [your approach]. We successfully [outcome]. This experience taught me the importance of clear communication, delegation, and keeping the team motivated." Even small leadership roles count — college clubs, events, group projects.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num hr">14</span>
+                            <span class="qa-question">Why should we hire you?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">"You should hire me because I bring a strong foundation in [your technical skills], a genuine eagerness to learn, and the ability to work well in teams. I'm not just looking for a job — I'm looking for a career where I can grow and contribute meaningfully. I'm adaptable, hard-working, and committed to delivering quality work. I'm confident that with TCS's training and mentorship, I can become a valuable asset to your team." Tailor this to your actual strengths.</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num hr">15</span>
+                            <span class="qa-question">What are your salary expectations?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner">"As a fresher, I'm more focused on learning and growing than on salary. I trust that TCS, being a reputed organization, offers a fair and competitive compensation package. I'm open to the standard package offered for this role and I'm confident that my performance will be recognized over time." Don't negotiate aggressively as a fresher — TCS has standard packages (3.36 LPA for Ninja, 7 LPA for Digital, 11.5 LPA for Prime).</div></div>
+                    </div>
+
+                    <div class="qa-item">
+                        <button class="qa-toggle" onclick="toggleQA(this)">
+                            <span class="qa-num hr">16</span>
+                            <span class="qa-question">Do you have any questions for us?</span>
+                            <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="qa-answer"><div class="qa-answer-inner"><strong>Always ask at least 1-2 questions!</strong> Never say "No." Good questions: "What does the initial training program look like for new hires?" / "What technologies or projects is TCS currently focusing on?" / "What growth opportunities are available for freshers in the first 2-3 years?" / "What qualities do your top-performing employees have in common?" Asking thoughtful questions shows genuine interest and engagement.</div></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== TIPS ==================== -->
+        <div class="tips-card">
+            <h3>INTERVIEW TIPS FROM LAKSHMI</h3>
+            <ul class="tips-list">
+                <li>Always start your self-introduction with confidence — name, college, branch, and one strong skill.</li>
+                <li>For technical questions, think out loud. Interviewers want to see your thought process, not just the answer.</li>
+                <li>Revise your final year project thoroughly — they will ask about it.</li>
+                <li>Be honest about what you don't know. Saying "I'm not sure, but I'd approach it like this..." is way better than guessing.</li>
+                <li>Research TCS — know about their services, CEO (K Krithivasan), global presence in 46+ countries, and recent initiatives.</li>
+                <li>For HR round, keep answers genuine and concise. Don't over-rehearse — be natural.</li>
+                <li>Dress formally, maintain eye contact, and greet the interviewer with a smile.</li>
+                <li>Practice coding questions on paper or whiteboard — not just on a laptop.</li>
+                <li>Keep a positive attitude throughout. Even if one round doesn't go great, give your best in the next!</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p>Made with <span class="heart">&hearts;</span> by Learn with Lakshmi | All the best for your interview!</p>
+        </footer>
+
+    </div>
+
+    <script>
+        function toggleCategory(btn) {
+            const category = btn.closest('.accordion-category');
+            category.classList.toggle('open');
+        }
+
+        function toggleQA(btn) {
+            const item = btn.closest('.qa-item');
+            item.classList.toggle('open');
+        }
+    </script>
+</body>
+
+</html>
