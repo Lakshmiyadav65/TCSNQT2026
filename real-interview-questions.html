@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCS NQT 2026 - Real Candidate Interview Experiences | Learn with Lakshmi</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;700&family=Syne:wght@800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #08080a;
+            --surface: #111114;
+            --surface-2: #18181c;
+            --border: rgba(255, 255, 255, 0.08);
+            --text-main: #efeff1;
+            --text-muted: #94949e;
+            --accent-brand: #ffcc00;
+            --accent-green: #4ade80;
+            --accent-blue: #60a5fa;
+            --accent-pink: #f472b6;
+            --accent-orange: #fb923c;
+            --ninja: #4ade80;
+            --digital: #60a5fa;
+            --prime: #ffcc00;
+            --font-heading: 'Syne', sans-serif;
+            --font-sub: 'Instrument Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --transition: all 0.25s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-sub);
+            line-height: 1.6;
+            background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 4rem 1.5rem; }
+
+        /* Back Button */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+        }
+        .back-btn:hover { color: var(--text-main); border-color: rgba(255,255,255,0.15); }
+        .back-btn svg { width: 16px; height: 16px; }
+
+        /* Header */
+        header { text-align: center; margin-bottom: 3rem; }
+        .badge {
+            background: rgba(96, 165, 250, 0.1);
+            border: 1px solid var(--accent-blue);
+            padding: 0.6rem 1.5rem;
+            border-radius: 100px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--accent-blue);
+            display: inline-block;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 7vw, 3.5rem);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            color: #fff;
+            text-transform: uppercase;
+        }
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Role Tabs */
+        .role-tabs {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        .role-tab {
+            padding: 0.85rem 1.8rem;
+            border-radius: 12px;
+            font-family: var(--font-sub);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text-muted);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+            min-width: 160px;
+        }
+        .role-tab:hover { border-color: rgba(255,255,255,0.15); color: var(--text-main); }
+        .role-tab .pkg {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            opacity: 0.7;
+        }
+        .role-tab.active-ninja {
+            border-color: var(--ninja);
+            color: var(--ninja);
+            background: rgba(74, 222, 128, 0.08);
+            box-shadow: 0 0 20px rgba(74, 222, 128, 0.1);
+        }
+        .role-tab.active-digital {
+            border-color: var(--digital);
+            color: var(--digital);
+            background: rgba(96, 165, 250, 0.08);
+            box-shadow: 0 0 20px rgba(96, 165, 250, 0.1);
+        }
+        .role-tab.active-prime {
+            border-color: var(--prime);
+            color: var(--prime);
+            background: rgba(255, 204, 0, 0.08);
+            box-shadow: 0 0 20px rgba(255, 204, 0, 0.1);
+        }
+
+        /* Role Panels */
+        .role-panel { display: none; }
+        .role-panel.active { display: block; }
+
+        /* Section Header */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            margin-top: 3rem;
+        }
+        .section-header:first-child { margin-top: 0; }
+        .section-header h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.3rem, 4vw, 1.8rem);
+            color: #fff;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        .section-header::after { content: ''; flex: 1; height: 2px; background: var(--border); }
+
+        /* Candidate Cards */
+        .candidate-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        .candidate-card:hover { border-color: rgba(255,255,255,0.12); }
+        .candidate-card.open { border-color: rgba(255,255,255,0.15); }
+
+        .card-toggle {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #fff;
+            text-align: left;
+            transition: var(--transition);
+            gap: 1rem;
+        }
+        .card-toggle:hover { background: rgba(255,255,255,0.02); }
+
+        .card-toggle-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .card-toggle-left h3 {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+        }
+        .card-tag {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        .tag-panel { color: var(--text-muted); background: rgba(255,255,255,0.05); }
+        .tag-duration { color: var(--accent-orange); background: rgba(251,146,60,0.1); border: 1px solid rgba(251,146,60,0.15); }
+
+        .chevron {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+            color: var(--text-muted);
+        }
+        .candidate-card.open .chevron { transform: rotate(180deg); }
+
+        .card-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        .candidate-card.open .card-body { max-height: 10000px; }
+        .card-body-inner { padding: 0 1.5rem 1.5rem; }
+
+        .question-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.25rem 0;
+        }
+        .question-list li {
+            padding: 0.5rem 0 0.5rem 1.5rem;
+            position: relative;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+        }
+        .question-list li:last-child { border-bottom: none; }
+        .question-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+        .ninja-bullet li::before { background: var(--ninja); }
+        .digital-bullet li::before { background: var(--digital); }
+        .prime-bullet li::before { background: var(--prime); }
+
+        .feedback {
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.02);
+            border-left: 3px solid var(--text-muted);
+        }
+        .feedback-ninja { border-left-color: var(--ninja); }
+        .feedback-digital { border-left-color: var(--digital); }
+        .feedback-prime { border-left-color: var(--prime); }
+
+        /* Repeated Questions Boxes */
+        .repeated-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .repeated-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.75rem;
+        }
+        .repeated-box h3 {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        .repeated-box.hr-box { border-top: 3px solid var(--accent-pink); }
+        .repeated-box.hr-box h3 { color: var(--accent-pink); }
+        .repeated-box.mgr-box { border-top: 3px solid var(--accent-orange); }
+        .repeated-box.mgr-box h3 { color: var(--accent-orange); }
+        .repeated-box ol {
+            padding-left: 1.25rem;
+            margin: 0;
+        }
+        .repeated-box ol li {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            padding: 0.3rem 0;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .footer span { color: #ef4444; }
+
+        @media (max-width: 600px) {
+            .container { padding: 2rem 1rem; }
+            .role-tab { min-width: 0; flex: 1; padding: 0.7rem 1rem; font-size: 0.85rem; }
+            .card-toggle { padding: 1rem; }
+            .card-toggle-left h3 { font-size: 0.9rem; }
+            .card-body-inner { padding: 0 1rem 1rem; }
+            .repeated-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- Back Button -->
+        <a href="index.html" class="back-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+            Back to Home
+        </a>
+
+        <!-- Header -->
+        <header>
+            <div class="badge">Real Interview Experiences</div>
+            <h1>REAL CANDIDATE INTERVIEW QUESTIONS</h1>
+            <p class="subtitle">30 real candidate experiences across Ninja, Digital, and Prime roles — compiled from actual TCS NQT interview rounds to help you prepare with confidence.</p>
+        </header>
+
+        <!-- Role Tabs -->
+        <div class="role-tabs">
+            <button class="role-tab active-ninja" id="tab-ninja" onclick="toggleTab('ninja')">
+                Ninja
+                <span class="pkg">3.36 LPA</span>
+            </button>
+            <button class="role-tab" id="tab-digital" onclick="toggleTab('digital')">
+                Digital
+                <span class="pkg">7 LPA</span>
+            </button>
+            <button class="role-tab" id="tab-prime" onclick="toggleTab('prime')">
+                Prime
+                <span class="pkg">11.5 LPA</span>
+            </button>
+        </div>
+
+        <!-- ==================== NINJA PANEL ==================== -->
+        <div class="role-panel active" id="panel-ninja">
+
+            <div class="section-header"><h2>Ninja Candidates</h2></div>
+
+            <!-- Candidate 1 -->
+            <div class="candidate-card">
+                <button class="card-toggle" onclick="toggleCard(this)">
+                    <div class="card-toggle-left">
+                        <h3>Candidate 1 — Ninja Role</h3>
+                        <span class="card-tag tag-panel">1 member</span>
+                        <span class="card-tag tag-duration">15-18 mins</span>
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="card-body"><div class="card-body-inner">
+                    <ul class="question-list ninja-bullet">
+                        <li>Tell me about yourself</li>
+                        <li>Tell me about your family</li>
+                        <li>What is famous in your hometown?</li>
+                        <li>What is NumPy?</li>
+                        <li>Why Python for AI instead of Java?</li>
+                        <li>Difference between Java and Python</li>
+                        <li>Difference between list and tuple</li>
+                        <li>Difference between DROP and DELETE</li>
+                        <li>Difference between synchronous and asynchronous</li>
+                        <li>Explain your project</li>
+                        <li>Strengths</li>
+                        <li>Weaknesses</li>
+                        <li>Relocation</li>
+                        <li>Coding: a=93 output 12</li>
+                    </ul>
+                    <div class="feedback feedback-ninja">Easy-moderate round, Python + project heavy, Basic HR, Simple coding</div>
+                </div></div>
+            </div>
+
+            <!-- Candidate 2 -->
+            <div class="candidate-card">
+                <button class="card-toggle" onclick="toggleCard(this)">
+                    <div class="card-toggle-left">
+                        <h3>Candidate 2 — Ninja Role</h3>
+                        <span class="card-tag tag-panel">2 members</span>
+                        <span class="card-tag tag-duration">18-20 mins</span>
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="card-body"><div class="card-body-inner">
+                    <ul class="question-list ninja-bullet">
+                        <li>Self intro</li>
+                        <li>Final year project</li>
+                        <li>Your role in project</li>
+                        <li>What is OOPs?</li>
+                        <li>Class vs Object</li>
+                        <li>Encapsulation</li>
+                        <li>SQL basics</li>
+                        <li>Primary key vs foreign key</li>
+                        <li>Why TCS?</li>
+                        <li>Relocation</li>
+                    </ul>
+                    <div class="feedback feedback-ninja">Mostly project + OOPs, No hard coding, Communication matters</div>
+                </div></div>
+            </div>
+
+            <!-- Candidate 3 -->
+            <div class="candidate-card">
+                <button class="card-toggle" onclick="toggleCard(this)">
+                    <div class="card-toggle-left">
+                        <h3>Candidate 3 — Ninja Role</h3>
+                        <span class="card-tag tag-panel">1 member</span>
+                        <span class="card-tag tag-duration">12-15 mins</span>
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="card-body"><div class="card-body-inner">
+                    <ul class="question-list ninja-bullet">
+                        <li>Introduce yourself</li>
+                        <li>Why TCS?</li>
+                        <li>Strengths</li>
+                        <li>Weaknesses</li>
+                        <li>Polymorphism</li>
+                        <li>Process vs thread</li>
+                        <li>Stack vs queue</li>
+                        <li>Palindrome logic</li>
+                        <li>Any backlog?</li>
+                        <li>Night shift?</li>
+                    </ul>
+                    <div class="feedback feedback-ninja">Basic CS fundamentals, HR at end, Easy if revised basics</div>
+                </div></div>
+            </div>
+
+            <!-- Candidate 4 -->
+            <div class="candidate-card">
+                <button class="card-toggle" onclick="toggleCard(this)">
+                    <div class="card-toggle-left">
+                        <h3>Candidate 4 — Ninja Role</h3>
+                        <span class="card-tag tag-panel">2 members</span>
+                        <span class="card-tag tag-duration">15-17 mins</span>
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="card-body"><div class="card-body-inner">
+                    <ul class="question-list ninja-bullet">
+                        <li>Tell me about your hometown</li>
+                        <li>What is Python?</li>
+                        <li>Function in Python</li>
+                        <li>List vs set</li>
+                        <li>What is DBMS?</li>
+                        <li>Normalization</li>
+                        <li>DELETE vs TRUNCATE vs DROP</li>
+                        <li>Explain internship</li>
+                        <li>Any gap?</li>
+                        <li>Why hire you?</li>
+                    </ul>
+                    <div class="feedback feedback-ninja">Resume-based round, DBMS repeated, HR simple</div>
+                </div></div>
+            </div>
+
+            <!-- Candidate 5 -->
+            <div class="candidate-card">
+                <button class="card-toggle" onclick="toggleCard(this)">
+                    <div class="card-toggle-left">
+                        <h3>Candidate 5 — Ninja Role</h3>
+                        <span class="card-tag tag-panel">1 member</span>
+                        <span class="card-tag tag-duration">14-16 mins</span>
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="card-body"><div class="card-body-inner">
+                    <ul class="question-list ninja-bullet">
+                        <li>Tell me about yourself</li>
+                        <li>Explain resume</li>
+                        <li>Favorite language and why</li>
+                        <li>Inheritance</li>
+                        <li>Abstraction</li>
+                        <li>C vs Java</li>
+                        <li>Reverse string logic</li>
+                        <li>Prime number logic</li>
+                        <li>What do you know about TCS?</li>
+                        <li>Relocation</li>
+                    </ul>
+                    <div class="feedback feedback-ninja">Very common Ninja pattern, Basic coding only</div>
+                </div></div>
+            </div>
+
+            <!-- Candidate 6 -->
+            <div class="candidate-card">
+                <button class="card-toggle" onclick="toggleCard(this)">
+                    <div class="card-toggle-left">
+                        <h3>Candidate 6 — Ninja Role</h3>
+                        <span class="card-tag tag-panel">2 members</span>
+                        <span class="card-tag tag-duration">16-18 mins</span>
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="card-body"><div class="card-body-inner">
+                    <ul class="question-list ninja-bullet">
+                        <li>Self introduction</li>
+                        <li>Explain one project simply</li>
+                        <li>Technologies used</li>
+                        <li>What is ML?</li>
+                        <li>What is AI?</li>
+                        <li>NumPy / Pandas</li>
+                        <li>Supervised vs unsupervised</li>
+                        <li>Hobbies</li>
+                        <li>What if not selected?</li>
+                        <li>Any questions for us?</li>
+                    </ul>
+                    <div class="feedback feedback-ninja">AI/ML background questions, Friendly panel</div>
+                </div></div>
+            </div>
+
+            <!-- Candidate 7 -->
+            <div class="candidate-card">
+                <button class="card-toggle" onclick="toggleCard(this)">
+                    <div class="card-toggle-left">
+                        <h3>Candidate 7 — Ninja Role</h3>
+                        <span class="card-tag tag-panel">1 member</span>
+                        <span class="card-tag tag-duration">15 mins</span>
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="card-body"><div class="card-body-inner">
+                    <ul class="question-list ninja-bullet">
+                        <li>Family background</li>
+                        <li>Role in project</li>
+                        <li>What is SQL join?</li>
+                        <li>Foreign key</li>
+                        <li>Array vs linked list</li>
+                        <li>What is OS?</li>
+                        <li>Deadlock</li>
+                        <li>Why TCS?</li>
+                        <li>Will you work in shifts?</li>
+                        <li>Biggest strength?</li>
+                    </ul>
+                    <div class="feedback feedback-ninja">OS + DBMS + HR mix</div>
+                </div></div>
+            </div>
+
+            <!-- Candidate 8 -->
+            <div class="candidate-card">
+                <button class="card-toggle" onclick="toggleCard(this)">
+                    <div class="card-toggle-left">
+                        <h3>Candidate 8 — Ninja Role</h3>
+                        <span class="card-tag tag-panel">2 members</span>
+                        <span class="card-tag tag-duration">17 mins</span>
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="card-body"><div class="card-body-inner">
+                    <ul class="question-list ninja-bullet">
+                        <li>Introduce yourself</li>
+                        <li>What is cloud computing?</li>
+                        <li>Used GitHub?</li>
+                        <li>Projects in GitHub</li>
+                        <li>Python vs Java</li>
+                        <li>Tuple immutability</li>
+                        <li>Factorial logic</li>
+                        <li>Stack vs heap memory</li>
+                        <li>Any backlog?</li>
+                        <li>Preferred location?</li>
+                    </ul>
+                    <div class="feedback feedback-ninja">GitHub/resume important</div>
+                </div></div>
+            </div>
+
+            <!-- Candidate 9 -->
+            <div class="candidate-card">
+                <button class="card-toggle" onclick="toggleCard(this)">
+                    <div class="card-toggle-left">
+                        <h3>Candidate 9 — Ninja Role</h3>
+                        <span class="card-tag tag-panel">1 member</span>
+                        <span class="card-tag tag-duration">14 mins</span>
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="card-body"><div class="card-body-inner">
+                    <ul class="question-list ninja-bullet">
+                        <li>Tell me about yourself</li>
+                        <li>Mini project</li>
+                        <li>Project challenge</li>
+                        <li>What is API?</li>
+                        <li>HTTP vs HTTPS</li>
+                        <li>What is DBMS?</li>
+                        <li>What is join?</li>
+                        <li>Reverse number logic</li>
+                        <li>Why should we hire you?</li>
+                        <li>Can you relocate?</li>
+                    </ul>
+                    <div class="feedback feedback-ninja">Project confidence matters</div>
+                </div></div>
+            </div>
+
+            <!-- Candidate 10 -->
+            <div class="candidate-card">
+                <button class="card-toggle" onclick="toggleCard(this)">
+                    <div class="card-toggle-left">
+                        <h3>Candidate 10 — Ninja Role</h3>
+                        <span class="card-tag tag-panel">2 members</span>
+                        <span class="card-tag tag-duration">18 mins</span>
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="card-body"><div class="card-body-inner">
+                    <ul class="question-list ninja-bullet">
+                        <li>Tell me about yourself</li>
+                        <li>Famous in your district</li>
+                        <li>Java vs Python</li>
+                        <li>What is OOPs?</li>
+                        <li>Class object constructor</li>
+                        <li>List vs tuple vs dictionary</li>
+                        <li>DROP vs DELETE</li>
+                        <li>Explain project</li>
+                        <li>Strengths and weaknesses</li>
+                        <li>Relocation and shifts?</li>
+                    </ul>
+                    <div class="feedback feedback-ninja">Classic Ninja closing round</div>
+                </div></div>
+            </div>
+
+            <!-- Most Repeated -->
+            <div class="section-header" style="margin-top:3rem;"><h2>Most Repeated Questions</h2></div>
+            <div class="repeated-grid">
+                <div class="repeated-box hr-box">
+                    <h3>HR Questions</h3>
+                    <ol>
+                        <li>Tell me about yourself</li>
+                        <li>Why TCS?</li>
+                        <li>Why should we hire you?</li>
+                        <li>What are your strengths?</li>
+                        <li>What are your weaknesses?</li>
+                        <li>Are you willing to relocate?</li>
+                        <li>Are you okay with night shifts?</li>
+                        <li>Any backlog / gap?</li>
+                        <li>Any offer in hand?</li>
+                        <li>Preferred location and why?</li>
+                        <li>Tell me about your family</li>
+                        <li>What is famous in your hometown?</li>
+                        <li>What if you are not selected?</li>
+                        <li>What if you are rejected again?</li>
+                        <li>Any questions for us?</li>
+                    </ol>
+                </div>
+                <div class="repeated-box mgr-box">
+                    <h3>Managerial Questions</h3>
+                    <ol>
+                        <li>How do you handle pressure?</li>
+                        <li>What if your teammate is not contributing?</li>
+                        <li>How do you handle team conflict?</li>
+                        <li>How do you manage deadlines?</li>
+                        <li>Can you learn new tools quickly?</li>
+                        <li>What will you do if you don't know the answer?</li>
+                        <li>Tell me one challenge you faced and what you learned</li>
+                        <li>How do you react to criticism?</li>
+                        <li>Can you work under pressure?</li>
+                        <li>Can you work in shifts / weekends?</li>
+                        <li>What if you are assigned a different role?</li>
+                        <li>What if we give you a different location?</li>
+                        <li>Have you shown leadership in a team?</li>
+                        <li>How do you prioritize tasks?</li>
+                        <li>How do you debug a difficult issue?</li>
+                    </ol>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ==================== DIGITAL PANEL ==================== -->
+        <div class="role-panel" id="panel-digital">
+
+            <div class="section-header"><h2>Digital Candidates</h2></div>
+
+            <!-- Candidate 1 -->
+            <div class="candidate-card">
+                <button class="card-toggle" onclick="toggleCard(this)">
+                    <div class="card-toggle-left">
+                        <h3>Candidate 1 — Digital Role</h3>
+                        <span class="card-tag tag-panel">3 members</span>
+                        <span class="card-tag tag-duration">25-30 mins</span>
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="card-body"><div class="card-body-inner">
+                    <ul class="question-list digital-bullet">
+                        <li>Hobbies</li>
+                        <li>Night shift?</li>
+                        <li>Relocate to North India?</li>
+                        <li>What do you know about TCS?</li>
+                        <li>What is inheritance?</li>
+                        <li>What is there in Java not in Python?</li>
+                        <li>What is Spring Boot?</li>
+                        <li>Difference between Java and Python</li>
+                        <li>What is access modifier?</li>
+                        <li>Explain protected</li>
+                        <li>What is there in your GitHub repository?</li>
+                        <li>Projects and problem solving</li>
+                        <li>Reverse string code</li>
+                        <li>Bubble sort in Java</li>
+                        <li>What is DBMS?</li>
+                        <li>Primary key vs foreign key</li>
+                        <li>Trending technologies / tools?</li>
+                        <li>What is cloud? Used AWS?</li>
+                        <li>Rate yourself in programming</li>
+                        <li>Challenges faced and learnings</li>
+                        <li>Team conflict</li>
+                        <li>Can you learn new tools?</li>
+                        <li>Explain one project from resume</li>
+                        <li>Tech stack used</li>
+                        <li>What is data structure?</li>
+                        <li>Where is your native?</li>
+                        <li>What is AI and ML?</li>
+                        <li>Solved others' doubts on GitHub?</li>
+                        <li>How many problems in LeetCode / GFG?</li>
+                        <li>What has your college taught you?</li>
+                    </ul>
+                    <div class="feedback feedback-digital">Very realistic Digital panel style, Java + project + HR + managerial, One of the best scenario rounds</div>
+                </div></div>
+            </div>
+
+            <!-- Candidate 2 -->
+            <div class="candidate-card">
+                <button class="card-toggle" onclick="toggleCard(this)">
+                    <div class="card-toggle-left">
+                        <h3>Candidate 2 — Digital Role</h3>
+                        <span class="card-tag tag-panel">2 members</span>
+                        <span class="card-tag tag-duration">22-25 mins</span>
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="card-body"><div class="card-body-inner">
+                    <ul class="question-list digital-bullet">
+                        <li>Tell me about yourself</li>
+                        <li>Project architecture</li>
+                        <li>Your contribution</li>
+                        <li>Constructor vs method</li>
+                        <li>Static keyword in Java</li>
+                        <li>Overloading vs overriding</li>
+                        <li>Interface vs abstract class</li>
+                        <li>SQL join</li>
+                        <li>GROUP BY query</li>
+                        <li>Relocation?</li>
+                        <li>Why TCS Digital?</li>
+                        <li>Strengths</li>
+                        <li>Weaknesses</li>
+                        <li>How do you work in team?</li>
+                        <li>Any offer in hand?</li>
+                        <li>What if you are not selected?</li>
+                        <li>How do you handle deadlines?</li>
+                        <li>Can you work under pressure?</li>
+                        <li>Preferred location?</li>
+                        <li>Any questions for us?</li>
+                    </ul>
+                    <div class="feedback feedback-digital">Core Java heavy, Managerial at end</div>
+                </div></div>
+            </div>
+
+            <!-- Candidate 3 -->
+            <div class="candidate-card">
+                <button class="card-toggle" onclick="toggleCard(this)">
+                    <div class="card-toggle-left">
+                        <h3>Candidate 3 — Digital Role</h3>
+                        <span class="card-tag tag-panel">2 members</span>
+                        <span class="card-tag tag-duration">20-22 mins</span>
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="card-body"><div class="card-body-inner">
+                    <ul class="question-list digital-bullet">
+                        <li>Self introduction</li>
+                        <li>Why TCS Digital?</li>
+                        <li>Why Java over Python?</li>
+                        <li>Exception handling</li>
+                        <li>Spring Boot use</li>
+                        <li>REST API</li>
+                        <li>GitHub repositories</li>
+                        <li>How many coding questions solved?</li>
+                        <li>Reverse string without inbuilt</li>
+                        <li>Strengths</li>
+                        <li>Weaknesses</li>
+                        <li>Why should we hire you?</li>
+                        <li>What if teammate is not contributing?</li>
+                        <li>Can you learn new tools quickly?</li>
+                        <li>What do you know about TCS?</li>
+                        <li>Night shifts?</li>
+                        <li>Relocation?</li>
+                        <li>How do you handle pressure?</li>
+                        <li>Any backlog?</li>
+                        <li>Any questions?</li>
+                    </ul>
+                    <div class="feedback feedback-digital">Good real scenario, Strong HR + technical mix</div>
+                </div></div>
+            </div>
+
+            <!-- Candidate 4 -->
+            <div class="candidate-card">
+                <button class="card-toggle" onclick="toggleCard(this)">
+                    <div class="card-toggle-left">
+                        <h3>Candidate 4 — Digital Role</h3>
+                        <span class="card-tag tag-panel">3 members</span>
+                        <span class="card-tag tag-duration">24 mins</span>
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="card-body"><div class="card-body-inner">
+                    <ul class="question-list digital-bullet">
+                        <li>Explain your project briefly</li>
+                        <li>Challenges in team project</li>
+                        <li>What is DBMS?</li>
+                        <li>Normalization</li>
+                        <li>What is cloud computing?</li>
+                        <li>AWS EC2 / S3</li>
+                        <li>Difference between AI and ML</li>
+                        <li>What is data structure?</li>
+                        <li>Array vs linked list</li>
+                        <li>What if your teammate is not contributing?</li>
+                        <li>What if your code breaks in production?</li>
+                        <li>How do you debug?</li>
+                        <li>How do you prioritize tasks?</li>
+                        <li>Tell me about a conflict you handled</li>
+                        <li>Why TCS?</li>
+                        <li>Why Digital?</li>
+                        <li>Strengths</li>
+                        <li>Weaknesses</li>
+                        <li>Relocation?</li>
+                        <li>Night shift?</li>
+                    </ul>
+                    <div class="feedback feedback-digital">Scenario-based managerial round, Good for real prep</div>
+                </div></div>
+            </div>
+
+            <!-- Candidate 5 -->
+            <div class="candidate-card">
+                <button class="card-toggle" onclick="toggleCard(this)">
+                    <div class="card-toggle-left">
+                        <h3>Candidate 5 — Digital Role</h3>
+                        <span class="card-tag tag-panel">2 members</span>
+                        <span class="card-tag tag-duration">20 mins</span>
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="card-body"><div class="card-body-inner">
+                    <ul class="question-list digital-bullet">
+                        <li>Introduce yourself</li>
+                        <li>What is OOPs?</li>
+                        <li>Abstraction and encapsulation</li>
+                        <li>Access modifier</li>
+                        <li>Public vs private vs protected</li>
+                        <li>Java vs Python</li>
+                        <li>Why should we hire you for Digital?</li>
+                        <li>What do you know about TCS?</li>
+                        <li>Can you work under pressure?</li>
+                        <li>Night shift comfortable?</li>
+                        <li>Any backlog / gap?</li>
+                        <li>Preferred location and why?</li>
+                        <li>Tell me about your family</li>
+                        <li>What is famous in your hometown?</li>
+                        <li>Any offer in hand?</li>
+                        <li>What if not selected?</li>
+                        <li>What if rejected again?</li>
+                        <li>Any questions for us?</li>
+                        <li>Can you relocate?</li>
+                        <li>Why IT?</li>
+                    </ul>
+                    <div class="feedback feedback-digital">HR repeated a lot, Simple but scoring round</div>
+                </div></div>
+            </div>
+
+            <!-- Candidate 6 -->
+            <div class="candidate-card">
+                <button class="card-toggle" onclick="toggleCard(this)">
+                    <div class="card-toggle-left">
+                        <h3>Candidate 6 — Digital Role</h3>
+                        <span class="card-tag tag-panel">2 members</span>
+                        <span class="card-tag tag-duration">21 mins</span>
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="card-body"><div class="card-body-inner">
+                    <ul class="question-list digital-bullet">
+                        <li>Project in resume</li>
+                        <li>Tech stack used</li>
+                        <li>What is API?</li>
+                        <li>What is JSON?</li>
+                        <li>What is SQL?</li>
+                        <li>DELETE vs DROP vs TRUNCATE</li>
+                        <li>Write bubble sort</li>
+                        <li>What is Git and GitHub?</li>
+                        <li>Worked in teams?</li>
+                        <li>Can you relocate?</li>
+                        <li>How do you handle criticism?</li>
+                        <li>How do you manage deadlines?</li>
+                        <li>Can you learn new tools quickly?</li>
+                        <li>What if you don't know the answer?</li>
+                        <li>Tell one leadership experience</li>
+                        <li>Why TCS?</li>
+                        <li>Strengths</li>
+                        <li>Weaknesses</li>
+                        <li>Any questions?</li>
+                        <li>Night shift?</li>
+                    </ul>
+                    <div class="feedback feedback-digital">Very common Digital pattern</div>
+                </div></div>
+            </div>
+
+            <!-- Candidate 7 -->
+            <div class="candidate-card">
+                <button class="card-toggle" onclick="toggleCard(this)">
+                    <div class="card-toggle-left">
+                        <h3>Candidate 7 — Digital Role</h3>
+                        <span class="card-tag tag-panel">1 member</span>
+                        <span class="card-tag tag-duration">18-20 mins</span>
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="card-body"><div class="card-body-inner">
+                    <ul class="question-list digital-bullet">
+                        <li>Self introduction</li>
+                        <li>Hobbies</li>
+                        <li>What is inheritance?</li>
+                        <li>What is polymorphism?</li>
+                        <li>What is Spring Boot?</li>
+                        <li>What is Hibernate?</li>
+                        <li>What is DBMS?</li>
+                        <li>Primary key vs foreign key</li>
+                        <li>Trending technology?</li>
+                        <li>How many problems in coding platforms?</li>
+                        <li>Why TCS?</li>
+                        <li>Why should we hire you?</li>
+                        <li>Can you work in team?</li>
+                        <li>How do you resolve conflict?</li>
+                        <li>Can you work under pressure?</li>
+                        <li>Relocation?</li>
+                        <li>Shifts?</li>
+                        <li>Any backlog?</li>
+                        <li>Any offer in hand?</li>
+                        <li>Any questions?</li>
+                    </ul>
+                    <div class="feedback feedback-digital">Mostly fundamentals + HR</div>
+                </div></div>
+            </div>
+
+            <!-- Candidate 8 -->
+            <div class="candidate-card">
+                <button class="card-toggle" onclick="toggleCard(this)">
+                    <div class="card-toggle-left">
+                        <h3>Candidate 8 — Digital Role</h3>
+                        <span class="card-tag tag-panel">2 members</span>
+                        <span class="card-tag tag-duration">22 mins</span>
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="card-body"><div class="card-body-inner">
+                    <ul class="question-list digital-bullet">
+                        <li>Family and native place</li>
+                        <li>What is AI / ML?</li>
+                        <li>What is cloud?</li>
+                        <li>What is data structure?</li>
+                        <li>Stack vs queue</li>
+                        <li>Synchronous vs asynchronous</li>
+                        <li>Explain GitHub profile</li>
+                        <li>How do you resolve team conflict?</li>
+                        <li>Why TCS?</li>
+                        <li>Weaknesses</li>
+                        <li>Strengths</li>
+                        <li>How do you learn new technologies?</li>
+                        <li>How do you react to criticism?</li>
+                        <li>Preferred location?</li>
+                        <li>Night shift?</li>
+                        <li>Any gap?</li>
+                        <li>Any offer?</li>
+                        <li>Why should we hire you?</li>
+                        <li>Any questions?</li>
+                        <li>Relocation?</li>
+                    </ul>
+                    <div class="feedback feedback-digital">Scenario and HR focused</div>
+                </div></div>
+            </div>
+
+            <!-- Candidate 9 -->
+            <div class="candidate-card">
+                <button class="card-toggle" onclick="toggleCard(this)">
+                    <div class="card-toggle-left">
+                        <h3>Candidate 9 — Digital Role</h3>
+                        <span class="card-tag tag-panel">3 members</span>
+                        <span class="card-tag tag-duration">25 mins</span>
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="card-body"><div class="card-body-inner">
+                    <ul class="question-list digital-bullet">
+                        <li>Tell me about yourself</li>
+                        <li>Major project</li>
+                        <li>Challenge faced</li>
+                        <li>Java Collection Framework</li>
+                        <li>List vs set vs map</li>
+                        <li>What is DBMS?</li>
+                        <li>SQL join</li>
+                        <li>Simple interest / compound interest code</li>
+                        <li>What if you don't know an answer?</li>
+                        <li>Can you learn new tools?</li>
+                        <li>How do you debug?</li>
+                        <li>How do you prioritize tasks?</li>
+                        <li>Can you handle pressure?</li>
+                        <li>Why TCS Digital?</li>
+                        <li>Why Java?</li>
+                        <li>GitHub projects</li>
+                        <li>How many coding questions solved?</li>
+                        <li>Strengths</li>
+                        <li>Weaknesses</li>
+                        <li>Any questions?</li>
+                    </ul>
+                    <div class="feedback feedback-digital">Close to actual Digital pressure round</div>
+                </div></div>
+            </div>
+
+            <!-- Candidate 10 -->
+            <div class="candidate-card">
+                <button class="card-toggle" onclick="toggleCard(this)">
+                    <div class="card-toggle-left">
+                        <h3>Candidate 10 — Digital Role</h3>
+                        <span class="card-tag tag-panel">2 members</span>
+                        <span class="card-tag tag-duration">20-23 mins</span>
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="card-body"><div class="card-body-inner">
+                    <ul class="question-list digital-bullet">
+                        <li>Introduce yourself</li>
+                        <li>Why stronger in Java than Python?</li>
+                        <li>Access modifier</li>
+                        <li>Protected</li>
+                        <li>Spring Boot</li>
+                        <li>Cloud and AWS</li>
+                        <li>AI / ML</li>
+                        <li>GitHub projects</li>
+                        <li>Why should we hire you?</li>
+                        <li>Relocation / shifts?</li>
+                        <li>Any backlog / gap?</li>
+                        <li>Preferred location</li>
+                        <li>What do you know about TCS?</li>
+                        <li>Can you work under pressure?</li>
+                        <li>What if assigned a different role?</li>
+                        <li>What if assigned a different location?</li>
+                        <li>How do you handle deadlines?</li>
+                        <li>Strengths</li>
+                        <li>Weaknesses</li>
+                        <li>Any questions?</li>
+                    </ul>
+                    <div class="feedback feedback-digital">Very believable final Digital round</div>
+                </div></div>
+            </div>
+
+            <!-- Most Repeated -->
+            <div class="section-header" style="margin-top:3rem;"><h2>Most Repeated Questions</h2></div>
+            <div class="repeated-grid">
+                <div class="repeated-box hr-box">
+                    <h3>HR Questions</h3>
+                    <ol>
+                        <li>Tell me about yourself</li>
+                        <li>Why TCS?</li>
+                        <li>Why should we hire you?</li>
+                        <li>What are your strengths?</li>
+                        <li>What are your weaknesses?</li>
+                        <li>Are you willing to relocate?</li>
+                        <li>Are you okay with night shifts?</li>
+                        <li>Any backlog / gap?</li>
+                        <li>Any offer in hand?</li>
+                        <li>Preferred location and why?</li>
+                        <li>Tell me about your family</li>
+                        <li>What is famous in your hometown?</li>
+                        <li>What if you are not selected?</li>
+                        <li>What if you are rejected again?</li>
+                        <li>Any questions for us?</li>
+                    </ol>
+                </div>
+                <div class="repeated-box mgr-box">
+                    <h3>Managerial Questions</h3>
+                    <ol>
+                        <li>How do you handle pressure?</li>
+                        <li>What if your teammate is not contributing?</li>
+                        <li>How do you handle team conflict?</li>
+                        <li>How do you manage deadlines?</li>
+                        <li>Can you learn new tools quickly?</li>
+                        <li>What will you do if you don't know the answer?</li>
+                        <li>Tell me one challenge you faced and what you learned</li>
+                        <li>How do you react to criticism?</li>
+                        <li>Can you work under pressure?</li>
+                        <li>Can you work in shifts / weekends?</li>
+                        <li>What if you are assigned a different role?</li>
+                        <li>What if we give you a different location?</li>
+                        <li>Have you shown leadership in a team?</li>
+                        <li>How do you prioritize tasks?</li>
+                        <li>How do you debug a difficult issue?</li>
+                    </ol>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ==================== PRIME PANEL ==================== -->
+        <div class="role-panel" id="panel-prime">
+
+            <div class="section-header"><h2>Prime Candidates</h2></div>
+
+            <!-- Candidate 1 -->
+            <div class="candidate-card">
+                <button class="card-toggle" onclick="toggleCard(this)">
+                    <div class="card-toggle-left">
+                        <h3>Candidate 1 — Prime Role</h3>
+                        <span class="card-tag tag-panel">2 members</span>
+                        <span class="card-tag tag-duration">30-35 mins</span>
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="card-body"><div class="card-body-inner">
+                    <ul class="question-list prime-bullet">
+                        <li>Tell me about yourself</li>
+                        <li>Explain your project deeply</li>
+                        <li>Exact role in project</li>
+                        <li>Rate your contribution</li>
+                        <li>Reverse string without inbuilt</li>
+                        <li>Another way to reverse string</li>
+                        <li>Create / explain BST</li>
+                        <li>Why education gap?</li>
+                        <li>Preferred programming language and rate yourself</li>
+                        <li>SQL: retrieve manager ID with employee ID</li>
+                        <li>Which role do you want in TCS?</li>
+                        <li>If role not available what will you do?</li>
+                        <li>What do you know about TCS?</li>
+                        <li>What current technology do you know?</li>
+                        <li>Why should we hire you?</li>
+                        <li>Are you okay with relocation?</li>
+                        <li>Night shifts?</li>
+                        <li>Can you work under pressure?</li>
+                        <li>What if you don't know the answer?</li>
+                        <li>Any questions for us?</li>
+                    </ul>
+                    <div class="feedback feedback-prime">Deep project + coding + SQL, Very realistic Prime style</div>
+                </div></div>
+            </div>
+
+            <!-- Candidate 2 -->
+            <div class="candidate-card">
+                <button class="card-toggle" onclick="toggleCard(this)">
+                    <div class="card-toggle-left">
+                        <h3>Candidate 2 — Prime Role</h3>
+                        <span class="card-tag tag-panel">3 members</span>
+                        <span class="card-tag tag-duration">35-40 mins</span>
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="card-body"><div class="card-body-inner">
+                    <ul class="question-list prime-bullet">
+                        <li>Tell me about yourself</li>
+                        <li>You did a solo project. Explain it.</li>
+                        <li>Class and object in Java</li>
+                        <li>What is instance variable?</li>
+                        <li>How to avoid copy in every instance?</li>
+                        <li>Can we have private constructors?</li>
+                        <li>Use of private constructor</li>
+                        <li>Non-parameterized constructor</li>
+                        <li>Default constructor</li>
+                        <li>Dynamic method dispatch</li>
+                        <li>Compile time vs runtime polymorphism</li>
+                        <li>What is cross join?</li>
+                        <li>Try-with-resources</li>
+                        <li>How do you trace errors in a large project?</li>
+                        <li>Why join TCS?</li>
+                        <li>Why should we hire you?</li>
+                        <li>Night / weekend shifts?</li>
+                        <li>Background check awareness</li>
+                        <li>Relocation?</li>
+                        <li>Service agreement awareness</li>
+                        <li>If hired for Ninja instead of Prime?</li>
+                        <li>Strengths</li>
+                        <li>Weaknesses</li>
+                        <li>Any backlog?</li>
+                        <li>Preferred location?</li>
+                        <li>Any offer in hand?</li>
+                        <li>What if rejected again?</li>
+                        <li>Can you learn new tools quickly?</li>
+                        <li>How do you handle deadlines?</li>
+                        <li>Any questions?</li>
+                    </ul>
+                    <div class="feedback feedback-prime">Excellent Prime realism, Java + SQL + HR + managerial heavy</div>
+                </div></div>
+            </div>
+
+            <!-- Candidate 3 -->
+            <div class="candidate-card">
+                <button class="card-toggle" onclick="toggleCard(this)">
+                    <div class="card-toggle-left">
+                        <h3>Candidate 3 — Prime Role</h3>
+                        <span class="card-tag tag-panel">2 members</span>
+                        <span class="card-tag tag-duration">30 mins</span>
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="card-body"><div class="card-body-inner">
+                    <ul class="question-list prime-bullet">
+                        <li>Primary language?</li>
+                        <li>Can recursion be solved without recursion?</li>
+                        <li>SQL query with joins</li>
+                        <li>What if you are not selected here?</li>
+                        <li>What if rejected again?</li>
+                        <li>Name the CEO of TCS</li>
+                        <li>Explain your project</li>
+                        <li>Create a table using HTML</li>
+                        <li>Two in-depth Python logical questions</li>
+                        <li>Available for relocation?</li>
+                        <li>Who are there in your family?</li>
+                        <li>Comfortable with night shift?</li>
+                        <li>Why TCS Prime?</li>
+                        <li>How do you handle pressure?</li>
+                        <li>What if teammate is not contributing?</li>
+                        <li>Can you work in weekends?</li>
+                        <li>What current technology do you follow?</li>
+                        <li>How many coding questions solved?</li>
+                        <li>Any gap?</li>
+                        <li>Any questions?</li>
+                    </ul>
+                    <div class="feedback feedback-prime">Pressure + confidence round</div>
+                </div></div>
+            </div>
+
+            <!-- Candidate 4 -->
+            <div class="candidate-card">
+                <button class="card-toggle" onclick="toggleCard(this)">
+                    <div class="card-toggle-left">
+                        <h3>Candidate 4 — Prime Role</h3>
+                        <span class="card-tag tag-panel">2 members</span>
+                        <span class="card-tag tag-duration">28-32 mins</span>
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="card-body"><div class="card-body-inner">
+                    <ul class="question-list prime-bullet">
+                        <li>Explain quick sort with algorithm</li>
+                        <li>Difference between Java and C++</li>
+                        <li>What is JDK?</li>
+                        <li>Math question: y = mx + c</li>
+                        <li>Code to check power of 2</li>
+                        <li>Difference between foreign key and composite key</li>
+                        <li>Relocation?</li>
+                        <li>Night shift?</li>
+                        <li>Why join TCS?</li>
+                        <li>Strengths</li>
+                        <li>Weaknesses</li>
+                        <li>Why should we hire you?</li>
+                        <li>What if you don't know an answer?</li>
+                        <li>How do you debug a difficult issue?</li>
+                        <li>How do you prioritize tasks?</li>
+                        <li>Can you learn new tools?</li>
+                        <li>Any offer in hand?</li>
+                        <li>Preferred location?</li>
+                        <li>Any questions?</li>
+                    </ul>
+                    <div class="feedback feedback-prime">Algorithm + HR blend</div>
+                </div></div>
+            </div>
+
+            <!-- Candidate 5 -->
+            <div class="candidate-card">
+                <button class="card-toggle" onclick="toggleCard(this)">
+                    <div class="card-toggle-left">
+                        <h3>Candidate 5 — Prime Role</h3>
+                        <span class="card-tag tag-panel">1 member</span>
+                        <span class="card-tag tag-duration">27-30 mins</span>
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="card-body"><div class="card-body-inner">
+                    <ul class="question-list prime-bullet">
+                        <li>Reverse a string</li>
+                        <li>Explain public and protected</li>
+                        <li>Static keyword</li>
+                        <li>Pattern printing</li>
+                        <li>What do we use with GROUP BY?</li>
+                        <li>Do you know cloud / AI-ML / Blockchain?</li>
+                        <li>Any gap or backlog?</li>
+                        <li>What do you know about TCS?</li>
+                        <li>Relocation?</li>
+                        <li>Why Prime role?</li>
+                        <li>What if assigned Digital?</li>
+                        <li>Can you work under pressure?</li>
+                        <li>How do you handle conflict?</li>
+                        <li>What is your biggest strength?</li>
+                        <li>Biggest weakness?</li>
+                        <li>Any questions?</li>
+                    </ul>
+                    <div class="feedback feedback-prime">Short but technical</div>
+                </div></div>
+            </div>
+
+            <!-- Candidate 6 -->
+            <div class="candidate-card">
+                <button class="card-toggle" onclick="toggleCard(this)">
+                    <div class="card-toggle-left">
+                        <h3>Candidate 6 — Prime Role</h3>
+                        <span class="card-tag tag-panel">2 members</span>
+                        <span class="card-tag tag-duration">35 mins</span>
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="card-body"><div class="card-body-inner">
+                    <ul class="question-list prime-bullet">
+                        <li>Tell me about yourself</li>
+                        <li>Explain one project</li>
+                        <li>Why IT as ECE background?</li>
+                        <li>Polymorphism with example</li>
+                        <li>Encapsulation with example</li>
+                        <li>Why prefer Python?</li>
+                        <li>File handling in Python</li>
+                        <li>Purpose of range()</li>
+                        <li>Static vs dynamic polymorphism</li>
+                        <li>Primary key vs unique key</li>
+                        <li>Union vs Union All</li>
+                        <li>What is foreign key?</li>
+                        <li>Rate yourself in SQL</li>
+                        <li>Distinct count of vowels and consonants</li>
+                        <li>Concatenate first name and last name in SQL</li>
+                        <li>Update a table in SQL</li>
+                        <li>Why TCS?</li>
+                        <li>Preferred location and why?</li>
+                        <li>Any offer in hand?</li>
+                        <li>Is this your first interview?</li>
+                        <li>Any relocation issue?</li>
+                        <li>Any questions for interviewer?</li>
+                        <li>Strengths</li>
+                        <li>Weaknesses</li>
+                        <li>How do you manage deadlines?</li>
+                        <li>What if teammate is not contributing?</li>
+                        <li>Can you learn new tools quickly?</li>
+                        <li>What if not selected?</li>
+                        <li>What if rejected again?</li>
+                        <li>Can you work in shifts?</li>
+                    </ul>
+                    <div class="feedback feedback-prime">One of the best realistic Prime sets</div>
+                </div></div>
+            </div>
+
+            <!-- Candidate 7 -->
+            <div class="candidate-card">
+                <button class="card-toggle" onclick="toggleCard(this)">
+                    <div class="card-toggle-left">
+                        <h3>Candidate 7 — Prime Role</h3>
+                        <span class="card-tag tag-panel">2 members</span>
+                        <span class="card-tag tag-duration">30-33 mins</span>
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="card-body"><div class="card-body-inner">
+                    <ul class="question-list prime-bullet">
+                        <li>Self introduction</li>
+                        <li>Project architecture</li>
+                        <li>Hardest bug solved</li>
+                        <li>Constructor overloading</li>
+                        <li>Abstraction</li>
+                        <li>Multithreading</li>
+                        <li>Deadlock</li>
+                        <li>Process vs thread</li>
+                        <li>Reverse number logic</li>
+                        <li>Why Prime role?</li>
+                        <li>Why TCS?</li>
+                        <li>What if we assign you Digital?</li>
+                        <li>How do you handle pressure?</li>
+                        <li>What if project deadline is tomorrow?</li>
+                        <li>How do you prioritize tasks?</li>
+                        <li>How do you react to criticism?</li>
+                        <li>Can you relocate?</li>
+                        <li>Night shift?</li>
+                        <li>Any questions?</li>
+                    </ul>
+                    <div class="feedback feedback-prime">Debugging + system basics</div>
+                </div></div>
+            </div>
+
+            <!-- Candidate 8 -->
+            <div class="candidate-card">
+                <button class="card-toggle" onclick="toggleCard(this)">
+                    <div class="card-toggle-left">
+                        <h3>Candidate 8 — Prime Role</h3>
+                        <span class="card-tag tag-panel">3 members</span>
+                        <span class="card-tag tag-duration">34 mins</span>
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="card-body"><div class="card-body-inner">
+                    <ul class="question-list prime-bullet">
+                        <li>Tell me about yourself</li>
+                        <li>Strongest language?</li>
+                        <li>Java vs Python</li>
+                        <li>JVM / JRE / JDK</li>
+                        <li>Exception handling</li>
+                        <li>SQL join and GROUP BY</li>
+                        <li>Palindrome string code</li>
+                        <li>What if we give you Digital instead of Prime?</li>
+                        <li>Relocation?</li>
+                        <li>Why should we hire you?</li>
+                        <li>How many coding questions solved?</li>
+                        <li>What is your GitHub profile like?</li>
+                        <li>What current technology do you follow?</li>
+                        <li>How do you debug?</li>
+                        <li>Can you work under pressure?</li>
+                        <li>What if you don't know the answer?</li>
+                        <li>Any offer in hand?</li>
+                        <li>Any backlog?</li>
+                        <li>Any questions?</li>
+                    </ul>
+                    <div class="feedback feedback-prime">Strong coding confidence needed</div>
+                </div></div>
+            </div>
+
+            <!-- Candidate 9 -->
+            <div class="candidate-card">
+                <button class="card-toggle" onclick="toggleCard(this)">
+                    <div class="card-toggle-left">
+                        <h3>Candidate 9 — Prime Role</h3>
+                        <span class="card-tag tag-panel">2 members</span>
+                        <span class="card-tag tag-duration">31 mins</span>
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="card-body"><div class="card-body-inner">
+                    <ul class="question-list prime-bullet">
+                        <li>Explain your project deeply</li>
+                        <li>Technologies used</li>
+                        <li>Current technology you follow</li>
+                        <li>What is cloud?</li>
+                        <li>What is AI / ML?</li>
+                        <li>What is blockchain?</li>
+                        <li>SQL: second highest salary</li>
+                        <li>Difference between list and tuple</li>
+                        <li>Any gap or backlog?</li>
+                        <li>Can you work under pressure?</li>
+                        <li>Why TCS Prime?</li>
+                        <li>Why should we hire you?</li>
+                        <li>What if assigned a different role?</li>
+                        <li>What if assigned a different location?</li>
+                        <li>Can you learn new tools?</li>
+                        <li>How do you handle deadlines?</li>
+                        <li>How do you resolve conflict?</li>
+                        <li>Night shifts?</li>
+                        <li>Any questions?</li>
+                    </ul>
+                    <div class="feedback feedback-prime">Modern tech + SQL round</div>
+                </div></div>
+            </div>
+
+            <!-- Candidate 10 -->
+            <div class="candidate-card">
+                <button class="card-toggle" onclick="toggleCard(this)">
+                    <div class="card-toggle-left">
+                        <h3>Candidate 10 — Prime Role</h3>
+                        <span class="card-tag tag-panel">3 members</span>
+                        <span class="card-tag tag-duration">36 mins</span>
+                    </div>
+                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="card-body"><div class="card-body-inner">
+                    <ul class="question-list prime-bullet">
+                        <li>Introduce yourself</li>
+                        <li>Why TCS?</li>
+                        <li>Why Prime?</li>
+                        <li>Explain your project end to end</li>
+                        <li>What is OOPs?</li>
+                        <li>Polymorphism and inheritance</li>
+                        <li>What is SQL join?</li>
+                        <li>Write reverse string and pattern</li>
+                        <li>How do you debug code?</li>
+                        <li>Strengths</li>
+                        <li>Weaknesses</li>
+                        <li>Relocation / shifts / service agreement?</li>
+                        <li>Any backlog?</li>
+                        <li>Any offer in hand?</li>
+                        <li>Preferred location?</li>
+                        <li>What if not selected?</li>
+                        <li>What if rejected again?</li>
+                        <li>Can you work in weekends?</li>
+                        <li>How do you handle pressure?</li>
+                        <li>How do you prioritize tasks?</li>
+                        <li>Can you work in team?</li>
+                        <li>Any questions?</li>
+                    </ul>
+                    <div class="feedback feedback-prime">Very complete Prime final scenario</div>
+                </div></div>
+            </div>
+
+            <!-- Most Repeated -->
+            <div class="section-header" style="margin-top:3rem;"><h2>Most Repeated Questions</h2></div>
+            <div class="repeated-grid">
+                <div class="repeated-box hr-box">
+                    <h3>HR Questions</h3>
+                    <ol>
+                        <li>Tell me about yourself</li>
+                        <li>Why TCS?</li>
+                        <li>Why should we hire you?</li>
+                        <li>What are your strengths?</li>
+                        <li>What are your weaknesses?</li>
+                        <li>Are you willing to relocate?</li>
+                        <li>Are you okay with night shifts?</li>
+                        <li>Any backlog / gap?</li>
+                        <li>Any offer in hand?</li>
+                        <li>Preferred location and why?</li>
+                        <li>Tell me about your family</li>
+                        <li>What is famous in your hometown?</li>
+                        <li>What if you are not selected?</li>
+                        <li>What if you are rejected again?</li>
+                        <li>Any questions for us?</li>
+                    </ol>
+                </div>
+                <div class="repeated-box mgr-box">
+                    <h3>Managerial Questions</h3>
+                    <ol>
+                        <li>How do you handle pressure?</li>
+                        <li>What if your teammate is not contributing?</li>
+                        <li>How do you handle team conflict?</li>
+                        <li>How do you manage deadlines?</li>
+                        <li>Can you learn new tools quickly?</li>
+                        <li>What will you do if you don't know the answer?</li>
+                        <li>Tell me one challenge you faced and what you learned</li>
+                        <li>How do you react to criticism?</li>
+                        <li>Can you work under pressure?</li>
+                        <li>Can you work in shifts / weekends?</li>
+                        <li>What if you are assigned a different role?</li>
+                        <li>What if we give you a different location?</li>
+                        <li>Have you shown leadership in a team?</li>
+                        <li>How do you prioritize tasks?</li>
+                        <li>How do you debug a difficult issue?</li>
+                    </ol>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>Made with <span>&hearts;</span> by Learn with Lakshmi</p>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleTab(role) {
+            // Remove all active classes from tabs
+            document.querySelectorAll('.role-tab').forEach(function(tab) {
+                tab.className = 'role-tab';
+            });
+
+            // Hide all panels
+            document.querySelectorAll('.role-panel').forEach(function(panel) {
+                panel.classList.remove('active');
+            });
+
+            // Activate selected tab and panel
+            var tabEl = document.getElementById('tab-' + role);
+            var panelEl = document.getElementById('panel-' + role);
+
+            tabEl.classList.add('active-' + role);
+            panelEl.classList.add('active');
+
+            // Close all open cards when switching tabs
+            document.querySelectorAll('.candidate-card.open').forEach(function(card) {
+                card.classList.remove('open');
+            });
+        }
+
+        function toggleCard(btn) {
+            var card = btn.closest('.candidate-card');
+            card.classList.toggle('open');
+        }
+    </script>
+</body>
+
+</html>
