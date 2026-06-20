@@ -342,56 +342,214 @@ h3,
     color: var(--accent-primary);
 }
 
+.highlight-grad {
+    background: linear-gradient(135deg, #ffcc00 0%, #ff9900 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ===== Hero / Welcome Banner ===== */
 .welcome-banner {
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9)), url('banner.png');
+    background:
+        radial-gradient(120% 140% at 100% 0%, rgba(255, 153, 0, 0.10) 0%, transparent 45%),
+        linear-gradient(135deg, rgba(30, 41, 59, 0.92), rgba(15, 23, 42, 0.96)),
+        url('banner.png');
     background-size: cover;
     background-position: center;
-    padding: 3rem;
-    border-radius: 24px;
+    padding: 3.25rem 3.5rem;
+    border-radius: 28px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 2rem;
     margin-bottom: 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     position: relative;
     overflow: hidden;
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.7);
 }
 
-.welcome-banner::after {
-    content: '';
+/* Animated glow blob */
+.banner-glow {
     position: absolute;
-    bottom: -50px;
-    right: -50px;
-    width: 150px;
-    height: 150px;
-    background: var(--accent-primary);
-    filter: blur(80px);
-    opacity: 0.2;
+    top: -120px;
+    right: -80px;
+    width: 360px;
+    height: 360px;
+    background: radial-gradient(circle, rgba(255, 204, 0, 0.28) 0%, rgba(255, 153, 0, 0.12) 40%, transparent 70%);
+    filter: blur(40px);
+    border-radius: 50%;
+    z-index: 0;
+    animation: heroGlowFloat 9s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes heroGlowFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.85; }
+    50% { transform: translate(-30px, 40px) scale(1.12); opacity: 1; }
+}
+
+.banner-content {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+}
+
+.banner-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--accent-primary);
+    background: rgba(255, 204, 0, 0.08);
+    border: 1px solid rgba(255, 204, 0, 0.25);
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    margin-bottom: 1.25rem;
+}
+
+.banner-content h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(2rem, 3.4vw, 3rem);
+    line-height: 1.12;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+}
+
+.banner-content p {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    max-width: 540px;
+    margin-bottom: 1.75rem;
+}
+
+.banner-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-bottom: 2rem;
+}
+
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.98rem;
+    font-weight: 600;
+    padding: 0.85rem 1.6rem;
+    border-radius: 12px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: var(--transition);
+}
+
+.hero-btn--primary {
+    background: linear-gradient(135deg, #ffcc00, #ff9900);
+    color: #1a1300;
+    box-shadow: 0 10px 24px -8px rgba(255, 153, 0, 0.6);
+}
+
+.hero-btn--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 30px -8px rgba(255, 153, 0, 0.7);
+}
+
+.hero-btn--ghost {
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-primary);
+    border-color: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(6px);
+}
+
+.hero-btn--ghost:hover {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(255, 204, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+.banner-meta {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.meta-item {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.meta-num {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.meta-lbl {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary);
+}
+
+.meta-divider {
+    width: 1px;
+    height: 34px;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.banner-stat {
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
 }
 
 .stat-circle {
-    width: 120px;
-    height: 120px;
+    position: relative;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(15, 23, 42, 0.6);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 4px solid var(--accent-primary);
-    box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+    box-shadow: 0 0 40px rgba(255, 204, 0, 0.18), inset 0 0 24px rgba(0, 0, 0, 0.4);
+}
+
+.stat-ring {
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    background: conic-gradient(from 180deg, #ffcc00, #ff9900, #ffcc00);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 5px));
+    mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 5px));
+    animation: heroRingSpin 8s linear infinite;
+}
+
+@keyframes heroRingSpin {
+    to { transform: rotate(360deg); }
 }
 
 .stat-value {
-    font-size: 1.5rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 2rem;
     font-weight: 700;
+    color: var(--accent-primary);
 }
 
 .stat-label {
-    font-size: 0.7rem;
+    font-size: 0.72rem;
     color: var(--text-secondary);
     text-transform: uppercase;
+    letter-spacing: 0.08em;
 }
 
 .alert-banner {
@@ -1519,14 +1677,45 @@ h3,
     }
 
     .welcome-banner {
-        flex-direction: column;
-        padding: 1.5rem;
+        flex-direction: column-reverse;
+        padding: 2rem 1.5rem;
         text-align: center;
-        gap: 1.5rem;
+        gap: 1.75rem;
+    }
+
+    .banner-content {
+        max-width: 100%;
     }
 
     .banner-content h1 {
-        font-size: 1.5rem;
+        font-size: 1.7rem;
+    }
+
+    .banner-content p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .banner-actions {
+        justify-content: center;
+    }
+
+    .hero-btn {
+        flex: 1 1 auto;
+        justify-content: center;
+    }
+
+    .banner-meta {
+        justify-content: center;
+    }
+
+    .stat-circle {
+        width: 120px;
+        height: 120px;
+    }
+
+    .stat-value {
+        font-size: 1.6rem;
     }
 
     .stats-grid {
@@ -2796,13 +2985,13 @@ h3,
     }
 
     .welcome-banner {
-        flex-direction: column;
-        padding: 1.5rem;
+        flex-direction: column-reverse;
+        padding: 2rem 1.5rem;
         text-align: center;
     }
 
     .banner-content h1 {
-        font-size: 1.5rem;
+        font-size: 1.7rem;
     }
 
     .stats-grid {

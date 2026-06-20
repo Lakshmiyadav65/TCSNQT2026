@@ -63,7 +63,7 @@ function setupEventListeners() {
 
     // Global click for shortcut cards and alert banners in dashboard
     document.addEventListener('click', (e) => {
-        const clickable = e.target.closest('.shortcut-card, .alert-banner');
+        const clickable = e.target.closest('.shortcut-card, .alert-banner, .hero-btn');
         if (clickable && clickable.dataset.category) {
             switchCategory(clickable.dataset.category);
         }
