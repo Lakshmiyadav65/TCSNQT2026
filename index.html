@@ -12,7 +12,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=2">
     <script defer src="/_vercel/insights/script.js"></script>
 </head>
 
@@ -189,56 +189,54 @@
             </div>
 
             <section class="category-cards">
-                <h2>Quick Shortcuts</h2>
-                <div class="cards-grid shortcuts-grid">
-                    <div class="shortcut-card" onclick="window.open('dsa-series.html','_blank')" style="background: linear-gradient(135deg, #0d1128 0%, #0d1117 100%); border: 1px solid rgba(99,102,241,0.25); cursor:pointer;">
-                        <div class="card-badge pulse" style="background: linear-gradient(135deg,#6366f1,#8b5cf6);">NEW</div>
-                        <div class="card-icon" style="background: rgba(99,102,241,0.15); color: #a5b4fc;">🚀</div>
+                <h2 class="section-heading">⭐ Featured &amp; New</h2>
+                <div class="featured-grid">
+                    <div class="shortcut-card featured-card shortcut-card--indigo" onclick="window.open('dsa-series.html','_blank')">
+                        <div class="card-badge pulse badge--indigo">NEW</div>
+                        <div class="card-icon">🚀</div>
                         <h4>6-Day TCS NQT Series</h4>
                         <p>250+ TCS NQT coding questions — Arrays to Graphs, Easy to Hard</p>
                     </div>
-                    <div class="shortcut-card color-guide" onclick="window.open('input-handling-guide.html','_blank')" style="background: linear-gradient(135deg, rgba(129, 140, 248, 0.1), rgba(129, 140, 248, 0.05)); border: 1px solid rgba(129, 140, 248, 0.3); cursor:pointer;">
-                        <div class="card-badge pulse" style="background: #8b5cf6;">NEW</div>
+                    <div class="shortcut-card featured-card shortcut-card--violet" onclick="window.open('input-handling-guide.html','_blank')">
+                        <div class="card-badge pulse badge--violet">NEW</div>
                         <div class="card-icon">📖</div>
                         <h4>Input Guide</h4>
                         <p>Master TCS NQT Input Patterns (Highly Recommended)</p>
                     </div>
-                    
-                    <div class="shortcut-card" onclick="window.open('tcs-nqt-2026-analysis.html','_blank')" style="background: linear-gradient(135deg, #1e1e2e 0%, #0d0d0f 100%); border: 1px solid rgba(239,68,68,0.25); cursor:pointer;">
-                        <div class="card-badge pulse" style="background: #ef4444;">NEW</div>
-                        <div class="card-icon" style="background: rgba(239, 68, 68, 0.15); color: #f87171;">📉</div>
+                    <div class="shortcut-card featured-card shortcut-card--red" onclick="window.open('tcs-nqt-2026-analysis.html','_blank')">
+                        <div class="card-badge pulse badge--red">NEW</div>
+                        <div class="card-icon">📉</div>
                         <h4>TCS NQT Paper Analysis</h4>
                         <p>Real-time analysis of the 20 March 2026 Morning Slot exam questions and patterns.</p>
                     </div>
-
-                    <div class="shortcut-card" onclick="window.open('march-20-21-all-questions.html','_blank')" style="background: linear-gradient(135deg, #2a2a1a 0%, #0d0d01 100%); border: 1px solid rgba(255,204,0,0.25); cursor:pointer;">
-                        <div class="card-badge pulse" style="background: #ffcc00; color: #000;">HOT</div>
-                        <div class="card-icon" style="background: rgba(255, 204, 0, 0.15); color: #ffcc00;">🔥</div>
+                    <div class="shortcut-card featured-card shortcut-card--gold" onclick="window.open('march-20-21-all-questions.html','_blank')">
+                        <div class="card-badge pulse badge--gold">HOT</div>
+                        <div class="card-icon">🔥</div>
                         <h4>All 8 Real Exam Questions</h4>
                         <p>Complete March 20-21 coding questions with Java & Python solutions.</p>
                     </div>
-
-                    <div class="shortcut-card" onclick="window.open('interview-prep.html','_blank')" style="background: linear-gradient(135deg, #0a1a0a 0%, #0d1117 100%); border: 1px solid rgba(74,222,128,0.25); cursor:pointer;">
-                        <div class="card-badge pulse" style="background: linear-gradient(135deg,#4ade80,#22c55e);">NEW</div>
-                        <div class="card-icon" style="background: rgba(74,222,128,0.15); color: #4ade80;">&#127881;</div>
+                    <div class="shortcut-card featured-card shortcut-card--green" onclick="window.open('interview-prep.html','_blank')">
+                        <div class="card-badge pulse badge--green">NEW</div>
+                        <div class="card-icon">&#127881;</div>
                         <h4>Interview Prep</h4>
                         <p>70+ real Technical, Managerial & HR questions from previous TCS interviews</p>
                     </div>
-
-                    <div class="shortcut-card" onclick="window.open('real-interview-questions.html','_blank')" style="background: linear-gradient(135deg, #1a0a1a 0%, #0d1117 100%); border: 1px solid rgba(244,114,182,0.25); cursor:pointer;">
-                        <div class="card-badge pulse" style="background: linear-gradient(135deg,#f472b6,#ec4899);">HOT</div>
-                        <div class="card-icon" style="background: rgba(244,114,182,0.15); color: #f472b6;">&#128172;</div>
+                    <div class="shortcut-card featured-card shortcut-card--pink" onclick="window.open('real-interview-questions.html','_blank')">
+                        <div class="card-badge pulse badge--pink">HOT</div>
+                        <div class="card-icon">&#128172;</div>
                         <h4>Real Interview Qs</h4>
                         <p>30 real candidate experiences — Ninja, Digital & Prime roles with actual questions asked</p>
                     </div>
-
-                    <div class="shortcut-card color-guide" onclick="window.open('shortcuts-practice.html','_blank')" style="background: linear-gradient(135deg, #2D3748 0%, #1A202C 100%); border: 1px solid rgba(255,255,255,0.1); cursor:pointer;">
-                        <div class="card-badge pulse" style="background: #EAB308;">NEW</div>
-                        <div class="card-icon" style="background: rgba(234, 179, 8, 0.2); color: #EAB308;">⏱️</div>
+                    <div class="shortcut-card featured-card shortcut-card--slate" onclick="window.open('shortcuts-practice.html','_blank')">
+                        <div class="card-badge pulse badge--slate">NEW</div>
+                        <div class="card-icon">⏱️</div>
                         <h4>Shortcuts Practice</h4>
                         <p>Practice specific previous year memory-based questions from TCS NQT!</p>
                     </div>
+                </div>
 
+                <h2 class="section-heading">📚 Practice by Category</h2>
+                <div class="category-grid">
                     <div class="shortcut-card" data-category="practice">
                         <div class="card-icon">📝</div>
                         <h4>Mock Tests Aptitude</h4>
