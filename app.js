@@ -10,12 +10,10 @@ const state = {
 };
 
 // DOM Elements
-const sidebar = document.getElementById('sidebar');
 const contentArea = document.getElementById('content-area');
 const searchInput = document.getElementById('question-search');
 const timerDisplay = document.getElementById('session-timer');
-const menuToggle = document.getElementById('mobile-menu-toggle');
-const sidebarOverlay = document.getElementById('sidebar-overlay');
+const brandHome = document.getElementById('brand-home');
 
 // Initialize
 function init() {
@@ -50,19 +48,10 @@ function checkDevice() {
 }
 
 function setupEventListeners() {
-    // Sidebar Navigation
-    sidebar.addEventListener('click', (e) => {
-        const navItem = e.target.closest('.nav-item');
-        if (navItem) {
-            const category = navItem.dataset.category;
-            switchCategory(category);
-            
-            // Auto close sidebar on mobile
-            if (window.innerWidth <= 768 && sidebar.classList.contains('active')) {
-                toggleSidebar();
-            }
-        }
-    });
+    // Brand logo returns to the dashboard
+    if (brandHome) {
+        brandHome.addEventListener('click', () => switchCategory('dashboard'));
+    }
 
     // Search
     searchInput.addEventListener('input', (e) => {
@@ -80,24 +69,6 @@ function setupEventListeners() {
         }
     });
 
-    // Mobile Menu Toggling
-    if (menuToggle) {
-        menuToggle.addEventListener('click', toggleSidebar);
-    }
-
-    if (sidebarOverlay) {
-        sidebarOverlay.addEventListener('click', toggleSidebar);
-    }
-}
-
-function toggleSidebar() {
-    sidebar.classList.toggle('active');
-    sidebarOverlay.classList.toggle('active');
-
-    // Hamburger animation
-    if (menuToggle) {
-        menuToggle.classList.toggle('active');
-    }
 }
 
 function startTimer() {
@@ -131,11 +102,6 @@ function shuffleArray(array) {
 async function switchCategory(category) {
     if (!category || category === state.currentCategory) return;
 
-    // Update active class
-    document.querySelectorAll('.nav-item').forEach(item => {
-        item.classList.toggle('active', item.dataset.category === category);
-    });
-
     state.currentCategory = category;
     state.currentPage = 1;
 
@@ -147,10 +113,8 @@ async function switchCategory(category) {
         await loadCategoryData(category);
     }
 
-    // Close sidebar on mobile after navigation
-    if (window.innerWidth <= 768 && sidebar.classList.contains('active')) {
-        toggleSidebar();
-    }
+    // Scroll content back to top after navigation
+    if (contentArea) contentArea.scrollTop = 0;
 }
 
 async function loadCategoryData(category) {

@@ -18,103 +18,11 @@
 
 <body class="dark-theme">
     <div class="app-container">
-        <!-- Sidebar -->
-        <aside class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <div class="logo">
-                    <span class="logo-text">Learn with Lakshmi Builds</span>
-                </div>
-            </div>
-
-            <nav class="sidebar-nav">
-                <button class="nav-item active" data-category="dashboard">
-                    <span class="nav-icon">📊</span>
-                    <span class="nav-label">Dashboard</span>
-                </button>
-                <button class="nav-item" data-category="scenario">
-                    <span class="nav-icon">🧩</span>
-                    <span class="nav-label">Scenario Based <span class="nav-badge pulse">NEW</span></span>
-                </button>
-                <a href="input-handling-guide.html" target="_blank" class="nav-item" style="text-decoration:none; display:flex; align-items:center; gap:0.75rem; padding:0.7rem 1rem; border-radius:10px; transition:background 0.2s; color:inherit;">
-                    <span class="nav-icon">📖</span>
-                    <span class="nav-label">Input Guide <span class="nav-badge pulse">NEW</span></span>
-                </a>
-                <button class="nav-item" data-category="input-practice">
-                    <span class="nav-icon">⚡</span>
-                    <span class="nav-label">Input Practice <span class="nav-badge pulse">HOT</span></span>
-                </button>
-                <a href="interview-prep.html" target="_blank" class="nav-item" style="text-decoration:none; display:flex; align-items:center; gap:0.75rem; padding:0.7rem 1rem; border-radius:10px; transition:background 0.2s; color:inherit;">
-                    <span class="nav-icon">&#127881;</span>
-                    <span class="nav-label">Interview Prep <span class="nav-badge pulse" style="background: linear-gradient(135deg,#4ade80,#22c55e);">NEW</span></span>
-                </a>
-                <a href="real-interview-questions.html" target="_blank" class="nav-item" style="text-decoration:none; display:flex; align-items:center; gap:0.75rem; padding:0.7rem 1rem; border-radius:10px; transition:background 0.2s; color:inherit;">
-                    <span class="nav-icon">&#128172;</span>
-                    <span class="nav-label">Real Interview Qs <span class="nav-badge pulse" style="background: linear-gradient(135deg,#f472b6,#ec4899);">HOT</span></span>
-                </a>
-                <div class="nav-divider">TCS NQT SERIES</div>
-                <a href="dsa-series.html" target="_blank" class="nav-item" style="text-decoration:none; display:flex; align-items:center; gap:0.75rem; padding:0.7rem 1rem; border-radius:10px; transition:background 0.2s; color:inherit;">
-                    <span class="nav-icon">🚀</span>
-                    <span class="nav-label">6-Day TCS NQT Series <span class="nav-badge pulse" style="background: linear-gradient(135deg,#6366f1,#8b5cf6);">NEW</span></span>
-                </a>
-                <div class="nav-divider">SHORTCUTS</div>
-                <a href="shortcuts-practice.html" target="_blank" class="nav-item" style="text-decoration:none; display:flex; align-items:center; gap:0.75rem; padding:0.7rem 1rem; border-radius:10px; transition:background 0.2s; color:inherit;">
-                    <span class="nav-icon">⏱️</span>
-                    <span class="nav-label">Shortcuts Practice <span class="nav-badge pulse">NEW</span></span>
-                </a>
-                <div class="nav-divider">LATEST</div>
-                <a href="tcs-nqt-2026-analysis.html" target="_blank" class="nav-item" style="text-decoration:none; display:flex; align-items:center; gap:0.75rem; padding:0.7rem 1rem; border-radius:10px; transition:background 0.2s; color:inherit;">
-                    <span class="nav-icon">📉</span>
-                    <span class="nav-label">TCS NQT Paper Analysis <span class="nav-badge pulse" style="background: #ef4444;">NEW</span></span>
-                </a>
-                <a href="march-20-21-all-questions.html" target="_blank" class="nav-item" style="text-decoration:none; display:flex; align-items:center; gap:0.75rem; padding:0.7rem 1rem; border-radius:10px; transition:background 0.2s; color:inherit;">
-                    <span class="nav-icon">🔥</span>
-                    <span class="nav-label">All 8 Real Questions <span class="nav-badge pulse" style="background: #ffcc00; color: #000;">HOT</span></span>
-                </a>
-                <button class="nav-item" data-category="practice">
-                    <span class="nav-icon">📝</span>
-                    <span class="nav-label">Mock Tests Aptitude</span>
-                </button>
-                <div class="nav-divider">CATEGORIES</div>
-                <button class="nav-item" data-category="numerical">
-                    <span class="nav-icon">🔢</span>
-                    <span class="nav-label">Numerical</span>
-                </button>
-                <button class="nav-item" data-category="verbal">
-                    <span class="nav-icon">🗣️</span>
-                    <span class="nav-label">Verbal</span>
-                </button>
-                <button class="nav-item" data-category="reasoning">
-                    <span class="nav-icon">🧠</span>
-                    <span class="nav-label">Reasoning</span>
-                </button>
-                <button class="nav-item" data-category="programming">
-                    <span class="nav-icon">💻</span>
-                    <span class="nav-label">Programming MCQ</span>
-                </button>
-                <button class="nav-item" data-category="coding">
-                    <span class="nav-icon">⚙️</span>
-                    <span class="nav-label">Coding Challenges</span>
-                </button>
-            </nav>
-
-            <div class="sidebar-footer">
-                <div class="user-info">
-                    <div class="user-avatar">P</div>
-                    <div class="user-details">
-                        <span class="user-name">Hey friend,</span>
-                        <span class="user-status">Wishing you all the best!</span>
-                    </div>
-                </div>
-            </div>
-        </aside>
-
         <!-- Main Content -->
         <main class="main-content">
             <header class="top-bar">
-                <button class="mobile-menu-toggle" id="mobile-menu-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <button class="brand-home" id="brand-home" title="Back to Dashboard">
+                    <span class="logo-text">Learn with Lakshmi Builds</span>
                 </button>
                 <div class="search-container">
                     <span class="search-icon">🔍</span>
@@ -134,8 +42,7 @@
                 </div>
             </div>
         </main>
-        <div class="sidebar-overlay" id="sidebar-overlay"></div>
-        
+
         <!-- Desktop Recommendation Pop-up -->
         <div id="desktop-recommendation" class="device-popup-overlay">
             <div class="device-popup">
@@ -232,6 +139,12 @@
                         <div class="card-icon">⏱️</div>
                         <h4>Shortcuts Practice</h4>
                         <p>Practice specific previous year memory-based questions from TCS NQT!</p>
+                    </div>
+                    <div class="shortcut-card featured-card" data-category="input-practice">
+                        <div class="card-badge pulse">HOT</div>
+                        <div class="card-icon">⚡</div>
+                        <h4>Input Practice</h4>
+                        <p>Hands-on practice room to master competitive input parsing patterns.</p>
                     </div>
                 </div>
 
