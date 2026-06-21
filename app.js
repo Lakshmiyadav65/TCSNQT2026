@@ -18,8 +18,19 @@ const brandHome = document.getElementById('brand-home');
 // Initialize
 function init() {
     setupEventListeners();
-    renderDashboard();
+    // Route from the URL hash so every category has its own shareable URL
+    const category = getCategoryFromHash();
+    if (category === 'dashboard') {
+        renderDashboard();
+    } else {
+        switchCategory(category);
+    }
     checkDevice();
+}
+
+// Read the active category from the URL hash (e.g. #practice -> "practice")
+function getCategoryFromHash() {
+    return decodeURIComponent(location.hash.replace(/^#/, '')) || 'dashboard';
 }
 
 function checkDevice() {
@@ -65,7 +76,17 @@ function setupEventListeners() {
     document.addEventListener('click', (e) => {
         const clickable = e.target.closest('.shortcut-card, .alert-banner, .hero-btn');
         if (clickable && clickable.dataset.category) {
-            switchCategory(clickable.dataset.category);
+            // Open the category in a brand-new tab at its own URL
+            const url = `${location.pathname}#${clickable.dataset.category}`;
+            window.open(url, '_blank');
+        }
+    });
+
+    // Sync navigation with browser back/forward and shared deep links
+    window.addEventListener('hashchange', () => {
+        const category = getCategoryFromHash();
+        if (category !== state.currentCategory) {
+            switchCategory(category);
         }
     });
 
@@ -104,6 +125,15 @@ async function switchCategory(category) {
 
     state.currentCategory = category;
     state.currentPage = 1;
+
+    // Reflect the active category in the URL so it's a distinct, shareable page
+    if (getCategoryFromHash() !== category) {
+        if (category === 'dashboard') {
+            history.replaceState(null, '', location.pathname + location.search);
+        } else {
+            location.hash = category;
+        }
+    }
 
     if (category === 'dashboard') {
         renderDashboard();
