@@ -7,218 +7,50 @@
     <title>Learn with Lakshmi | TCS NQT & Competitive Prep</title>
     <meta name="description"
         content="Ultimate preparation platform for TCS NQT and other placement exams. 1000+ questions with detailed solutions and tips.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect x='10' y='10' width='100' height='100' rx='26' fill='%23f39a2b'/%3E%3Ctext x='60' y='82' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='64' fill='%23221d17'%3EL%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=2">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="design.css?v=1">
     <script defer src="/_vercel/insights/script.js"></script>
 </head>
 
-<body class="dark-theme">
-    <div class="app-container">
-        <!-- Main Content -->
-        <main class="main-content">
-            <header class="top-bar">
-                <button class="brand-home" id="brand-home" title="Back to Dashboard">
-                    <span class="logo-text">Learn with Lakshmi Builds</span>
-                </button>
-                <div class="search-container">
-                    <span class="search-icon">🔍</span>
-                    <input type="text" id="question-search" placeholder="Search for questions, topics, or concepts...">
-                </div>
-                <div class="top-bar-actions">
-                    <button class="icon-btn" id="theme-toggle">🌙</button>
-                    <div class="session-timer" id="session-timer">00:00:00</div>
-                </div>
-            </header>
-
-            <div class="content-area" id="content-area">
-                <!-- Content will be dynamically injected here -->
-                <div class="loading-state">
-                    <div class="spinner"></div>
-                    <p>Preparing your success path...</p>
-                </div>
-            </div>
-        </main>
-
-        <!-- Desktop Recommendation Pop-up -->
-        <div id="desktop-recommendation" class="device-popup-overlay">
-            <div class="device-popup">
-                <div class="popup-icon">🚀</div>
-                <div class="popup-content">
-                    <h2>Better on Desktop</h2>
-                    <p>For the most immersive coding experience and precise layout, we recommend using a <strong>laptop or desktop</strong>.</p>
-                    <button class="btn btn-primary" id="close-banner">Got it, thanks!</button>
-                </div>
+<body>
+    <header class="hdr">
+        <div class="hdr-in">
+            <a class="brand" href="#" title="Back to home">
+                <span class="brand-mark">L</span>
+                <span class="brand-name">Learn with Lakshmi</span>
+            </a>
+            <nav class="nav" id="nav">
+                <a href="#" data-nav="home">Home</a>
+                <a href="#topics" data-nav="topics">Practice</a>
+                <a href="#coding" data-nav="coding">Coding</a>
+                <a href="#mock" data-nav="mock">Mock test</a>
+                <a href="#progress" data-nav="progress">Progress</a>
+            </nav>
+            <div class="hdr-chips">
+                <span class="pill pill-ink" id="hdr-level" title="Earn 10 XP per correct answer">⚡ Lv 1</span>
+                <span class="pill pill-soft" id="hdr-streak" title="Day streak">🔥 0</span>
             </div>
         </div>
-    </div>
+    </header>
 
-    <!-- Templates -->
-    <template id="dashboard-template">
-        <div class="dashboard">
-            <section class="welcome-banner">
-                <div class="banner-glow"></div>
-                <div class="banner-content">
-                    <span class="banner-eyebrow">🚀 TCS NQT 2026 · Complete Prep Kit</span>
-                    <h1>Hey, <span class="highlight">future engineer</span>!<br>Let's crack <span class="highlight-grad">TCS NQT</span> together.</h1>
-                    <p>1000+ hand-picked questions, real exam papers, and step-by-step solutions — everything you need to clear the test, in one place.</p>
-                    <div class="banner-actions">
-                        <button class="hero-btn hero-btn--primary" data-category="practice">
-                            <span>▶</span> Start Practicing
-                        </button>
-                        <button class="hero-btn hero-btn--ghost" data-category="scenario">
-                            <span>🧩</span> Try Scenario Questions
-                        </button>
-                    </div>
-                    <div class="banner-meta">
-                        <div class="meta-item">
-                            <span class="meta-num">1000+</span>
-                            <span class="meta-lbl">Questions</span>
-                        </div>
-                        <div class="meta-divider"></div>
-                        <div class="meta-item">
-                            <span class="meta-num">10</span>
-                            <span class="meta-lbl">Mock Papers</span>
-                        </div>
-                        <div class="meta-divider"></div>
-                        <div class="meta-item">
-                            <span class="meta-num">100%</span>
-                            <span class="meta-lbl">Free</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="banner-stat">
-                    <div class="stat-circle">
-                        <div class="stat-ring"></div>
-                        <span class="stat-value">1000+</span>
-                        <span class="stat-label">Questions</span>
-                    </div>
-                </div>
-            </section>
-
-            <div class="alert-banner" data-category="scenario">
-                <div class="alert-icon">🔥</div>
-                <div class="alert-text">
-                    <strong>Latest Update:</strong> New Scenario-Based Questions are now live! Master the latest patterns.
-                </div>
-                <div class="alert-action">Check Now →</div>
-            </div>
-
-            <div class="stats-grid" style="grid-template-columns: repeat(2, 1fr);">
-                <div class="stat-card color-1">
-                    <h3>Overall Progress</h3>
-                    <div class="progress-container">
-                        <div class="progress-bar" id="overall-progress" style="width: 0%"></div>
-                    </div>
-                    <p><span id="answered-count">0</span> / 1000 Completed</p>
-                </div>
-                <div class="stat-card color-2">
-                    <h3>Accuracy</h3>
-                    <div class="accuracy-value">0%</div>
-                    <p>Keep improving!</p>
-                </div>
-            </div>
-
-            <section class="category-cards">
-                <h2 class="section-heading">⭐ Featured &amp; New</h2>
-                <div class="featured-grid">
-                    <div class="shortcut-card featured-card shortcut-card--indigo" onclick="window.open('dsa-series.html','_blank')">
-                        <div class="card-badge pulse badge--indigo">NEW</div>
-                        <div class="card-icon">🚀</div>
-                        <h4>6-Day TCS NQT Series</h4>
-                        <p>250+ TCS NQT coding questions — Arrays to Graphs, Easy to Hard</p>
-                    </div>
-                    <div class="shortcut-card featured-card shortcut-card--violet" onclick="window.open('input-handling-guide.html','_blank')">
-                        <div class="card-badge pulse badge--violet">NEW</div>
-                        <div class="card-icon">📖</div>
-                        <h4>Input Guide</h4>
-                        <p>Master TCS NQT Input Patterns (Highly Recommended)</p>
-                    </div>
-                    <div class="shortcut-card featured-card shortcut-card--red" onclick="window.open('tcs-nqt-2026-analysis.html','_blank')">
-                        <div class="card-badge pulse badge--red">NEW</div>
-                        <div class="card-icon">📉</div>
-                        <h4>TCS NQT Paper Analysis</h4>
-                        <p>Real-time analysis of the 20 March 2026 Morning Slot exam questions and patterns.</p>
-                    </div>
-                    <div class="shortcut-card featured-card shortcut-card--gold" onclick="window.open('march-20-21-all-questions.html','_blank')">
-                        <div class="card-badge pulse badge--gold">HOT</div>
-                        <div class="card-icon">🔥</div>
-                        <h4>All 8 Real Exam Questions</h4>
-                        <p>Complete March 20-21 coding questions with Java & Python solutions.</p>
-                    </div>
-                    <div class="shortcut-card featured-card shortcut-card--green" onclick="window.open('interview-prep.html','_blank')">
-                        <div class="card-badge pulse badge--green">NEW</div>
-                        <div class="card-icon">&#127881;</div>
-                        <h4>Interview Prep</h4>
-                        <p>70+ real Technical, Managerial & HR questions from previous TCS interviews</p>
-                    </div>
-                    <div class="shortcut-card featured-card shortcut-card--pink" onclick="window.open('real-interview-questions.html','_blank')">
-                        <div class="card-badge pulse badge--pink">HOT</div>
-                        <div class="card-icon">&#128172;</div>
-                        <h4>Real Interview Qs</h4>
-                        <p>30 real candidate experiences — Ninja, Digital & Prime roles with actual questions asked</p>
-                    </div>
-                    <div class="shortcut-card featured-card shortcut-card--slate" onclick="window.open('shortcuts-practice.html','_blank')">
-                        <div class="card-badge pulse badge--slate">NEW</div>
-                        <div class="card-icon">⏱️</div>
-                        <h4>Shortcuts Practice</h4>
-                        <p>Practice specific previous year memory-based questions from TCS NQT!</p>
-                    </div>
-                    <div class="shortcut-card featured-card" data-category="input-practice">
-                        <div class="card-badge pulse">HOT</div>
-                        <div class="card-icon">⚡</div>
-                        <h4>Input Practice</h4>
-                        <p>Hands-on practice room to master competitive input parsing patterns.</p>
-                    </div>
-                </div>
-
-                <h2 class="section-heading">📚 Practice by Category</h2>
-                <div class="category-grid">
-                    <div class="shortcut-card" data-category="practice">
-                        <div class="card-icon">📝</div>
-                        <h4>Mock Tests Aptitude</h4>
-                        <p>10 Practice Papers</p>
-                    </div>
-                    <div class="shortcut-card" data-category="numerical">
-                        <div class="card-icon">🔢</div>
-                        <h4>Numerical</h4>
-                        <p>200 Questions</p>
-                    </div>
-                    <div class="shortcut-card" data-category="verbal">
-                        <div class="card-icon">🗣️</div>
-                        <h4>Verbal</h4>
-                        <p>200 Questions</p>
-                    </div>
-                    <div class="shortcut-card" data-category="reasoning">
-                        <div class="card-icon">🧠</div>
-                        <h4>Reasoning</h4>
-                        <p>200 Questions</p>
-                    </div>
-                    <div class="shortcut-card" data-category="programming">
-                        <div class="card-icon">💻</div>
-                        <h4>Programming</h4>
-                        <p>250 Questions</p>
-                    </div>
-                    <div class="shortcut-card" data-category="coding">
-                        <div class="card-icon">⚙️</div>
-                        <h4>Coding</h4>
-                        <p>150 Questions</p>
-                    </div>
-                    <div class="shortcut-card" data-category="scenario">
-                        <div class="card-badge pulse">NEW</div>
-                        <div class="card-icon">🧩</div>
-                        <h4>Scenario Based</h4>
-                        <p>Latest Questions</p>
-                    </div>
-                </div>
-            </section>
+    <main id="app">
+        <div class="loading">
+            <div class="spinner"></div>
+            <p>Preparing your success path...</p>
         </div>
-    </template>
+    </main>
 
-    <script src="app.js?v=4"></script>
+    <footer class="ftr">
+        <div class="ftr-in">
+            <span>Learn with Lakshmi · TCS NQT &amp; competitive prep · 100% free</span>
+            <span class="mono">One question a day adds up. Keep going.</span>
+        </div>
+    </footer>
+
+    <script src="app.js?v=5"></script>
 </body>
 
 </html>

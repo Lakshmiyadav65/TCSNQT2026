@@ -1,1336 +1,1106 @@
-const state = {
-    currentCategory: 'dashboard',
-    questions: [],
-    answeredQuestions: JSON.parse(localStorage.getItem('prep_answered')) || {},
-    loadedData: {},
-    timer: 0,
-    timerInterval: null,
-    currentPage: 1,
-    itemsPerPage: 50
+'use strict';
+
+/* =========================================================
+   Learn with Lakshmi — app shell (Arcade design)
+   Hash routes:
+     #                      home
+     #topics[/<section>]    practice library
+     #topic/<sec>/<topic>[/<level>]   practice quiz
+     #mock[/<paper>]        mock tests (timed)
+     #shortcuts/<section>   2020 memory-based test (timed)
+     #saved                 practise bookmarked questions
+     #coding[/<id>]  #scenario[/<id>]   coding problems
+     #input-practice        input pattern practice room
+     #progress              stats, badges, saved list
+   ========================================================= */
+
+// ---------- Static content ----------
+const SECTIONS = [
+    { key: 'numerical', name: 'Numerical Ability', short: 'Numerical', glyph: '%', hue: 55 },
+    { key: 'verbal', name: 'Verbal Ability', short: 'Verbal', glyph: 'Aa', hue: 85 },
+    { key: 'reasoning', name: 'Reasoning Ability', short: 'Reasoning', glyph: '?', hue: 35 },
+    { key: 'programming', name: 'Programming', short: 'Programming', glyph: '</>', hue: 20 },
+];
+const SECTION_BY_KEY = Object.fromEntries(SECTIONS.map(s => [s.key, s]));
+const LEVELS = ['Easy', 'Medium', 'Hard'];
+
+const FEATURED = [
+    ['NEW', '🚀', '6-Day TCS NQT Series', '250+ TCS NQT coding questions — Arrays to Graphs, Easy to Hard', 'dsa-series.html'],
+    ['NEW', '📖', 'Input Guide', 'Master TCS NQT Input Patterns (Highly Recommended)', 'input-handling-guide.html'],
+    ['NEW', '📉', 'TCS NQT Paper Analysis', 'Real-time analysis of the 20 March 2026 Morning Slot exam questions and patterns.', 'tcs-nqt-2026-analysis.html'],
+    ['HOT', '🔥', 'All 8 Real Exam Questions', 'Complete March 20-21 coding questions with Java & Python solutions.', 'march-20-21-all-questions.html'],
+    ['NEW', '🎉', 'Interview Prep', '70+ real Technical, Managerial & HR questions from previous TCS interviews', 'interview-prep.html'],
+    ['HOT', '💬', 'Real Interview Qs', '30 real candidate experiences — Ninja, Digital & Prime roles with actual questions asked', 'real-interview-questions.html'],
+    ['NEW', '⏱️', 'Shortcuts Practice', 'Practice specific previous year memory-based questions from TCS NQT!', 'shortcuts-practice.html'],
+    ['HOT', '⚡', 'Input Practice', 'Hands-on practice room to master competitive input parsing patterns.', '#input-practice'],
+];
+
+const EXAMS = [
+    { name: 'TCS NQT', pattern: 'Numerical, Verbal, Reasoning, Programming and Coding' },
+    { name: 'Infosys', pattern: 'Quantitative, Logical Reasoning, Verbal, Pseudocode and Puzzles', sections: [['🔢', 'Quantitative'], ['🧠', 'Logical Reasoning'], ['🗣️', 'Verbal Ability'], ['💻', 'Pseudocode'], ['🧩', 'Puzzles']] },
+    { name: 'Deloitte', pattern: 'Language, Logical, Quantitative, Technical MCQs and Coding', sections: [['🗣️', 'Language Skills'], ['🧠', 'Logical Reasoning'], ['🔢', 'Quantitative'], ['💻', 'Technical MCQs'], ['⚙️', 'Coding']] },
+    { name: 'Accenture', pattern: 'Cognitive, Technical, Coding and Communication', sections: [['🧠', 'Cognitive Ability'], ['💻', 'Technical Assessment'], ['⚙️', 'Coding'], ['🗣️', 'Communication']] },
+    { name: 'Wipro', pattern: 'Aptitude, Written Communication and Coding', sections: [['🔢', 'Aptitude'], ['📝', 'Written Communication'], ['⚙️', 'Coding']] },
+    { name: 'Cognizant', pattern: 'Aptitude, Reasoning, Verbal and Coding', sections: [['🔢', 'Aptitude'], ['🧠', 'Reasoning'], ['🗣️', 'Verbal'], ['⚙️', 'Coding']] },
+    { name: 'Capgemini', pattern: 'Pseudocode, English, Game-based Aptitude and Behavioural', sections: [['💻', 'Pseudocode'], ['🗣️', 'English'], ['🎮', 'Game-based Aptitude'], ['🤝', 'Behavioural']] },
+];
+// Map a company's exam section onto the practice sets we have
+const routeForSection = n =>
+    /cod/i.test(n) && !/pseudo/i.test(n) ? '#coding'
+        : /quant|aptitude|numer/i.test(n) ? '#topics/numerical'
+            : /verbal|language|english|communication/i.test(n) ? '#topics/verbal'
+                : /pseudo|technical/i.test(n) ? '#topics/programming'
+                    : '#topics/reasoning';
+
+const CATEGORIES = [
+    ['📝', 'Mock Tests Aptitude', '10 Practice Papers', '#mock', 55],
+    ['🔢', 'Numerical', '200 Questions', '#topics/numerical', 85],
+    ['🗣️', 'Verbal', '200 Questions', '#topics/verbal', 35],
+    ['🧠', 'Reasoning', '200 Questions', '#topics/reasoning', 70],
+    ['💻', 'Programming', '250 Questions', '#topics/programming', 45],
+    ['⚙️', 'Coding', '150 Questions', '#coding', 95],
+    ['🧩', 'Scenario Based', 'Latest Questions', '#scenario', 25, true],
+];
+const ROTS = ['-2deg', '1.5deg', '-1deg', '2deg', '-1.5deg', '1deg', '-2.5deg'];
+const MARQUEE = ['TCS NQT', 'Infosys', 'Deloitte', 'Accenture', 'Wipro', 'Cognizant', 'Capgemini', 'Aptitude', 'Reasoning', 'Coding'];
+const ANSWER_GROUPS = [
+    ['shortcuts-practice', 'mock'], ['practice', 'mock'],
+    ['numerical', 'numerical'], ['verbal', 'verbal'], ['reasoning', 'reasoning'], ['programming', 'programming'],
+];
+
+// ---------- Storage ----------
+const store = {
+    get(key, fallback) {
+        try { const v = JSON.parse(localStorage.getItem(key)); return v ?? fallback; } catch (e) { return fallback; }
+    },
+    set(key, val) {
+        try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) { /* storage unavailable */ }
+    },
 };
+// prep_answered is the original key, kept so existing progress carries over
+const answered = store.get('prep_answered', {});
+const meta = Object.assign(
+    { streak: 0, lastDay: null, bookmarks: [], solved: [], exam: 'TCS NQT', code: {}, daily: null, best: {} },
+    store.get('lwl_meta', {})
+);
+const saveAnswered = () => store.set('prep_answered', answered);
+const saveMeta = () => store.set('lwl_meta', meta);
 
-// DOM Elements
-const contentArea = document.getElementById('content-area');
-const searchInput = document.getElementById('question-search');
-const timerDisplay = document.getElementById('session-timer');
-const brandHome = document.getElementById('brand-home');
+// ---------- Helpers ----------
+const ESC = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ESC[c]);
+const dayStr = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+const today = () => dayStr(new Date());
+const yesterday = () => { const d = new Date(); d.setDate(d.getDate() - 1); return dayStr(d); };
+const dayNumber = () => { const d = new Date(); return Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 864e5); };
+const fmt = s => { s = Math.max(0, s); return String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0'); };
+const tint = (hue, l = 0.88, c = 0.07) => `oklch(${l} ${c} ${hue})`;
+const secsOf = t => { const m = /(\d+(?:\.\d+)?)\s*(sec|min)/i.exec(t || ''); return m ? (/min/i.test(m[2]) ? +m[1] * 60 : +m[1]) : 60; };
+function shuffle(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+    return a;
+}
+// Escaped text with **bold**, and "Step N:" / newlines split into paragraphs
+function rich(s) {
+    const t = esc(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\s*(Step \d+:)/g, '\n$1').trim();
+    return t.split(/\n+/).map(l => `<p>${l}</p>`).join('');
+}
+const solCode = v => (typeof v === 'string' ? v : v && v.code) || '';
 
-// Initialize
-function init() {
-    setupEventListeners();
-    // Route from the URL hash so every category has its own shareable URL
-    const category = getCategoryFromHash();
-    if (category === 'dashboard') {
-        renderDashboard();
-    } else {
-        switchCategory(category);
-    }
-    checkDevice();
+// ---------- Data ----------
+const cache = {};
+const pending = {};
+const failed = {};
+const watching = {};
+
+function normalizeMcq(key, q) {
+    const ex = q.explanation || {};
+    let topic = q.subcategory || q.category;
+    if (key === 'practice') topic = Array.isArray(q.tags) && q.tags[1] && q.tags[1] !== 'Practice' ? q.tags[1] : q.category;
+    return {
+        uid: `${key}-${q.id}`, cat: key, id: q.id, paper: q.paper_id,
+        section: key === 'programming' ? 'Programming' : q.category,
+        topic, difficulty: q.difficulty || '',
+        text: q.question || '', code: q.code_snippet || '',
+        options: Object.entries(q.options || {}), answer: q.correct_answer,
+        hint: ex.short || '', solution: ex.detailed || '', formula: ex.formula || '',
+        tip: q.pro_tip || ex.similar_questions_tip || ex.memory_trick || '',
+        secs: secsOf(q.time_to_solve),
+    };
 }
 
-// Read the active category from the URL hash (e.g. #practice -> "practice")
-function getCategoryFromHash() {
-    return decodeURIComponent(location.hash.replace(/^#/, '')) || 'dashboard';
+function loadOnce(key) {
+    if (cache[key]) return Promise.resolve(cache[key]);
+    if (!pending[key]) {
+        pending[key] = fetch(`./data/${key}.json`)
+            .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.text(); })
+            .then(text => {
+                const mcq = SECTION_BY_KEY[key] || key === 'practice' || key === 'shortcuts-practice';
+                // Some question files hold double-escaped characters (a literal \u20b9 for ₹); decode those in MCQ text
+                const unescape = (k, v) => typeof v === 'string' ? v.replace(/\\u([0-9a-fA-F]{4})/g, (_, h) => String.fromCharCode(parseInt(h, 16))) : v;
+                const d = JSON.parse(text, mcq ? unescape : undefined);
+                const list = Array.isArray(d) ? d : (d.questions || []);
+                cache[key] = mcq ? list.filter(q => q.options).map(q => normalizeMcq(key, q)) : list;
+                delete failed[key];
+                return cache[key];
+            })
+            .catch(err => { delete pending[key]; failed[key] = err; throw err; });
+    }
+    return pending[key];
 }
 
-function checkDevice() {
-    const banner = document.getElementById('desktop-recommendation');
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 1024;
-    const isDismissed = localStorage.getItem('device_banner_dismissed');
-
-    if (isMobile && !isDismissed && banner) {
-        setTimeout(() => {
-            banner.classList.add('show');
-        }, 2000);
-    }
-
-    if (banner) {
-        const closeBtn = document.getElementById('close-banner');
-        const dismiss = () => {
-            banner.classList.remove('show');
-            localStorage.setItem('device_banner_dismissed', 'true');
-        };
-        
-        if (closeBtn) closeBtn.onclick = dismiss;
-        banner.onclick = (e) => {
-            if (e.target === banner) dismiss();
-        };
-    }
-}
-
-function setupEventListeners() {
-    // Brand logo returns to the dashboard
-    if (brandHome) {
-        brandHome.addEventListener('click', () => switchCategory('dashboard'));
-    }
-
-    // Search
-    searchInput.addEventListener('input', (e) => {
-        const query = e.target.value.toLowerCase();
-        if (state.currentCategory !== 'dashboard' && state.currentCategory !== 'input-guide' && state.questions.length > 0) {
-            filterQuestions(query);
-        }
+// For views: returns 'ok' | 'loading' | 'error', repainting once data lands
+function need(keys) {
+    const missing = keys.filter(k => !cache[k]);
+    if (!missing.length) return 'ok';
+    if (missing.some(k => failed[k])) return 'error';
+    missing.forEach(k => {
+        if (watching[k]) return;
+        watching[k] = true;
+        loadOnce(k).then(() => paint(), () => paint()).finally(() => { delete watching[k]; });
     });
+    return 'loading';
+}
 
-    // Global click for shortcut cards and alert banners in dashboard
-    document.addEventListener('click', (e) => {
-        const clickable = e.target.closest('.shortcut-card, .alert-banner, .hero-btn');
-        if (clickable && clickable.dataset.category) {
-            // Open the category in a brand-new tab at its own URL
-            const url = `${location.pathname}#${clickable.dataset.category}`;
-            window.open(url, '_blank');
-        }
+let topicMemo = null;
+function getTopics() {
+    if (topicMemo) return topicMemo;
+    topicMemo = [];
+    SECTIONS.forEach(sec => {
+        const groups = new Map();
+        cache[sec.key].forEach(q => {
+            if (!groups.has(q.topic)) groups.set(q.topic, []);
+            groups.get(q.topic).push(q);
+        });
+        groups.forEach((qs, name) => topicMemo.push({ sec, name, qs }));
     });
+    return topicMemo;
+}
 
-    // Sync navigation with browser back/forward and shared deep links
-    window.addEventListener('hashchange', () => {
-        const category = getCategoryFromHash();
-        if (category !== state.currentCategory) {
-            switchCategory(category);
-        }
+function filterTopics() {
+    const term = ui.search.trim().toLowerCase();
+    return getTopics()
+        .filter(t => ui.section === 'All' || t.sec.key === ui.section)
+        .map(t => ({ ...t, pool: ui.level === 'All' ? t.qs : t.qs.filter(q => q.difficulty === ui.level) }))
+        .filter(t => t.pool.length && (!term || `${t.name} ${t.sec.name}`.toLowerCase().includes(term)));
+}
+
+// ---------- Stats ----------
+function groupOf(uid) {
+    const g = ANSWER_GROUPS.find(([prefix]) => uid.startsWith(prefix + '-'));
+    return g ? g[1] : null;
+}
+
+function stats() {
+    let attempted = 0, correct = 0, ever = 0;
+    const by = {};
+    Object.entries(answered).forEach(([uid, a]) => {
+        attempted++;
+        if (a.isCorrect) correct++;
+        if (a.ever ?? a.isCorrect) ever++;
+        const g = groupOf(uid);
+        if (g) { by[g] = by[g] || { c: 0, t: 0 }; by[g].t++; if (a.isCorrect) by[g].c++; }
     });
-
+    const xp = ever * 10 + meta.solved.length * 30;
+    const level = Math.floor(xp / 100) + 1;
+    const streak = meta.lastDay === today() || meta.lastDay === yesterday() ? meta.streak : 0;
+    return {
+        attempted, correct, xp, level, by, streak,
+        nextLevel: level + 1, xpToNext: 100 - (xp % 100), levelPct: (xp % 100) + '%',
+        acc: attempted ? Math.round(100 * correct / attempted) + '%' : '–',
+    };
 }
 
-function startTimer() {
-    if (state.timerInterval) return;
-    state.timerInterval = setInterval(() => {
-        state.timer++;
-        const timeStr = formatTime(state.timer);
-        timerDisplay.textContent = timeStr;
-
-        // Update header timer if present
-        const headerTimer = document.querySelector('#header-timer .timer-val');
-        if (headerTimer) headerTimer.textContent = timeStr;
-    }, 1000);
+function touchStreak() {
+    const d = today();
+    if (meta.lastDay === d) return;
+    meta.streak = meta.lastDay === yesterday() ? meta.streak + 1 : 1;
+    meta.lastDay = d;
 }
 
-function formatTime(totalSeconds) {
-    const hrs = Math.floor(totalSeconds / 3600).toString().padStart(2, '0');
-    const mins = Math.floor((totalSeconds % 3600) / 60).toString().padStart(2, '0');
-    const secs = (totalSeconds % 60).toString().padStart(2, '0');
-    return `${hrs}:${mins}:${secs}`;
+function record(q, key) {
+    const prev = answered[q.uid];
+    const isCorrect = key === q.answer;
+    answered[q.uid] = { answer: key, isCorrect, ever: !!((prev && (prev.ever ?? prev.isCorrect)) || isCorrect) };
+    touchStreak();
 }
 
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
+function badges(s) {
+    return [
+        { icon: '🎯', label: 'First 10', hint: 'Answer 10 questions', on: s.attempted >= 10 },
+        { icon: '🔥', label: '3-day streak', hint: 'Practise 3 days in a row', on: s.streak >= 3 },
+        { icon: '💻', label: 'Coder', hint: 'Solve a coding problem', on: meta.solved.length > 0 },
+        { icon: '📝', label: 'Mock finisher', hint: 'Submit a full mock test', on: Object.keys(meta.best).length > 0 },
+        { icon: '💯', label: 'Century', hint: 'Answer 100 questions', on: s.attempted >= 100 },
+    ];
 }
 
-async function switchCategory(category) {
-    if (!category || category === state.currentCategory) return;
+// ---------- UI state ----------
+const app = document.getElementById('app');
+const ui = {
+    view: 'loading', message: '',
+    search: '', section: 'All', level: 'All',
+    quiz: null, elapsed: 0,
+    coding: { set: 'coding', ids: {}, level: 'All', search: '', sol: false, tab: 'python' },
+    input: { id: null, lang: 'python', result: null, sol: false },
+};
+let routeSeq = 0;
 
-    state.currentCategory = category;
-    state.currentPage = 1;
-
-    // Reflect the active category in the URL so it's a distinct, shareable page
-    if (getCategoryFromHash() !== category) {
-        if (category === 'dashboard') {
-            history.replaceState(null, '', location.pathname + location.search);
-        } else {
-            location.hash = category;
+// ---------- Router ----------
+async function route() {
+    const seq = ++routeSeq;
+    const [head = '', a, b, c] = location.hash.replace(/^#\/?/, '').split('/').map(p => { try { return decodeURIComponent(p); } catch (e) { return p; } });
+    switch (head) {
+        case '': case 'dashboard': return show('home');
+        case 'topics': ui.section = SECTION_BY_KEY[a] ? a : 'All'; return show('topics');
+        case 'numerical': case 'verbal': case 'reasoning': case 'programming': ui.section = head; return show('topics');
+        case 'topic':
+            if (!SECTION_BY_KEY[a]) return show('topics');
+            return startFrom(seq, [a], () => {
+            const lvl = LEVELS.includes(c) ? c : null;
+            const qs = (cache[a] || []).filter(q => q.topic === b && (!lvl || q.difficulty === lvl));
+            return { mode: 'practice', title: `${b} · ${lvl || SECTION_BY_KEY[a]?.short || ''}`, qs: shuffle(qs), back: '#topics/' + a };
+        });
+        case 'mock': case 'practice': case 'shortcuts-practice':
+            if (!a) return show('mock');
+            return startFrom(seq, ['practice'], () => {
+                const qs = cache.practice.filter(q => String(q.paper) === a);
+                return { mode: 'mock', title: `Mock Test #${a} · TCS NQT pattern`, qs, back: '#mock', key: 'mock/' + a };
+            });
+        case 'shortcuts': return startFrom(seq, ['shortcuts-practice'], () => {
+            const qs = cache['shortcuts-practice'].filter(q => q.section === a);
+            return { mode: 'mock', title: `${a} · 2020 memory-based`, qs, back: '#mock', key: 'shortcuts/' + a };
+        });
+        case 'saved': {
+            const cats = [...new Set(meta.bookmarks.map(x => x.cat))];
+            return startFrom(seq, cats, () => {
+                const all = cats.flatMap(k => cache[k]);
+                const qs = meta.bookmarks.map(x => all.find(q => q.uid === x.uid)).filter(Boolean);
+                return { mode: 'practice', title: 'Saved questions', qs, back: '#progress' };
+            });
         }
+        case 'coding': case 'scenario':
+            ui.coding.set = head;
+            if (a) ui.coding.ids[head] = a;
+            ui.coding.sol = false;
+            return show('coding');
+        case 'input-practice': return show('input');
+        case 'input-guide': location.replace('input-handling-guide.html'); return;
+        case 'progress': return show('progress');
+        default: return show('home');
     }
-
-    if (category === 'dashboard') {
-        renderDashboard();
-    } else if (category === 'input-guide') {
-        renderInputGuide();
-    } else {
-        await loadCategoryData(category);
-    }
-
-    // Scroll content back to top after navigation
-    if (contentArea) contentArea.scrollTop = 0;
 }
 
-async function loadCategoryData(category) {
-    contentArea.innerHTML = `
-        <div class="loading-state">
-            <div class="spinner"></div>
-            <p>Loading ${category} questions...</p>
-        </div>
-    `;
+function show(view) {
+    ui.view = view;
+    paint();
+    window.scrollTo(0, 0);
+}
 
+async function startFrom(seq, keys, build) {
+    ui.view = 'loading';
+    paint();
     try {
-        if (!state.loadedData[category]) {
-            const cacheBust = category === 'practice' ? `?v=${Date.now()}` : '';
-            const response = await fetch(`./data/${category}.json${cacheBust}`);
-            const data = await response.json();
-
-            if (category === 'practice') {
-                // For practice, we can either shuffle all or focus on specific papers
-                state.loadedData[category] = data.questions || [];
-            } else {
-                state.loadedData[category] = data.questions || data;
-            }
-        }
-
-        if (category === 'shortcuts-practice') {
-            state.questions = [...(state.loadedData[category] || [])];
-        } else {
-            state.questions = shuffleArray([...(state.loadedData[category] || [])]);
-        }
-
-        console.log(`Loaded ${state.questions.length} questions for ${category}`);
-
-        if (category === 'practice' && state.questions.length > 0) {
-            renderPracticeLanding();
-        } else if (category === 'shortcuts-practice' && state.questions.length > 0) {
-            renderShortcutsPracticeLanding();
-        } else if (category === 'input-practice') {
-            renderInputPractice(state.questions);
-        } else {
-            renderQuestions(state.questions);
-        }
-    } catch (error) {
-        console.error('Error loading data:', error);
-        contentArea.innerHTML = `<div class="error-state">
-            <span class="error-icon">⚠️</span>
-            <h3>Data Load Failed</h3>
-            <p>We couldn't fetch the questions for this category. Please check your connection or try again.</p>
-            <button class="shortcut-card" onclick="location.reload()">Reload Application</button>
-        </div>`;
-    }
-}
-
-function renderDashboard() {
-    const template = document.getElementById('dashboard-template');
-    const content = template.content.cloneNode(true);
-
-    // Update stats
-    const totalAnswered = Object.keys(state.answeredQuestions).length;
-    content.querySelector('#answered-count').textContent = totalAnswered;
-
-    const progress = (totalAnswered / 1000) * 100;
-    content.querySelector('#overall-progress').style.width = `${progress}%`;
-
-    contentArea.innerHTML = '';
-    contentArea.appendChild(content);
-}
-
-function renderQuestions(questionsToRender) {
-    contentArea.innerHTML = `
-        <div class="category-header">
-            <div class="header-main">
-                ${state.currentCategory === 'practice' || state.currentCategory === 'shortcuts-practice' ? '<button class="back-btn-minimal" id="back-to-papers"><span class="icon">←</span> Back to selection</button>' : ''}
-                <h2>${state.currentCategory === 'practice' ? 'Mock Test' : state.currentCategory === 'shortcuts-practice' ? 'Shortcuts' : state.currentCategory.charAt(0).toUpperCase() + state.currentCategory.slice(1)} Preparation</h2>
-                <p>Curated Collection • ${questionsToRender.length} Questions</p>
-            </div>
-            <div class="header-actions">
-                <div class="header-timer" id="header-timer" style="display: ${state.timerInterval ? 'flex' : 'none'}">
-                    <span class="timer-label">⏱️ SESSION TIME</span>
-                    <span class="timer-val">${formatTime(state.timer)}</span>
-                </div>
-                ${!state.timerInterval ? '<button class="start-session-btn" id="start-header-timer">▶ Start Practice</button>' : ''}
-            </div>
-        </div>
-        <div class="question-list" id="question-list-container"></div>
-    `;
-
-    if (state.currentCategory === 'practice') {
-        const backBtn = document.getElementById('back-to-papers');
-        if (backBtn) {
-            backBtn.onclick = () => renderPracticeLanding();
-        }
-    }
-    
-    if (state.currentCategory === 'shortcuts-practice') {
-        const backBtn = document.getElementById('back-to-papers');
-        if (backBtn) {
-            backBtn.onclick = () => renderShortcutsPracticeLanding();
-        }
-    }
-
-    const startBtn = document.getElementById('start-header-timer');
-    if (startBtn) {
-        startBtn.addEventListener('click', () => {
-            startTimer();
-            renderQuestions(questionsToRender);
-        });
-    }
-
-    const container = document.getElementById('question-list-container');
-    if (!container) return;
-
-    // For performance, we'll implement a simple "Load More" or pagination later
-    // For now, let's render the first 15 questions
-    const itemsToShow = questionsToRender.slice(0, state.currentPage * state.itemsPerPage);
-
-    itemsToShow.forEach((q, index) => {
-        let qCard;
-        if (state.currentCategory === 'coding' || state.currentCategory === 'scenario') {
-            qCard = createCodingCard(q, index);
-        } else {
-            qCard = createQuestionCard(q, index);
-        }
-        container.appendChild(qCard);
-    });
-
-    if (questionsToRender.length > itemsToShow.length) {
-        const loadMoreBtn = document.createElement('button');
-        loadMoreBtn.className = 'load-more-btn';
-        loadMoreBtn.type = 'button';
-        loadMoreBtn.style.width = '100%';
-        loadMoreBtn.style.marginTop = '1rem';
-        loadMoreBtn.textContent = `Load More Questions (Showing ${itemsToShow.length} of ${questionsToRender.length})`;
-        loadMoreBtn.onclick = (e) => {
-            e.stopPropagation();
-            const previousCount = itemsToShow.length;
-            state.currentPage++;
-            renderQuestions(questionsToRender);
-
-            // Scroll to the first newly added question
-            const newContainer = document.getElementById('question-list-container');
-            if (newContainer && newContainer.children[previousCount]) {
-                newContainer.children[previousCount].scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        };
-        container.appendChild(loadMoreBtn);
-    } else if (questionsToRender.length === 0) {
-        container.innerHTML = `
-            <div class="error-state">
-                <span class="error-icon">🔍</span>
-                <h3>No Questions Found</h3>
-                <p>Try adjusting your search query or select another category.</p>
-            </div>
-        `;
-    } else {
-        if (state.currentCategory === 'shortcuts-practice' && !state.testSubmitted) {
-            const submitBtn = document.createElement('button');
-            submitBtn.className = 'start-session-btn submit-test-btn';
-            submitBtn.style.marginTop = '2rem';
-            submitBtn.style.width = '100%';
-            submitBtn.textContent = 'Submit Test & View Results';
-            submitBtn.onclick = () => submitShortcutsTest();
-            container.appendChild(submitBtn);
-        } else if (state.currentCategory === 'shortcuts-practice' && state.testSubmitted) {
-            const returnedBtn = document.createElement('button');
-            returnedBtn.className = 'shortcut-card';
-            returnedBtn.style.textAlign = 'center';
-            returnedBtn.style.marginTop = '2rem';
-            returnedBtn.style.width = '100%';
-            returnedBtn.textContent = 'Return to Categories';
-            returnedBtn.onclick = () => renderShortcutsPracticeLanding();
-            container.appendChild(returnedBtn);
-        }
-    }
-}
-
-function createQuestionCard(q, index) {
-    const card = document.createElement('div');
-    card.className = 'question-card';
-    card.id = `q-${q.id}`;
-
-    const isTestMode = state.currentCategory === 'shortcuts-practice';
-    const isAnswered = isTestMode ? state.testSubmitted : state.answeredQuestions[`${state.currentCategory}-${q.id}`];
-    const savedAnswer = isTestMode 
-        ? (state.testAnswers && state.testAnswers[q.id] ? state.testAnswers[q.id].answer : null) 
-        : (state.answeredQuestions[`${state.currentCategory}-${q.id}`] ? state.answeredQuestions[`${state.currentCategory}-${q.id}`].answer : null);
-
-    card.innerHTML = `
-        <div class="question-header">
-            <div class="tag-container">
-                <span class="tag tag-difficulty">${q.tags || 'General'}</span>
-            </div>
-            <div class="q-number">Question #${index + 1}</div>
-        </div>
-        <div class="question-text">${q.question}</div>
-        ${q.code_snippet ? `<pre class="code-block">${q.code_snippet}</pre>` : ''}
-        <div class="options-grid">
-            ${q.options ? Object.entries(q.options).map(([key, val]) => `
-                <div class="option ${savedAnswer === key && !isAnswered ? 'selected' : ''}" data-key="${key}">
-                    <div class="option-marker">${key}</div>
-                    <div class="option-text">${val}</div>
-                </div>
-            `).join('') : '<p>No options available.</p>'}
-        </div>
-        <div class="solution-panel" style="display: ${isAnswered ? 'block' : 'none'}">
-            <div class="solution-tabs">
-                <button class="tab-btn active" data-tab="detailed"><span>🔍</span> Solution</button>
-                <button class="tab-btn" data-tab="memory"><span>💡</span> Memory Tip</button>
-                <button class="tab-btn" data-tab="pro"><span>🚀</span> Pro Tip</button>
-            </div>
-            <div class="solution-content">
-                ${q.explanation ? formatExplanationContent(q.explanation.detailed, 'detailed') : '<div class="solution-text">No explanation available.</div>'}
-            </div>
-        </div>
-    `;
-
-    // Add event listeners for options
-    const options = card.querySelectorAll('.option');
-    options.forEach(opt => {
-        opt.addEventListener('click', () => {
-            if (card.classList.contains('answered')) return;
-            handleAnswer(card, opt, q);
-        });
-    });
-
-    // Add event listeners for solution tabs
-    const solTabs = card.querySelectorAll('.tab-btn');
-    solTabs.forEach(tab => {
-        tab.addEventListener('click', (e) => {
-            e.stopPropagation();
-            solTabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-            const contentDiv = card.querySelector('.solution-content');
-            const type = tab.dataset.tab;
-            let rawContent = '';
-
-            if (type === 'detailed') rawContent = q.explanation ? q.explanation.detailed : 'No explanation available.';
-            if (type === 'memory') rawContent = q.explanation ? (q.explanation.memory_trick || q.explanation.short || 'Try to visualize the concept.') : 'Try to visualize the concept.';
-            if (type === 'pro') rawContent = q.explanation ? (q.pro_tip || q.explanation.short || 'Focus on speed and accuracy.') : 'Focus on speed and accuracy.';
-
-            contentDiv.innerHTML = formatExplanationContent(rawContent, type);
-        });
-    });
-
-    if (isAnswered) {
-        card.classList.add('answered');
-        const correct = q.correct_answer;
-
-        card.querySelectorAll('.option').forEach(opt => {
-            if (opt.dataset.key === correct) {
-                opt.classList.add('correct');
-                opt.querySelector('.option-marker').innerHTML = '✓';
-            } else if (opt.dataset.key === savedAnswer) {
-                opt.classList.add('wrong');
-                opt.querySelector('.option-marker').innerHTML = '✕';
-            }
-        });
-    }
-
-    return card;
-}
-
-function createCodingCard(p, index) {
-    const card = document.createElement('div');
-    card.className = 'question-card coding-card';
-    card.id = `p-${p.id}`;
-
-    card.innerHTML = `
-        <div class="question-header">
-            <div class="tag-container">
-                <span class="tag tag-difficulty">Coding Challenge</span>
-                <span class="tag tag-difficulty">${p.difficulty || 'Easy'}</span>
-            </div>
-            <div class="q-number">Problem #${index + 1}</div>
-        </div>
-        <div class="problem-statement">
-            <h3>${p.title || 'Problem Description'}</h3>
-            <div class="description">${p.problem_statement || p.question || 'No description available.'}</div>
-            
-            ${p.constraints ? `
-                <div class="section-title">Constraints</div>
-                <div class="code-block">${p.constraints}</div>
-            ` : ''}
-
-            <div class="io-grid">
-                <div class="io-section">
-                    <div class="section-title">Sample Input</div>
-                    <pre class="code-block">${p.sample_input || 'Standard Input'}</pre>
-                </div>
-                <div class="io-section">
-                    <div class="section-title">Sample Output</div>
-                    <pre class="code-block">${p.sample_output || 'Standard Output'}</pre>
-                </div>
-            </div>
-        </div>
-
-        <div class="solution-panel" style="display: block; margin-top: 2rem;">
-            <div class="solution-tabs">
-                <button class="tab-btn active" data-tab="python"><span>🐍</span> Python 3</button>
-                <button class="tab-btn" data-tab="java"><span>☕</span> Java (JDK 17)</button>
-                <button class="tab-btn" data-tab="logic"><span>🧠</span> Approach</button>
-            </div>
-            <div class="solution-content">
-                <pre class="code-editor">${p.solutions && p.solutions.python ? p.solutions.python.code : 'Python solution not available'}</pre>
-            </div>
-        </div>
-    `;
-
-    const tabs = card.querySelectorAll('.tab-btn');
-    const pythonCode = p.solutions && p.solutions.python ? p.solutions.python.code : 'Python solution not available';
-    const javaCode = p.solutions && p.solutions.java ? p.solutions.java.code : 'Java solution not available';
-    const approach = p.approach ? `<strong>Brute Force:</strong> ${p.approach.brute_force}<br><br><strong>Optimal:</strong> ${p.approach.optimal}<br><br><strong>Algorithm:</strong> ${p.approach.algorithm}` : 'Focus on optimizing time and space complexity.';
-
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            tabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-            const content = card.querySelector('.solution-content');
-            const type = tab.dataset.tab;
-            if (type === 'python') content.innerHTML = `<pre class="code-editor">${pythonCode}</pre>`;
-            if (type === 'java') content.innerHTML = `<pre class="code-editor">${javaCode}</pre>`;
-            if (type === 'logic') content.innerHTML = `<div class="solution-text">${approach}</div>`;
-        });
-    });
-
-    return card;
-}
-
-function handleAnswer(card, selectedOpt, q) {
-    const selectedKey = selectedOpt.dataset.key;
-    const correctKey = q.correct_answer;
-
-    if (state.currentCategory === 'shortcuts-practice') {
-        card.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
-        selectedOpt.classList.add('selected');
-        
-        state.testAnswers = state.testAnswers || {};
-        state.testAnswers[q.id] = {
-            answer: selectedKey,
-            isCorrect: selectedKey === correctKey
-        };
+        await Promise.all(keys.map(loadOnce));
+    } catch (e) {
+        if (seq === routeSeq) { ui.view = 'error'; paint(); }
         return;
     }
-
-    card.classList.add('answered');
-
-    if (selectedKey === correctKey) {
-        selectedOpt.classList.add('correct');
-        selectedOpt.querySelector('.option-marker').innerHTML = '✓';
-    } else {
-        selectedOpt.classList.add('wrong');
-        selectedOpt.querySelector('.option-marker').innerHTML = '✕';
-        const correctOpt = card.querySelector(`.option[data-key="${correctKey}"]`);
-        if (correctOpt) {
-            correctOpt.classList.add('correct');
-            correctOpt.querySelector('.option-marker').innerHTML = '✓';
-        }
+    if (seq !== routeSeq) return;
+    const spec = build();
+    if (!spec.qs.length) {
+        ui.view = 'empty';
+        ui.message = 'Nothing to practise here yet.';
+        return paint();
     }
+    startQuiz(spec);
+}
 
-    // Show solution
-    card.querySelector('.solution-panel').style.display = 'block';
-
-    // Save to state and localStorage
-    state.answeredQuestions[`${state.currentCategory}-${q.id}`] = {
-        answer: selectedKey,
-        isCorrect: selectedKey === correctKey
+// ---------- Quiz engine ----------
+function startQuiz(spec) {
+    const n = spec.qs.length;
+    ui.quiz = {
+        ...spec, idx: 0, answers: Array(n).fill(null), hints: Array(n).fill(false), flags: Array(n).fill(false),
+        submitted: false, used: 0, burst: null,
+        limit: spec.mode === 'mock' ? Math.ceil(n * 1.5) * 60 : 0,
     };
-    localStorage.setItem('prep_answered', JSON.stringify(state.answeredQuestions));
+    ui.elapsed = 0;
+    show('quiz');
 }
 
-function filterQuestions(query) {
-    const filtered = state.questions.filter(q => {
-        const questionText = (q.question || q.problem_statement || "").toLowerCase();
-        const titleText = (q.title || "").toLowerCase();
-        const explanationText = (q.explanation && q.explanation.detailed ? q.explanation.detailed : "").toLowerCase();
-
-        return questionText.includes(query) ||
-            titleText.includes(query) ||
-            explanationText.includes(query);
-    });
-    state.currentPage = 1;
-    renderQuestions(filtered);
-}
-
-function formatExplanationContent(content, type) {
-    if (!content) return '<div class="solution-text">No information available.</div>';
-
-    if (type === 'detailed') {
-        const steps = content.split(/Step \d+:/g).filter(s => s.trim().length > 0);
-        if (steps.length > 0) {
-            let html = `
-                <div class="solution-steps-header">
-                    <span>Step-by-Step Analysis</span>
-                    <div class="header-line"></div>
-                </div>
-                <div class="steps-timeline">
-            `;
-            html += steps.map((step, idx) => {
-                const isLast = idx === steps.length - 1;
-                return `
-                    <div class="solution-step ${isLast ? 'final-step' : ''}" style="animation-delay: ${idx * 0.1}s">
-                        <div class="step-indicator">
-                            <div class="step-number">${idx + 1}</div>
-                            ${!isLast ? '<div class="step-line"></div>' : ''}
-                        </div>
-                        <div class="step-content">
-                            <div class="step-text">${step.trim().replace(/\n/g, '<br>')}</div>
-                            ${isLast ? '<div class="final-badge-minimal">Final Result</div>' : ''}
-                        </div>
-                    </div>
-                `;
-            }).join('');
-            html += '</div>';
-            return html;
-        }
+function pick(key) {
+    const q = ui.quiz;
+    if (!q || q.submitted || ui.view !== 'quiz') return;
+    if (q.mode === 'practice' && q.answers[q.idx] != null) return;
+    q.answers[q.idx] = key;
+    if (q.mode === 'practice') {
+        const cur = q.qs[q.idx];
+        record(cur, key);
+        saveAnswered();
+        saveMeta();
+        if (key === cur.answer) q.burst = q.idx;
     }
+    paint();
+}
 
-    if (type === 'memory') {
+function go(i) {
+    const q = ui.quiz;
+    q.idx = Math.max(0, Math.min(q.qs.length - 1, i));
+    paint();
+}
+
+function primary() {
+    const q = ui.quiz, last = q.idx === q.qs.length - 1;
+    if (q.submitted) { if (last) { ui.view = 'results'; paint(); window.scrollTo(0, 0); } else go(q.idx + 1); return; }
+    last ? finish() : go(q.idx + 1);
+}
+
+function finish() {
+    const q = ui.quiz;
+    if (!q || q.submitted) return;
+    let any = false;
+    if (q.mode === 'mock') {
+        q.qs.forEach((x, i) => { if (q.answers[i] != null) { record(x, q.answers[i]); any = true; } });
+        const score = scoreOf(q);
+        const prev = meta.best[q.key];
+        if (!prev || score > prev.score) meta.best[q.key] = { score, total: q.qs.length };
+        saveAnswered();
+    }
+    q.submitted = true;
+    q.used = q.mode === 'mock' ? Math.min(ui.elapsed, q.limit) : ui.elapsed;
+    if (any) touchStreak();
+    saveMeta();
+    ui.view = 'results';
+    paint();
+    window.scrollTo(0, 0);
+}
+
+const scoreOf = q => q.qs.filter((x, i) => q.answers[i] === x.answer).length;
+
+function combo(q) {
+    let n = 0;
+    for (let i = q.idx; i >= 0; i--) { if (q.answers[i] != null && q.answers[i] === q.qs[i].answer) n++; else break; }
+    return n;
+}
+
+function toggleBookmark(q) {
+    const i = meta.bookmarks.findIndex(x => x.uid === q.uid);
+    if (i >= 0) meta.bookmarks.splice(i, 1);
+    else meta.bookmarks.push({ uid: q.uid, cat: q.cat, topic: q.topic, text: q.text.slice(0, 200) });
+    saveMeta();
+}
+
+// ---------- Painting ----------
+function paint() {
+    // Keep focus/caret and list scroll positions across re-renders
+    const active = document.activeElement;
+    const inputKey = active && active.dataset ? active.dataset.input : null;
+    const caret = inputKey && typeof active.selectionStart === 'number' ? [active.selectionStart, active.selectionEnd] : null;
+    const scrolls = [...app.querySelectorAll('[data-keep-scroll]')].map(el => [el.dataset.keepScroll, el.scrollTop]);
+
+    app.innerHTML = (VIEWS[ui.view] || VIEWS.home)();
+
+    scrolls.forEach(([k, top]) => { const el = app.querySelector(`[data-keep-scroll="${k}"]`); if (el) el.scrollTop = top; });
+    if (inputKey) {
+        const el = app.querySelector(`[data-input="${inputKey}"]`);
+        if (el) { el.focus(); if (caret) el.setSelectionRange(caret[0], caret[1]); }
+    }
+    if (ui.quiz) ui.quiz.burst = null;
+    paintHeader();
+}
+
+function paintHeader() {
+    const s = stats();
+    document.getElementById('hdr-level').textContent = `⚡ Lv ${s.level}`;
+    document.getElementById('hdr-streak').textContent = `🔥 ${s.streak}`;
+    const q = ui.quiz, inQuiz = ui.view === 'quiz' || ui.view === 'results';
+    const activeNav = {
+        home: 'home', topics: 'topics', coding: 'coding', input: 'coding', mock: 'mock', progress: 'progress',
+    }[ui.view] || (inQuiz && q ? (q.mode === 'mock' ? 'mock' : 'topics') : '');
+    document.querySelectorAll('#nav a').forEach(a => a.classList.toggle('on', a.dataset.nav === activeNav));
+}
+
+// ---------- Shared bits ----------
+const loadingHtml = (msg = 'Loading questions...') => `<div class="loading"><div class="spinner"></div><p>${esc(msg)}</p></div>`;
+const errorHtml = () => `<div class="page"><div class="empty"><strong>Couldn't load the questions</strong><p class="muted">Check your connection and try again.</p><div><button class="btn btn-accent" data-act="retry-load">Try again</button></div></div></div>`;
+
+function chips(list, current, act, extra = '') {
+    return list.map(([value, label]) =>
+        `<button class="chip ${extra} ${value === current ? 'on' : ''}" data-act="${act}" data-arg="${esc(value)}">${esc(label)}</button>`).join('');
+}
+
+function topicCard(t) {
+    const counts = LEVELS.map(l => [l, t.pool.filter(q => q.difficulty === l).length]).filter(([, n]) => n);
+    const mins = Math.max(1, Math.round(t.pool.reduce((sum, q) => sum + q.secs, 0) / 60));
+    const level = ui.level !== 'All' ? ui.level : counts.length === 1 ? counts[0][0] : 'Mixed';
+    const done = t.pool.filter(q => answered[q.uid]).length;
+    const href = `#topic/${t.sec.key}/${encodeURIComponent(t.name)}${ui.level !== 'All' ? '/' + ui.level : ''}`;
+    return `<div class="topic">
+        <div class="topic-thumb" style="background:${tint(t.sec.hue)}">${esc(t.sec.glyph)}</div>
+        <div class="topic-body">
+            <span class="eyebrow">${esc(t.sec.name)}</span>
+            <strong>${esc(t.name)}</strong>
+            <p>${counts.map(([l, n]) => `${l} ${n}`).join(' · ')}${done ? ` · ✓ ${done} done` : ''}</p>
+            <div class="topic-meta"><span>▤ ${t.pool.length} questions</span><span>◷ ${mins} min</span><b>● ${level}</b></div>
+        </div>
+        <a class="btn btn-accent" href="${href}">Play</a>
+    </div>`;
+}
+
+// ---------- Views ----------
+const VIEWS = {
+    loading: () => loadingHtml(),
+    error: errorHtml,
+    empty: () => `<div class="page"><div class="empty"><strong>${esc(ui.message)}</strong><p class="muted">Pick another topic from the library.</p><div><a class="btn btn-accent" href="#topics">Open practice library</a></div></div></div>`,
+
+    home() {
+        const s = stats();
+        const exam = EXAMS.find(e => e.name === meta.exam) || EXAMS[0];
+        const isTcs = exam.name === 'TCS NQT';
+        const bs = badges(s).slice(0, 3);
+
+        const featured = isTcs
+            ? `<div class="feat-grid">${FEATURED.map(([badge, icon, title, desc, href], i) => {
+                const external = !href.startsWith('#');
+                return `<a class="feat ${i === 0 ? 'lead' : ''}" href="${href}"${external ? ' target="_blank" rel="noopener"' : ''}>
+                    <span class="feat-top"><span class="feat-icon">${icon}</span><span class="feat-badge ${badge === 'HOT' ? 'hot' : ''}">${badge}</span></span>
+                    <h3>${esc(title)}</h3><p>${esc(desc)}</p></a>`;
+            }).join('')}</div>`
+            : `<div class="empty"><strong>${esc(exam.name)} materials are on the way</strong><p class="muted">Exam pattern: ${esc(exam.pattern)}. Until the dedicated papers are up, practise the matching sections below.</p></div>`;
+
+        const cats = (isTcs
+            ? CATEGORIES.map(([icon, title, sub, href, hue, isNew]) => ({ icon, title, sub, href, hue, isNew }))
+            : exam.sections.map(([icon, title], i) => ({ icon, title, sub: 'Practice set', href: routeForSection(title), hue: [55, 85, 35, 70, 20][i % 5] })))
+            .map((c, i) => `<a class="cat" href="${c.href}" style="--rot:${ROTS[i % ROTS.length]}">
+                <span class="cat-thumb" style="background:${tint(c.hue, 0.9, 0.06)}">${c.icon}</span>
+                <span class="cat-body"><strong>${esc(c.title)}</strong><span>${esc(c.sub)}</span></span>
+                ${c.isNew ? '<span class="new-tag">NEW</span>' : ''}</a>`).join('');
+
         return `
-            <div class="tip-box">
-                <div class="tip-header">
-                    <span class="tip-icon">💡</span>
-                    <span>Memory Tip</span>
-                </div>
-                <div class="tip-text">${content.replace(/\n/g, '<br>')}</div>
-            </div>
-        `;
-    }
-
-    if (type === 'pro') {
-        return `
-            <div class="tip-box pro">
-                <div class="tip-header">
-                    <span class="tip-icon">🚀</span>
-                    <span>Pro Tip</span>
-                </div>
-                <div class="tip-text">${content.replace(/\n/g, '<br>')}</div>
-            </div>
-        `;
-    }
-
-    return `<div class="solution-text">${content.replace(/\n/g, '<br>')}</div>`;
-}
-
-function renderCategoryLanding(category) {
-    const iconMap = {
-        'numerical': '🔢',
-        'verbal': '🗣️',
-        'reasoning': '🧠',
-        'programming': '💻',
-        'coding': '⚙️',
-        'scenario': '🧩',
-        'shortcuts-practice': '⚡',
-        'practice': '📝'
-    };
-
-    const categoryNames = {
-        'numerical': 'Numerical Ability',
-        'verbal': 'Verbal Ability',
-        'reasoning': 'Reasoning Ability',
-        'programming': 'Programming MCQs',
-        'coding': 'Coding Challenges',
-        'scenario': 'Scenario Based',
-        'shortcuts-practice': 'Shortcuts Practice',
-        'practice': 'Mock Tests Aptitude'
-    };
-
-    contentArea.innerHTML = `
-        <div class="category-landing">
-            <div class="landing-card">
-                <div class="landing-icon">${iconMap[category] || '📚'}</div>
-                <h2>${categoryNames[category] || category.charAt(0).toUpperCase() + category.slice(1)}</h2>
-                <p>Sharpen your skills with our curated set of questions specifically designed for TCS NQT and other top MNC exams.</p>
-                
-                <div class="landing-stats">
-                    <div class="l-stat">
-                        <span class="l-val">${state.questions.length}</span>
-                        <span class="l-lab">Questions</span>
+        <section class="hero-sec">
+            <div class="hero">
+                <div class="hero-sun"></div><div class="hero-ring"></div>
+                <div class="hero-copy">
+                    <span class="hero-tag">🚀 ${esc(exam.name)} 2026 · Complete Prep Kit</span>
+                    <div>
+                        <span class="hero-hey">Hey, future engineer!</span>
+                        <h1>Let's crack ${esc(exam.name)} <span class="boxed">together.</span></h1>
                     </div>
-                    <div class="l-stat">
-                        <span class="l-val">~${Math.round(state.questions.length * 1.5)} min</span>
-                        <span class="l-lab">Suggested Time</span>
+                    <p class="hero-lead">1000+ hand-picked questions, real exam papers, and step-by-step solutions — everything you need to clear the test, in one place.</p>
+                    <div class="hero-ctas">
+                        <a class="btn btn-ink btn-big btn-shadow" href="#topics"><span>▶</span><span>Start Practicing</span></a>
+                        <a class="btn btn-paper btn-big" href="#scenario"><span>🧩</span><span>Try Scenario Questions</span></a>
+                    </div>
+                    <div class="hero-stats">
+                        <span class="hero-stat" style="background:var(--ink);color:var(--bg);transform:rotate(-3deg)"><strong>1000+</strong><span>Questions</span></span>
+                        <span class="hero-stat" style="background:var(--surface);transform:rotate(2deg)"><strong>10</strong><span>Mock Papers</span></span>
+                        <span class="hero-stat" style="background:var(--sun);transform:rotate(-1deg)"><strong>100%</strong><span>Free</span></span>
                     </div>
                 </div>
-
-                <div class="landing-actions">
-                    <button class="start-btn" id="start-section-btn">Start Practice</button>
-                </div>
-            </div>
-        </div>
-    `;
-
-    if (!state.timerInterval) {
-        startTimer();
-    }
-    renderQuestions(state.questions);
-}
-
-function renderPracticeLanding() {
-    const papers = [...new Set(state.questions.map(q => q.paper_id || 1))].sort((a, b) => a - b);
-    console.log(`Debug: Found ${papers.length} unique papers. IDs: ${papers.join(', ')}`);
-
-    // Default to Paper 1 if only one or no paper_id found
-    if (papers.length === 0) papers.push(1);
-
-    contentArea.innerHTML = `
-        <div class="category-header">
-            <div class="header-main">
-                <h2>Mock Tests Aptitude</h2>
-                <p>10 Complete Practice Papers</p>
-            </div>
-        </div>
-        <div class="papers-grid">
-            ${papers.map(p => {
-        const paperQuestions = state.questions.filter(q => (q.paper_id || 1) === p);
-        const approxTime = Math.ceil(paperQuestions.length * 1.5);
-        return `
-                    <div class="paper-card" onclick="startPaper(${p})">
-                        <div class="paper-badge">Paper ${p}</div>
-                        <h3>Mock Test #${p}</h3>
-                        <p>${paperQuestions.length} Questions</p>
-                        <div class="paper-meta">
-                            <span>⏱️ ~${approxTime} Mins</span>
-                            <span>🏆 TCS-NQT Pattern</span>
-                        </div>
-                        <button class="start-paper-btn">Start Test</button>
-                    </div>
-                `;
-    }).join('')}
-        </div>
-    `;
-}
-
-function startPaper(paperId) {
-    const paperQuestions = state.questions.filter(q => (q.paper_id || 1) === paperId);
-    state.timer = 0;
-    startTimer();
-    renderQuestions(paperQuestions);
-}
-
-function renderShortcutsPracticeLanding() {
-    const papers = [...new Set(state.questions.map(q => q.category))];
-    contentArea.innerHTML = `
-        <div class="category-header">
-            <div class="header-main">
-                <h2>Shortcuts Practice</h2>
-                <p>Official Memory Based TCS NQT 2020 Questions</p>
-            </div>
-        </div>
-        <div class="papers-grid">
-            ${papers.map(p => {
-                const paperQuestions = state.questions.filter(q => q.category === p);
-                const approxTime = Math.ceil(paperQuestions.length * 1.5);
-                return `<div class="paper-card" onclick="startShortcutsPaper('${p}')">
-                    <h3>${p}</h3>
-                    <p>${paperQuestions.length} Questions</p>
-                    <div class="paper-meta">
-                        <span>⏱️ ~${approxTime} Mins</span>
-                        <span>🏆 2020 Memory Based</span>
-                    </div>
-                    <button class="start-paper-btn">Start Practice</button>
-                </div>`
-            }).join('')}
-        </div>
-    `;
-}
-
-function startShortcutsPaper(category) {
-    const paperQuestions = state.questions.filter(q => q.category === category);
-    state.testAnswers = {};
-    state.testSubmitted = false;
-    state.timer = 0;
-    startTimer();
-    state.currentPage = 1;
-    renderQuestions(paperQuestions);
-}
-
-function submitShortcutsTest() {
-    state.testSubmitted = true;
-    stopTimer();
-    
-    // Save all to answeredQuestions so it persists or just re-render
-    if (state.testAnswers) {
-        Object.keys(state.testAnswers).forEach(qId => {
-            state.answeredQuestions[`shortcuts-practice-${qId}`] = state.testAnswers[qId];
-        });
-        localStorage.setItem('prep_answered', JSON.stringify(state.answeredQuestions));
-    }
-    
-    // Re-render questions to show correct/wrong states
-    renderQuestions(state.questions.filter(q => q.category === state.questions[0].category));
-    
-    // Calculate Score
-    const total = Object.keys(state.testAnswers || {}).length;
-    const correct = Object.values(state.testAnswers || {}).filter(a => a.isCorrect).length;
-    
-    // Show results
-    contentArea.insertAdjacentHTML('afterbegin', `
-        <div class="result-banner" style="background: linear-gradient(135deg, #1A202C 0%, #2D3748 100%); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 2rem; text-align: center; animation: fadeIn 0.5s ease;">
-            <h2 style="color: #EAB308; margin-bottom: 0.5rem; font-size: 2rem;">Test Submitted!</h2>
-            <p style="color: #A0AEC0; font-size: 1.1rem; margin-bottom: 1.5rem;">Here is how you did on the ${state.questions[0].category} test</p>
-            <div style="display: flex; justify-content: center; gap: 2rem;">
-                <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; min-width: 120px;">
-                    <div style="font-size: 2.5rem; color: white; font-weight: 700;">${correct}</div>
-                    <div style="color: #48BB78; font-size: 0.9rem; margin-top: 0.5rem; text-transform: uppercase; letter-spacing: 1px;">Correct</div>
-                </div>
-                <div style="background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 8px; min-width: 120px;">
-                    <div style="font-size: 2.5rem; color: white; font-weight: 700;">${total}</div>
-                    <div style="color: #A0AEC0; font-size: 0.9rem; margin-top: 0.5rem; text-transform: uppercase; letter-spacing: 1px;">Attempted</div>
-                </div>
-            </div>
-            <button class="start-session-btn" style="margin-top: 2rem;" onclick="renderShortcutsPracticeLanding()">Return to Categories</button>
-        </div>
-    `);
-    
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function renderInputGuide() {
-    contentArea.innerHTML = `
-        <div class="article-container">
-            <header class="article-header">
-                <div class="article-badge">Coding Fundamentals</div>
-                <h1>TCS NQT 2026 — How to Take Input</h1>
-                <p class="subtitle">Super Simple Guide — Anyone Can Understand!</p>
-            </header>
-
-            <div class="article-video-section">
-                <div class="video-grid">
-                    <div class="video-card">
-                        <div class="video-wrapper">
-                            <iframe src="https://www.youtube.com/embed/TfZrr1ruex8?si=tJN6A0Zny5ucBNva" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        </div>
-                        <div class="video-info">
-                            <p>For more understanding, refer to this video</p>
-                        </div>
-                    </div>
-                    <div class="video-card">
-                        <div class="video-wrapper">
-                            <iframe src="https://www.youtube.com/embed/K-Y3KoHZuI0?si=BU3GEw5Mys6MvfCP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        </div>
-                        <div class="video-info">
-                            <p>Detailed coding walkthrough</p>
-                        </div>
+                <div class="hero-art">
+                    <div class="hero-halo"></div>
+                    <div class="hero-emoji" style="top:8px;left:6%;font-size:44px;transform:rotate(-12deg)">🏆</div>
+                    <div class="hero-emoji" style="bottom:18px;right:8%;font-size:40px;transform:rotate(10deg)">🎯</div>
+                    <div class="level-card">
+                        <div class="row-between" style="align-items:center"><strong style="font-size:15px">Your level</strong><span class="pill pill-soft" style="font-family:var(--body);font-size:13px">🔥 ${s.streak} day streak</span></div>
+                        <span class="lv">Lv ${s.level}</span>
+                        <div class="meter"><span style="width:${s.levelPct}"></span></div>
+                        <span class="muted" style="font-size:14px">⚡ ${s.xp} XP · ${s.xpToNext} XP to Level ${s.nextLevel}</span>
+                        <div class="badge-row">${bs.map(b => `<span class="badge ${b.on ? 'on' : ''}" title="${esc(b.hint)}">${b.icon} ${esc(b.label)}</span>`).join('')}</div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <section class="article-section">
-                <div class="concept-card highlight-card">
-                    <h3>🤔 FIRST — WHAT IS INPUT?</h3>
-                    <p>Think like this —</p>
-                    <div class="analogy-box">
-                        <div class="analogy-item">
-                            <span class="icon">🏪</span>
-                            <p>You go to a shop</p>
-                        </div>
-                        <div class="analogy-arrow">➜</div>
-                        <div class="analogy-item">
-                            <span class="icon">🗣️</span>
-                            <p>You say — "Bhaiya ek Parle-G do!"</p>
-                        </div>
-                        <div class="analogy-arrow">➜</div>
-                        <div class="analogy-item">
-                            <span class="icon">🍪</span>
-                            <p>Shopkeeper hears order and gives biscuit!</p>
-                        </div>
+        <section class="marquee"><div class="marquee-in">${MARQUEE.map(w => `<span>${esc(w)}<i>✦</i></span>`).join('')}</div></section>
+
+        <section class="wrap" style="padding-bottom:24px;display:flex;flex-direction:column;gap:14px">
+            <div class="update-bar">
+                <span style="font-size:20px">🔥</span>
+                <p><strong>Latest Update:</strong> New Scenario-Based Questions are now live! Master the latest patterns.</p>
+                <a class="btn btn-accent btn-sm" style="font-weight:700" href="#scenario">Check Now →</a>
+            </div>
+            <div class="dash-grid">
+                ${qotdHtml()}
+                <div class="dash-side">
+                    <div class="card" style="display:flex;flex-direction:column;gap:12px">
+                        <div class="row-between"><strong>Overall Progress</strong><span class="mono muted" style="font-size:15px">${s.attempted} / 1000 Completed</span></div>
+                        <div class="meter"><span style="width:${Math.min(100, s.attempted / 10)}%"></span></div>
                     </div>
-
-                    <p style="margin-top: 1.5rem;">Or another example —</p>
-                    <div class="analogy-box">
-                        <div class="analogy-item">
-                            <span class="icon">🍊</span>
-                            <p>You put Fruits in Mixer</p>
-                        </div>
-                        <div class="analogy-arrow">➜</div>
-                        <div class="analogy-item">
-                            <span class="icon">⚙️</span>
-                            <p>Mixer processes it</p>
-                        </div>
-                        <div class="analogy-arrow">➜</div>
-                        <div class="analogy-item">
-                            <span class="icon">🥤</span>
-                            <p>You get Juice as result!</p>
-                        </div>
+                    <div class="card row-between" style="align-items:center">
+                        <div style="display:flex;flex-direction:column;gap:4px"><strong>Accuracy</strong><span class="muted" style="font-size:14px">${!s.attempted || s.correct / s.attempted < 0.8 ? 'Keep improving!' : 'Excellent. Stay consistent!'}</span></div>
+                        <span class="big-num">${s.attempted ? s.acc : '0%'}</span>
                     </div>
-                    <div class="logic-flow">
-                        <p><strong>You give information to computer</strong> = INPUT</p>
-                        <p><strong>Computer gives answer back</strong> = OUTPUT</p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="article-section">
-                <div class="importance-card">
-                    <h3>🎯 WHY IS INPUT IMPORTANT IN TCS NQT?</h3>
-                    <p>Imagine you are solving a maths problem —</p>
-                    <ul>
-                        <li>Teacher gives you numbers on paper ✏️</li>
-                        <li>You read those numbers and solve it!</li>
-                    </ul>
-                    <div class="warning-box">
-                        <p>Computer reads your numbers through <strong>INPUT</strong>! If you don't read correctly — answer will be <strong>WRONG</strong>, even if your logic is 100% correct! 😱</p>
-                    </div>
-                </div>
-            </section>
-
-            <div class="tabs-container article-tabs">
-                <div class="tab-triggers">
-                    <button class="tab-trigger active" data-target="python-guide">🐍 Python Guide</button>
-                    <button class="tab-trigger" data-target="java-guide">☕ Java Guide</button>
-                </div>
-                
-                <div class="tab-content active" id="python-guide">
-                    <div class="step-guide">
-                        <div class="guide-item">
-                            <h4>Step 1 — Taking One Number</h4>
-                            <p class="example-text">"Teacher asks — how many students are in your class?" ➜ "30!"</p>
-                            <pre class="code-block"><code>n = int(input())</code></pre>
-                            <div class="explanation-small">
-                                <span><strong>input()</strong> = Computer asking something</span>
-                                <span><strong>int()</strong> = Converting to a number</span>
-                                <span><strong>n</strong> = Storing your answer</span>
-                            </div>
-                        </div>
-
-                        <div class="guide-item">
-                            <h4>Step 2 — Taking One Word or Sentence</h4>
-                            <p class="example-text">"Teacher asks — what is your name?" ➜ "Raju!"</p>
-                            <pre class="code-block"><code>name = input()</code></pre>
-                        </div>
-
-                        <div class="guide-item">
-                            <h4>Step 3 — Taking Two Numbers at Once</h4>
-                            <p class="example-text">"Teacher asks — tell me length and width!" ➜ "30 20!"</p>
-                            <pre class="code-block"><code>a, b = map(int, input().split())</code></pre>
-                            <div class="explanation-small">
-                                <span><strong>split()</strong> = Separating 30 and 20</span>
-                                <span><strong>map(int)</strong> = Converting both to numbers</span>
-                            </div>
-                        </div>
-
-                        <div class="guide-item">
-                            <h4>Step 4 — Taking a List of Numbers</h4>
-                            <p class="example-text">"Marks of 5 students" ➜ "90 85 78 92 88"</p>
-                            <pre class="code-block"><code>arr = list(map(int, input().split()))</code></pre>
-                        </div>
-
-                        <div class="guide-item pattern-highlight">
-                            <h4>Step 5 — Most Common TCS NQT Pattern</h4>
-                            <p class="example-text">"First tell me how many students (n), then tell me their marks!"</p>
-                            <pre class="code-block"><code>n = int(input())
-arr = list(map(int, input().split()))</code></pre>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tab-content" id="java-guide">
-                    <div class="step-guide">
-                        <div class="guide-item">
-                            <h4>Step 1 — Getting Ready (The Scanner)</h4>
-                            <p>Think like this: Before eating, you need a plate and spoon! In Java, you need a <strong>Scanner</strong>.</p>
-                            <pre class="code-block"><code>import java.util.Scanner;
-
-public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        // Your code here
-    }
-}</code></pre>
-                        </div>
-
-                        <div class="guide-item">
-                            <h4>Step 2 — Taking One Number</h4>
-                            <pre class="code-block"><code>int n = sc.nextInt();</code></pre>
-                        </div>
-
-                        <div class="guide-item">
-                            <h4>Step 3 — Taking One Word</h4>
-                            <pre class="code-block"><code>String name = sc.next();</code></pre>
-                        </div>
-
-                        <div class="guide-item">
-                            <h4>Step 4 — Taking Two Numbers</h4>
-                            <pre class="code-block"><code>int a = sc.nextInt();
-int b = sc.nextInt();</code></pre>
-                        </div>
-
-                        <div class="guide-item pattern-highlight">
-                            <h4>Step 5 — Taking List of Numbers</h4>
-                            <pre class="code-block"><code>int n = sc.nextInt();
-int[] arr = new int[n];
-for(int i = 0; i < n; i++){
-    arr[i] = sc.nextInt();
-}</code></pre>
-                        </div>
+                    <div class="card-inv" style="flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:12px">
+                        <div class="row-between"><strong>Level ${s.level}</strong><span class="mono muted" style="font-size:15px">${s.xpToNext} XP to Level ${s.nextLevel}</span></div>
+                        <div class="meter"><span style="width:${s.levelPct}"></span></div>
+                        <span class="muted" style="font-size:14px">Every correct answer earns 10 XP. Solved coding problems earn 30.</span>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <section class="article-section">
-                <h2 class="section-title center">🎯 5 MOST COMMON TCS NQT PATTERNS</h2>
-                <div class="patterns-container">
-                    <div class="pattern-box">
-                        <div class="pattern-header">Pattern 1 — Just One Number</div>
-                        <div class="pattern-io">Input: 5</div>
-                        <div class="pattern-grid">
-                            <div class="lang-code">
-                                <span>🐍 Python</span>
-                                <pre><code>n = int(input())</code></pre>
-                            </div>
-                            <div class="lang-code">
-                                <span>☕ Java</span>
-                                <pre><code>int n = sc.nextInt();</code></pre>
-                            </div>
-                        </div>
-                    </div>
+        <section class="sec">
+            <h2 class="sec-title">⭐ Featured &amp; New</h2>
+            ${featured}
+        </section>
 
-                    <div class="pattern-box">
-                        <div class="pattern-header">Pattern 2 — Two Numbers Same Line</div>
-                        <div class="pattern-io">Input: 5 10</div>
-                        <div class="pattern-grid">
-                            <div class="lang-code">
-                                <span>🐍 Python</span>
-                                <pre><code>a, b = map(int, input().split())</code></pre>
-                            </div>
-                            <div class="lang-code">
-                                <span>☕ Java</span>
-                                <pre><code>int a = sc.nextInt();
-int b = sc.nextInt();</code></pre>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="pattern-box">
-                        <div class="pattern-header">Pattern 3 — List of Numbers</div>
-                        <div class="pattern-io">Input: 5 \n 1 2 3 4 5</div>
-                        <div class="pattern-grid">
-                            <div class="lang-code">
-                                <span>🐍 Python</span>
-                                <pre><code>n = int(input())
-arr = list(map(int, input().split()))</code></pre>
-                            </div>
-                            <div class="lang-code">
-                                <span>☕ Java</span>
-                                <pre><code>int n = sc.nextInt();
-int[] arr = new int[n];
-for(int i = 0; i < n; i++) {
-    arr[i] = sc.nextInt();
-}</code></pre>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="pattern-box">
-                        <div class="pattern-header">Pattern 4 — Table of Numbers (Matrix)</div>
-                        <div class="pattern-io">Input: 3 3 \n 1 2 3...</div>
-                        <div class="pattern-grid">
-                            <div class="lang-code">
-                                <span>🐍 Python</span>
-                                <pre><code>r, c = map(int, input().split())
-matrix = []
-for i in range(r):
-    row = list(map(int, input().split()))
-    matrix.append(row)</code></pre>
-                            </div>
-                            <div class="lang-code">
-                                <span>☕ Java</span>
-                                <pre><code>int r = sc.nextInt();
-int c = sc.nextInt();
-int[][] matrix = new int[r][c];
-for(int i = 0; i < r; i++){
-    for(int j = 0; j < c; j++){
-        matrix[i][j] = sc.nextInt();
-    }
-}</code></pre>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="article-section">
-                <h2 class="section-title">❌ COMMON MISTAKES — DON'T DO THIS!</h2>
-                <div class="table-scroll">
-                    <table class="mistake-table">
-                        <thead>
-                            <tr>
-                                <th>Mistake</th>
-                                <th>❌ Wrong</th>
-                                <th>✅ Right</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Forgetting <strong>int</strong> in Python</td>
-                                <td class="wrong-val">input()</td>
-                                <td class="right-val">int(input())</td>
-                            </tr>
-                            <tr>
-                                <td>Forgetting <strong>Scanner</strong> in Java</td>
-                                <td class="wrong-val">sc.nextInt() directly</td>
-                                <td class="right-val">import Scanner first</td>
-                            </tr>
-                            <tr>
-                                <td>Forgetting <strong>split()</strong></td>
-                                <td class="wrong-val">map(int, input())</td>
-                                <td class="right-val">map(int, input().split())</td>
-                            </tr>
-                            <tr>
-                                <td>Forgetting <strong>list()</strong></td>
-                                <td class="wrong-val">map(int, input().split())</td>
-                                <td class="right-val">list(map(int, input().split()))</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <section class="article-section golden-rules">
-                <h2 class="section-title">✅ GOLDEN RULES — REMEMBER ALWAYS!</h2>
-                <div class="rules-grid">
-                    <div class="rule-card python">
-                        <h3>🐍 Python Rules</h3>
-                        <ul>
-                            <li><span>1</span> One number = <code>int(input())</code></li>
-                            <li><span>2</span> One word = <code>input()</code></li>
-                            <li><span>3</span> Many numbers = <code>list(map(int, input().split()))</code></li>
-                            <li><span>4</span> Two numbers = <code>a, b = map(int, input().split())</code></li>
-                            <li><span>5</span> Size + List = Always use two lines!</li>
-                        </ul>
-                    </div>
-                    <div class="rule-card java">
-                        <h3>☕ Java Rules</h3>
-                        <ul>
-                            <li><span>1</span> Always import Scanner first!</li>
-                            <li><span>2</span> One number = <code>sc.nextInt()</code></li>
-                            <li><span>3</span> One word = <code>sc.next()</code></li>
-                            <li><span>4</span> Many numbers = use loop with <code>sc.nextInt()</code></li>
-                            <li><span>5</span> Never forget: <code>Scanner sc = new Scanner(System.in)</code></li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-        </div>
-    `;
-
-    // Add tab functionality
-    const triggers = document.querySelectorAll('.tab-trigger');
-    const contents = document.querySelectorAll('.tab-content');
-
-    triggers.forEach(trigger => {
-        trigger.addEventListener('click', () => {
-            const target = trigger.dataset.target;
-            triggers.forEach(t => t.classList.remove('active'));
-            contents.forEach(c => c.classList.remove('active'));
-            trigger.classList.add('active');
-            document.getElementById(target).classList.add('active');
-        });
-    });
-
-    // Smooth scroll to top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function renderInputPractice(questions) {
-    contentArea.innerHTML = `
-        <div class="category-header">
-            <div class="header-main">
-                <h2>Input Master — Practice Room</h2>
-                <p>Learn TCS NQT patterns by doing. Try the problems and check your logic!</p>
+        <section class="sec">
+            <div class="sec-head">
+                <h2 class="sec-title">🏢 Prepare by Company</h2>
+                <span class="muted" style="font-size:15px">Pick a company and the categories below switch to its exam pattern.</span>
             </div>
-        </div>
-        <div class="practice-layout">
-            <aside class="practice-nav" id="practice-nav">
-                <div class="nav-title">SESSIONS</div>
-                <div class="nav-list">
-                    ${questions.map((q, idx) => `
-                        <button class="practice-nav-item ${idx === 0 ? 'active' : ''}" data-id="${q.id}">
-                            <div class="item-icon">${idx + 1}</div>
-                            <div class="item-info">
-                                <span class="title">${q.title}</span>
-                                <span class="tag">Pattern Master</span>
-                            </div>
-                        </button>
-                    `).join('')}
-                </div>
-            </aside>
-            <div class="practice-workspace" id="practice-content">
-                <!-- Rendered dynamically -->
+            <div class="exam-grid">${EXAMS.map(e => `<button class="exam ${e.name === exam.name ? 'on' : ''}" data-act="exam" data-arg="${esc(e.name)}">
+                <span class="row-between" style="width:100%;align-items:center"><strong>${esc(e.name)}</strong><span style="font-size:12px;font-weight:700">${e.name === exam.name ? '✓ Selected' : ''}</span></span>
+                <small>${esc(e.pattern)}</small></button>`).join('')}</div>
+        </section>
+
+        <section class="sec">
+            <h2 class="sec-title">📚 Practice by Category</h2>
+            <div class="cat-grid">${cats}</div>
+        </section>
+
+        <section class="sec explore">
+            <h2 class="sec-title">Explore quizzes</h2>
+            <div class="chips">${chips([['All', 'All'], ...SECTIONS.map(x => [x.key, x.name])], ui.section, 'section')}</div>
+            <input class="search" data-input="search" value="${esc(ui.search)}" placeholder="🔍  Search a topic" aria-label="Search a topic">
+            ${exploreGrid()}
+        </section>
+
+        <section class="sec" style="padding-bottom:88px">
+            <div class="how">
+                <h2>How a practice session works</h2>
+                <div><span class="n">01</span><strong>Pick a topic</strong><p>Short sets grouped by NQT section. Filter by difficulty.</p></div>
+                <div><span class="n">02</span><strong>Answer on the clock</strong><p>A timer keeps you at exam pace. Stuck? Take a hint first.</p></div>
+                <div><span class="n">03</span><strong>Learn my shortcut</strong><p>Every answer has a worked solution and an exam tip.</p></div>
             </div>
-        </div>
-    `;
+        </section>`;
+    },
 
-    const navItems = document.querySelectorAll('.practice-nav-item');
-    navItems.forEach(item => {
-        item.onclick = () => {
-            navItems.forEach(i => i.classList.remove('active'));
-            item.classList.add('active');
-            renderPracticeProblem(item.dataset.id);
-        };
-    });
-
-    if (questions.length > 0) {
-        renderPracticeProblem(questions[0].id);
-    }
-}
-
-function renderPracticeProblem(id) {
-    const q = state.questions.find(item => item.id === id);
-    if (!q) return;
-
-    const container = document.getElementById('practice-content');
-    container.innerHTML = `
-        <div class="workspace-card fade-in">
-            <div class="problem-details">
-                <div class="detail-header">
-                    <span class="badge red">REAL TCS PATTERN</span>
-                    <h3>${q.title}</h3>
+    topics() {
+        const st = need(SECTIONS.map(x => x.key));
+        const body = st === 'loading' ? loadingHtml('Loading topics...') : st === 'error' ? errorHtml() : (() => {
+            const list = filterTopics();
+            return list.length
+                ? `<div class="topic-grid">${list.map(topicCard).join('')}</div>`
+                : `<p class="muted" style="font-size:16px">Nothing matches yet. Try a shorter word, or clear the filters.</p>`;
+        })();
+        return `<section class="page">
+            <div class="sec-head" style="margin:0">
+                <div style="display:flex;flex-direction:column;gap:8px">
+                    <h1 class="page-title">Practice library</h1>
+                    <p class="page-sub">Search for a topic, or narrow down by section and difficulty.</p>
                 </div>
-                <div class="problem-description">
-                    <div class="desc-content">${q.problem_statement.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div>
-                </div>
-
-                <div class="constraints-box">
-                    <h4>💡 Goal & Logic</h4>
-                    <div class="constraints-content">${q.constraints.replace(/\n/g, '<br>')}</div>
-                </div>
-
-                <div class="format-grid">
-                    ${q.input_format ? `
-                    <div class="format-item">
-                        <label>📥 Input Format</label>
-                        <p>${q.input_format}</p>
-                    </div>
-                    ` : ''}
-                    ${q.output_format ? `
-                    <div class="format-item">
-                        <label>📤 Output Format</label>
-                        <p>${q.output_format}</p>
-                    </div>
-                    ` : ''}
-                </div>
-                
-                <div class="io-sample-grid">
-                    <div class="sample-box">
-                        <label>📥 Sample Input</label>
-                        <pre class="code-block">${q.sample_input}</pre>
-                    </div>
-                    <div class="sample-box">
-                        <label>📤 Expected Output</label>
-                        <pre class="code-block">${q.sample_output}</pre>
-                    </div>
-                </div>
+                ${meta.bookmarks.length ? `<a class="btn" style="background:var(--surface)" href="#saved">★ Practise ${meta.bookmarks.length} saved</a>` : ''}
             </div>
-
-            <div class="coding-playground">
-                <div class="playground-header">
-                    <div class="play-title-wrap">
-                        <div class="window-dots">
-                            <div class="dot red"></div>
-                            <div class="dot yellow"></div>
-                            <div class="dot green"></div>
-                        </div>
-                        <div class="play-title">Try Mode — Code Editor</div>
-                    </div>
-                    <div class="lang-selector">
-                        <button class="lang-btn active" data-lang="python">Python 3</button>
-                        <button class="lang-btn" data-lang="java">Java</button>
-                    </div>
-                </div>
-                
-                <div class="editor-area">
-                    <textarea id="code-playground" spellcheck="false" placeholder="Write your input reading logic here..."></textarea>
-                </div>
-                
-                <div class="playground-footer">
-                    <div class="playground-status">
-                        <span class="status-dot"></span>
-                        <span class="status-text">Ready to code</span>
-                    </div>
-                    <div class="footer-actions" style="display: flex; gap: 1rem;">
-                        <button class="btn btn-secondary" id="show-solution"><span>🔓</span> Reveal Solution</button>
-                        <button class="btn btn-primary" id="run-simulation"><span>▶</span> Run Simulation</button>
-                    </div>
-                </div>
-
-                <div class="simulation-result" id="simulation-result" style="display: none;">
-                    <!-- Results -->
-                </div>
+            <input class="search" data-input="search" value="${esc(ui.search)}" placeholder="Search: percentages, syllogisms, pointers…" aria-label="Search topics">
+            <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:center">
+                <div class="chips">${chips([['All', 'All'], ...SECTIONS.map(x => [x.key, x.name])], ui.section, 'section')}</div>
+                <div class="chips">${chips(['All', ...LEVELS].map(l => [l, l]), ui.level, 'level', 'mono')}</div>
             </div>
-        </div>
-        
-        <!-- Logic Modal -->
-        <div id="logic-modal" class="modal">
-            <div class="modal-content glass-effect">
-                <div class="modal-header">
-                    <h3>Logical Solution Code</h3>
-                    <button class="close-modal">✕</button>
-                </div>
-                <div class="modal-body">
-                    <div class="logic-header-text">
-                        <p>${q.explanation}</p>
-                    </div>
-                    <div class="solution-code-section">
-                        <div class="code-header">TCS Standard Solution (${q.title})</div>
-                        <pre class="code-block" id="modal-code-block"></pre>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
+            ${body}
+        </section>`;
+    },
 
-    const editor = document.getElementById('code-playground');
-    const runBtn = document.getElementById('run-simulation');
-    const solutionBtn = document.getElementById('show-solution');
-    const resultPanel = document.getElementById('simulation-result');
-    const langBtns = document.querySelectorAll('.lang-btn');
-    const modal = document.getElementById('logic-modal');
-    const closeModal = modal.querySelector('.close-modal');
+    quiz() {
+        const q = ui.quiz;
+        if (!q) return VIEWS.home();
+        const cur = q.qs[q.idx];
+        const isMock = q.mode === 'mock';
+        const picked = q.answers[q.idx];
+        const revealed = q.submitted || (!isMock && picked != null);
+        const total = q.qs.length, last = q.idx === total - 1;
+        const saved = meta.bookmarks.some(x => x.uid === cur.uid);
+        const streakNow = !isMock ? combo(q) : 0;
 
-    let currentLang = 'python';
-
-    langBtns.forEach(btn => {
-        btn.onclick = () => {
-            langBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentLang = btn.dataset.lang;
-            resultPanel.style.display = 'none';
-        }
-    });
-
-    runBtn.onclick = () => {
-        const userCode = editor.value.trim();
-        const solutionCode = q.solutions[currentLang].trim();
-
-        if(!userCode) {
-            resultPanel.style.display = 'block';
-            resultPanel.innerHTML = '<div class="result-error"><span class="icon">⚠️</span> Please write some code before simulating!</div>';
-            return;
-        }
-
-        resultPanel.style.display = 'block';
-        resultPanel.innerHTML = `
-            <div class="running-indicator">
-                <div class="spinner-small"></div>
-                Analyzing logic and input patterns...
-            </div>
-        `;
-
-        setTimeout(() => {
-            // Basic normalization: remove extra whitespace and newlines for a fairer comparison
-            const normalize = (str) => str.replace(/\s+/g, ' ').trim();
-            const isMatch = normalize(userCode) === normalize(solutionCode);
-
-            if(isMatch) {
-                resultPanel.innerHTML = `
-                    <div class="result-success fade-in">
-                        <div class="res-head">
-                            <span class="icon">✨</span>
-                            <strong>Logic Matched!</strong>
-                        </div>
-                        <p>Perfect: Your <strong>${currentLang}</strong> code matches the required logic for this problem. You've mastered this pattern!</p>
-                    </div>
-                `;
-            } else {
-                resultPanel.innerHTML = `
-                    <div class="result-error fade-in" style="background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.2); color: #f87171;">
-                        <div class="res-head" style="color: #f87171; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.75rem;">
-                            <span class="icon">❌</span>
-                            <strong>Logic Mismatch</strong>
-                        </div>
-                        <p style="font-size: 0.85rem; color: #fca5a5;">Your logic doesn't quite match the required pattern for this problem. Review the "Reveal Solution" if you're stuck!</p>
-                    </div>
-                `;
+        let verdict = '', vClass = '';
+        if (revealed) {
+            if (picked == null) { verdict = 'Skipped. Here’s how I’d solve it:'; vClass = 'skip'; }
+            else if (picked === cur.answer) { verdict = 'Correct! Nicely done. +10 XP ⚡'; vClass = 'ok'; }
+            else {
+                const right = cur.options.find(([k]) => k === cur.answer);
+                verdict = `Not quite. The answer is ${cur.answer}${right ? ` (${right[1]})` : ''}.`; vClass = 'bad';
             }
-        }, 1200);
-    };
+        }
+        const primaryLabel = q.submitted ? (last ? 'Back to results' : 'Next →')
+            : isMock ? (last ? 'Submit test' : 'Save & next →')
+                : picked == null ? (last ? 'Skip & finish' : 'Skip →') : (last ? 'See my results' : 'Next question →');
 
-    solutionBtn.onclick = () => {
-        document.getElementById('modal-code-block').textContent = q.solutions[currentLang];
-        modal.classList.add('active');
-    };
+        const options = cur.options.map(([key, label]) => {
+            let cls = '', mark = '';
+            if (revealed && key === cur.answer) { cls = 'ok'; mark = '✓'; }
+            else if (revealed && key === picked) { cls = 'bad'; mark = '✗'; }
+            else if (!revealed && key === picked) cls = 'sel';
+            return `<button class="opt ${cls}" data-act="pick" data-arg="${esc(key)}" ${revealed ? 'disabled' : ''}>
+                <span class="opt-key">${esc(key)}</span><span class="opt-label">${esc(label)}</span><span class="opt-mark">${mark}</span></button>`;
+        }).join('');
 
-    closeModal.onclick = () => modal.classList.remove('active');
-    window.onclick = (event) => { if (event.target == modal) modal.classList.remove('active'); };
+        const palette = q.qs.map((x, i) => {
+            const a = q.answers[i], showRes = q.submitted || (!isMock && a != null);
+            const cls = [
+                showRes && a != null ? (a === x.answer ? 'ok' : 'bad') : a != null ? 'filled' : '',
+                q.flags[i] && !q.submitted ? 'flag' : '',
+                i === q.idx ? 'cur' : '',
+            ].join(' ');
+            return `<button class="pal ${cls}" data-act="go" data-arg="${i}" aria-label="Question ${i + 1}">${i + 1}</button>`;
+        }).join('');
+
+        const remaining = q.limit - ui.elapsed;
+        const timeLabel = q.submitted ? fmt(q.used) : isMock ? fmt(remaining) : fmt(ui.elapsed);
+
+        return `<section class="quiz">
+            <div class="quiz-main">
+                <div class="quiz-head">
+                    <div><span class="eyebrow">${esc(q.title)}</span><h1>Question ${q.idx + 1} of ${total}</h1></div>
+                    <a href="${q.back}">✕ Exit</a>
+                </div>
+                ${streakNow >= 2 ? `<span class="combo">🔥 ${streakNow} in a row! Keep it going</span>` : ''}
+                <div class="ink-card qcard">
+                    ${q.burst === q.idx ? burstHtml(q.idx) : ''}
+                    <div class="qtop">
+                        <span class="qtag">${esc(cur.section)}${cur.topic !== cur.section ? ' · ' + esc(cur.topic) : ''}${cur.difficulty ? ' · ' + esc(cur.difficulty) : ''}</span>
+                        <div class="qtools">
+                            ${isMock && !q.submitted ? `<button class="btn btn-sm ${q.flags[q.idx] ? 'on' : ''}" data-act="flag">${q.flags[q.idx] ? '⚑ Marked' : '⚐ Mark for review'}</button>` : ''}
+                            <button class="btn btn-sm ${saved ? 'on' : ''}" data-act="bookmark">${saved ? '★ Saved' : '☆ Save'}</button>
+                        </div>
+                    </div>
+                    <p class="qtext">${esc(cur.text)}</p>
+                    ${cur.code ? `<pre class="code">${esc(cur.code)}</pre>` : ''}
+                    <div class="opts">${options}</div>
+                    ${q.hints[q.idx] && !revealed ? `<div class="hint"><strong>Lakshmi's hint · </strong>${esc(cur.hint)}</div>` : ''}
+                    ${revealed ? `<div class="sol">
+                        <strong class="verdict ${vClass}">${esc(verdict)}</strong>
+                        <div class="sol-text">${cur.solution ? rich(cur.solution) : '<p>No worked solution for this one yet.</p>'}</div>
+                        ${cur.formula ? `<div class="sol-extra"><span class="eyebrow">Formula · </span>${esc(cur.formula)}</div>` : ''}
+                        ${cur.tip ? `<div class="sol-extra"><span class="eyebrow">Exam tip · </span>${esc(cur.tip)}</div>` : ''}
+                    </div>` : ''}
+                    <div class="qnav">
+                        <div>
+                            <button class="btn" data-act="prev" ${q.idx === 0 ? 'disabled' : ''}>← Back</button>
+                            ${!isMock && !revealed && !q.hints[q.idx] && cur.hint ? '<button class="btn" data-act="hint">💡 Hint</button>' : ''}
+                        </div>
+                        <button class="btn btn-accent" data-act="primary">${primaryLabel}</button>
+                    </div>
+                </div>
+                <span class="kbd-note">Keyboard: A–D to choose · Enter to continue</span>
+            </div>
+            <aside class="quiz-aside">
+                <div class="card-inv" style="display:flex;flex-direction:column;gap:6px">
+                    <span class="eyebrow">${isMock && !q.submitted ? 'Time left' : 'Time spent'}</span>
+                    <span class="timer-num ${isMock && !q.submitted && remaining <= 60 ? 'low' : ''}" id="timer-num">${timeLabel}</span>
+                </div>
+                ${!isMock && !q.submitted ? `<div class="xp-card"><span>XP this set</span><span>⚡ ${scoreOf(q) * 10}</span></div>` : ''}
+                <div class="card" style="display:flex;flex-direction:column;gap:14px;padding:20px">
+                    <span class="eyebrow">Questions</span>
+                    <div class="palette" data-keep-scroll="palette">${palette}</div>
+                    <span class="muted" style="font-size:13px;line-height:1.5">${isMock && !q.submitted ? 'Filled = answered · dashed = marked for review. Jump to any question.' : 'Green = correct · red = wrong. Tap a number to jump.'}</span>
+                </div>
+                ${isMock && !q.submitted ? `<button class="btn" style="border-color:var(--ink)" data-act="finish">Submit test (${q.answers.filter(a => a != null).length}/${total} answered)</button>` : ''}
+                ${!isMock && !q.submitted ? `<button class="btn" data-act="finish">Finish set</button>` : ''}
+            </aside>
+        </section>`;
+    },
+
+    results() {
+        const q = ui.quiz;
+        if (!q) return VIEWS.home();
+        const score = scoreOf(q), total = q.qs.length, ratio = total ? score / total : 0;
+        const msg = ratio >= 0.8 ? 'Brilliant work. You’re exam-ready on this one.'
+            : ratio >= 0.5 ? 'Good going! Read the solutions for the ones you missed, then try once more.'
+                : 'Every topper started here. Go through my solutions below, then retry.';
+        const review = q.qs.map((x, i) => {
+            const a = q.answers[i], ok = a === x.answer;
+            const chosen = a == null ? 'Skipped' : 'You chose ' + (x.options.find(([k]) => k === a) || [a, a])[1];
+            const right = (x.options.find(([k]) => k === x.answer) || [x.answer, x.answer])[1];
+            return `<button data-act="review" data-arg="${i}">
+                <span class="dot ${a == null ? '' : ok ? 'ok' : 'bad'}">${a == null ? '–' : ok ? '✓' : '✗'}</span>
+                <span class="review-text"><strong>${esc(x.text)}</strong><span>${esc(chosen)} · Answer: ${esc(right)}</span></span>
+                <span class="review-go">Solution →</span></button>`;
+        }).join('');
+        return `<section class="results">
+            <div class="res-hero">
+                <div style="display:flex;flex-direction:column;gap:10px">
+                    <span class="eyebrow">${esc(q.title)} · complete</span>
+                    <span class="res-score">${score}<span>/${total}</span></span>
+                    <span class="res-msg">${msg}</span>
+                </div>
+                <div class="res-nums">
+                    <div><span class="eyebrow">Accuracy</span><b>${total ? Math.round(100 * ratio) + '%' : '–'}</b></div>
+                    <div><span class="eyebrow">Time</span><b>${fmt(q.used)}</b></div>
+                </div>
+            </div>
+            <h2 style="font-size:28px;margin-top:8px">Review with solutions</h2>
+            <div class="review">${review}</div>
+            <div class="btn-row">
+                <button class="btn btn-accent" data-act="retry">Try again</button>
+                <a class="btn" href="${q.mode === 'mock' ? '#mock' : '#topics'}">${q.mode === 'mock' ? 'Choose another paper' : 'Choose another topic'}</a>
+                <a class="btn" href="#progress">See my progress</a>
+            </div>
+        </section>`;
+    },
+
+    mock() {
+        const st = need(['practice', 'shortcuts-practice']);
+        if (st !== 'ok') return st === 'error' ? errorHtml() : loadingHtml('Loading mock tests...');
+        const card = (glyph, hue, eyebrow, title, desc, qs, key, href) => {
+            const best = meta.best[key];
+            return `<div class="topic">
+                <div class="topic-thumb" style="background:${tint(hue)}">${esc(glyph)}</div>
+                <div class="topic-body">
+                    <span class="eyebrow">${esc(eyebrow)}</span><strong>${esc(title)}</strong><p>${esc(desc)}</p>
+                    <div class="topic-meta"><span>▤ ${qs.length} questions</span><span>◷ ${Math.ceil(qs.length * 1.5)} min</span><b>● ${best ? `Best ${best.score}/${best.total}` : 'Not attempted'}</b></div>
+                </div>
+                <a class="btn btn-accent" href="${href}">Start test</a></div>`;
+        };
+        const papers = [...new Set(cache.practice.map(q => q.paper))].sort((a, b) => a - b);
+        const spSections = [...new Set(cache['shortcuts-practice'].map(q => q.section))];
+        const hues = [55, 85, 35, 70, 20];
+        return `<section class="page">
+            <div style="display:flex;flex-direction:column;gap:8px">
+                <h1 class="page-title">Mock tests</h1>
+                <p class="page-sub">Timed papers in exam conditions. Answers and solutions unlock when you submit.</p>
+            </div>
+            <div class="topic-grid">${papers.map((p, i) => card('P' + p, hues[i % 5], 'TCS NQT pattern', `Mock Test #${p}`, 'Numerical, verbal and reasoning in one timed paper.',
+            cache.practice.filter(q => q.paper === p), 'mock/' + p, '#mock/' + p)).join('')}</div>
+            <h2 class="sec-title" style="margin:26px 0 0">⏱️ Shortcuts practice · 2020 memory-based</h2>
+            <div class="topic-grid">${spSections.map((sec, i) => card(['%', '?', 'Aa'][i % 3], hues[(i + 2) % 5], 'TCS NQT 2020', sec, 'Previous-year memory-based questions, solved with shortcuts.',
+                cache['shortcuts-practice'].filter(q => q.section === sec), 'shortcuts/' + sec, '#shortcuts/' + encodeURIComponent(sec))).join('')}</div>
+        </section>`;
+    },
+
+    coding() {
+        const c = ui.coding, set = c.set;
+        const st = need([set]);
+        const switcher = `<div class="chips">${chips([['coding', 'Coding · 150'], ['scenario', 'Scenario · 30']], set, 'code-set')}</div>`;
+        const side = body => `<aside class="code-side">
+            <h1>Coding practice</h1>
+            <p class="muted" style="font-size:15px;line-height:1.5;margin-bottom:6px">NQT-style problems with Python and Java solutions. Try it yourself first, then compare.</p>
+            ${switcher}${body}</aside>`;
+        if (st !== 'ok') return `<section class="code-page">${side('')}<div class="code-main">${st === 'error' ? errorHtml() : loadingHtml('Loading problems...')}</div></section>`;
+
+        const all = cache[set];
+        const term = c.search.trim().toLowerCase();
+        const list = all.filter(p => (c.level === 'All' || p.difficulty === c.level) && (!term || `${p.title} ${p.subcategory || ''}`.toLowerCase().includes(term)));
+        const p = all.find(x => String(x.id) === String(c.ids[set])) || list[0] || all[0];
+        if (!p) return `<section class="code-page">${side('')}<div class="code-main"><div class="empty"><strong>No problems here yet.</strong></div></div></section>`;
+        const uid = `${set}-${p.id}`;
+        const solved = meta.solved.includes(uid);
+
+        const items = list.map(x => `<button class="prob ${x === p ? 'on' : ''}" data-act="prob" data-arg="${esc(x.id)}">
+            <span class="prob-top"><span>${esc(x.difficulty || '')}${x.subcategory ? ' · ' + esc(x.subcategory) : ''}</span><span class="solved">${meta.solved.includes(`${set}-${x.id}`) ? '✓ Solved' : ''}</span></span>
+            <strong>${esc(x.title)}</strong></button>`).join('') || '<p class="muted" style="font-size:14px">No problems match.</p>';
+
+        const langs = Object.keys(p.solutions || {}).filter(k => solCode(p.solutions[k]));
+        const tabs = [...langs, ...(p.approach || p.common_mistakes || p.pro_tip ? ['approach'] : [])];
+        const tab = tabs.includes(c.tab) ? c.tab : tabs[0];
+        const LANG = { python: 'Python 3', java: 'Java', c: 'C', cpp: 'C++', approach: 'Approach' };
+        let solBody = '';
+        if (tab === 'approach') {
+            solBody = `${p.approach ? `<div class="sol-text">
+                    ${p.approach.brute_force ? `<p><strong>Brute force:</strong> ${esc(p.approach.brute_force)}</p>` : ''}
+                    ${p.approach.optimal ? `<p><strong>Optimal:</strong> ${esc(p.approach.optimal)}</p>` : ''}
+                    ${p.approach.algorithm ? `<p><strong>Technique:</strong> ${esc(p.approach.algorithm)}</p>` : ''}</div>` : ''}
+                ${Array.isArray(p.common_mistakes) && p.common_mistakes.length ? `<div><span class="eyebrow">Common mistakes</span><ul class="list-plain">${p.common_mistakes.map(m => `<li>${esc(m)}</li>`).join('')}</ul></div>` : ''}
+                ${p.pro_tip ? `<div class="sol-extra"><span class="eyebrow">Exam tip · </span>${esc(p.pro_tip)}</div>` : ''}`;
+        } else if (tab) {
+            const v = p.solutions[tab];
+            solBody = `<pre class="code" style="background:var(--surface)">${esc(solCode(v))}</pre>
+                ${v.time_complexity || v.space_complexity ? `<span class="mono muted" style="font-size:14px">Time ${esc(v.time_complexity || '–')} · Space ${esc(v.space_complexity || '–')}</span>` : ''}
+                ${v.explanation ? `<div class="sol-text">${rich(v.explanation)}</div>` : ''}`;
+        }
+
+        return `<section class="code-page">
+            ${side(`<div class="chips">${chips(['All', ...LEVELS].map(l => [l, l]), c.level, 'code-level', 'mono')}</div>
+                <input class="search" data-input="code-search" value="${esc(c.search)}" placeholder="Search problems" aria-label="Search problems">
+                <div class="prob-list" data-keep-scroll="probs">${items}</div>`)}
+            <div class="code-main">
+                <div class="card prob-card">
+                    <span class="eyebrow accent">${esc(p.subcategory || 'Problem')}${p.difficulty ? ' · ' + esc(p.difficulty) : ''}${p.is_previous_year && p.year_asked ? ' · Asked in ' + esc(p.year_asked) : ''}</span>
+                    <h2>${esc(p.title)}</h2>
+                    <div class="prose">${esc(p.problem_statement)}</div>
+                    ${p.input_format || p.output_format ? `<div class="io-grid">
+                        ${p.input_format ? `<div><span class="eyebrow">Input format</span><div class="prose" style="font-size:15px">${esc(p.input_format)}</div></div>` : ''}
+                        ${p.output_format ? `<div><span class="eyebrow">Output format</span><div class="prose" style="font-size:15px">${esc(p.output_format)}</div></div>` : ''}</div>` : ''}
+                    ${p.constraints ? `<div><span class="eyebrow">Constraints</span><pre class="code" style="white-space:pre-wrap;margin-top:6px">${esc(p.constraints)}</pre></div>` : ''}
+                    <div class="io-grid">
+                        <div><span class="eyebrow">Sample input</span><pre class="code">${esc(p.sample_input)}</pre></div>
+                        <div><span class="eyebrow">Sample output</span><pre class="code">${esc(p.sample_output)}</pre></div>
+                    </div>
+                    ${p.explanation_of_example ? `<div class="note">${rich(p.explanation_of_example)}</div>` : ''}
+                </div>
+                <div class="editor">
+                    <div class="editor-bar"><span>your-attempt</span><span>Saved on this device</span></div>
+                    <textarea data-input="code" data-uid="${esc(uid)}" spellcheck="false" placeholder="Write your solution here, then compare it with mine.">${esc(meta.code[uid] || '')}</textarea>
+                </div>
+                <div class="btn-row">
+                    <button class="btn ${solved ? '' : 'btn-accent'}" data-act="solved" data-arg="${esc(uid)}">${solved ? '✓ Solved · undo' : '✓ Mark as solved (+30 XP)'}</button>
+                    ${tabs.length ? `<button class="btn" data-act="toggle-sol">${c.sol ? 'Hide solution' : 'Show solution'}</button>` : ''}
+                </div>
+                ${c.sol && tabs.length ? `<div class="sol">
+                    <div class="sol-tabs">${chips(tabs.map(t => [t, LANG[t] || t]), tab, 'sol-tab')}</div>
+                    ${solBody}
+                </div>` : ''}
+            </div>
+        </section>`;
+    },
+
+    input() {
+        const st = need(['input-practice']);
+        if (st !== 'ok') return st === 'error' ? errorHtml() : loadingHtml('Loading practice room...');
+        const s = ui.input, all = cache['input-practice'];
+        const q = all.find(x => String(x.id) === String(s.id)) || all[0];
+        if (!q) return VIEWS.empty();
+        const draftKey = `input-${q.id}-${s.lang}`;
+        const solution = q.solutions && q.solutions[s.lang] || '';
+        const res = s.result && s.result.id === q.id && s.result.lang === s.lang ? s.result : null;
+        return `<section class="code-page">
+            <aside class="code-side">
+                <h1>Input practice</h1>
+                <p class="muted" style="font-size:15px;line-height:1.5;margin-bottom:6px">Learn TCS NQT input patterns by doing. Read the input yourself, then check against the standard solution.</p>
+                <div class="prob-list" data-keep-scroll="inputs">${all.map((x, i) => `<button class="prob ${x === q ? 'on' : ''}" data-act="input-prob" data-arg="${esc(x.id)}">
+                    <span class="prob-top"><span>Session ${i + 1}</span></span><strong>${esc(x.title)}</strong></button>`).join('')}</div>
+            </aside>
+            <div class="code-main">
+                <div class="card prob-card">
+                    <span class="eyebrow accent">Real TCS pattern</span>
+                    <h2>${esc(q.title)}</h2>
+                    <div class="sol-text">${rich(q.problem_statement)}</div>
+                    ${q.constraints ? `<div class="note"><strong>💡 Goal &amp; logic</strong>${rich(q.constraints)}</div>` : ''}
+                    ${q.input_format || q.output_format ? `<div class="io-grid">
+                        ${q.input_format ? `<div><span class="eyebrow">Input format</span><div class="prose" style="font-size:15px">${esc(q.input_format)}</div></div>` : ''}
+                        ${q.output_format ? `<div><span class="eyebrow">Output format</span><div class="prose" style="font-size:15px">${esc(q.output_format)}</div></div>` : ''}</div>` : ''}
+                    <div class="io-grid">
+                        <div><span class="eyebrow">Sample input</span><pre class="code">${esc(q.sample_input)}</pre></div>
+                        <div><span class="eyebrow">Expected output</span><pre class="code">${esc(q.sample_output)}</pre></div>
+                    </div>
+                </div>
+                <div class="editor">
+                    <div class="editor-bar"><span>your-solution</span><span class="tabs">${[['python', 'Python 3'], ['java', 'Java']].map(([k, l]) => `<button class="${k === s.lang ? 'on' : ''}" data-act="input-lang" data-arg="${k}">${l}</button>`).join('')}</span></div>
+                    <textarea data-input="code" data-uid="${esc(draftKey)}" spellcheck="false" placeholder="Write your input reading logic here...">${esc(meta.code[draftKey] || '')}</textarea>
+                </div>
+                <div class="btn-row">
+                    <button class="btn btn-accent" data-act="input-check">▶ Check my logic</button>
+                    <button class="btn" data-act="input-sol">${s.sol ? 'Hide solution' : '🔓 Reveal solution'}</button>
+                </div>
+                ${res ? `<div class="result-box ${res.ok ? 'ok' : 'bad'}">${res.empty ? 'Write some code first, then check it.'
+                    : res.ok ? '<strong>✨ Logic matched!</strong> Your code matches the standard solution for this pattern.'
+                        : '<strong>Not matching yet.</strong> Your code differs from the standard solution. Different code can still be right, so compare it with the solution.'}</div>` : ''}
+                ${s.sol ? `<div class="sol">
+                    <span class="eyebrow">Standard solution · ${s.lang === 'java' ? 'Java' : 'Python 3'}</span>
+                    ${q.explanation ? `<div class="sol-text">${rich(q.explanation)}</div>` : ''}
+                    <pre class="code" style="background:var(--surface)">${esc(solution)}</pre>
+                </div>` : ''}
+            </div>
+        </section>`;
+    },
+
+    progress() {
+        const s = stats();
+        const groups = [['numerical', 'Numerical Ability'], ['verbal', 'Verbal Ability'], ['reasoning', 'Reasoning Ability'], ['programming', 'Programming'], ['mock', 'Mock tests']];
+        const bars = groups.map(([k, name]) => {
+            const d = s.by[k], p = d && d.t ? Math.round(100 * d.c / d.t) : 0;
+            const color = p >= 70 ? 'var(--ok)' : p >= 40 ? 'var(--accent)' : 'var(--bad)';
+            return `<div class="bar-row">
+                <div class="row-between"><span style="font-weight:500">${name}</span><span class="mono muted">${d && d.t ? `${p}% · ${d.c}/${d.t}` : 'Not started'}</span></div>
+                <div class="meter"><span style="width:${p}%;background:${color}"></span></div></div>`;
+        }).join('');
+        const saved = meta.bookmarks.map(x => `<div class="saved-row"><span>${esc(x.topic)}</span><span>${esc(x.text)}</span>
+            <button data-act="unsave" data-arg="${esc(x.uid)}" title="Remove">✕</button></div>`).join('');
+        return `<section class="page">
+            <div style="display:flex;flex-direction:column;gap:8px">
+                <h1 class="page-title">Your progress</h1>
+                <p class="page-sub">${s.attempted ? 'Look how far you’ve come. Here’s where to focus next.' : 'Finish your first practice set and your stats will show up here.'}</p>
+            </div>
+            <div class="stat-grid">
+                ${[['Day streak', s.streak], ['Questions done', s.attempted], ['Accuracy', s.acc], ['Coding solved', meta.solved.length]]
+                .map(([l, v]) => `<div class="card stat"><span class="eyebrow">${l}</span><b>${v}</b></div>`).join('')}
+            </div>
+            <div class="two-col">
+                <div class="card" style="padding:24px;display:flex;flex-direction:column;gap:18px">
+                    <h2 style="font-size:22px">Accuracy by section</h2>
+                    <div class="bars">${bars}</div>
+                </div>
+                <div class="card" style="padding:24px;display:flex;flex-direction:column;gap:12px">
+                    <div class="row-between"><h2 style="font-size:22px">Badges</h2><span class="mono muted" style="font-size:13px">⚡ ${s.xp} XP · LV ${s.level}</span></div>
+                    <div class="badge-list">${badges(s).map(b => `<div class="badge-item ${b.on ? 'on' : ''}"><span>${b.icon}</span><div><strong>${esc(b.label)}</strong><small>${esc(b.hint)}</small></div><span class="mono" style="font-size:13px">${b.on ? 'Earned' : 'Locked'}</span></div>`).join('')}</div>
+                </div>
+            </div>
+            <div class="card" style="padding:24px;display:flex;flex-direction:column;gap:12px">
+                <div class="row-between" style="align-items:center;flex-wrap:wrap">
+                    <h2 style="font-size:22px">Saved questions</h2>
+                    ${meta.bookmarks.length ? '<a class="btn btn-accent btn-sm" style="font-weight:700" href="#saved">Practise these →</a>' : ''}
+                </div>
+                ${saved || '<p class="muted" style="font-size:15px">Tap ☆ Save on any question and it will wait for you here.</p>'}
+            </div>
+        </section>`;
+    },
+};
+
+function exploreGrid() {
+    const st = need(SECTIONS.map(x => x.key));
+    if (st === 'loading') return loadingHtml('Loading topics...');
+    if (st === 'error') return '<p class="muted">Topics could not load. <button class="btn btn-sm" data-act="retry-load">Try again</button></p>';
+    const list = filterTopics();
+    const shown = ui.section === 'All' && !ui.search.trim()
+        ? SECTIONS.map(x => list.find(t => t.sec.key === x.key)).filter(Boolean)
+        : list.slice(0, 4);
+    const seeAll = ui.section === 'All' ? '#topics' : '#topics/' + ui.section;
+    return `${shown.length ? `<div class="topic-grid" style="margin-top:6px">${shown.map(topicCard).join('')}</div>` : '<p class="muted">Nothing matches yet. Try a shorter word.</p>'}
+        <a class="btn" href="${seeAll}">See all ${getTopics().length} topics →</a>`;
 }
 
-// Start app
-init();
+function dailyQuestion() {
+    const pool = [...cache.numerical, ...cache.reasoning].filter(q => q.difficulty !== 'Hard' && !q.code && q.text.length <= 220);
+    return pool[dayNumber() % pool.length];
+}
+
+function qotdHtml() {
+    const st = need(['numerical', 'reasoning']);
+    const head = label => `<div class="row-between" style="align-items:center"><span class="eyebrow accent">Question of the day</span><span class="mono muted" style="font-size:12px">${label}</span></div>`;
+    if (st !== 'ok') return `<div class="qotd">${head('')}<p class="muted">${st === 'error' ? 'Today’s question could not load.' : 'Loading today’s question…'}</p></div>`;
+    const q = dailyQuestion();
+    const done = meta.daily && meta.daily.day === today() && meta.daily.uid === q.uid ? meta.daily.choice : null;
+    const opts = q.options.map(([k, label]) => {
+        const cls = done != null && k === q.answer ? 'ok' : done === k ? 'bad' : '';
+        return `<button class="${cls}" data-act="daily" data-arg="${esc(k)}" ${done != null ? 'disabled' : ''}><b>${esc(k)}</b><span>${esc(label)}</span></button>`;
+    }).join('');
+    const right = (q.options.find(([k]) => k === q.answer) || [q.answer, q.answer])[1];
+    return `<div class="qotd">
+        ${head(`${esc(q.section.replace(' Ability', ''))} · ${esc(q.topic)}`)}
+        <p class="qotd-q">${esc(q.text)}</p>
+        <div class="opt-grid">${opts}</div>
+        ${done != null ? `<div class="note"><strong>${done === q.answer ? 'Yes! +10 XP ⚡' : `It’s ${esc(q.answer)} (${esc(right)}).`}</strong> ${esc(q.hint)}
+            ${q.tip ? `<div style="margin-top:8px" class="muted"><span class="eyebrow accent">Exam tip · </span>${esc(q.tip)}</div>` : ''}</div>` : ''}
+    </div>`;
+}
+
+function burstHtml(idx) {
+    const cols = ['var(--accent)', 'var(--sun)', '#221d17', 'oklch(0.7 0.16 25)', 'oklch(0.72 0.14 150)'];
+    let seed = idx * 97 + 13;
+    const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+    const bits = Array.from({ length: 34 }, (_, i) => {
+        const a = rnd() * Math.PI * 2, d = 120 + rnd() * 220;
+        return `<i style="width:${8 + rnd() * 6}px;height:${10 + rnd() * 8}px;border-radius:${rnd() > .5 ? 2 : 999}px;background:${cols[i % cols.length]};--x:${Math.cos(a) * d}px;--y:${Math.sin(a) * d - 60}px;--r:${rnd() * 720}deg;animation-delay:${rnd() * 0.08}s"></i>`;
+    }).join('');
+    return `<div class="burst">${bits}<b>+10 XP</b></div>`;
+}
+
+// ---------- Actions ----------
+const ACTIONS = {
+    'retry-load': () => { Object.keys(failed).forEach(k => delete failed[k]); route(); },
+    exam: name => { meta.exam = name; saveMeta(); paint(); },
+    section: key => { ui.section = key; paint(); },
+    level: lvl => { ui.level = lvl; paint(); },
+    daily: key => {
+        const q = dailyQuestion();
+        meta.daily = { day: today(), uid: q.uid, choice: key };
+        record(q, key);
+        saveAnswered();
+        saveMeta();
+        paint();
+    },
+
+    pick: key => pick(key),
+    go: i => go(+i),
+    prev: () => go(ui.quiz.idx - 1),
+    primary: () => primary(),
+    finish: () => finish(),
+    hint: () => { ui.quiz.hints[ui.quiz.idx] = true; paint(); },
+    flag: () => { const q = ui.quiz; q.flags[q.idx] = !q.flags[q.idx]; paint(); },
+    bookmark: () => { const q = ui.quiz; toggleBookmark(q.qs[q.idx]); paint(); },
+    review: i => { ui.view = 'quiz'; ui.quiz.idx = +i; paint(); window.scrollTo(0, 0); },
+    retry: () => { const q = ui.quiz; startQuiz({ mode: q.mode, title: q.title, back: q.back, key: q.key, qs: q.mode === 'practice' ? shuffle(q.qs) : q.qs }); },
+    unsave: uid => { meta.bookmarks = meta.bookmarks.filter(x => x.uid !== uid); saveMeta(); paint(); },
+
+    'code-set': set => { location.hash = set; },
+    'code-level': lvl => { ui.coding.level = lvl; paint(); },
+    prob: id => {
+        const c = ui.coding;
+        c.ids[c.set] = id;
+        c.sol = false;
+        history.replaceState(null, '', `#${c.set}/${encodeURIComponent(id)}`);
+        paint();
+        if (window.innerWidth < 900) document.querySelector('.code-main')?.scrollIntoView({ behavior: 'smooth' });
+    },
+    solved: uid => {
+        const i = meta.solved.indexOf(uid);
+        if (i >= 0) meta.solved.splice(i, 1);
+        else { meta.solved.push(uid); touchStreak(); }
+        saveMeta();
+        paint();
+    },
+    'toggle-sol': () => { ui.coding.sol = !ui.coding.sol; paint(); },
+    'sol-tab': tab => { ui.coding.tab = tab; paint(); },
+
+    'input-prob': id => { Object.assign(ui.input, { id, result: null, sol: false }); paint(); },
+    'input-lang': lang => { Object.assign(ui.input, { lang, result: null }); paint(); },
+    'input-check': () => {
+        const s = ui.input, q = cache['input-practice'].find(x => String(x.id) === String(s.id)) || cache['input-practice'][0];
+        const draft = (meta.code[`input-${q.id}-${s.lang}`] || '').trim();
+        const norm = str => str.replace(/\s+/g, ' ').trim();
+        s.id = q.id;
+        s.result = { id: q.id, lang: s.lang, empty: !draft, ok: !!draft && norm(draft) === norm(q.solutions[s.lang] || '') };
+        paint();
+    },
+    'input-sol': () => { ui.input.sol = !ui.input.sol; paint(); },
+};
+
+document.addEventListener('click', e => {
+    const el = e.target.closest('[data-act]');
+    if (el && !el.disabled && ACTIONS[el.dataset.act]) {
+        e.preventDefault();
+        ACTIONS[el.dataset.act](el.dataset.arg);
+        return;
+    }
+    // Re-run the route when a link points at the page we're already on
+    const a = e.target.closest('a[href^="#"]');
+    if (a && a.getAttribute('href') === (location.hash || '#')) { e.preventDefault(); route(); }
+});
+
+let codeSaveTimer = null;
+document.addEventListener('input', e => {
+    const key = e.target.dataset && e.target.dataset.input;
+    if (key === 'search') { ui.search = e.target.value; paint(); }
+    else if (key === 'code-search') { ui.coding.search = e.target.value; paint(); }
+    else if (key === 'code') {
+        meta.code[e.target.dataset.uid] = e.target.value;
+        clearTimeout(codeSaveTimer);
+        codeSaveTimer = setTimeout(saveMeta, 400);
+    }
+});
+
+// Tab inserts spaces in the code editors
+document.addEventListener('keydown', e => {
+    if (e.key === 'Tab' && e.target.dataset && e.target.dataset.input === 'code') {
+        e.preventDefault();
+        e.target.setRangeText('    ', e.target.selectionStart, e.target.selectionEnd, 'end');
+        e.target.dispatchEvent(new Event('input', { bubbles: true }));
+        return;
+    }
+    if (ui.view !== 'quiz' || !ui.quiz || e.ctrlKey || e.metaKey || e.altKey) return;
+    if (/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
+    if (/^(BUTTON|A)$/.test(e.target.tagName) && e.key === 'Enter') return;
+    const key = e.key.toUpperCase();
+    const cur = ui.quiz.qs[ui.quiz.idx];
+    if (cur.options.some(([k]) => k === key)) pick(key);
+    else if (e.key === 'Enter') { e.preventDefault(); primary(); }
+});
+
+// One clock for the quiz timer
+setInterval(() => {
+    const q = ui.quiz;
+    if (ui.view !== 'quiz' || !q || q.submitted) return;
+    ui.elapsed++;
+    const el = document.getElementById('timer-num');
+    if (q.mode === 'mock') {
+        const left = q.limit - ui.elapsed;
+        if (left <= 0) return finish();
+        if (el) { el.textContent = fmt(left); el.classList.toggle('low', left <= 60); }
+    } else if (el) {
+        el.textContent = fmt(ui.elapsed);
+    }
+}, 1000);
+
+window.addEventListener('hashchange', route);
+route();
